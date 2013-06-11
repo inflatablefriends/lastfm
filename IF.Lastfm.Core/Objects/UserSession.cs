@@ -1,7 +1,7 @@
 ﻿using IF.Lastfm.Core.Json;
 using Newtonsoft.Json;
 
-namespace IF.Lastfm.Core
+namespace IF.Lastfm.Core.Objects
 {
     public class UserSession
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using xBrainLab.Security.Cryptography;
@@ -12,25 +13,27 @@ namespace IF.Lastfm.Core.Api
         private const string ApiSignatureSeedFormat = "api_key{0}method{1}password{2}username{3}{4}";
         private const string ApiAuthMethod = "auth.getMobileSession";
 
-        protected string ApiSecret { get; set; }
-        public string ApiKey { get; set; }
+        private readonly string _apiSecret;
+
+        public bool HasAuthenticated { get { return User != null; } }
+        public string ApiKey { get; private set; }
+        public UserSession User { get; private set; }
 
         public Auth(string apikey, string secret)
         {
             ApiKey = apikey;
-            ApiSecret = secret;
+            _apiSecret = secret;
         }
 
-        public async Task<UserSession> GetSessionTokenAsync(string username, string password)
+        public async Task GetSessionTokenAsync(string username, string password)
         {
             const string apiMethod = "auth.getMobileSession";
 
-            var apisigseed = string.Format(ApiSignatureSeedFormat, ApiKey, ApiAuthMethod, password, username, ApiSecret);
+            var apisigseed = string.Format(ApiSignatureSeedFormat, ApiKey, ApiAuthMethod, password, username, _apiSecret);
 
             var apisig = MD5.GetHashString(apisigseed);
 
-            var lastfm = new LastFm();
-            var postContent = lastfm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
+            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
                                                                                 {
                                                                                     {"password", password},
                                                                                     {"username", username}
@@ -41,9 +44,7 @@ namespace IF.Lastfm.Core.Api
             var json = await response.Content.ReadAsStringAsync();
             var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
 
-            var session = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
-
-            return session;
+            User = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
         }
     }
 }

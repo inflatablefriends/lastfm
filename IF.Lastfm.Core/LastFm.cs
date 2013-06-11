@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core
 
         #region Api helper methods
 
-        public string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)
+        public static string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)
         {
             if (parameters == null)
             {
@@ -34,7 +34,7 @@ namespace IF.Lastfm.Core
 
             parameters.Add("format", ResponseFormat);
 
-            var querystring = FormatQueryParameters(parameters.OrderBy(kv => kv.Key));
+            var querystring = LastFm.FormatQueryParameters(parameters.OrderBy(kv => kv.Key));
 
             var protocol = secure
                                ? "https"
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core
             return string.Format(ApiRootFormat, protocol, method, apikey, querystring);
         }
 
-        public FormUrlEncodedContent CreatePostBody(string method, string apikey, string apisig,
+        public static FormUrlEncodedContent CreatePostBody(string method, string apikey, string apisig,
                                                           IEnumerable<KeyValuePair<string, string>> parameters)
         {
             var init = new Dictionary<string, string>
@@ -60,7 +60,7 @@ namespace IF.Lastfm.Core
         }
 
 
-        public string FormatQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
+        public static string FormatQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
         {
             const string parameterFormat = "&{0}={1}";
 

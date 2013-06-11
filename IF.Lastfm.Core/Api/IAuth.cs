@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
+using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api
 {
     public interface IAuth
     {
+        bool HasAuthenticated { get; }
         string ApiKey { get; }
+        UserSession User { get; }
 
         /// <summary>
         /// Gets the session token which is used as authentication for any service calls.
@@ -13,6 +16,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="username">Username</param>
         /// <param name="password">User's password</param>
         /// <returns>Session token used to authenticate calls to last.fm</returns>
-        Task<UserSession> GetSessionTokenAsync(string username, string password);
+        /// <remarks>API: Auth.getMobileSession</remarks>
+        Task GetSessionTokenAsync(string username, string password);
     }
 }

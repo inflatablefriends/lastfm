@@ -11,11 +11,9 @@ namespace IF.Lastfm.Core.Tests
         [TestMethod]
         public void ApiUrlFormatReturnsCorrectly()
         {
-            var lastfm = new MockLastFm();
-
             const string expected = "https://ws.audioscrobbler.com/2.0/?method=tobias.funke&api_key=suddenvalley&blue=performance&format=json&uncle=t-bag";
 
-            var actual = lastfm.Object.FormatApiUrl("tobias.funke", "suddenvalley", new Dictionary<string, string>
+            var actual = LastFm.FormatApiUrl("tobias.funke", "suddenvalley", new Dictionary<string, string>
                 {
                     {"uncle", "t-bag"},
                     {"blue", "performance"}
