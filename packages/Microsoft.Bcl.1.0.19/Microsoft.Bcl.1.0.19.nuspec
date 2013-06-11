@@ -30,10 +30,5 @@ This package is not required for projects targeting .NET Framework 4.5 or .NET f
     <dependencies>
       <dependency id="Microsoft.Bcl.Build" version="1.0.4" />
     </dependencies>
-    <references>
-      <reference file="System.Runtime.dll" />
-      <reference file="System.Threading.Tasks.dll" />
-      <reference file="_._" />
-    </references>
   </metadata>
 </package>

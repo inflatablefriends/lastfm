@@ -29,7 +29,8 @@ namespace IF.Lastfm.Core.Api
 
             var apisig = MD5.GetHashString(apisigseed);
 
-            var postContent = LastFm.GetPostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
+            var lastfm = new LastFm();
+            var postContent = lastfm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
                                                                                 {
                                                                                     {"password", password},
                                                                                     {"username", username}

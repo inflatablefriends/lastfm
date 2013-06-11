@@ -24,12 +24,5 @@ This package is not supported in Visual Studio 2010, and is only required for pr
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System.Net" targetFramework=".NETFramework4.0" />
     </frameworkAssemblies>
-    <references>
-      <reference file="Microsoft.Threading.Tasks.dll" />
-      <reference file="Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
-      <reference file="Microsoft.Threading.Tasks.Extensions.dll" />
-      <reference file="Microsoft.Threading.Tasks.Extensions.Phone.dll" />
-      <reference file="Microsoft.Threading.Tasks.Extensions.Silverlight.dll" />
-    </references>
   </metadata>
 </package>
