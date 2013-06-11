@@ -5,6 +5,5 @@ namespace IF.Lastfm.Core
     public interface ILastFm
     {
         IAuth Auth { get; }
-
     }
 }
