@@ -39,11 +39,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\Auth.cs" />
+    <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />
     <Compile Include="ILastFm.cs" />
     <Compile Include="LastFm.cs" />
+    <Compile Include="Objects\Album.cs" />
+    <Compile Include="Objects\Tag.cs" />
+    <Compile Include="Objects\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\UserSession.cs" />
   </ItemGroup>
