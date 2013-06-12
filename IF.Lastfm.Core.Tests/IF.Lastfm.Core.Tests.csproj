@@ -95,7 +95,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Api\AlbumTests.cs" />
+    <Compile Include="Objects\AlbumTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
     <Compile Include="LastFmTests.cs" />
