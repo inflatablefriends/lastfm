@@ -14,6 +14,8 @@ namespace IF.Lastfm.Core
         private const string ApiRootFormat = "{0}://ws.audioscrobbler.com/2.0/?method={1}&api_key={2}{3}";
 
         private const string ResponseFormat = "json";
+
+        public const int DefaultPageLength = 20;
         
         #endregion
 

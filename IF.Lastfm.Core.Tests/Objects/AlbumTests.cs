@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Tests.Objects
             
             var parsed = Album.ParseJToken(jo.SelectToken("album"));
 
-            var expected = new Album()
+            var expected = new Album
                 {
                     ArtistId = "283786832",
                     ArtistName = "Grimes",
@@ -32,7 +32,16 @@ namespace IF.Lastfm.Core.Tests.Objects
                     Url = new Uri("http://www.last.fm/music/Grimes/Visions", UriKind.Absolute),
                     TopTags = new List<Tag>
                         {
-                            // TODO
+                            new Tag
+                                {
+                                    Name = "2012",
+                                    Url = new Uri("http://www.last.fm/tag/2012", UriKind.Absolute)
+                                },
+                            new Tag
+                                {
+                                    Name = "best of 2012",
+                                    Url = new Uri("http://www.last.fm/tag/best%20of%202012", UriKind.Absolute)
+                                }
                         },
                     Tracks = new List<Track>
                         {
