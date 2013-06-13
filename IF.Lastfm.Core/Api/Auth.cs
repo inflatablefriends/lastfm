@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -40,11 +41,20 @@ namespace IF.Lastfm.Core.Api
                                                                                 });
 
             var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync("https://ws.audioscrobbler.com/2.0/", postContent);
-            var json = await response.Content.ReadAsStringAsync();
-            var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
+            HttpResponseMessage response = await httpClient.PostAsync("https://ws.audioscrobbler.com/2.0/", postContent);
+            string json = await response.Content.ReadAsStringAsync();
 
-            User = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
+            LastFmApiError error;
+            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            {
+                var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
+
+                User = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
+            }
+            else
+            {
+                LastFm.HandleError(error);
+            }
         }
     }
 }

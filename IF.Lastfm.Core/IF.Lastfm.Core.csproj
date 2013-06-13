@@ -46,10 +46,13 @@
     <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
+    <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />
     <Compile Include="ILastFm.cs" />
     <Compile Include="LastFm.cs" />
+    <Compile Include="Api\Enums\LastFmApiError.cs" />
+    <Compile Include="Api\Helpers\LastFmApiException.cs" />
     <Compile Include="Objects\Album.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Objects\Track.cs" />
