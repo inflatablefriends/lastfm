@@ -40,8 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
+    <Compile Include="Api\Helpers\ApiExtensions.cs" />
+    <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
+    <Compile Include="Api\IUserApi.cs" />
+    <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />
     <Compile Include="ILastFm.cs" />
