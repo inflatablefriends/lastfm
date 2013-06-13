@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,7 +22,33 @@ namespace IF.Lastfm.Console
 
         private static void Main(string[] args)
         {
-            Run().Wait();
+            try
+            {
+                Task.Run(async () => await Run()).Wait();
+            }
+            catch (AggregateException agg)
+            {
+                foreach (var ex in agg.InnerExceptions)
+                {
+                    System.Console.WriteLine("\n====================\n");
+                    if (ex is LastFmApiException)
+                    {
+                        var lex = ex as LastFmApiException;
+                        System.Console.WriteLine("LastFmApiException thrown:\n    {0}\n    {1}",
+                                                 lex.Error.GetApiName(),
+                                                 lex.StackTrace);
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Exception thrown:\n    {0}\n    {1}",
+                                                 ex.Message,
+                                                 ex.StackTrace);
+                    }
+                    System.Console.WriteLine("\n====================\n");
+                }
+            }
+
+            System.Console.ReadLine();
         }
 
         public static async Task Run()
@@ -35,7 +62,6 @@ namespace IF.Lastfm.Console
 
             var album = await albumApi.GetAlbumInfoAsync("Grimes", "Visions", false);
             
-            System.Console.ReadLine();
         }
 
         private async static Task LoadSession()

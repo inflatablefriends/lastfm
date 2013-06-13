@@ -3,6 +3,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Helpers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core
 {
@@ -74,6 +78,85 @@ namespace IF.Lastfm.Core
             }
 
             return builder.ToString();
+        }
+
+        public static bool IsResponseValid(string json, out LastFmApiError error)
+        {
+            if (!json.Contains("error"))
+            {
+                error = LastFmApiError.None;
+                return true;
+            }
+
+            error = LastFmApiError.Unknown;
+            JObject jo;
+            try
+            {
+                jo = JsonConvert.DeserializeObject<JObject>(json);
+            }
+            catch (JsonException)
+            {
+                return false;
+            }
+
+            var code = jo.Value<int>("error");
+
+            switch (code)
+            {
+                case 2:
+                    error = LastFmApiError.ServiceServiceWhereArtThou;
+                    break;
+                case 3:
+                    error = LastFmApiError.BadMethod;
+                    break;
+                case 4:
+                    error = LastFmApiError.BadAuth;
+                    break;
+                case 5:
+                    error = LastFmApiError.BadFormat;
+                    break;
+                case 6:
+                    error = LastFmApiError.MissingParameters;
+                    break;
+                case 7:
+                    error = LastFmApiError.BadResource;
+                    break;
+                case 8:
+                    error = LastFmApiError.Failure;
+                    break;
+                case 9:
+                    error = LastFmApiError.SessionExpired;
+                    break;
+                case 10:
+                    error = LastFmApiError.BadApiKey;
+                    break;
+                case 11:
+                    error = LastFmApiError.ServiceDown;
+                    break;
+                case 13:
+                    error = LastFmApiError.BadMethodSignature;
+                    break;
+                case 16:
+                    error = LastFmApiError.TemporaryFailure;
+                    break;
+                case 26:
+                    error = LastFmApiError.KeySuspended;
+                    break;
+                case 29:
+                    error = LastFmApiError.RateLimited;
+                    break;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// TODO split exceptions into different kinds depending on what consumer needs to do
+        /// </summary>
+        /// <param name="error"></param>
+        public static void HandleError(LastFmApiError error)
+        {
+            throw new LastFmApiException(error);
         }
 
         #endregion
