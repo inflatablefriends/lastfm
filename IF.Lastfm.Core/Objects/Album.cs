@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -31,8 +32,6 @@ namespace IF.Lastfm.Core.Objects
         /// <summary>
         /// TODO datetime parsing
         /// TODO images
-        /// TODO tags
-        /// TODO tracks
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
@@ -48,6 +47,12 @@ namespace IF.Lastfm.Core.Objects
             a.TotalPlayCount = token.Value<int>("playcount");
 
             a.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
+
+            var tracksToken = token.SelectToken("tracks").SelectToken("track");
+            a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
+
+            var tagsToken = token.SelectToken("toptags").SelectToken("tag");
+            a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
 
             return a;
         }
