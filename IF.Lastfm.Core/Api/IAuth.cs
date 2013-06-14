@@ -9,6 +9,7 @@ namespace IF.Lastfm.Core.Api
         bool HasAuthenticated { get; }
         string ApiKey { get; }
         UserSession User { get; }
+        string ApiSignature { get; }
 
         /// <summary>
         /// Gets the session token which is used as authentication for any service calls.

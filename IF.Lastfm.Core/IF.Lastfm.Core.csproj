@@ -47,9 +47,12 @@
     <Compile Include="Api\Helpers\ListResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Api\IArtistApi.cs" />
+    <Compile Include="Api\ITrackApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
     <Compile Include="Api\Helpers\LastResponse{T}.cs" />
+    <Compile Include="Api\Scrobble.cs" />
+    <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />

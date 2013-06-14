@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
-        public static Tag ParseJToken(JToken token)
+        internal static Tag ParseJToken(JToken token)
         {
             var t = new Tag();
 

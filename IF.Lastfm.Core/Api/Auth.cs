@@ -20,6 +20,7 @@ namespace IF.Lastfm.Core.Api
         public bool HasAuthenticated { get { return User != null; } }
         public string ApiKey { get; private set; }
         public UserSession User { get; private set; }
+        public string ApiSignature { get; private set; }
 
         public Auth(string apikey, string secret)
         {
@@ -27,15 +28,14 @@ namespace IF.Lastfm.Core.Api
             _apiSecret = secret;
         }
 
-        public async Task<LastResponse>  GetSessionTokenAsync(string username, string password)
+        public async Task<LastResponse> GetSessionTokenAsync(string username, string password)
         {
             const string apiMethod = "auth.getMobileSession";
 
             var apisigseed = string.Format(ApiSignatureSeedFormat, ApiKey, ApiAuthMethod, password, username, _apiSecret);
+            ApiSignature = MD5.GetHashString(apisigseed);
 
-            var apisig = MD5.GetHashString(apisigseed);
-
-            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
+            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, ApiSignature, new Dictionary<string, string>
                                                                                 {
                                                                                     {"password", password},
                                                                                     {"username", username}
