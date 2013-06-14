@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api
@@ -17,6 +18,6 @@ namespace IF.Lastfm.Core.Api
         /// <param name="password">User's password</param>
         /// <returns>Session token used to authenticate calls to last.fm</returns>
         /// <remarks>API: Auth.getMobileSession</remarks>
-        Task GetSessionTokenAsync(string username, string password);
+        Task<LastResponse> GetSessionTokenAsync(string username, string password);
     }
 }

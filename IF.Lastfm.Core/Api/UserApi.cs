@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="startIndex"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Album>> GetTopAlbums(LastStatsTimeSpan span, int startIndex = 0, int amount = LastFm.DefaultPageLength)
+        public async Task<ListResponse<Album>> GetTopAlbums(LastStatsTimeSpan span, int startIndex = 0, int amount = LastFm.DefaultPageLength)
         {
             const string apiMethod = "user.getTopAlbums";
 
@@ -50,12 +50,13 @@ namespace IF.Lastfm.Core.Api
 
                 var albumsToken = jtoken.SelectToken("topalbums").SelectToken("album");
 
-                return albumsToken.Children().Select(Album.ParseJToken);
+                var albums = albumsToken.Children().Select(Album.ParseJToken);
+
+                return ListResponse<Album>.CreateSuccessResponse(albums);
             }
             else
             {
-                LastFm.HandleError(error);
-                return null; // an exception is gon' be thrown but the compiler needs this
+                return ListResponse<Album>.CreateErrorResponse(error);
             }
         }
     }
