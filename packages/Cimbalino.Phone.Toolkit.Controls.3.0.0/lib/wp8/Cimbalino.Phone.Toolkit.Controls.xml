@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cimbalino.Phone.Toolkit.Controls</name>
+    </assembly>
+    <members>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.EnumValueConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a <see cref="T:System.Enum"/> value to a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.EnumValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an <see cref="T:System.Enum"/> value to a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.EnumValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.String"/> value to an <see cref="T:System.Enum"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.EnumValuesConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts an <see cref="T:System.Enum"/> possible values to a <see cref="T:System.String"/> array value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.EnumValuesConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an <see cref="T:System.Enum"/> possible values to a <see cref="T:System.String"/> array value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.EnumValuesConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.String"/> array value to an <see cref="T:System.Enum"/> possible value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem">
+            <summary>
+            Represents a <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGrid"/> item.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem.Update">
+            <summary>
+            Updates the item.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem.Category">
+            <summary>
+            Gets the category of the item.
+            </summary>
+            <value>The category of the item.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem.Name">
+            <summary>
+            Gets the name of the item.
+            </summary>
+            <value>The name of the item.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem.IsWritable">
+            <summary>
+            Gets a value indicating whether the item is writable.
+            </summary>
+            <value>A value indicating whether the item is writable.</value>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.ItemsGroup`1">
+            <summary>
+            Represents a group for a collections of items.
+            </summary>
+            <typeparam name="T">The items collection type.</typeparam>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.ItemsGroup`1.#ctor(System.String,System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Phone.Toolkit.Controls.ItemsGroup`1"/> class.
+            </summary>
+            <param name="name">The group name.</param>
+            <param name="items">The group items list.</param>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.ItemsGroup`1.Name">
+            <summary>
+            Gets the group name.
+            </summary>
+            <value>The group name.</value>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.PrimitiveValueConverter">
+            <summary>
+            An <see cref="T:System.Windows.Data.IValueConverter"/> which converts a primitive value to a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PrimitiveValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a primitive value to a <see cref="T:System.String"/> value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PrimitiveValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <see cref="T:System.String"/> value to a primitive value.
+            </summary>
+            <param name="value">The value produced by the binding source.</param>
+            <param name="targetType">The type of the binding target property.</param>
+            <param name="parameter">The converter parameter to use.</param>
+            <param name="culture">The culture to use in the converter.</param>
+            <returns>
+            A converted value. If the method returns null, the valid null value is used.
+            </returns>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.PropertyGrid">
+            <summary>
+            Represents a PropertyGrid control capable of managing an object properties.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.SourceObjectProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.SourceObject"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ItemTemplateProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ShowCategoriesProperty">
+            <summary>
+            Identifier for the <see cref="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ShowCategories"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGrid"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.OnApplyTemplate">
+            <summary>
+            Called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.SourceObject">
+            <summary>
+            Gets or sets the object for which the grid displays properties.
+            </summary>
+            <value>The object for which the grid displays properties.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ItemTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> used to display each item.
+            </summary>
+            <value>A <see cref="T:System.Windows.DataTemplate"/> that specifies the visualization of the data objects.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGrid.ShowCategories">
+            <summary>
+            Gets or sets a value indicating whether to show categories.
+            </summary>
+            <value>true if the categories are enabled; otherwise, false.</value>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1">
+            <summary>
+            A <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGrid"/> item.
+            </summary>
+            <typeparam name="T">The property type.</typeparam>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.#ctor(System.Object,System.Reflection.PropertyInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1"/> class.
+            </summary>
+            <param name="sourceObject">The source object.</param>
+            <param name="propertyInfo">The <see cref="T:System.Reflection.PropertyInfo"/>.</param>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.Update">
+            <summary>
+            Updates the item.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.GetPropertyCustomAttribute``1">
+            <summary>
+            Gets a custom <see cref="T:System.Attribute"/> from the <see cref="T:System.Reflection.PropertyInfo"/>.
+            </summary>
+            <typeparam name="TAttribute">The attribute type.</typeparam>
+            <returns>A custom <see cref="T:System.Attribute"/> from the <see cref="T:System.Reflection.PropertyInfo"/>.</returns>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.RaisePropertyChanged(System.String)">
+            <summary>
+            Raises the PropertyChanged event.
+            </summary>
+            <param name="propertyName">The name of the property that changed.</param>
+        </member>
+        <member name="E:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.PropertyChanged">
+            <summary>
+            Occurs after a property value changes.
+            </summary>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.Name">
+            <summary>
+            Gets the name of the item.
+            </summary>
+            <value>The name of the item.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.IsWritable">
+            <summary>
+            Gets a value indicating whether the item is writable.
+            </summary>
+            <value>A value indicating whether the item is writable.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.Category">
+            <summary>
+            Gets the category of the item.
+            </summary>
+            <value>The category of the item.</value>
+        </member>
+        <member name="P:Cimbalino.Phone.Toolkit.Controls.PropertyGridItem`1.Value">
+            <summary>
+            Gets or sets the value of the item.
+            </summary>
+            <value>The value of the item.</value>
+        </member>
+        <member name="T:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer">
+            <summary>
+            A <see cref="T:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem"/> container.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer"/> class.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer.OnApplyTemplate">
+            <summary>
+            Called just before a UI element displays in an application.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer.OnContentChanged(System.Object,System.Object)">
+            <summary>
+            Called when the value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property changes.
+            </summary>
+            <param name="oldContent">The old value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property.</param>
+            <param name="newContent">The new value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property.</param>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer.Update">
+            <summary>
+            Updates the <see cref="T:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer"/>.
+            </summary>
+        </member>
+        <member name="M:Cimbalino.Phone.Toolkit.Controls.PropertyGridItemContainer.SelectTemplate(Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem)">
+            <summary>
+            Retrieved a <see cref="T:System.Windows.DataTemplate"/> instance for the specified <see cref="T:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem"/>.
+            </summary>
+            <param name="item">The <see cref="T:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem"/>.</param>
+            <returns>A <see cref="T:System.Windows.DataTemplate"/> instance for the specified <see cref="T:Cimbalino.Phone.Toolkit.Controls.IPropertyGridItem"/>.</returns>
+        </member>
+    </members>
+</doc>

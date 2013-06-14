@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -12,15 +14,15 @@ namespace IF.Lastfm.Core.Api
 {
     public class Auth : IAuth
     {
-        private const string ApiSignatureSeedFormat = "api_key{0}method{1}password{2}username{3}{4}";
         private const string ApiAuthMethod = "auth.getMobileSession";
 
         private readonly string _apiSecret;
+        private string _password;
+        private string _username;
 
         public bool HasAuthenticated { get { return User != null; } }
         public string ApiKey { get; private set; }
         public UserSession User { get; private set; }
-        public string ApiSignature { get; private set; }
 
         public Auth(string apikey, string secret)
         {
@@ -32,10 +34,12 @@ namespace IF.Lastfm.Core.Api
         {
             const string apiMethod = "auth.getMobileSession";
 
-            var apisigseed = string.Format(ApiSignatureSeedFormat, ApiKey, ApiAuthMethod, password, username, _apiSecret);
-            ApiSignature = MD5.GetHashString(apisigseed);
+            _password = password;
+            _username = username;
 
-            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, ApiSignature, new Dictionary<string, string>
+            var apisig = GenerateMethodSignature(apiMethod);
+
+            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
                                                                                 {
                                                                                     {"password", password},
                                                                                     {"username", username}
@@ -58,6 +62,31 @@ namespace IF.Lastfm.Core.Api
             {
                 return LastResponse.CreateErrorResponse(error);
             }
+        }
+
+        public string GenerateMethodSignature(string method, Dictionary<string, string> parameters = null)
+        {
+            if (parameters == null)
+            {
+                parameters = new Dictionary<string, string>();
+            }
+
+            parameters.Add("api_key", ApiKey);
+            parameters.Add("method", method);
+            parameters.Add("password", _password);
+            parameters.Add("username", _username);
+
+            var builder = new StringBuilder();
+
+            foreach (var kv in parameters.OrderBy(kv => kv.Key))
+            {
+                builder.Append(kv.Key);
+                builder.Append(kv.Value);
+            }
+
+            builder.Append(_apiSecret);
+
+            return MD5.GetHashString(builder.ToString());
         }
     }
 }

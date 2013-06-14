@@ -22,18 +22,23 @@ namespace IF.Lastfm.Core.Api
         {
             const string apiMethod = "track.scrobble";
 
+            var methodParameters = new Dictionary<string, string>
+            {
+                {"artist", scrobble.Artist},
+                {"album", scrobble.Album},
+                {"track", scrobble.Track},
+                {"albumArtist", scrobble.AlbumArtist},
+                {"chosenByUser", scrobble.ChosenByUser.ToInt().ToString()},
+                {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()},
+                {"sk", Auth.User.Token}
+            };
+
+            var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
+
             var postContent = LastFm.CreatePostBody(apiMethod,
                 Auth.ApiKey,
-                Auth.ApiSignature,
-                new Dictionary<string, string>
-                {
-                    {"artist", scrobble.Artist},
-                    {"album", scrobble.Album},
-                    {"track", scrobble.Track},
-                    {"albumArtist", scrobble.AlbumArtist},
-                    {"chosenByUser", scrobble.ChosenByUser.ToInt().ToString()},
-                    {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()}
-                });
+                apisig,
+                methodParameters);
 
             var httpClient = new HttpClient();
             HttpResponseMessage response = await httpClient.PostAsync(LastFm.ApiRoot, postContent);
