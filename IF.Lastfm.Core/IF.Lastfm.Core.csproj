@@ -43,9 +43,12 @@
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
+    <Compile Include="Api\Helpers\LastResponse.cs" />
+    <Compile Include="Api\Helpers\ListResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
+    <Compile Include="Api\Helpers\LastResponse{T}.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />
@@ -54,6 +57,9 @@
     <Compile Include="Api\Enums\LastFmApiError.cs" />
     <Compile Include="Api\Helpers\LastFmApiException.cs" />
     <Compile Include="Objects\Album.cs" />
+    <Compile Include="Objects\BuyLink.cs" />
+    <Compile Include="Objects\CountryCode.cs" />
+    <Compile Include="Objects\Shout.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Objects\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -150,15 +150,6 @@ namespace IF.Lastfm.Core
             return false;
         }
 
-        /// <summary>
-        /// TODO split exceptions into different kinds depending on what consumer needs to do
-        /// </summary>
-        /// <param name="error"></param>
-        public static void HandleError(LastFmApiError error)
-        {
-            throw new LastFmApiException(error);
-        }
-
         #endregion
     }
 }

@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -26,7 +27,7 @@ namespace IF.Lastfm.Core.Api
             _apiSecret = secret;
         }
 
-        public async Task GetSessionTokenAsync(string username, string password)
+        public async Task<LastResponse>  GetSessionTokenAsync(string username, string password)
         {
             const string apiMethod = "auth.getMobileSession";
 
@@ -50,10 +51,12 @@ namespace IF.Lastfm.Core.Api
                 var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
 
                 User = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
+
+                return LastResponse.CreateSuccessResponse();
             }
             else
             {
-                LastFm.HandleError(error);
+                return LastResponse.CreateErrorResponse(error);
             }
         }
     }
