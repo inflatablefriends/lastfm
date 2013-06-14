@@ -93,12 +93,12 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getTags
 
-        public Task<ListResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
+        public Task<ListResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ListResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, bool autocorrect = false)
+        public Task<ListResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }

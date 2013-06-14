@@ -32,7 +32,7 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="token">A valid JToken</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used directly then the duration attribute will be parsed as MILLIseconds</remarks>
-        public static Track ParseJToken(JToken token)
+        internal static Track ParseJToken(JToken token)
         {
             var t = new Track();
 
@@ -58,7 +58,7 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="albumName">Name of the album this track belongs to</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used then the duration attribute will be parsed as seconds</remarks>
-        public static Track ParseJToken(JToken token, string albumName)
+        internal static Track ParseJToken(JToken token, string albumName)
         {
             var t = ParseJToken(token);
             t.AlbumName = albumName;

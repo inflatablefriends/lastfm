@@ -22,5 +22,15 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             return en.ToString();
         }
+
+        public static int ToInt(this bool b)
+        {
+            return b ? 1 : 0;
+        }
+
+        public static double ToUnixTimestamp(this DateTime dt)
+        {
+            return (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+        }
     }
 }

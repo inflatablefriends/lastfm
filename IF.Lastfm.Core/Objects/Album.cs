@@ -35,7 +35,7 @@ namespace IF.Lastfm.Core.Objects
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public static Album ParseJToken(JToken token)
+        internal static Album ParseJToken(JToken token)
         {
             var a = new Album();
 
