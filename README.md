@@ -1,1 +1,1 @@
-#Last.fm Portable .NET API**TODO:** some documentation...
+#Last.fm Portable .NET API## Quickstart	var auth = new Auth("apikey", "apisecret");	await auth.GetSessionTokenAsync("username", "pass");		var albumApi = new AlbumApi(auth);	var visions = await albumApi.GetAlbumInfoAsync("Grimes", "Visions");
