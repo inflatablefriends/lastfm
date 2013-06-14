@@ -28,9 +28,11 @@ namespace IF.Lastfm.Core.Api.Helpers
             return b ? 1 : 0;
         }
 
-        public static double ToUnixTimestamp(this DateTime dt)
+        public static int ToUnixTimestamp(this DateTime dt)
         {
-            return (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+            var d =  (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+
+            return Convert.ToInt32(d);
         }
     }
 }
