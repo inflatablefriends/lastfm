@@ -47,8 +47,8 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getTags
 
-        Task<ListResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, bool autocorrect = false);
-        Task<ListResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, bool autocorrect = false);
+        Task<ListResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false);
+        Task<ListResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, string username, bool autocorrect = false);
 
         #endregion
 

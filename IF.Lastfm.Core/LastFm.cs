@@ -19,6 +19,7 @@ namespace IF.Lastfm.Core
 
         private const string ResponseFormat = "json";
 
+        public const string DefaultLanguageCode = "en";
         public const int DefaultPageLength = 20;
         
         #endregion

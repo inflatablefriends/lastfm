@@ -46,6 +46,7 @@
     <Compile Include="Api\Helpers\LastResponse.cs" />
     <Compile Include="Api\Helpers\ListResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
+    <Compile Include="Api\IArtistApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
     <Compile Include="Api\Helpers\LastResponse{T}.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Api\Enums\LastFmApiError.cs" />
     <Compile Include="Api\Helpers\LastFmApiException.cs" />
     <Compile Include="Objects\Album.cs" />
+    <Compile Include="Objects\Artist.cs" />
     <Compile Include="Objects\BuyLink.cs" />
     <Compile Include="Objects\CountryCode.cs" />
     <Compile Include="Objects\Shout.cs" />
