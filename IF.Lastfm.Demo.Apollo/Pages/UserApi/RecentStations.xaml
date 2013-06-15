@@ -1,0 +1,118 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="IF.Lastfm.Demo.Apollo.Pages.UserApi.RecentStations"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:userApi="clr-namespace:IF.Lastfm.Demo.Apollo.ViewModels.UserApi"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    d:DataContext="{d:DesignInstance userApi:RecentStationsTestViewModel, IsDesignTimeCreatable=True}">
+
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="EndlessScrollerTemplate" TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ScrollStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="00:00:00.5" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Scrolling">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="VerticalScrollBar"
+                                                             Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="HorizontalScrollBar"
+                                                             Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="NotScrolling">
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="VerticalCompression">
+                                    <VisualState x:Name="NoVerticalCompression" />
+                                    <VisualState x:Name="CompressionTop" />
+                                    <VisualState x:Name="CompressionBottom" />
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="HorizontalCompression">
+                                    <VisualState x:Name="NoHorizontalCompression" />
+                                    <VisualState x:Name="CompressionLeft" />
+                                    <VisualState x:Name="CompressionRight" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollContentPresenter x:Name="ScrollContentPresenter"
+                                                        Content="{TemplateBinding Content}"
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                <ScrollBar x:Name="VerticalScrollBar" IsHitTestVisible="False" Height="Auto" Width="5"
+                                           HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                                           Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                           IsTabStop="False" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0"
+                                           Value="{TemplateBinding VerticalOffset}"
+                                           Orientation="Vertical" ViewportSize="{TemplateBinding ViewportHeight}" />
+                                <ScrollBar x:Name="HorizontalScrollBar" IsHitTestVisible="False" Width="Auto"
+                                           Height="5"
+                                           HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                           Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                           IsTabStop="False" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0"
+                                           Value="{TemplateBinding HorizontalOffset}"
+                                           Orientation="Horizontal" ViewportSize="{TemplateBinding ViewportWidth}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+    
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <ScrollViewer x:Name="PageScroller"
+                      Style="{StaticResource EndlessScrollerTemplate}"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalAlignment="Stretch">
+            <StackPanel x:Name="ContentPanel"
+                        Margin="12,17,12,0">
+                <TextBlock Text="LASTFM-WP DEMO APP"
+                           Style="{StaticResource PhoneTextNormalStyle}"
+                           Margin="12,0" />
+                <TextBlock Text="recent stations"
+                           Margin="9,-7,0,12"
+                           Style="{StaticResource PhoneTextTitle1Style}" />
+                <TextBlock Text="{Binding Auth.User.Username}"
+                           Style="{StaticResource PhoneTextNormalStyle}"
+                           Margin="12,0" />
+
+                <ItemsControl ItemsSource="{Binding Stations}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,12">
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource PhoneTextLargeStyle}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

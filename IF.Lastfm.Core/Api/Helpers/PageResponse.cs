@@ -1,19 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using IF.Lastfm.Core.Api.Enums;
+using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
     public class PageResponse<T> : IEnumerable<T>
     {
+        private int _page  = 1;
+        private int _totalPages = 1;
+
         #region Properties
 
         public IEnumerable<T> Content { get; set; }
         public bool Success { get; set; }
         public LastFmApiError Error { get; set; }
 
-        public int Page { get; set; }
-        public int TotalPages { get; set; }
+        public int Page
+        {
+            get { return _page; }
+            set { _page = value; }
+        }
+
+        public int TotalPages
+        {
+            get { return _totalPages; }
+            set { _totalPages = value; }
+        }
 
         #endregion
 
@@ -72,5 +86,27 @@ namespace IF.Lastfm.Core.Api.Helpers
         }
 
         #endregion
+
+        public void AddPageInfoFromJToken(JToken attrToken)
+        {
+            if (attrToken == null)
+            {
+                return;
+            }
+
+            var page = attrToken.Value<string>("page");
+            Page = !string.IsNullOrWhiteSpace(page) ? Convert.ToInt32(page) : 1;
+
+            var totalPages = attrToken.Value<string>("totalPages");
+            TotalPages = !string.IsNullOrWhiteSpace(totalPages) ? Convert.ToInt32(totalPages) : 1;
+        }
+
+//        {"@attr": {
+//  "user": "tehrikkit",
+//  "page": "",
+//  "perPage": "",
+//  "totalPages": "",
+//  "total": "15"
+//}}
     }
 }

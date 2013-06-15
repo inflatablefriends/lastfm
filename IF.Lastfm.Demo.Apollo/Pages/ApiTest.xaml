@@ -38,6 +38,7 @@
 
             <Button Content="Scrobbling" Click="OnScrobblingLinkClick"/>
             <Button Content="History" Click="OnHistoryLinkClick"/>
+            <Button Content="Recent Stations" Click="OnRecentStationsLinkClick"/>
         </StackPanel>
     </Grid>
 

@@ -107,18 +107,58 @@ namespace IF.Lastfm.Core.Api
                 var pageresponse = PageResponse<Track>.CreateSuccessResponse(tracks);
 
                 var attrToken = jtoken.SelectToken("@attr");
-
-                if (attrToken != null)
-                {
-                    pageresponse.Page = attrToken.Value<int>("page");
-                    pageresponse.TotalPages = attrToken.Value<int>("totalPages");
-                }
+                pageresponse.AddPageInfoFromJToken(attrToken);
 
                 return pageresponse;
             }
             else
             {
                 return PageResponse<Track>.CreateErrorResponse(error);
+            }
+        }
+
+        public async Task<PageResponse<Station>> GetRecentStations(int pagenumber, int count = LastFm.DefaultPageLength)
+        {
+            const string apiMethod = "user.getRecentStations";
+
+            var methodParameters = new Dictionary<string, string>
+                                       {
+                                           {"user", Auth.User.Username},
+                                           {"page", pagenumber.ToString()},
+                                           {"limit", count.ToString()},
+                                           {"sk", Auth.User.Token}
+                                       };
+
+            var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
+
+            var postContent = LastFm.CreatePostBody(apiMethod,
+                Auth.ApiKey,
+                apisig,
+                methodParameters);
+
+            var httpClient = new HttpClient();
+            var lastResponse = await httpClient.PostAsync(LastFm.ApiRoot, postContent);
+            var json = await lastResponse.Content.ReadAsStringAsync();
+
+            LastFmApiError error;
+            if (LastFm.IsResponseValid(json, out error) && lastResponse.IsSuccessStatusCode)
+            {
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recentstations");
+
+                var stationsToken = jtoken.SelectToken("station");
+
+                var stations = stationsToken.Children().Select(Station.ParseJToken).ToList();
+
+                var pageresponse = PageResponse<Station>.CreateSuccessResponse(stations);
+
+                var attrToken = jtoken.SelectToken("@attr");
+                pageresponse.AddPageInfoFromJToken(attrToken);
+
+                return pageresponse;
+            }
+            else
+            {
+                return PageResponse<Station>.CreateErrorResponse(error);
             }
         }
     }
