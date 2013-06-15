@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Demo.Apollo.TestPages.ViewModels;
 
-namespace IF.Lastfm.Demo.Apollo.TestPages.ViewModels
+namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
 {
     public class HistoryTestViewModel : BaseViewModel
     {
@@ -117,9 +118,9 @@ namespace IF.Lastfm.Demo.Apollo.TestPages.ViewModels
 
             InProgress = true;
 
-            var userApi = new UserApi(Auth);
+            var userApi = new Core.Api.UserApi(Auth);
 
-            var response = await userApi.GetRecentScrobbles(Auth.User.Username, DateTime.UtcNow.AddMonths(-1), _historyPageProgress.ExpectedPage, 60);
+            var response = await userApi.GetRecentScrobbles(Auth.User.Username, DateTime.UtcNow.AddMonths(-1), _historyPageProgress.ExpectedPage, 50);
 
             Successful = response.Success;
 

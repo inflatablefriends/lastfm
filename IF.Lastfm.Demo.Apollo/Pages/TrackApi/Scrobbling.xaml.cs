@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using IF.Lastfm.Demo.Apollo.TestPages.ViewModels;
+using IF.Lastfm.Demo.Apollo.ViewModels.TrackApi;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace IF.Lastfm.Demo.Apollo.TestPages
+namespace IF.Lastfm.Demo.Apollo.Pages.TrackApi
 {
     public partial class Scrobbling : PhoneApplicationPage
     {

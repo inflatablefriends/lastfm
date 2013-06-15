@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using IF.Lastfm.Demo.Apollo.Annotations;
 using IF.Lastfm.Demo.Apollo.TestPages.ViewModels;
+using IF.Lastfm.Demo.Apollo.ViewModels.UserApi;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace IF.Lastfm.Demo.Apollo.TestPages
+namespace IF.Lastfm.Demo.Apollo.Pages.UserApi
 {
     public partial class History : PhoneApplicationPage
     {
@@ -31,12 +24,12 @@ namespace IF.Lastfm.Demo.Apollo.TestPages
             InitializeComponent();
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
+
+            Loaded += OnLoaded;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
             await _viewModel.NavigatedTo();
             await _viewModel.GetHistory();
 
@@ -62,6 +55,11 @@ namespace IF.Lastfm.Demo.Apollo.TestPages
                 //    hgroup.CurrentStateChanging += hgroup_CurrentStateChanging;
                 //}
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)

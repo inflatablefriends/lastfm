@@ -2,8 +2,9 @@
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using IF.Lastfm.Core.Api;
+using IF.Lastfm.Demo.Apollo.TestPages.ViewModels;
 
-namespace IF.Lastfm.Demo.Apollo.TestPages.ViewModels
+namespace IF.Lastfm.Demo.Apollo.ViewModels.TrackApi
 {
     public class ScrobblingTestViewModel : BaseViewModel
     {
@@ -122,7 +123,7 @@ namespace IF.Lastfm.Demo.Apollo.TestPages.ViewModels
             var auth = new Auth(apikey, apisecret);
             await auth.GetSessionTokenAsync(username, pass);
 
-            var trackApi = new TrackApi(auth);
+            var trackApi = new Core.Api.TrackApi(auth);
 
             var scrobble = new Scrobble(Artist, Album, Track, DateTime.UtcNow, AlbumArtist);
 
