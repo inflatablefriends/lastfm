@@ -59,7 +59,6 @@
     <Compile Include="ILastFm.cs" />
     <Compile Include="LastFm.cs" />
     <Compile Include="Api\Enums\LastFmApiError.cs" />
-    <Compile Include="Api\Helpers\LastFmApiException.cs" />
     <Compile Include="Objects\Album.cs" />
     <Compile Include="Objects\Artist.cs" />
     <Compile Include="Objects\BuyLink.cs" />
