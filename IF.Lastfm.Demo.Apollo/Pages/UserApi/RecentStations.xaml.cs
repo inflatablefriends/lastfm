@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
@@ -9,27 +9,25 @@ using Microsoft.Phone.Shell;
 
 namespace IF.Lastfm.Demo.Apollo.Pages.UserApi
 {
-    public partial class History : PhoneApplicationPage
+    public partial class RecentStations : PhoneApplicationPage
     {
-        private HistoryTestViewModel _viewModel;
+        private RecentStationsTestViewModel _viewModel;
 
-        public History()
+        public RecentStations()
         {
-            _viewModel = new HistoryTestViewModel();
-
+            _viewModel = new RecentStationsTestViewModel();
             DataContext = _viewModel;
 
             InitializeComponent();
 
             _viewModel.PropertyChanged += OnViewModelPropertyChanged;
-
             Loaded += OnLoaded;
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.NavigatedTo();
-            await _viewModel.GetHistory();
+            await _viewModel.GetRecentStations();
 
             var element = VisualTreeHelper.GetChild(PageScroller, 0) as FrameworkElement;
             if (element != null)
@@ -49,10 +47,10 @@ namespace IF.Lastfm.Demo.Apollo.Pages.UserApi
                 if (_viewModel.InProgress)
                 {
                     SystemTray.ProgressIndicator = new ProgressIndicator
-                                                       {
-                                                           IsVisible = _viewModel.InProgress,
-                                                           IsIndeterminate = _viewModel.InProgress
-                                                       };
+                    {
+                        IsVisible = _viewModel.InProgress,
+                        IsIndeterminate = _viewModel.InProgress
+                    };
                 }
                 else
                 {
@@ -67,7 +65,7 @@ namespace IF.Lastfm.Demo.Apollo.Pages.UserApi
             {
                 if (!_viewModel.InProgress)
                 {
-                    await _viewModel.GetHistory();
+                    await _viewModel.GetRecentStations();
                 }
             }
         }
@@ -79,7 +77,7 @@ namespace IF.Lastfm.Demo.Apollo.Pages.UserApi
                 return null;
             }
 
-            IList groups = VisualStateManager.GetVisualStateGroups(element);
+            var groups = VisualStateManager.GetVisualStateGroups(element);
             foreach (VisualStateGroup group in groups)
             {
                 if (group.Name == name)

@@ -64,6 +64,7 @@
     <Compile Include="Objects\BuyLink.cs" />
     <Compile Include="Objects\CountryCode.cs" />
     <Compile Include="Objects\Shout.cs" />
+    <Compile Include="Objects\Station.cs" />
     <Compile Include="Objects\Tag.cs" />
     <Compile Include="Objects\Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
