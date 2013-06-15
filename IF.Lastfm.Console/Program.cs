@@ -30,21 +30,9 @@ namespace IF.Lastfm.Console
             {
                 foreach (var ex in agg.InnerExceptions)
                 {
-                    System.Console.WriteLine("\n====================\n");
-                    if (ex is LastFmApiException)
-                    {
-                        var lex = ex as LastFmApiException;
-                        System.Console.WriteLine("LastFmApiException thrown:\n    {0}\n    {1}",
-                                                 lex.Error.GetApiName(),
-                                                 lex.StackTrace);
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Exception thrown:\n    {0}\n    {1}",
+                    System.Console.WriteLine("Exception thrown:\n    {0}\n    {1}",
                                                  ex.Message,
                                                  ex.StackTrace);
-                    }
-                    System.Console.WriteLine("\n====================\n");
                 }
             }
 
