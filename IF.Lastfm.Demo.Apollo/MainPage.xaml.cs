@@ -40,7 +40,7 @@ namespace IF.Lastfm.Demo.Apollo
 
             service.Save();
 
-            NavigationService.Navigate(new Uri("/ApiTest.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/ApiTest.xaml", UriKind.Relative));
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Phone.Controls;
 
-namespace IF.Lastfm.Demo.Apollo
+namespace IF.Lastfm.Demo.Apollo.Pages
 {
     public partial class ApiTest : PhoneApplicationPage
     {
@@ -13,7 +13,7 @@ namespace IF.Lastfm.Demo.Apollo
 
         private void OnScrobblingLinkClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/TestPages/Scrobbling.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/TrackApi/Scrobbling.xaml", UriKind.Relative));
         }
 
         private void OnAppBarSettingsClick(object sender, EventArgs e)
@@ -23,7 +23,7 @@ namespace IF.Lastfm.Demo.Apollo
 
         private void OnHistoryLinkClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/TestPages/History.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/UserApi/History.xaml", UriKind.Relative));
         }
     }
 }

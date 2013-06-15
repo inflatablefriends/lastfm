@@ -92,7 +92,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ApiTest.xaml.cs">
+    <Compile Include="Pages\ApiTest.xaml.cs">
       <DependentUpon>ApiTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -109,23 +109,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TestPages\ViewModels\BaseViewModel.cs" />
-    <Compile Include="TestPages\History.xaml.cs">
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="Pages\UserApi\History.xaml.cs">
       <DependentUpon>History.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestPages\ViewModels\HistoryTestViewModel.cs" />
-    <Compile Include="TestPages\Scrobbling.xaml.cs">
+    <Compile Include="ViewModels\UserApi\HistoryTestViewModel.cs" />
+    <Compile Include="Pages\TrackApi\Scrobbling.xaml.cs">
       <DependentUpon>Scrobbling.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestPages\ViewModels\PageProgress.cs" />
-    <Compile Include="TestPages\ViewModels\ScrobblingTestViewModel.cs" />
+    <Compile Include="ViewModels\PageProgress.cs" />
+    <Compile Include="ViewModels\TrackApi\ScrobblingTestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="ApiTest.xaml">
+    <Page Include="Pages\ApiTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,11 +133,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestPages\History.xaml">
+    <Page Include="Pages\UserApi\History.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TestPages\Scrobbling.xaml">
+    <Page Include="Pages\TrackApi\Scrobbling.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
