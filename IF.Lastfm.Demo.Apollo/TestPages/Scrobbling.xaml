@@ -10,13 +10,14 @@
     xmlns:behaviors="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:testPages="clr-namespace:IF.Lastfm.Demo.Apollo.TestPages"
+    xmlns:viewModels="clr-namespace:IF.Lastfm.Demo.Apollo.TestPages.ViewModels"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True"
-    d:DataContext="{d:DesignInstance testPages:ScrobblingTestViewModel, IsDesignTimeCreatable=True}">
+    d:DataContext="{d:DesignInstance viewModels:ScrobblingTestViewModel, IsDesignTimeCreatable=True}">
 
     <i:Interaction.Behaviors>
         <behaviors:MultiApplicationBarBehavior x:Name="MultiApplicationBar">

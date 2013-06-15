@@ -15,7 +15,7 @@ namespace IF.Lastfm.Demo.Apollo
 
             var service = new ApplicationSettingsService();
 
-            if (service.Get<string>("apikey") == string.Empty)
+            if (string.IsNullOrEmpty(service.Get<string>("apikey")))
             {
                 ApiKey.Text = "a6ab4b9376e54cdb06912bfbd9c1f288";
                 ApiSecret.Text = "3aa7202fd1bc6d5a7ac733246cbccc4b";

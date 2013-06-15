@@ -4,13 +4,16 @@ using IF.Lastfm.Core.Api.Enums;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class ListResponse<T> : IEnumerable<T>
+    public class PageResponse<T> : IEnumerable<T>
     {
         #region Properties
 
         public IEnumerable<T> Content { get; set; }
         public bool Success { get; set; }
         public LastFmApiError Error { get; set; }
+
+        public int Page { get; set; }
+        public int TotalPages { get; set; }
 
         #endregion
 
@@ -44,9 +47,9 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         #region Factory methods
 
-        public static ListResponse<T> CreateSuccessResponse(IEnumerable<T> content)
+        public static PageResponse<T> CreateSuccessResponse(IEnumerable<T> content)
         {
-            var r = new ListResponse<T>
+            var r = new PageResponse<T>
             {
                 Content = content,
                 Success = true,
@@ -56,9 +59,9 @@ namespace IF.Lastfm.Core.Api.Helpers
             return r;
         }
 
-        public static ListResponse<T> CreateErrorResponse(LastFmApiError error)
+        public static PageResponse<T> CreateErrorResponse(LastFmApiError error)
         {
-            var r = new ListResponse<T>
+            var r = new PageResponse<T>
             {
                 Content = new[] {default(T)},
                 Success = false,

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace IF.Lastfm.Demo.Apollo
 {
@@ -25,6 +19,11 @@ namespace IF.Lastfm.Demo.Apollo
         private void OnAppBarSettingsClick(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void OnHistoryLinkClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/TestPages/History.xaml", UriKind.Relative));
         }
     }
 }

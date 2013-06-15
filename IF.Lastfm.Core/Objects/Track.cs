@@ -24,6 +24,8 @@ namespace IF.Lastfm.Core.Objects
         public int? TotalPlayCount { get; set; }
         public IEnumerable<Tag> TopTags { get; set; }
 
+        public DateTime? TimePlayed { get; set; }
+
         #endregion
 
         /// <summary>
@@ -39,14 +41,31 @@ namespace IF.Lastfm.Core.Objects
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
-            t.ArtistName = token.SelectToken("artist").Value<string>("name");
             
-            var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-            t.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+            var artistToken = token.SelectToken("artist");
+            if (artistToken != null)
+            {
+                t.ArtistName = Artist.GetNameFromJToken(artistToken);
+            }
+
+            var albumToken = token.SelectToken("album");
+            if (albumToken != null)
+            {
+                t.AlbumName = Album.GetNameFromJToken(albumToken);
+            }
+
+            var tagsToken = token.SelectToken("toptags");
+            if (tagsToken != null)
+            {
+                t.TopTags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
+            }
 
             // api returns milliseconds when track.getInfo is called directly
             var secs = token.Value<double>("duration");
-            t.Duration = TimeSpan.FromMilliseconds(secs);
+            if (Math.Abs(secs - default(double)) > double.Epsilon)
+            {
+                t.Duration = TimeSpan.FromMilliseconds(secs);
+            }
 
             return t;
         }

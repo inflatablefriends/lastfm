@@ -56,5 +56,17 @@ namespace IF.Lastfm.Core.Objects
 
             return a;
         }
+
+        internal static string GetNameFromJToken(JToken albumToken)
+        {
+            var name = albumToken.Value<string>("name");
+
+            if (string.IsNullOrEmpty(name))
+            {
+                name = albumToken.Value<string>("#text");
+            }
+
+            return name;
+        }
     }
 }

@@ -44,7 +44,7 @@
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
     <Compile Include="Api\Helpers\LastResponse.cs" />
-    <Compile Include="Api\Helpers\ListResponse.cs" />
+    <Compile Include="Api\Helpers\PageResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Api\IArtistApi.cs" />
     <Compile Include="Api\ITrackApi.cs" />
