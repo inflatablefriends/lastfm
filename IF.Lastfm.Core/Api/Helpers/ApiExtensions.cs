@@ -30,9 +30,16 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         public static int ToUnixTimestamp(this DateTime dt)
         {
-            var d =  (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+            var d = (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
 
             return Convert.ToInt32(d);
+        }
+
+        public static DateTime ToDateTimeUtc(this double stamp)
+        {
+            var d = new DateTime(1970, 1, 1).ToUniversalTime();
+            d = d.AddSeconds(stamp);
+            return d;
         }
     }
 }

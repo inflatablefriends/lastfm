@@ -109,9 +109,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestPages\ViewModels\BaseViewModel.cs" />
+    <Compile Include="TestPages\History.xaml.cs">
+      <DependentUpon>History.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestPages\ViewModels\HistoryTestViewModel.cs" />
     <Compile Include="TestPages\Scrobbling.xaml.cs">
       <DependentUpon>Scrobbling.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestPages\ViewModels\PageProgress.cs" />
+    <Compile Include="TestPages\ViewModels\ScrobblingTestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -125,6 +132,10 @@
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestPages\History.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TestPages\Scrobbling.xaml">
       <SubType>Designer</SubType>

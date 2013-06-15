@@ -63,12 +63,12 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getBuylinks
 
-        public Task<ListResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist, string album, CountryCode country, bool autocorrect = false)
+        public Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist, string album, CountryCode country, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ListResponse<BuyLink>> GetBuyLinksForAlbumWithMbidAsync(string mbid, CountryCode country, bool autocorrect = false)
+        public Task<PageResponse<BuyLink>> GetBuyLinksForAlbumWithMbidAsync(string mbid, CountryCode country, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
@@ -77,13 +77,13 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getShouts
 
-        public Task<ListResponse<Shout>> GetShoutsForAlbumAsync(string artist, string album, bool autocorrect = false, int page = 1,
+        public Task<PageResponse<Shout>> GetShoutsForAlbumAsync(string artist, string album, bool autocorrect = false, int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ListResponse<Shout>> GetShoutsForAlbumWithMbidAsync(string mbid, bool autocorrect = false, int page = 1,
+        public Task<PageResponse<Shout>> GetShoutsForAlbumWithMbidAsync(string mbid, bool autocorrect = false, int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
             throw new NotImplementedException();
@@ -93,12 +93,12 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getTags
 
-        public Task<ListResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
+        public Task<PageResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ListResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, string username, bool autocorrect = false)
+        public Task<PageResponse<Tag>> GetUserTagsForAlbumWithMbidAsync(string mbid, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
@@ -107,12 +107,12 @@ namespace IF.Lastfm.Core.Api
 
         #region album.getTopTags
 
-        public Task<ListResponse<Tag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
+        public Task<PageResponse<Tag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ListResponse<Tag>> GetTopTagsForAlbumWithMbidAsync(string mbid, bool autocorrect = false)
+        public Task<PageResponse<Tag>> GetTopTagsForAlbumWithMbidAsync(string mbid, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
@@ -121,7 +121,7 @@ namespace IF.Lastfm.Core.Api
 
         #region album.search
 
-        public Task<ListResponse<Album>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public Task<PageResponse<Album>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             throw new NotImplementedException();
         }

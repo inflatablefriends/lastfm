@@ -35,8 +35,9 @@
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,17,12,0">
             <TextBlock Text="LASTFM-WP DEMO APP" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
             <TextBlock Text="api" Margin="9,-7,0,12" Style="{StaticResource PhoneTextTitle1Style}"/>
-            
+
             <Button Content="Scrobbling" Click="OnScrobblingLinkClick"/>
+            <Button Content="History" Click="OnHistoryLinkClick"/>
         </StackPanel>
     </Grid>
 
