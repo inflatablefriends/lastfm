@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
@@ -27,37 +28,15 @@ namespace IF.Lastfm.Core.Api
         /// <param name="startIndex"></param>
         /// <param name="amount"></param>
         /// <returns></returns>
-        public async Task<PageResponse<Album>> GetTopAlbums(LastStatsTimeSpan span, int startIndex = 0, int amount = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Album>> GetTopAlbums(LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            const string apiMethod = "user.getTopAlbums";
+            var command = new GetTopAlbumsCommand(Auth, Auth.User.Username, span)
+                          {
+                              Page = pagenumber,
+                              Count = count
+                          };
 
-            var parameters = new Dictionary<string, string>
-                                 {
-                                     {"user", Auth.User.Username},
-                                     {"period", span.GetApiName()}
-                                 };
-
-            var apiUrl = LastFm.FormatApiUrl(apiMethod, Auth.ApiKey, parameters);
-
-            var httpClient = new HttpClient();
-            var lastResponse = await httpClient.GetAsync(apiUrl);
-            var json = await lastResponse.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && lastResponse.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-
-                var albumsToken = jtoken.SelectToken("topalbums").SelectToken("album");
-
-                var albums = albumsToken.Children().Select(Album.ParseJToken);
-
-                return PageResponse<Album>.CreateSuccessResponse(albums);
-            }
-            else
-            {
-                return PageResponse<Album>.CreateErrorResponse(error);
-            }
+            return await command.ExecuteAsync();
         }
 
         /// <summary>
@@ -68,56 +47,18 @@ namespace IF.Lastfm.Core.Api
         /// <param name="pagenumber"></param>
         /// <param name="endIndex"></param>
         /// <returns></returns>
-        public async Task<PageResponse<Track>> GetRecentScrobbles(string username, DateTime since, int pagenumber, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Track>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            const string apiMethod = "user.getRecentTracks";
+            var command = new GetRecentScrobblesCommand(Auth, username, since)
+                          {
+                              Page = pagenumber,
+                              Count = count
+                          };
 
-            var parameters = new Dictionary<string, string>
-                                 {
-                                     {"user", Auth.User.Username},
-                                     {"from", since.ToUnixTimestamp().ToString()},
-                                     {"page", pagenumber.ToString()},
-                                     {"limit", count.ToString()}
-                                 };
-
-            var apiUrl = LastFm.FormatApiUrl(apiMethod, Auth.ApiKey, parameters);
-
-            var httpClient = new HttpClient();
-            var lastResponse = await httpClient.GetAsync(apiUrl);
-            var json = await lastResponse.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && lastResponse.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recenttracks");
-
-                var tracksToken = jtoken.SelectToken("track");
-                
-                var tracks = new List<Track>();
-                foreach (var track in tracksToken.Children())
-                {
-                    var t = Track.ParseJToken(track);
-                    var date = track.SelectToken("date");
-                    var stamp = date.Value<double>("uts");
-                    t.TimePlayed = stamp.ToDateTimeUtc();
-
-                    tracks.Add(t);
-                }
-
-                var pageresponse = PageResponse<Track>.CreateSuccessResponse(tracks);
-
-                var attrToken = jtoken.SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
-            }
-            else
-            {
-                return PageResponse<Track>.CreateErrorResponse(error);
-            }
+            return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Station>> GetRecentStations(int pagenumber, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Station>> GetRecentStations(int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             const string apiMethod = "user.getRecentStations";
 

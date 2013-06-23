@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.AlbumApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
@@ -25,33 +26,12 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<Album>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
         {
-            const string apiMethod = "album.getInfo";
+            var command = new GetAlbumInfoCommand(Auth, artistname, albumname)
+                          {
+                              Autocorrect = autocorrect
+                          };
 
-            var parameters = new Dictionary<string, string>
-                {
-                    {"artist", artistname},
-                    {"album", albumname},
-                    {"autocorrect", Convert.ToInt32(autocorrect).ToString()}
-                };
-
-            var httpClient = new HttpClient();
-            var apiUrl = LastFm.FormatApiUrl(apiMethod, Auth.ApiKey, parameters);
-            var lastResponse = await httpClient.GetAsync(apiUrl);
-            var json = await lastResponse.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && lastResponse.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-
-                var album = Album.ParseJToken(jtoken.SelectToken("album"));
-
-                return LastResponse<Album>.CreateSuccessResponse(album);
-            }
-            else
-            {
-                return LastResponse<Album>.CreateErrorResponse(error);
-            }
+            return await command.ExecuteAsync();
         }
 
         public Task<LastResponse<Album>> GetAlbumInfoWithMbidAsync(string mbid, bool autocorrect = false)
