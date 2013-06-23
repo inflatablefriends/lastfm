@@ -30,6 +30,17 @@ namespace IF.Lastfm.Core.Api
             _apiSecret = secret;
         }
 
+        /// <summary>
+        /// Load an existing user session
+        /// </summary>
+        /// <param name="session">Session to load</param>
+        /// <returns>Whether session object is valid</returns>
+        public bool LoadSession(UserSession session)
+        {
+            User = session;
+            return true;
+        }
+
         public async Task<LastResponse> GetSessionTokenAsync(string username, string password)
         {
             const string apiMethod = "auth.getMobileSession";
