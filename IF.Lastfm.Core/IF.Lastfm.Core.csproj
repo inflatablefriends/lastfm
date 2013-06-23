@@ -40,9 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
+    <Compile Include="Api\Commands\AlbumApi\GetAbumInfoCommand.cs" />
+    <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
+    <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
+    <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
+    <Compile Include="Api\Commands\IAsyncLastCommand.cs" />
     <Compile Include="Api\Helpers\LastResponse.cs" />
     <Compile Include="Api\Helpers\PageResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
@@ -99,6 +104,10 @@
     <Reference Include="xBrainLab.Security.Cryptography">
       <HintPath>..\lib\xBrainLab.Security.Cryptography.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\Commands\ArtistApi\" />
+    <Folder Include="Api\Commands\TrackApi\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
