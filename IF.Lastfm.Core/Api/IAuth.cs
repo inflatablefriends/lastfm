@@ -12,6 +12,13 @@ namespace IF.Lastfm.Core.Api
         UserSession User { get; }
 
         /// <summary>
+        /// Load an existing user session object.
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns>Whether session object is valid</returns>
+        bool LoadSession(UserSession session);
+
+        /// <summary>
         /// Gets the session token which is used as authentication for any service calls.
         /// Username and password aren't stored.
         /// </summary>
