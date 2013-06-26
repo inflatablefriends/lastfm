@@ -54,8 +54,11 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
                 {
                     var t = Track.ParseJToken(track);
                     var date = track.SelectToken("date");
-                    var stamp = date.Value<double>("uts");
-                    t.TimePlayed = stamp.ToDateTimeUtc();
+                    if (date != null)
+                    {
+                        var stamp = date.Value<double>("uts");
+                        t.TimePlayed = stamp.ToDateTimeUtc();
+                    }
 
                     tracks.Add(t);
                 }
