@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
     /// <summary>
-    /// TODO Wiki, Images, Stream availability
+    /// TODO Wiki, Stream availability
     /// </summary>
     public class Track
     {
@@ -17,6 +18,7 @@ namespace IF.Lastfm.Core.Objects
         public string Mbid { get; set; }
         public string ArtistName { get; set; }
         public Uri Url { get; set; }
+        public LastImageCollection Images { get; set; }
         
         public string AlbumName { get; set; }
 
@@ -58,6 +60,20 @@ namespace IF.Lastfm.Core.Objects
             if (tagsToken != null)
             {
                 t.TopTags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
+            }
+
+            var date = token.SelectToken("date");
+            if (date != null)
+            {
+                var stamp = date.Value<double>("uts");
+                t.TimePlayed = stamp.ToDateTimeUtc();
+            }
+
+            var images = token.SelectToken("image");
+            if (images != null)
+            {
+                var imageCollection = LastImageCollection.ParseJToken(images);
+                t.Images = imageCollection;
             }
 
             // api returns milliseconds when track.getInfo is called directly
