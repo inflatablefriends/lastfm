@@ -30,5 +30,10 @@ namespace IF.Lastfm.Demo.Apollo.Pages
         {
             NavigationService.Navigate(new Uri("/Pages/UserApi/RecentStations.xaml", UriKind.Relative));
         }
+
+        private void OnGetArtistInfoLinkClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/ArtistApi/GetArtistInfo.xaml", UriKind.Relative));
+        }
     }
 }

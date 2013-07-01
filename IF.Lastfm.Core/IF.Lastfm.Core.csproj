@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
+    <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAbumInfoCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
@@ -107,7 +109,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\Commands\ArtistApi\" />
     <Folder Include="Api\Commands\TrackApi\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
