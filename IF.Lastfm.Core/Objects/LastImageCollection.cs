@@ -11,6 +11,7 @@ namespace IF.Lastfm.Core.Objects
         public Uri Medium { get; set; }
         public Uri Large { get; set; }
         public Uri ExtraLarge { get; set; }
+        public Uri Mega { get; set; }
 
         private IEnumerable<Uri> Images
         {
@@ -21,7 +22,8 @@ namespace IF.Lastfm.Core.Objects
                            Small,
                            Medium,
                            Large,
-                           ExtraLarge
+                           ExtraLarge,
+                           Mega
                        };
             }
         }
@@ -55,6 +57,9 @@ namespace IF.Lastfm.Core.Objects
                         break;
                     case "extralarge":
                         c.ExtraLarge = uri;
+                        break;
+                    case "mega":
+                        c.Mega = uri;
                         break;
                 }
             }

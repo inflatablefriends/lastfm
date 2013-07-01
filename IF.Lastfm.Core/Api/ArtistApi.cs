@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
     {
         public IAuth Auth { get; private set; }
 
-        public ArtistApi(Auth auth)
+        public ArtistApi(IAuth auth)
         {
             Auth = auth;
         }

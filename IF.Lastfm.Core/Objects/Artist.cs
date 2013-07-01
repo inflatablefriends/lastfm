@@ -34,13 +34,13 @@ namespace IF.Lastfm.Core.Objects
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
             
             var tagsToken = token.SelectToken("tags");
-            if (tagsToken != null)
+            if (tagsToken != null && tagsToken.HasValues)
             {
                 a.Tags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
             }
 
             var images = token.SelectToken("image");
-            if (images != null)
+            if (images != null && images.HasValues)
             {
                 var imageCollection = LastImageCollection.ParseJToken(images);
                 a.Images = imageCollection;
