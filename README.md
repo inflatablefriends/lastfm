@@ -1,1 +1,19 @@
-#Last.fm Portable .NET API## Quickstart	var auth = new Auth("apikey", "apisecret");	await auth.GetSessionTokenAsync("username", "pass");		var albumApi = new AlbumApi(auth);	var visions = await albumApi.GetAlbumInfoAsync("Grimes", "Visions");## Completed methodsThis is a list of methods on the Last.fm API you can call with this library. In lots of cases there will be more than one implementation in the actual class.### Auth* GetMobileSession### Album* GetInfo### User* GetRecentScrobbles* GetRecentStations### Track* Scrobble## Almost finished### UserApi* GetTopAlbums (todo paging)
+#Last.fm Portable .NET API
+
+MIT licensed. Maintained by [@rikkilt](http://twitter.com/rikkilt).
+
+Feature request? Bug? Raise a [new issue on GitHub](https://github.com/rikkit/lastfm-wp/issues/new).
+
+Wanna help? Check out [the open issues](https://github.com/rikkit/lastfm-wp/issues).
+
+## Quickstart
+
+	var auth = new Auth("apikey", "apisecret");
+	var response = await auth.GetSessionTokenAsync("username", "pass");
+	
+	if (response.Success) {
+		var albumApi = new AlbumApi(auth);
+		var visions = await albumApi.GetAlbumInfoAsync("Grimes", "Visions");
+	}
+
+Check out the [GitHub wiki](https://github.com/rikkit/lastfm-wp/wiki) for more documentation
