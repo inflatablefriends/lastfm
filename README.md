@@ -11,7 +11,7 @@ Wanna help? Check out [the open issues](https://github.com/rikkit/lastfm-wp/issu
 	var auth = new Auth("apikey", "apisecret");
 	var response = await auth.GetSessionTokenAsync("username", "pass");
 	
-	if (response.Success) {
+	if (response.Success && auth.HasAuthenticated) {
 		var albumApi = new AlbumApi(auth);
 		var visions = await albumApi.GetAlbumInfoAsync("Grimes", "Visions");
 	}
