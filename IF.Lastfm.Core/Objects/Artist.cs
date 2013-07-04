@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// Todo bio, tour, similar, stats, streamable
     /// </summary>
-    public class Artist
+    public class Artist : ILastFmObject
     {
         #region Properties
 

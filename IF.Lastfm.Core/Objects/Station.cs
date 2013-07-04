@@ -3,8 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-
-    public class Station
+    public class Station : ILastFmObject
     {
         public string Name { get; set; }
         public Uri Url { get; set; }
