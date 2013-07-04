@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Album
+    public class Album : ILastFmObject
     {
         #region Properties
 

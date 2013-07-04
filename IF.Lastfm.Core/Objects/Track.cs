@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// TODO Wiki, Stream availability
     /// </summary>
-    public class Track
+    public class Track : ILastFmObject
     {
         #region Properties
 
@@ -17,6 +17,7 @@ namespace IF.Lastfm.Core.Objects
         public TimeSpan Duration { get; set; }
         public string Mbid { get; set; }
         public string ArtistName { get; set; }
+        public string ArtistMbid { get; set; }
         public Uri Url { get; set; }
         public LastImageCollection Images { get; set; }
         
@@ -48,6 +49,7 @@ namespace IF.Lastfm.Core.Objects
             if (artistToken != null)
             {
                 t.ArtistName = Artist.GetNameFromJToken(artistToken);
+                t.ArtistMbid = artistToken.Value<string>("mbid");
             }
 
             var albumToken = token.SelectToken("album");
