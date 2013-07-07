@@ -44,6 +44,7 @@
     <Compile Include="Api\Commands\AlbumApi\GetAbumInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
+    <Compile Include="Api\Commands\TrackApi\GetShoutsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
@@ -109,9 +110,7 @@
       <HintPath>..\lib\xBrainLab.Security.Cryptography.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\Commands\TrackApi\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" />
