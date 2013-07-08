@@ -54,10 +54,9 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var shoutsToken = jtoken.SelectToken("shout");
 
                 var shouts = new List<Shout>();
-                foreach (var shout in shoutsToken.Children())
+                if (shoutsToken != null)
                 {
-                    var s = Shout.ParseJToken(shout);
-                    shouts.Add(s);
+                    shouts.AddRange(shoutsToken.Children().Select(Shout.ParseJToken));
                 }
 
                 var pageresponse = PageResponse<Shout>.CreateSuccessResponse(shouts);
