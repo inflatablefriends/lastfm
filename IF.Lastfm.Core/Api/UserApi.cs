@@ -22,15 +22,16 @@ namespace IF.Lastfm.Core.Api
         }
 
         /// <summary>
-        /// TODO paging
+        /// Gets the top albums for the given user.
         /// </summary>
+        /// <param name="username"></param>
         /// <param name="span"></param>
-        /// <param name="startIndex"></param>
-        /// <param name="amount"></param>
+        /// <param name="pagenumber"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
-        public async Task<PageResponse<Album>> GetTopAlbums(LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Album>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new GetTopAlbumsCommand(Auth, Auth.User.Username, span)
+            var command = new GetTopAlbumsCommand(Auth, username, span)
                           {
                               Page = pagenumber,
                               Count = count
@@ -45,7 +46,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="username"></param>
         /// <param name="since"></param>
         /// <param name="pagenumber"></param>
-        /// <param name="endIndex"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
         public async Task<PageResponse<Track>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
