@@ -62,7 +62,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname, string artistname, int page = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new GetShoutsCommand(Auth, trackname, artistname)
+            var command = new GetTrackShoutsCommand(Auth, trackname, artistname)
                           {
                               Page = page,
                               Count = count,
@@ -71,6 +71,21 @@ namespace IF.Lastfm.Core.Api
         }
 
         public Task<PageResponse<Shout>> GetShoutsForTrackWithMbidAsync(string mbid, int page = 0, int count = LastFm.DefaultPageLength)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<LastResponse<Track>> GetInfoAsync(string trackname, string artistname, string username = "")
+        {
+            var command = new GetTrackInfoCommand(Auth, trackname, artistname)
+                          {
+                              Username = username
+                          };
+
+            return await command.ExecuteAsync();
+        }
+
+        public Task<LastResponse<Track>> GetInfoWithMbidAsynnc(string mbid, string username = "")
         {
             throw new NotImplementedException();
         }

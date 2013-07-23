@@ -28,6 +28,7 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<Tag> TopTags { get; set; }
 
         public DateTime? TimePlayed { get; set; }
+        public bool? IsLoved { get; set; }
 
         #endregion
 
@@ -76,6 +77,12 @@ namespace IF.Lastfm.Core.Objects
             {
                 var imageCollection = LastImageCollection.ParseJToken(images);
                 t.Images = imageCollection;
+            }
+
+            var lovedToken = token.SelectToken("userloved");
+            if (lovedToken != null)
+            {
+                t.IsLoved = Convert.ToBoolean(lovedToken.Value<int>());
             }
 
             // api returns milliseconds when track.getInfo is called directly
