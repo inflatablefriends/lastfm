@@ -70,11 +70,6 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public Task<PageResponse<Shout>> GetShoutsForTrackWithMbidAsync(string mbid, int page = 0, int count = LastFm.DefaultPageLength)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<LastResponse<Track>> GetInfoAsync(string trackname, string artistname, string username = "")
         {
             var command = new GetTrackInfoCommand(Auth, trackname, artistname)
@@ -83,11 +78,6 @@ namespace IF.Lastfm.Core.Api
                           };
 
             return await command.ExecuteAsync();
-        }
-
-        public Task<LastResponse<Track>> GetInfoWithMbidAsynnc(string mbid, string username = "")
-        {
-            throw new NotImplementedException();
         }
     }
 }
