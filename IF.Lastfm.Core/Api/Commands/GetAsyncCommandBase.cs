@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class GetAsyncCommandBase<T> : IAsyncLastCommand<T>
+    internal abstract class GetAsyncCommandBase<T> : IAsyncCommand<T>
     {
         public string Method { get; protected set; }
         public Uri Url { get; protected set; }
@@ -19,9 +19,9 @@ namespace IF.Lastfm.Core.Api.Commands
             Auth = auth;
         }
 
-        public abstract Task<T> ExecuteAsync();
+        public abstract Uri BuildRequestUrl();
 
-        protected async Task<T> ExecuteInternal()
+        public async Task<T> ExecuteAsync()
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(Url);
