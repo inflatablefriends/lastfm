@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class PostAsyncCommandBase<T>
+    internal abstract class PostAsyncCommandBase<T> : IAsyncCommand<T>
     {
         public string Method { get; protected set; }
-        public Uri Url { get; protected set; }
+        public Uri Url { get; private set; }
         public IAuth Auth { get; protected set; }
 
         public int Page { get; set; }
@@ -17,13 +17,19 @@ namespace IF.Lastfm.Core.Api.Commands
         protected PostAsyncCommandBase(IAuth auth)
         {
             Auth = auth;
-            Url = new Uri(LastFm.ApiRoot, UriKind.Absolute);
+        }
+
+        public Uri BuildRequestUrl()
+        {
+            return new Uri(LastFm.ApiRoot, UriKind.Absolute);
         }
 
         public abstract Task<T> ExecuteAsync();
 
         protected async Task<T> ExecuteInternal(Dictionary<string, string> parameters)
         {
+            Url = BuildRequestUrl();
+
             var apisig = Auth.GenerateMethodSignature(Method, parameters);
 
             var postContent = LastFm.CreatePostBody(Method,

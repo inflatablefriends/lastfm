@@ -53,7 +53,7 @@
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
-    <Compile Include="Api\Commands\IAsyncLastCommand.cs" />
+    <Compile Include="Api\Commands\IAsyncCommand.cs" />
     <Compile Include="Api\Helpers\LastResponse.cs" />
     <Compile Include="Api\Helpers\PageResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />

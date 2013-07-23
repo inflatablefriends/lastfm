@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             ArtistName = artistname;
         }
 
-        public async override Task<LastResponse<Track>> ExecuteAsync()
+        public override Uri BuildRequestUrl()
         {
             var parameters = new Dictionary<string, string>
                 {
@@ -42,9 +42,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             }
 
             var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            Url = new Uri(apiUrl, UriKind.Absolute);
-
-            return await ExecuteInternal();
+            return new Uri(apiUrl, UriKind.Absolute);
         }
 
         public async override Task<LastResponse<Track>> HandleResponse(HttpResponseMessage response)

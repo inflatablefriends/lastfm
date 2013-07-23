@@ -23,7 +23,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             TimeSpan = span;
         }
 
-        public async override Task<PageResponse<Album>> ExecuteAsync()
+        public override Uri BuildRequestUrl()
         {
             var parameters = new Dictionary<string, string>
                              {
@@ -34,9 +34,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             base.AddPagingParameters(parameters);
 
             var uristring = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            Url = new Uri(uristring, UriKind.Absolute);
-
-            return await ExecuteInternal();
+            return new Uri(uristring, UriKind.Absolute);
         }
 
         public async override Task<PageResponse<Album>> HandleResponse(HttpResponseMessage response)
