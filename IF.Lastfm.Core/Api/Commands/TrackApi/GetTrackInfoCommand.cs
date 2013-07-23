@@ -12,20 +12,22 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
-    internal class GetShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
+    internal class GetTrackInfoCommand : GetAsyncCommandBase<LastResponse<Track>>
     {
         public string TrackName { get; set; }
         public string ArtistName { get; set; }
+        public string Username { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetShoutsCommand(IAuth auth, string trackname, string artistname) : base(auth)
+        public GetTrackInfoCommand(IAuth auth, string trackname, string artistname)
+            : base(auth)
         {
-            Method = "track.getShouts";
+            Method = "track.getInfo";
             TrackName = trackname;
             ArtistName = artistname;
         }
 
-        public async override Task<PageResponse<Shout>> ExecuteAsync()
+        public async override Task<LastResponse<Track>> ExecuteAsync()
         {
             var parameters = new Dictionary<string, string>
                 {
@@ -34,7 +36,10 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                     {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
                 };
 
-            base.AddPagingParameters(parameters);
+            if (!string.IsNullOrWhiteSpace(Username))
+            {
+                parameters.Add("username", Username);
+            }
 
             var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
             Url = new Uri(apiUrl, UriKind.Absolute);
@@ -42,33 +47,22 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             return await ExecuteInternal();
         }
 
-        public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<Track>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var shoutsToken = jtoken.SelectToken("shout");
+                var track = Track.ParseJToken(jtoken.SelectToken("track"));
 
-                var shouts = new List<Shout>();
-                if (shoutsToken != null)
-                {
-                    shouts.AddRange(shoutsToken.Children().Select(Shout.ParseJToken));
-                }
-
-                var pageresponse = PageResponse<Shout>.CreateSuccessResponse(shouts);
-
-                var attrToken = jtoken.SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
+                return LastResponse<Track>.CreateSuccessResponse(track);
             }
             else
             {
-                return PageResponse<Shout>.CreateErrorResponse(error);
+                return LastResponse<Track>.CreateErrorResponse(error);
             }
         }
     }

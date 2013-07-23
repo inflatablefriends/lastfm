@@ -8,8 +8,11 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public class PageResponse<T> : IEnumerable<T>
     {
-        private int _page  = 1;
-        private int _totalPages = 1;
+        public PageResponse()
+        {
+            Page = 1;
+            TotalPages = 1;
+        }
 
         #region Properties
 
@@ -17,17 +20,9 @@ namespace IF.Lastfm.Core.Api.Helpers
         public bool Success { get; set; }
         public LastFmApiError Error { get; set; }
 
-        public int Page
-        {
-            get { return _page; }
-            set { _page = value; }
-        }
-
-        public int TotalPages
-        {
-            get { return _totalPages; }
-            set { _totalPages = value; }
-        }
+        public int Page { get; set; }
+        public int TotalPages { get; set; }
+        public int TotalItems { get; set; }
 
         #endregion
 
@@ -60,6 +55,21 @@ namespace IF.Lastfm.Core.Api.Helpers
         #endregion
 
         #region Factory methods
+
+        /// <summary>
+        /// Sometimes we need this object before we can set the content. Make sure to set the content!
+        /// </summary>
+        /// <returns></returns>
+        public static PageResponse<T> CreateSuccessResponse()
+        {
+            var r = new PageResponse<T>
+            {
+                Success = true,
+                Error = LastFmApiError.None
+            };
+
+            return r;
+        }
 
         public static PageResponse<T> CreateSuccessResponse(IEnumerable<T> content)
         {
@@ -99,6 +109,9 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             var totalPages = attrToken.Value<string>("totalPages");
             TotalPages = !string.IsNullOrWhiteSpace(totalPages) ? Convert.ToInt32(totalPages) : 1;
+
+            var totalItems = attrToken.Value<string>("total");
+            TotalItems = !string.IsNullOrWhiteSpace(totalItems) ? Convert.ToInt32(totalItems) : 1;
         }
 
 //        {"@attr": {
