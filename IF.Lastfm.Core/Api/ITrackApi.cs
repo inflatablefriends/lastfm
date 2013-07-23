@@ -16,11 +16,6 @@ namespace IF.Lastfm.Core.Api
                                               int page = 0,
                                               int count = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Shout>> GetShoutsForTrackWithMbidAsync(string mbid,
-                                              int page = 0,
-                                              int count = LastFm.DefaultPageLength);
-
         Task<LastResponse<Track>> GetInfoAsync(string trackname, string artistname, string username = "");
-        Task<LastResponse<Track>> GetInfoWithMbidAsynnc(string mbid, string username = "");
     }
 }

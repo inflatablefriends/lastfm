@@ -15,8 +15,6 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        #region artist.getInfo
-
         public async Task<LastResponse<Artist>> GetArtistInfoAsync(string artist,
             string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false)
@@ -30,17 +28,6 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<Artist>> GetArtistInfoWithMbidAsync(string mbid,
-            string bioLang = LastFm.DefaultLanguageCode,
-            bool autocorrect = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region artist.getTopAlbums
-
         public async Task<PageResponse<Album>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
@@ -48,18 +35,6 @@ namespace IF.Lastfm.Core.Api
         {
             throw new NotImplementedException();
         }
-
-        public async Task<PageResponse<Album>> GetTopAlbumsForArtistWithMbidAsync(string mbid,
-            bool autocorrect = false,
-            int page = 1,
-            int itemsPerPage = LastFm.DefaultPageLength)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region artist.getTags
 
         public async Task<PageResponse<Tag>> GetUserTagsForArtistAsync(string artist,
             string username,
@@ -70,29 +45,9 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public async Task<PageResponse<Tag>> GetUserTagsForArtistWithMbidAsync(string mbid,
-            string username,
-            bool autocorrect = false,
-            int page = 1,
-            int itemsPerPage = LastFm.DefaultPageLength)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region artist.getTopTags
-
         public async Task<PageResponse<Tag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
-
-        public async Task<PageResponse<Tag>> GetTopTagsForArtistWithMbidAsync(string mbid, bool autocorrect = false)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
     }
 }
