@@ -59,8 +59,16 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Station>> GetRecentStations(int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Station>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
+            var command = new GetRecentStationsCommand(Auth, username)
+                          {
+                              Page = pagenumber,
+                              Count = count
+                          };
+
+            return await command.ExecuteAsync();
+            
             const string apiMethod = "user.getRecentStations";
 
             var methodParameters = new Dictionary<string, string>

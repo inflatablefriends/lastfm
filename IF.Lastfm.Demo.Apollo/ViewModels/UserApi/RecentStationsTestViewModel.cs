@@ -101,7 +101,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
 
             var userApi = new Core.Api.UserApi(Auth);
 
-            var response = await userApi.GetRecentStations(_stationPageProgress.ExpectedPage, 5);
+            var response = await userApi.GetRecentStations(Auth.User.Username, _stationPageProgress.ExpectedPage, 5);
 
             _stationPageProgress.PageLoaded(response.Success);
 
