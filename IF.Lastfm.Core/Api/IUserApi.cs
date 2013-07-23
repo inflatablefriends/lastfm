@@ -15,11 +15,13 @@ namespace IF.Lastfm.Core.Api
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Track>> GetRecentScrobbles(string username, DateTime since,
+        Task<PageResponse<Track>> GetRecentScrobbles(string username,
+            DateTime since,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Station>> GetRecentStations(int pagenumber,
+        Task<PageResponse<Station>> GetRecentStations(string username,
+            int pagenumber,
             int count = LastFm.DefaultPageLength);
     }
 }

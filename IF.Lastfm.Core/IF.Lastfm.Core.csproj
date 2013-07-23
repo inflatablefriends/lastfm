@@ -44,9 +44,11 @@
     <Compile Include="Api\Commands\AlbumApi\GetAbumInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
+    <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackInfoCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
+    <Compile Include="Api\Commands\UserApi\GetRecentStationsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
