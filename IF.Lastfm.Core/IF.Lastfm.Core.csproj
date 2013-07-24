@@ -43,6 +43,7 @@
     <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackInfoCommand.cs" />
