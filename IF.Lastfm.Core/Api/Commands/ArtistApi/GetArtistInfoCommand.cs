@@ -33,6 +33,8 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                     {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
                 };
 
+            base.DisableCaching(parameters);
+
             var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
             return new Uri(apiUrl, UriKind.Absolute);
         }

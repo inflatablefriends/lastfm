@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -33,6 +31,8 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
                     {"album", AlbumName},
                     {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
                 };
+
+            base.DisableCaching(parameters);
 
             var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
             return new Uri(apiUrl, UriKind.Absolute);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
@@ -36,6 +37,16 @@ namespace IF.Lastfm.Core.Api.Commands
         {
             parameters.Add("page", Page.ToString());
             parameters.Add("limit", Count.ToString());
+        }
+
+        /// <summary>
+        /// Annoying workaround for Windows Phone's caching... 
+        /// see http://stackoverflow.com/questions/6334788/windows-phone-7-webrequest-caching
+        /// </summary>
+        /// <param name="parameters"></param>
+        protected void DisableCaching(Dictionary<string, string> parameters)
+        {
+            parameters.Add("disablecachetoken", DateTime.UtcNow.Ticks.ToString());
         }
     }
 }
