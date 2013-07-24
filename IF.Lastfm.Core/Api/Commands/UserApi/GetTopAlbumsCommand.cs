@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
         {
             var parameters = new Dictionary<string, string>
                              {
-                                 {"username", Username},
+                                 {"username", Uri.EscapeDataString(Username)},
                                  {"period", TimeSpan.GetApiName()}
                              };
 
