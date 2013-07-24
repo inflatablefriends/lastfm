@@ -29,6 +29,7 @@ namespace IF.Lastfm.Core.Objects
 
         public DateTime? TimePlayed { get; set; }
         public bool? IsLoved { get; set; }
+        public bool? IsNowPlaying { get; set; }
 
         #endregion
 
@@ -83,6 +84,12 @@ namespace IF.Lastfm.Core.Objects
             if (lovedToken != null)
             {
                 t.IsLoved = Convert.ToBoolean(lovedToken.Value<int>());
+            }
+
+            var attrToken = token.SelectToken("@attr");
+            if (attrToken != null && attrToken.HasValues)
+            {
+                t.IsNowPlaying = attrToken.Value<bool>("nowplaying");
             }
 
             // api returns milliseconds when track.getInfo is called directly
