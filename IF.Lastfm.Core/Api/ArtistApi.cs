@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Helpers;
@@ -48,6 +49,17 @@ namespace IF.Lastfm.Core.Api
         public async Task<PageResponse<Tag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<PageResponse<Shout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
+        {
+            var command = new GetArtistShoutsCommand(Auth, artist)
+                          {
+                              Autocorrect = autocorrect,
+                              Page = page,
+                              Count = count
+                          };
+            return await command.ExecuteAsync();
         }
     }
 }

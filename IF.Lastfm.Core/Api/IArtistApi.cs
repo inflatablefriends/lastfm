@@ -27,5 +27,10 @@ namespace IF.Lastfm.Core.Api
             int itemsPerPage = LastFm.DefaultPageLength);
 
         Task<PageResponse<Tag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false);
+
+        Task<PageResponse<Shout>> GetShoutsForArtistAsync(string artistname,
+            int page = 0,
+            int count = LastFm.DefaultPageLength,
+            bool autocorrect = false);
     }
 }
