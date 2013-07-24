@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
-    <Compile Include="Api\Commands\AlbumApi\GetAbumInfoCommand.cs" />
+    <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />

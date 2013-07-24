@@ -41,6 +41,8 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 parameters.Add("username", Username);
             }
 
+            DisableCaching(parameters);
+
             var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
             return new Uri(apiUrl, UriKind.Absolute);
         }

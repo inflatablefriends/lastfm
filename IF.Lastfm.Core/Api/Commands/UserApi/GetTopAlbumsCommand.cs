@@ -32,6 +32,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
                              };
 
             base.AddPagingParameters(parameters);
+            base.DisableCaching(parameters);
 
             var uristring = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
             return new Uri(uristring, UriKind.Absolute);
