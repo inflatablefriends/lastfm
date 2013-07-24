@@ -23,6 +23,8 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public async Task<T> ExecuteAsync()
         {
+            Url = BuildRequestUrl();
+
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(Url);
             return await HandleResponse(response);
