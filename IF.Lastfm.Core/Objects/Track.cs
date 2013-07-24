@@ -61,7 +61,7 @@ namespace IF.Lastfm.Core.Objects
             }
 
             var tagsToken = token.SelectToken("toptags");
-            if (tagsToken != null)
+            if (tagsToken != null && tagsToken.HasValues)
             {
                 t.TopTags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
             }
