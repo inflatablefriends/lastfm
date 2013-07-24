@@ -79,5 +79,17 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
+
+        public async Task<LastResponse> LoveTrackAsync(string trackname, string artistname)
+        {
+            var command = new LoveTrackCommand(Auth, trackname, artistname);
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<LastResponse> UnloveTrackAsync(string trackname, string artistname)
+        {
+            var command = new UnloveTrackCommand(Auth, trackname, artistname);
+            return await command.ExecuteAsync(); 
+        }
     }
 }

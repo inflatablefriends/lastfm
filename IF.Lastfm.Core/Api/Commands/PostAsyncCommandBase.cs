@@ -30,6 +30,8 @@ namespace IF.Lastfm.Core.Api.Commands
         {
             Url = BuildRequestUrl();
 
+            parameters.Add("sk", Auth.User.Token);
+
             var apisig = Auth.GenerateMethodSignature(Method, parameters);
 
             var postContent = LastFm.CreatePostBody(Method,
