@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
         {
             var parameters = new Dictionary<string, string>
                              {
-                                 {"artist", ArtistName},
+                                 {"artist", Uri.EscapeDataString(ArtistName)},
                                  {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
                              };
 

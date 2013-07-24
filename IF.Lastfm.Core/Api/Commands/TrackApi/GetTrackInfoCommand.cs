@@ -31,8 +31,8 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
         {
             var parameters = new Dictionary<string, string>
                 {
-                    {"track", TrackName},
-                    {"artist", ArtistName},
+                    {"track", Uri.EscapeDataString(TrackName)},
+                    {"artist", Uri.EscapeDataString(ArtistName)},
                     {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
                 };
 

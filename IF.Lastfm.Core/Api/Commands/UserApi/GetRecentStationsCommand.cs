@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -24,7 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
         {
             var parameters = new Dictionary<string, string>
                              {
-                                 {"user", Username}
+                                 {"user", Uri.EscapeDataString(Username)}
                              };
 
             AddPagingParameters(parameters);
