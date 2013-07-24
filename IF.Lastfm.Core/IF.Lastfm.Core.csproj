@@ -47,6 +47,8 @@
     <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackInfoCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommand.cs" />
+    <Compile Include="Api\Commands\TrackApi\LoveTrackCommand.cs" />
+    <Compile Include="Api\Commands\TrackApi\UnloveTrackCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentStationsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />

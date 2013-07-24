@@ -17,5 +17,8 @@ namespace IF.Lastfm.Core.Api
                                               int count = LastFm.DefaultPageLength);
 
         Task<LastResponse<Track>> GetInfoAsync(string trackname, string artistname, string username = "");
+
+        Task<LastResponse> LoveTrackAsync(string trackname, string artistname);
+        Task<LastResponse> UnloveTrackAsync(string trackname, string artistname);
     }
 }
