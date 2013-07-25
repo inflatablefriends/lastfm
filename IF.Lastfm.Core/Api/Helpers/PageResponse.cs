@@ -23,6 +23,7 @@ namespace IF.Lastfm.Core.Api.Helpers
         public int Page { get; set; }
         public int TotalPages { get; set; }
         public int TotalItems { get; set; }
+        public int PageSize { get; set; }
 
         #endregion
 
@@ -112,6 +113,9 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             var totalItems = attrToken.Value<string>("total");
             TotalItems = !string.IsNullOrWhiteSpace(totalItems) ? Convert.ToInt32(totalItems) : 1;
+
+            var pagesize = attrToken.Value<string>("perPage");
+            PageSize = !string.IsNullOrWhiteSpace(pagesize) ? Convert.ToInt32(pagesize) : 1;
         }
 
 //        {"@attr": {
