@@ -57,7 +57,8 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var shouts = new List<Shout>();
                 if (shoutsToken != null && pageresponse.TotalItems > 0)
                 {
-                    if (pageresponse.TotalItems == 1)
+                    if (pageresponse.Page == pageresponse.TotalPages
+                        && pageresponse.TotalItems % pageresponse.PageSize == 1)
                     {
                         // array notation isn't used on the api if there is only one shout.
                         shouts.Add(Shout.ParseJToken(shoutsToken));
