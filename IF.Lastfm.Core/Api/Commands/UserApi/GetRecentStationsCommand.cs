@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
         {
             var parameters = new Dictionary<string, string>
                              {
-                                 {"user", Uri.EscapeDataString(Username)}
+                                 {"user", Username}
                              };
 
             AddPagingParameters(parameters);
