@@ -42,6 +42,7 @@
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommand.cs" />
+    <Compile Include="Api\Commands\AlbumApi\GetAlbumShoutsCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentStationsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
+    <Compile Include="Api\Commands\UserApi\GetUserInfoCommand.cs" />
+    <Compile Include="Api\Commands\UserApi\GetUserShoutsCommand.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />
     <Compile Include="Api\Auth.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Api\Helpers\LastResponse{T}.cs" />
     <Compile Include="Api\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
+    <Compile Include="Objects\User.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />

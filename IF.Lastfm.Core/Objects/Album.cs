@@ -49,10 +49,16 @@ namespace IF.Lastfm.Core.Objects
             a.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
 
             var tracksToken = token.SelectToken("tracks").SelectToken("track");
-            a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
+            if (tracksToken != null)
+            {
+                a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
+            }
 
             var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-            a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+            if (tagsToken != null)
+            {
+                a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+            }
 
             return a;
         }

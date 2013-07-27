@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.AlbumApi;
-using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -37,12 +30,6 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<Shout>> GetShoutsForAlbumAsync(string artist, string album, bool autocorrect = false, int page = 1,
-            int itemsPerPage = LastFm.DefaultPageLength)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<PageResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
@@ -56,6 +43,18 @@ namespace IF.Lastfm.Core.Api
         public Task<PageResponse<Album>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<PageResponse<Shout>> GetShoutsAsync(string albumname, string artistname, bool autocorrect = false, int page = 1, int count = LastFm.DefaultPageLength)
+        {
+            var command = new GetAlbumShoutsCommand(Auth, albumname, artistname)
+                          {
+                              Page = page,
+                              Autocorrect = autocorrect,
+                              Count = count
+                          };
+
+            return await command.ExecuteAsync();
         }
     }
 }

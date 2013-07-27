@@ -23,5 +23,11 @@ namespace IF.Lastfm.Core.Api
         Task<PageResponse<Station>> GetRecentStations(string username,
             int pagenumber,
             int count = LastFm.DefaultPageLength);
+
+        Task<PageResponse<Shout>> GetShoutsAsync(string username,
+            int pagenumber,
+            int count = LastFm.DefaultPageLength);
+
+        Task<LastResponse<User>> GetInfoAsync(string username);
     }
 }
