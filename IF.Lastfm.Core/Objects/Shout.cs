@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
@@ -35,6 +38,33 @@ namespace IF.Lastfm.Core.Objects
             }
 
             return s;
+        }
+
+        public static PageResponse<Shout> ParsePageJToken(JToken token)
+        {
+            var shoutsToken = token.SelectToken("shout");
+
+            var pageresponse = PageResponse<Shout>.CreateSuccessResponse();
+            pageresponse.AddPageInfoFromJToken(token.SelectToken("@attr"));
+
+            var shouts = new List<Shout>();
+            if (shoutsToken != null && pageresponse.TotalItems > 0)
+            {
+                if (pageresponse.Page == pageresponse.TotalPages
+                    && pageresponse.TotalItems % pageresponse.PageSize == 1)
+                {
+                    // array notation isn't used on the api if there is only one shout.
+                    shouts.Add(Shout.ParseJToken(shoutsToken));
+                }
+                else
+                {
+                    shouts.AddRange(shoutsToken.Children().Select(Shout.ParseJToken));
+                }
+            }
+
+            pageresponse.Content = shouts;
+
+            return pageresponse;
         }
     }
 }

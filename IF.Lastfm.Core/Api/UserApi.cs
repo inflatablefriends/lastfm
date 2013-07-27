@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -68,48 +63,24 @@ namespace IF.Lastfm.Core.Api
                           };
 
             return await command.ExecuteAsync();
-            
-            const string apiMethod = "user.getRecentStations";
+        }
 
-            var methodParameters = new Dictionary<string, string>
-                                       {
-                                           {"user", Auth.User.Username},
-                                           {"page", pagenumber.ToString()},
-                                           {"limit", count.ToString()},
-                                           {"sk", Auth.User.Token}
-                                       };
+        public async Task<PageResponse<Shout>> GetShoutsAsync(string username, int pagenumber, int count = LastFm.DefaultPageLength)
+        {
+            var command = new GetUserShoutsCommand(Auth, username)
+                          {
+                              Page = pagenumber,
+                              Count = count
+                          };
 
-            var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
+            return await command.ExecuteAsync();
+        }
 
-            var postContent = LastFm.CreatePostBody(apiMethod,
-                Auth.ApiKey,
-                apisig,
-                methodParameters);
+        public async Task<LastResponse<User>> GetInfoAsync(string username)
+        {
+            var command = new GetUserInfoCommand(Auth, username);
 
-            var httpClient = new HttpClient();
-            var lastResponse = await httpClient.PostAsync(LastFm.ApiRoot, postContent);
-            var json = await lastResponse.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && lastResponse.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recentstations");
-
-                var stationsToken = jtoken.SelectToken("station");
-
-                var stations = stationsToken.Children().Select(Station.ParseJToken).ToList();
-
-                var pageresponse = PageResponse<Station>.CreateSuccessResponse(stations);
-
-                var attrToken = jtoken.SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
-            }
-            else
-            {
-                return PageResponse<Station>.CreateErrorResponse(error);
-            }
+            return await command.ExecuteAsync();
         }
     }
 }

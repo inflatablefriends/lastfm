@@ -14,6 +14,7 @@ namespace IF.Lastfm.Core.Api
 
         Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname,
             string artistname,
+            bool autocorrect = false,
             int page = 0,
             int count = LastFm.DefaultPageLength);
 

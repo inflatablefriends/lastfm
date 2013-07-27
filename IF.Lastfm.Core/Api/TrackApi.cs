@@ -60,12 +60,13 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public async Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname, string artistname, int page = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname, string artistname, bool autocorrect = false, int page = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTrackShoutsCommand(Auth, trackname, artistname)
                           {
                               Page = page,
                               Count = count,
+                              Autocorrect = autocorrect
                           };
             return await command.ExecuteAsync();
         }

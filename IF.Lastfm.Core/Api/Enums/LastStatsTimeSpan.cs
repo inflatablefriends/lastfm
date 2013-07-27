@@ -22,4 +22,11 @@ namespace IF.Lastfm.Core.Api.Enums
         [ApiName("12month")]
         Year
     }
+
+    public enum Gender
+    {
+        Other = 0,
+        Male,
+        Female
+    }
 }

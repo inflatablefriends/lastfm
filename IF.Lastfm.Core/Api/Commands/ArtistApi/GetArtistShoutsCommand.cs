@@ -45,30 +45,9 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
-                var shoutsToken = jtoken.SelectToken("shout");
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
 
-                var pageresponse = PageResponse<Shout>.CreateSuccessResponse();
-                pageresponse.AddPageInfoFromJToken(jtoken.SelectToken("@attr"));
-
-                var shouts = new List<Shout>();
-                if (shoutsToken != null && pageresponse.TotalItems > 0)
-                {
-                    if (pageresponse.Page == pageresponse.TotalPages
-                        && pageresponse.TotalItems % pageresponse.PageSize == 1)
-                    {
-                        // array notation isn't used on the api if there is only one shout.
-                        shouts.Add(Shout.ParseJToken(shoutsToken));
-                    }
-                    else
-                    {
-                        shouts.AddRange(shoutsToken.Children().Select(Shout.ParseJToken));
-                    }
-                }
-
-                pageresponse.Content = shouts;
-
-                return pageresponse;
+                return Shout.ParsePageJToken(jtoken);
             }
             else
             {
