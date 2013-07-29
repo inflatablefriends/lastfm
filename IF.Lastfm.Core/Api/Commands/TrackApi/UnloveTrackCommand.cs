@@ -33,17 +33,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
-            {
-                return LastResponse.CreateSuccessResponse();
-            }
-            else
-            {
-                return LastResponse.CreateErrorResponse(error);
-            }
+            return await LastResponse.HandleResponse(response);
         }
     }
 }

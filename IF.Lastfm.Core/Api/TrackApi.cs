@@ -92,5 +92,11 @@ namespace IF.Lastfm.Core.Api
             var command = new UnloveTrackCommand(Auth, trackname, artistname);
             return await command.ExecuteAsync(); 
         }
+
+        //public Task<LastResponse> AddShoutAsync(string trackname, string artistname, string message)
+        //{
+        //    var command = new AddShoutCommand(Auth, trackname, artistname, message);
+        //    return await command.ExecuteAsync();
+        //}
     }
 }
