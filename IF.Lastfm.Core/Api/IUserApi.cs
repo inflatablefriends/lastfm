@@ -29,5 +29,7 @@ namespace IF.Lastfm.Core.Api
             int count = LastFm.DefaultPageLength);
 
         Task<LastResponse<User>> GetInfoAsync(string username);
+
+        Task<LastResponse> AddShoutAsync(string recipient, string message);
     }
 }

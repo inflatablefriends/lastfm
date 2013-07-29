@@ -5,27 +5,26 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 
-namespace IF.Lastfm.Core.Api.Commands.TrackApi
+namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class LoveTrackCommand : PostAsyncCommandBase<LastResponse>
+    internal class AddShoutCommand : PostAsyncCommandBase<LastResponse>
     {
-        public string TrackName { get; protected set; }
-        public string ArtistName { get; protected set; }
+        public string Recipient { get; set; }
+        public string Message { get; set; }
 
-        public LoveTrackCommand(IAuth auth, string trackname, string artistname)
-            : base(auth)
+        public AddShoutCommand(IAuth auth, string recipient, string message) : base(auth)
         {
-            Method = "track.love";
-            TrackName = trackname;
-            ArtistName = artistname;
+            Method = "user.shout";
+            Recipient = recipient;
+            Message = message;
         }
 
         public async override Task<LastResponse> ExecuteAsync()
         {
             var parameters = new Dictionary<string, string>
                              {
-                                 {"track", TrackName},
-                                 {"artist", ArtistName}
+                                 {"user", Recipient},
+                                 {"message", Message}
                              };
 
             return await ExecuteInternal(parameters);

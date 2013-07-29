@@ -82,5 +82,12 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
+
+        public async Task<LastResponse> AddShoutAsync(string recipient, string message)
+        {
+            var command = new AddShoutCommand(Auth, recipient, message);
+
+            return await command.ExecuteAsync();
+        }
     }
 }

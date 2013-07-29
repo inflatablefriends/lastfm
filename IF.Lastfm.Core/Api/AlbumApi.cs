@@ -56,5 +56,12 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
+
+        //public async Task<LastResponse> AddShoutAsync(string albumname, string artistname, string message)
+        //{
+        //    var command = new AddShoutCommand(Auth, albumname, artistname, message);
+
+        //    return await command.ExecuteAsync();
+        //}
     }
 }

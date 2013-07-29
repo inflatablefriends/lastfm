@@ -22,5 +22,7 @@ namespace IF.Lastfm.Core.Api
 
         Task<LastResponse> LoveTrackAsync(string trackname, string artistname);
         Task<LastResponse> UnloveTrackAsync(string trackname, string artistname);
+
+        //Task<LastResponse> AddShoutAsync(string trackname, string artistname, string message);
     }
 }

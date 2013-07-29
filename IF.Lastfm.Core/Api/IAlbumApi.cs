@@ -33,5 +33,7 @@ namespace IF.Lastfm.Core.Api
             bool autocorrect = false,
             int page = 1,
             int count = LastFm.DefaultPageLength);
+
+        //Task<LastResponse> AddShoutAsync(string albumname, string artistname, string message);
     }
 }
