@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -20,18 +18,12 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             Username = username;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"user", Uri.EscapeDataString(Username)},
-                             };
+            Parameters.Add("user", Username);
 
-            base.AddPagingParameters(parameters);
-            base.DisableCaching(parameters);
-
-            var uristring = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(uristring, UriKind.Absolute);
+            AddPagingParameters();
+            DisableCaching();
         }
 
         public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)

@@ -21,16 +21,11 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             Username = username;
         }
 
-        public async override Task<PageResponse<Station>> ExecuteAsync()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"user", Username}
-                             };
+            Parameters.Add("user", Username);
 
-            AddPagingParameters(parameters);
-
-            return await ExecuteInternal(parameters);
+            AddPagingParameters();
         }
 
         public async override Task<PageResponse<Station>> HandleResponse(HttpResponseMessage response)

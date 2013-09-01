@@ -1,29 +1,24 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class GetAsyncCommandBase<T> : IAsyncCommand<T>
-    {
-        public string Method { get; protected set; }
-        public Uri Url { get; protected set; }
-        public IAuth Auth { get; protected set; }
-
-        public int Page { get; set; }
-        public int Count { get; set; }
-
+    public abstract class GetAsyncCommandBase<T> : LastAsyncCommandBase<T>
+    {           
         protected GetAsyncCommandBase(IAuth auth)
         {
             Auth = auth;
         }
 
-        public abstract Uri BuildRequestUrl();
-
-        public async Task<T> ExecuteAsync()
+        public async override Task<T> ExecuteAsync()
         {
+            SetParameters();
+
+            EscapeParameters();
+
             Url = BuildRequestUrl();
 
             var httpClient = new HttpClient();
@@ -31,22 +26,18 @@ namespace IF.Lastfm.Core.Api.Commands
             return await HandleResponse(response);
         }
 
-        public abstract Task<T> HandleResponse(HttpResponseMessage response);
-
-        protected void AddPagingParameters(Dictionary<string, string> parameters)
+        protected override Uri BuildRequestUrl()
         {
-            parameters.Add("page", Page.ToString());
-            parameters.Add("limit", Count.ToString());
+            var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, Parameters);
+            return new Uri(apiUrl, UriKind.Absolute);
         }
 
-        /// <summary>
-        /// Annoying workaround for Windows Phone's caching... 
-        /// see http://stackoverflow.com/questions/6334788/windows-phone-7-webrequest-caching
-        /// </summary>
-        /// <param name="parameters"></param>
-        protected void DisableCaching(Dictionary<string, string> parameters)
+        private void EscapeParameters()
         {
-            parameters.Add("disablecachetoken", DateTime.UtcNow.Ticks.ToString());
+            foreach (var key in Parameters.Keys.ToList())
+            {
+                Parameters[key] = Uri.EscapeDataString(Parameters[key]);
+            }
         }
     }
 }

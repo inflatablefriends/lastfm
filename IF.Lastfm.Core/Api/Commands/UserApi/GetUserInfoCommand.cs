@@ -20,19 +20,13 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             Username = username;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"user", Uri.EscapeDataString(Username)}
-                             };
+            Parameters.Add("user", Username);
 
-            base.DisableCaching(parameters);
-
-            var uristring = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(uristring, UriKind.Absolute);
+            DisableCaching();
         }
-
+        
         public async override Task<LastResponse<User>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();

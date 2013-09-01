@@ -20,15 +20,10 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             ArtistName = artistname;
         }
 
-        public async override Task<LastResponse> ExecuteAsync()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"track", TrackName},
-                                 {"artist", ArtistName}
-                             };
-
-            return await ExecuteInternal(parameters);
+            Parameters.Add("track", TrackName);
+            Parameters.Add("artist", ArtistName);
         }
 
         public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
 
@@ -19,16 +18,11 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             Message = message;
         }
 
-        public async override Task<LastResponse> ExecuteAsync()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"track", Track},
-                                 {"artist", Artist},
-                                 {"message", Message}
-                             };
-
-            return await ExecuteInternal(parameters);
+            Parameters.Add("track", Track);
+            Parameters.Add("artist", Artist);
+            Parameters.Add("message", Message);
         }
 
         public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)

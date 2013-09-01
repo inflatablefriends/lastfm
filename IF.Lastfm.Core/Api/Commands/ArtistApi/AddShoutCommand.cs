@@ -17,15 +17,10 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             Message = message;
         }
 
-        public async override Task<LastResponse> ExecuteAsync()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"artist", Artist},
-                                 {"message", Message}
-                             };
-
-            return await ExecuteInternal(parameters);
+            Parameters.Add("artist", Artist);
+            Parameters.Add("message", Message);
         }
 
         public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
