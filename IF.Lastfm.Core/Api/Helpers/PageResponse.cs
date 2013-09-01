@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class PageResponse<T> : IEnumerable<T>
+    public class PageResponse<T> : LastResponse, IEnumerable<T>
     {
         public PageResponse()
         {
@@ -17,8 +17,6 @@ namespace IF.Lastfm.Core.Api.Helpers
         #region Properties
 
         public IEnumerable<T> Content { get; set; }
-        public bool Success { get; set; }
-        public LastFmApiError Error { get; set; }
 
         public int Page { get; set; }
         public int TotalPages { get; set; }
@@ -57,11 +55,7 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         #region Factory methods
 
-        /// <summary>
-        /// Sometimes we need this object before we can set the content. Make sure to set the content!
-        /// </summary>
-        /// <returns></returns>
-        public static PageResponse<T> CreateSuccessResponse()
+        public new static PageResponse<T> CreateSuccessResponse()
         {
             var r = new PageResponse<T>
             {
@@ -79,18 +73,6 @@ namespace IF.Lastfm.Core.Api.Helpers
                 Content = content,
                 Success = true,
                 Error = LastFmApiError.None
-            };
-
-            return r;
-        }
-
-        public static PageResponse<T> CreateErrorResponse(LastFmApiError error)
-        {
-            var r = new PageResponse<T>
-            {
-                Content = new[] {default(T)},
-                Success = false,
-                Error = error
             };
 
             return r;

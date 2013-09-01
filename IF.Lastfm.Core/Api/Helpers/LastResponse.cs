@@ -26,9 +26,9 @@ namespace IF.Lastfm.Core.Api.Helpers
             return r;
         }
 
-        public static LastResponse CreateErrorResponse(LastFmApiError error)
+        public static T CreateErrorResponse<T>(LastFmApiError error) where T : LastResponse, new()
         {
-            var r = new LastResponse
+            var r = new T
             {
                 Success = false,
                 Error = error
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             }
             else
             {
-                return LastResponse.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<LastResponse>(error);
             }
         }
 

@@ -1,11 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T>
+    internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {
         protected PostAsyncCommandBase(IAuth auth)
         {
@@ -32,9 +33,23 @@ namespace IF.Lastfm.Core.Api.Commands
                 apisig,
                 Parameters);
 
-            var httpClient = new HttpClient();
-            var response = await httpClient.PostAsync(Url, postContent);
-            return await HandleResponse(response);
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.PostAsync(Url, postContent);
+                return await HandleResponse(response);
+            }
+            catch (HttpRequestException)
+            {
+                if (LastFm.CatchRequestExceptions)
+                {
+                    return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
     }
 }

@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    public abstract class LastAsyncCommandBase<T> : IAsyncCommand<T>
+    public abstract class LastAsyncCommandBase<T> : IAsyncCommand<T> where T : LastResponse, new()
     {
         public string Method { get; protected set; }
         public Uri Url { get; protected set; }
@@ -18,7 +19,7 @@ namespace IF.Lastfm.Core.Api.Commands
         protected LastAsyncCommandBase()
         {
             Parameters = new Dictionary<string, string>();
-        } 
+        }
 
         public abstract void SetParameters();
         protected abstract Uri BuildRequestUrl();

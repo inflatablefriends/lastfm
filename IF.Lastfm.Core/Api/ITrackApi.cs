@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
         IAuth Auth { get; }
 
         Task<LastResponse> ScrobbleAsync(Scrobble scrobble);
-        Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble);
+        //Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble);
 
         Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname,
             string artistname,

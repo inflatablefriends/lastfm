@@ -45,7 +45,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             }
             else
             {
-                return PageResponse<Shout>.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<PageResponse<Shout>>(error);
             }
         }
     }

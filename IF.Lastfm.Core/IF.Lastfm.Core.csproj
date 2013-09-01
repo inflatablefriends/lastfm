@@ -79,7 +79,6 @@
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Api\IAuth.cs" />
-    <Compile Include="ILastFm.cs" />
     <Compile Include="LastFm.cs" />
     <Compile Include="Api\Enums\LastFmApiError.cs" />
     <Compile Include="Objects\Album.cs" />

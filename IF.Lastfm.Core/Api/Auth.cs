@@ -71,7 +71,7 @@ namespace IF.Lastfm.Core.Api
             }
             else
             {
-                return LastResponse.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<LastResponse>(error);
             }
         }
 

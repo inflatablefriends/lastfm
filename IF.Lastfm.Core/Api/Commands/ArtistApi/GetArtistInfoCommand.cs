@@ -50,7 +50,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             }
             else
             {
-                return LastResponse<Artist>.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<LastResponse<Artist>>(error);
             }
         }
     }
