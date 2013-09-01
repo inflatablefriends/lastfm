@@ -51,13 +51,8 @@ namespace IF.Lastfm.Core.Api
             }
             else
             {
-                return LastResponse.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<LastResponse>(error);
             }
-        }
-
-        public Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname, string artistname, bool autocorrect = false, int page = 0, int count = LastFm.DefaultPageLength)

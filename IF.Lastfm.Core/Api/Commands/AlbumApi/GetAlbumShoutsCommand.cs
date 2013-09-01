@@ -37,18 +37,18 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
         
         public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
 
                 return Shout.ParsePageJToken(jtoken);
             }
             else
             {
-                return PageResponse<Shout>.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<PageResponse<Shout>>(error);
             }
         }
     }

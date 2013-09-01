@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             }
             else
             {
-                return PageResponse<Shout>.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<PageResponse<Shout>>(error);
             }
         }
     }

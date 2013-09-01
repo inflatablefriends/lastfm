@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core
 {
-    public class LastFm : ILastFm
+    public class LastFm
     {
         #region Constants
 
@@ -23,12 +22,17 @@ namespace IF.Lastfm.Core
         public const int DefaultPageLength = 20;
         
         #endregion
-
-        #region Api objects
-
-        public IAuth Auth { get; set; }
-
-        #endregion
+        
+        /// <summary>
+        /// Determines whether commands should throw HttpRequestExceptions or wrap them
+        /// in the response.
+        /// 
+        /// Using this can make client code neater, but it violates the principles of 
+        /// separation of concerns and single responsibility a bit. This property won't
+        /// get removed but please only use it if you understand what it does!
+        /// </summary>
+        [Obsolete]
+        public static bool CatchRequestExceptions { get; set; }
 
         #region Api helper methods
 

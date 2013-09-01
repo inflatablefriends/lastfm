@@ -2,13 +2,11 @@
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class LastResponse<T>
+    public class LastResponse<T> : LastResponse
     {
         #region Properties
 
         public T Content { get; set; }
-        public bool Success { get; set; }
-        public LastFmApiError Error { get; set; }
 
         #endregion
 
@@ -21,18 +19,6 @@ namespace IF.Lastfm.Core.Api.Helpers
                 Content = content,
                 Success = true,
                 Error = LastFmApiError.None
-            };
-
-            return r;
-        }
-
-        public static LastResponse<T> CreateErrorResponse(LastFmApiError error)
-        {
-            var r = new LastResponse<T>
-            {
-                Content = default(T),
-                Success = false,
-                Error = error
             };
 
             return r;

@@ -49,7 +49,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             }
             else
             {
-                return PageResponse<Album>.CreateErrorResponse(error);
+                return LastResponse.CreateErrorResponse<PageResponse<Album>>(error);
             }
         }
     }

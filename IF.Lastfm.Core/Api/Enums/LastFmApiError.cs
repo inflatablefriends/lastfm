@@ -18,7 +18,8 @@
     /// </summary>
     public enum LastFmApiError
     {
-        None,
+        None = 0,
+        RequestFailed,
         ServiceServiceWhereArtThou,
         BadMethod,
         BadAuth,
