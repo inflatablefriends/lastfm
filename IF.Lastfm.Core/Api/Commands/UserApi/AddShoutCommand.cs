@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
@@ -19,15 +16,10 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             Message = message;
         }
 
-        public async override Task<LastResponse> ExecuteAsync()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"user", Recipient},
-                                 {"message", Message}
-                             };
-
-            return await ExecuteInternal(parameters);
+            Parameters.Add("user", Recipient);
+            Parameters.Add("message", Message);
         }
 
         public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)

@@ -24,18 +24,15 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             ArtistName = artistname;
         }
 
-        public override Uri BuildRequestUrl()
+        /// <summary>
+        /// TODO Bio language
+        /// </summary>
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                {
-                    {"artist", Uri.EscapeDataString(ArtistName)},
-                    {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
-                };
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.DisableCaching(parameters);
-
-            var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(apiUrl, UriKind.Absolute);
+            base.DisableCaching();
         }
 
         public async override Task<LastResponse<Artist>> HandleResponse(HttpResponseMessage response)

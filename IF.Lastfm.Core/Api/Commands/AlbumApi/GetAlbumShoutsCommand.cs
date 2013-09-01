@@ -25,22 +25,16 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             ArtistName = artistname;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"album", Uri.EscapeDataString(AlbumName)},
-                                 {"artist", Uri.EscapeDataString(ArtistName)},
-                                 {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
-                             };
+            Parameters.Add("album", AlbumName);
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.AddPagingParameters(parameters);
-            base.DisableCaching(parameters);
-
-            var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(apiUrl, UriKind.Absolute);
+            base.AddPagingParameters();
+            base.DisableCaching();
         }
-
+        
         public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();

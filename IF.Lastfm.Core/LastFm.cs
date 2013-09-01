@@ -61,6 +61,7 @@ namespace IF.Lastfm.Core
                                {"format", ResponseFormat}
                            };
 
+            // TODO ordering
             var requestParameters = init.Concat(parameters);
 
             return new FormUrlEncodedContent(requestParameters);

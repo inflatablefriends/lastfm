@@ -22,19 +22,13 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             From = from;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"user", Uri.EscapeDataString(Username)},
-                                 {"from", From.ToUnixTimestamp().ToString()}
-                             };
+            Parameters.Add("user", Username);
+            Parameters.Add("from", From.ToUnixTimestamp().ToString());
 
-            base.AddPagingParameters(parameters);
-            base.DisableCaching(parameters);
-
-            var uristring = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(uristring, UriKind.Absolute);
+            AddPagingParameters();
+            DisableCaching();
         }
 
         public async override Task<PageResponse<Track>> HandleResponse(HttpResponseMessage response)

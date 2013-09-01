@@ -23,19 +23,13 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             AlbumName = albumname;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                {
-                    {"artist", Uri.EscapeDataString(ArtistName)},
-                    {"album", Uri.EscapeDataString(AlbumName)},
-                    {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
-                };
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("album", AlbumName);
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.DisableCaching(parameters);
-
-            var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(apiUrl, UriKind.Absolute);
+            base.DisableCaching();
         }
 
         public async override Task<LastResponse<Album>> HandleResponse(HttpResponseMessage response)

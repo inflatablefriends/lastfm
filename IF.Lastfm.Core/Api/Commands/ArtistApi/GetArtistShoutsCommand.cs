@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -11,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetArtistShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
+    public class GetArtistShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
     {
         public string ArtistName { get; set; }
         public bool Autocorrect { get; set; }
@@ -23,22 +21,16 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             ArtistName = artistname;
         }
 
-        public override Uri BuildRequestUrl()
+        public override void SetParameters()
         {
-            var parameters = new Dictionary<string, string>
-                             {
-                                 {"artist", Uri.EscapeDataString(ArtistName)},
-                                 {"autocorrect", Convert.ToInt32(Autocorrect).ToString()}
-                             };
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.AddPagingParameters(parameters);
-            base.DisableCaching(parameters);
-
-            var apiUrl = LastFm.FormatApiUrl(Method, Auth.ApiKey, parameters);
-            return new Uri(apiUrl, UriKind.Absolute);
+            base.AddPagingParameters();
+            base.DisableCaching();
         }
 
-        public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -54,7 +46,5 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                 return PageResponse<Shout>.CreateErrorResponse(error);
             }
         }
-        
-
     }
 }
