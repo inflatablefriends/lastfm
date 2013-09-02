@@ -47,6 +47,7 @@
     <Compile Include="Api\Commands\ArtistApi\AddShoutCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
+    <Compile Include="Api\Commands\AuthApi\GetMobileSessionCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\LastAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />

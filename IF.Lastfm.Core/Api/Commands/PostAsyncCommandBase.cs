@@ -6,7 +6,7 @@ using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
+    public abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {
         protected PostAsyncCommandBase(IAuth auth)
         {
@@ -24,7 +24,10 @@ namespace IF.Lastfm.Core.Api.Commands
 
             Url = BuildRequestUrl();
 
-            Parameters.Add("sk", Auth.User.Token);
+            if (Auth.HasAuthenticated)
+            {
+                Parameters.Add("sk", Auth.User.Token);
+            }
 
             var apisig = Auth.GenerateMethodSignature(Method, Parameters);
 
