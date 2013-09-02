@@ -14,6 +14,7 @@ namespace IF.Lastfm.Core
         #region Constants
 
         public const string ApiRoot = "http://ws.audioscrobbler.com/2.0/";
+        public const string ApiRootSsl = "https://ws.audioscrobbler.com/2.0/";
         private const string ApiRootFormat = "{0}://ws.audioscrobbler.com/2.0/?method={1}&api_key={2}{3}";
 
         private const string ResponseFormat = "json";

@@ -1,24 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Commands.AuthApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using xBrainLab.Security.Cryptography;
 
 namespace IF.Lastfm.Core.Api
 {
     public class Auth : IAuth
     {
-        private const string ApiAuthMethod = "auth.getMobileSession";
-
         private readonly string _apiSecret;
-        private string _password;
-        private string _username;
 
         public bool HasAuthenticated { get { return User != null; } }
         public string ApiKey { get; private set; }
@@ -43,35 +36,17 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse> GetSessionTokenAsync(string username, string password)
         {
-            const string apiMethod = "auth.getMobileSession";
+            var command = new GetMobileSessionCommand(this, username, password);
+            var response = await command.ExecuteAsync();
 
-            _password = password;
-            _username = username;
-
-            var apisig = GenerateMethodSignature(apiMethod);
-
-            var postContent = LastFm.CreatePostBody(apiMethod, ApiKey, apisig, new Dictionary<string, string>
-                                                                                {
-                                                                                    {"password", password},
-                                                                                    {"username", username}
-                                                                                });
-
-            var httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.PostAsync("https://ws.audioscrobbler.com/2.0/", postContent);
-            string json = await response.Content.ReadAsStringAsync();
-
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            if (response.Success)
             {
-                var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
-
-                User = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
-
+                User = response.Content;
                 return LastResponse.CreateSuccessResponse();
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse>(error);
+                return LastResponse.CreateErrorResponse<LastResponse>(response.Error);
             }
         }
 
@@ -84,8 +59,6 @@ namespace IF.Lastfm.Core.Api
 
             parameters.Add("api_key", ApiKey);
             parameters.Add("method", method);
-            parameters.Add("password", _password);
-            parameters.Add("username", _username);
 
             var builder = new StringBuilder();
 
