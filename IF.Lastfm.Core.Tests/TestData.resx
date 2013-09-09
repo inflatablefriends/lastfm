@@ -121,4 +121,10 @@
   <data name="AlbumGetInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\albumgetinfo.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TrackGetShouts" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\trackgetshouts.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TrackGetShoutsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\trackgetshoutssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

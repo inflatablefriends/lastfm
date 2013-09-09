@@ -92,6 +92,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Api\Commands\CommandTestsBase.cs" />
+    <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Objects\AlbumTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
@@ -108,6 +110,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Resources\AlbumGetInfo.json" />
+    <None Include="Resources\TrackGetShoutsSingle.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
@@ -120,6 +123,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TrackGetShouts.json" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
