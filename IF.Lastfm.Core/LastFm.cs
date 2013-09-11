@@ -89,14 +89,6 @@ namespace IF.Lastfm.Core
 
         public static bool IsResponseValid(string json, out LastFmApiError error)
         {
-            // hmmm
-            if (json.Length > 1 && !json.Contains("error"))
-            {
-                error = LastFmApiError.None;
-                return true;
-            }
-
-            error = LastFmApiError.Unknown;
             JObject jo;
             try
             {
@@ -104,55 +96,67 @@ namespace IF.Lastfm.Core
             }
             catch (JsonException)
             {
+                error = LastFmApiError.Unknown;
                 return false;
             }
 
-            var code = jo.Value<int>("error");
-
-            switch (code)
+            var codeString = jo.Value<string>("error");
+            if (string.IsNullOrWhiteSpace(codeString) && json.Length > 1)
             {
-                case 2:
-                    error = LastFmApiError.ServiceServiceWhereArtThou;
-                    break;
-                case 3:
-                    error = LastFmApiError.BadMethod;
-                    break;
-                case 4:
-                    error = LastFmApiError.BadAuth;
-                    break;
-                case 5:
-                    error = LastFmApiError.BadFormat;
-                    break;
-                case 6:
-                    error = LastFmApiError.MissingParameters;
-                    break;
-                case 7:
-                    error = LastFmApiError.BadResource;
-                    break;
-                case 8:
-                    error = LastFmApiError.Failure;
-                    break;
-                case 9:
-                    error = LastFmApiError.SessionExpired;
-                    break;
-                case 10:
-                    error = LastFmApiError.BadApiKey;
-                    break;
-                case 11:
-                    error = LastFmApiError.ServiceDown;
-                    break;
-                case 13:
-                    error = LastFmApiError.BadMethodSignature;
-                    break;
-                case 16:
-                    error = LastFmApiError.TemporaryFailure;
-                    break;
-                case 26:
-                    error = LastFmApiError.KeySuspended;
-                    break;
-                case 29:
-                    error = LastFmApiError.RateLimited;
-                    break;
+                error = LastFmApiError.None;
+                return true;
+            }
+
+            error = LastFmApiError.Unknown;
+
+            int code;
+            if (Int32.TryParse(codeString, out code))
+            {
+                switch (code)
+                {
+                    case 2:
+                        error = LastFmApiError.ServiceServiceWhereArtThou;
+                        break;
+                    case 3:
+                        error = LastFmApiError.BadMethod;
+                        break;
+                    case 4:
+                        error = LastFmApiError.BadAuth;
+                        break;
+                    case 5:
+                        error = LastFmApiError.BadFormat;
+                        break;
+                    case 6:
+                        error = LastFmApiError.MissingParameters;
+                        break;
+                    case 7:
+                        error = LastFmApiError.BadResource;
+                        break;
+                    case 8:
+                        error = LastFmApiError.Failure;
+                        break;
+                    case 9:
+                        error = LastFmApiError.SessionExpired;
+                        break;
+                    case 10:
+                        error = LastFmApiError.BadApiKey;
+                        break;
+                    case 11:
+                        error = LastFmApiError.ServiceDown;
+                        break;
+                    case 13:
+                        error = LastFmApiError.BadMethodSignature;
+                        break;
+                    case 16:
+                        error = LastFmApiError.TemporaryFailure;
+                        break;
+                    case 26:
+                        error = LastFmApiError.KeySuspended;
+                        break;
+                    case 29:
+                        error = LastFmApiError.RateLimited;
+                        break;
+                }
             }
 
             return false;
