@@ -90,7 +90,7 @@ namespace IF.Lastfm.Core
         public static bool IsResponseValid(string json, out LastFmApiError error)
         {
             // hmmm
-            if (!json.Contains("error"))
+            if (json.Length > 1 && !json.Contains("error"))
             {
                 error = LastFmApiError.None;
                 return true;
