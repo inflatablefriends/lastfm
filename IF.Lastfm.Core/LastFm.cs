@@ -87,8 +87,20 @@ namespace IF.Lastfm.Core
             return builder.ToString();
         }
 
+        /// <summary>
+        /// TODO see issue #5
+        /// </summary>
+        /// <param name="json">String of JSON</param>
+        /// <param name="error">Enum indicating the error, .None if there is no error</param>
+        /// <returns>True when the JSON could be parsed and it didn't describe a known Last.Fm error.</returns>
         public static bool IsResponseValid(string json, out LastFmApiError error)
         {
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                error = LastFmApiError.Unknown;
+                return false;
+            }
+
             JObject jo;
             try
             {
