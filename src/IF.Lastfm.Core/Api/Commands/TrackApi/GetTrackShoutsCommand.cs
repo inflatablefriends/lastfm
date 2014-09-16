@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -7,6 +8,7 @@ using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+[assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
     internal class GetTrackShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
