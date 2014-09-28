@@ -46,6 +46,8 @@
     <Compile Include="Api\Commands\ArtistApi\AddShoutCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetArtistTopAlbums.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetArtistTopTracks.cs" />
     <Compile Include="Api\Commands\AuthApi\GetMobileSessionCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\IAsyncCommand.cs" />

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects

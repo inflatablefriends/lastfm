@@ -20,6 +20,11 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
+        Task<PageResponse<Track>> GetTopTracksForArtistAsync(string artist,
+            bool autocorrect = false,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
         Task<PageResponse<Tag>> GetUserTagsForArtistAsync(string artist,
             string username,
             bool autocorrect = false,
