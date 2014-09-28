@@ -26,6 +26,8 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<Tag> TopTags { get; set; }
 
         public Uri Url { get; set; }
+
+        public LastImageCollection Images { get; set; }
         
         #endregion
 
@@ -39,26 +41,44 @@ namespace IF.Lastfm.Core.Objects
         {
             var a = new Album();
 
-            a.ArtistName = token.Value<string>("artist");
-            a.ArtistId = token.Value<string>("id");
+            try
+            {
+                a.ArtistName = token.Value<string>("artist");
+                a.ArtistId = token.Value<string>("id");
+
+                var tracksToken = token.SelectToken("tracks").SelectToken("track");
+                if (tracksToken != null)
+                {
+                    a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
+                }
+
+                var tagsToken = token.SelectToken("toptags").SelectToken("tag");
+                if (tagsToken != null)
+                {
+                    a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+                }
+            }
+            catch
+            {
+                //artist is not a string but a Artist object
+                var artist = token.SelectToken("artist").ToObject<Artist>();
+                a.ArtistName = artist.Name;
+                a.ArtistId = artist.Mbid;
+            }
             a.ListenerCount = token.Value<int>("listeners");
             a.Mbid = token.Value<string>("mbid");
             a.Name = token.Value<string>("name");
             a.TotalPlayCount = token.Value<int>("playcount");
 
+            var images = token.SelectToken("image");
+            if (images != null)
+            {
+                var imageCollection = LastImageCollection.ParseJToken(images);
+                a.Images = imageCollection;
+            }
+            
+
             a.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
-
-            var tracksToken = token.SelectToken("tracks").SelectToken("track");
-            if (tracksToken != null)
-            {
-                a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
-            }
-
-            var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-            if (tagsToken != null)
-            {
-                a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
-            }
 
             return a;
         }
