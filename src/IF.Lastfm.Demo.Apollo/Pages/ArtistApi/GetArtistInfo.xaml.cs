@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using IF.Lastfm.Demo.Apollo.TestPages.ViewModels;
 using IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi;
-using IF.Lastfm.Demo.Apollo.ViewModels.TrackApi;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 

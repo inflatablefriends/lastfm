@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using IF.Lastfm.Core.Api;
@@ -16,6 +12,8 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
         private string _artistName;
         private Artist _artist;
         private bool _inProgress;
+        private IEnumerable<Track> _topTracks;
+        private IEnumerable<Album> _topAlbums;
 
         public string ArtistName
         {
@@ -61,11 +59,43 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
+        public IEnumerable<Track> TopTracks
+        {
+            get { return _topTracks; }
+            set
+            {
+                if (Equals(value, _topTracks))
+                {
+                    return;
+                }
+                _topTracks = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public IEnumerable<Album> TopAlbums
+        {
+            get { return _topAlbums; }
+            set
+            {
+                if (Equals(value, _topAlbums))
+                {
+                    return;
+                }
+                _topAlbums = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public GetArtistInfoViewModel()
+        {
+            ArtistName = "Ben Frost";
+        }
+
         public async Task GetInfo()
         {
             InProgress = true;
-
-
+            
             var appsettings = new ApplicationSettingsService();
             var apikey = appsettings.Get<string>("apikey");
             var apisecret = appsettings.Get<string>("apisecret");
@@ -84,6 +114,18 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
                 if (artist.Success)
                 {
                     Artist = artist.Content;
+                }
+
+                var topAlbums = await artistApi.GetTopAlbumsForArtistAsync(ArtistName);
+                if (topAlbums.Success)
+                {
+                    TopAlbums = topAlbums;
+                }
+
+                var topTracks = await artistApi.GetTopTracksForArtistAsync(ArtistName);
+                if (topTracks.Success)
+                {
+                    TopTracks = topTracks;
                 }
             }
             
