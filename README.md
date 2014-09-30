@@ -1,6 +1,6 @@
 #Last.fm Portable .NET API
 
-[![Build status](https://ci.appveyor.com/api/projects/status/dbuxwwn92huhtft8)](https://ci.appveyor.com/project/rikkit/lastfm)
+[![Build status](https://ci.appveyor.com/api/projects/status/c8gg2cw4jibbsg3u)](https://ci.appveyor.com/project/rikkit/lastfm)
 
 MIT licensed. Maintained by [@rikkilt](http://twitter.com/rikkilt).
 
