@@ -13,7 +13,6 @@ namespace IF.Lastfm.Core.Tests.Objects
     [TestClass]
     public class AlbumTests
     {
-        [TestMethod]
         public void AlbumParsesValidJson()
         {
             var jo = ResourceManager.LoadResource(Encoding.UTF8.GetString(TestData.AlbumGetInfo));
