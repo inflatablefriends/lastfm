@@ -5,7 +5,7 @@ namespace IF.Lastfm.Core.Api.Enums
     public enum LastStatsTimeSpan
     {
         [ApiName("overall")]
-        Overall,
+        Overall = 0,
 
         [ApiName("7day")]
         Week,

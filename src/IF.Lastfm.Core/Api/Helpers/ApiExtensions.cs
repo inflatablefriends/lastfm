@@ -1,26 +1,27 @@
 ﻿using System;
+using System.Reflection;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
     public static class ApiExtensions
     {
-        public static string GetApiName(this Enum en)
+        public static T GetAttribute<T>(this Enum enumValue)
+        where T : Attribute
         {
-            var type = en.GetType();
+            return enumValue
+                .GetType()
+                .GetTypeInfo()
+                .GetDeclaredField(enumValue.ToString())
+                .GetCustomAttribute<T>();
+        }
 
-            var memInfo = type.GetMember(en.ToString());
+        public static string GetApiName(this Enum enumValue)
+        {
+            var attribute = enumValue.GetAttribute<ApiNameAttribute>();
 
-            if (memInfo.Length > 0)
-            {
-                var attrs = memInfo[0].GetCustomAttributes(typeof (ApiNameAttribute), false);
-
-                if (attrs != null && attrs.Length > 0)
-                {
-                    return ((ApiNameAttribute) attrs[0]).Text;
-                }
-            }
-
-            return en.ToString();
+            return (attribute != null && !string.IsNullOrWhiteSpace(attribute.Text))
+                ? attribute.Text
+                : enumValue.ToString();
         }
 
         public static int ToInt(this bool b)

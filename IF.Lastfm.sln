@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core.Tests", "src\IF.Lastfm.Core.Tests\IF.Lastfm.Core.Tests.csproj", "{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Console", "src\IF.Lastfm.Console\IF.Lastfm.Console.csproj", "{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{81B53C1A-26E0-4C55-9D20-0E4CF35D6924}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,14 +33,6 @@ Global
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|ARM.ActiveCfg = Release|Any CPU
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|x86.ActiveCfg = Release|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Release|ARM.ActiveCfg = Release|Any CPU
-		{146087E5-B995-4BA1-9E4C-AD332BDDB2EF}.Release|x86.ActiveCfg = Release|Any CPU
 		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
