@@ -19,7 +19,7 @@ namespace IF.Lastfm.Core.Objects
         public string ArtistName { get; set; }
         public string ArtistMbid { get; set; }
         public Uri Url { get; set; }
-        public LastImageCollection Images { get; set; }
+        public LastImageSet Images { get; set; }
         
         public string AlbumName { get; set; }
 
@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Objects
             var images = token.SelectToken("image");
             if (images != null)
             {
-                var imageCollection = LastImageCollection.ParseJToken(images);
+                var imageCollection = LastImageSet.ParseJToken(images);
                 t.Images = imageCollection;
             }
 

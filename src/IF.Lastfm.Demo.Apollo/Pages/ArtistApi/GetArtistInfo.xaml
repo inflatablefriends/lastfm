@@ -30,13 +30,42 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
-                      VerticalAlignment="Stretch">
+                      VerticalAlignment="Stretch"
+                      Padding="0,17,0,12">
             <StackPanel x:Name="ContentPanel"
-                        Margin="12,17,12,0">
-                <TextBlock Text="LASTFM-WP DEMO APP" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-                <TextBlock Text="artist info" Margin="9,-7,0,12" Style="{StaticResource PhoneTextTitle1Style}"/>
+                        Margin="12,0">
+                <StackPanel>
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="{Binding Artist.MainImage.Mega}"
+                                    Opacity="0.7"
+                                    Stretch="UniformToFill"/>
+                    </StackPanel.Background>
+                    <TextBlock Text="LASTFM-WP DEMO APP" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+                    <TextBlock Text="artist info" Margin="9,-7,0,12" Style="{StaticResource PhoneTextTitle1Style}"/>
+                    <toolkit:PhoneTextBox Hint="Artist" Text="{Binding ArtistName, Mode=TwoWay}"/>
+                </StackPanel>
+                    
+                <TextBlock Text="top tags" Margin="12,12,0,12" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <ItemsControl ItemsSource="{Binding Artist.Tags}"
+                              VerticalAlignment="Top">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-                <toolkit:PhoneTextBox Hint="Artist" Text="{Binding ArtistName, Mode=TwoWay}"/>
+                <TextBlock Text="top albums" Margin="12,12,24,12" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <ItemsControl ItemsSource="{Binding TopAlbums}"
+                              VerticalAlignment="Top">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <TextBlock Text="top tracks" Margin="12,12,0,12" Style="{StaticResource PhoneTextTitle2Style}"/>
                 <ItemsControl ItemsSource="{Binding TopTracks}"
@@ -48,17 +77,6 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
-                <TextBlock Text="top albums" Margin="12,12,24,12" Style="{StaticResource PhoneTextTitle2Style}"/>
-                <ItemsControl ItemsSource="{Binding TopAlbums}"
-                              VerticalAlignment="Top">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"
-                                       Style="{StaticResource PhoneTextNormalStyle}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>

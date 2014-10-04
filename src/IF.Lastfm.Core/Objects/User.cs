@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Objects
 
         public string Name { get; set; }
         public string FullName { get; set; }
-        public LastImageCollection Avatar { get; set; }
+        public LastImageSet Avatar { get; set; }
         public string Id { get; set; }
         public int Age { get; set; }
         public string Country { get; set; }
@@ -53,7 +53,7 @@ namespace IF.Lastfm.Core.Objects
             var images = token.SelectToken("image");
             if (images != null)
             {
-                u.Avatar = LastImageCollection.ParseJToken(images);
+                u.Avatar = LastImageSet.ParseJToken(images);
             }
 
             return u;

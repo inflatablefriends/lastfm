@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class LastImageCollection : IEnumerable<Uri>
+    public class LastImageSet : IEnumerable<Uri>
     {
         public Uri Small { get; set; }
         public Uri Medium { get; set; }
@@ -28,9 +28,9 @@ namespace IF.Lastfm.Core.Objects
             }
         }
 
-        public static LastImageCollection ParseJToken(JToken images)
+        public static LastImageSet ParseJToken(JToken images)
         {
-            var c = new LastImageCollection();
+            var c = new LastImageSet();
 
             foreach (var image in images.Children())
             {

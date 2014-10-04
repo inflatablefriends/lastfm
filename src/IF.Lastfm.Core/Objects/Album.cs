@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Objects
 
         public Uri Url { get; set; }
 
-        public LastImageCollection Images { get; set; }
+        public LastImageSet Images { get; set; }
         
         #endregion
 
@@ -73,7 +73,7 @@ namespace IF.Lastfm.Core.Objects
             var images = token.SelectToken("image");
             if (images != null)
             {
-                var imageCollection = LastImageCollection.ParseJToken(images);
+                var imageCollection = LastImageSet.ParseJToken(images);
                 a.Images = imageCollection;
             }
             

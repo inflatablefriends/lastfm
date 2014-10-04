@@ -86,7 +86,7 @@
     <Compile Include="Objects\BuyLink.cs" />
     <Compile Include="Objects\CountryCode.cs" />
     <Compile Include="Objects\ILastFmObject.cs" />
-    <Compile Include="Objects\LastImageCollection.cs" />
+    <Compile Include="Objects\LastImageSet.cs" />
     <Compile Include="Objects\Shout.cs" />
     <Compile Include="Objects\Station.cs" />
     <Compile Include="Objects\Tag.cs" />

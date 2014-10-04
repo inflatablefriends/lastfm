@@ -17,7 +17,8 @@ namespace IF.Lastfm.Core.Objects
         public Uri Url { get; set; }
         public bool OnTour { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
-        public LastImageCollection Images { get; set; }
+
+        public LastImageSet MainImage { get; set; }
 
         #endregion
 
@@ -40,8 +41,8 @@ namespace IF.Lastfm.Core.Objects
             var images = token.SelectToken("image");
             if (images != null && images.HasValues)
             {
-                var imageCollection = LastImageCollection.ParseJToken(images);
-                a.Images = imageCollection;
+                var imageCollection = LastImageSet.ParseJToken(images);
+                a.MainImage = imageCollection;
             }
             
             return a;
