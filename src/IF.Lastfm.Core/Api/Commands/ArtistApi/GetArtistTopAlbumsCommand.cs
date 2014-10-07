@@ -39,14 +39,24 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var albums = jtoken.SelectToken("topalbums")
-                    .SelectToken("album")
-                    .Children().Select(LastAlbum.ParseJToken)
-                    .ToList();
+                //first, let's see how many albums
+                //stupid api returns an object intead of an array when there is only one item
+                var attrToken = jtoken.SelectToken("topalbums").SelectToken("@attr");
+
+                var albums = new List<LastAlbum>();
+
+                if (attrToken.Value<int>("count") > 1)
+                    albums = jtoken.SelectToken("topalbums")
+                        .SelectToken("album")
+                        .Children().Select(LastAlbum.ParseJToken)
+                        .ToList();
+                else
+                    albums.Add(LastAlbum.ParseJToken(jtoken.SelectToken("topalbums")
+                        .SelectToken("album")));
 
                 var pageresponse = PageResponse<LastAlbum>.CreateSuccessResponse(albums);
 
-                var attrToken = jtoken.SelectToken("topalbums").SelectToken("@attr");
+                
                 pageresponse.AddPageInfoFromJToken(attrToken);
 
                 return pageresponse;
