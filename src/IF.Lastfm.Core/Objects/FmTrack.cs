@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// TODO Wiki, Stream availability
     /// </summary>
-    public class Track : ILastFmObject
+    public class FmTrack : ILastFmObject
     {
         #region Properties
 
@@ -39,9 +39,9 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="token">A valid JToken</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used directly then the duration attribute will be parsed as MILLIseconds</remarks>
-        internal static Track ParseJToken(JToken token)
+        internal static FmTrack ParseJToken(JToken token)
         {
-            var t = new Track();
+            var t = new FmTrack();
 
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
@@ -50,14 +50,14 @@ namespace IF.Lastfm.Core.Objects
             var artistToken = token.SelectToken("artist");
             if (artistToken != null)
             {
-                t.ArtistName = Artist.GetNameFromJToken(artistToken);
+                t.ArtistName = FmArtist.GetNameFromJToken(artistToken);
                 t.ArtistMbid = artistToken.Value<string>("mbid");
             }
 
             var albumToken = token.SelectToken("album");
             if (albumToken != null)
             {
-                t.AlbumName = Album.GetNameFromJToken(albumToken);
+                t.AlbumName = FmAlbum.GetNameFromJToken(albumToken);
             }
 
             var tagsToken = token.SelectToken("toptags");
@@ -109,7 +109,7 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="albumName">Name of the album this track belongs to</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used then the duration attribute will be parsed as seconds</remarks>
-        internal static Track ParseJToken(JToken token, string albumName)
+        internal static FmTrack ParseJToken(JToken token, string albumName)
         {
             var t = ParseJToken(token);
             t.AlbumName = albumName;

@@ -11,31 +11,25 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetArtistInfoCommand : GetAsyncCommandBase<LastResponse<FmArtist>>
+    internal class GetArtistTopTracksCommand : GetAsyncCommandBase<PageResponse<FmTrack>>
     {
         public string ArtistName { get; set; }
-        public string BioLanguage { get; set; }
-        public bool Autocorrect { get; set; }
 
-        public GetArtistInfoCommand(IAuth auth, string artistname)
+        public GetArtistTopTracksCommand(IAuth auth, string artistname)
             : base(auth)
         {
-            Method = "artist.getInfo";
+            Method = "artist.topTracks";
             ArtistName = artistname;
         }
 
-        /// <summary>
-        /// TODO Bio language
-        /// </summary>
         public override void SetParameters()
         {
             Parameters.Add("artist", ArtistName);
-            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             base.DisableCaching();
         }
 
-        public async override Task<LastResponse<FmArtist>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<FmTrack>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -44,13 +38,24 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var artist = FmArtist.ParseJToken(jtoken.SelectToken("artist"));
+                var tracks = new List<FmTrack>();
 
-                return LastResponse<FmArtist>.CreateSuccessResponse(artist);
+                foreach (var jToken in jtoken.SelectToken("toptracks").SelectToken("track").Children())
+                {
+                    var t = FmTrack.ParseJToken(jToken);
+                    tracks.Add(t);
+                }
+
+                var pageresponse = PageResponse<FmTrack>.CreateSuccessResponse(tracks);
+
+                var attrToken = jtoken.SelectToken("toptracks").SelectToken("@attr");
+                pageresponse.AddPageInfoFromJToken(attrToken);
+
+                return pageresponse;
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<FmArtist>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<FmTrack>>(error);
             }
         }
     }

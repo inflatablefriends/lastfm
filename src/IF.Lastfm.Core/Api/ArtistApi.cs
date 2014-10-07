@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<LastResponse<Artist>> GetArtistInfoAsync(string artist,
+        public async Task<LastResponse<FmArtist>> GetArtistInfoAsync(string artist,
             string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false)
         {
@@ -29,12 +29,22 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Album>> GetTopAlbumsForArtistAsync(string artist,
+        public async Task<PageResponse<FmAlbum>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
-            throw new NotImplementedException();
+            var command = new GetArtistTopAlbumsCommand(Auth, artist);
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<FmTrack>> GetTopTracksForArtistAsync(string artist,
+            bool autocorrect = false,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetArtistTopTracksCommand(Auth, artist);
+            return await command.ExecuteAsync();
         }
 
         public async Task<PageResponse<Tag>> GetUserTagsForArtistAsync(string artist,

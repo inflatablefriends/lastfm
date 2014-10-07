@@ -18,9 +18,9 @@ namespace IF.Lastfm.Core.Tests.Objects
         {
             var jo = ResourceManager.LoadResource(Encoding.UTF8.GetString(TestData.AlbumGetInfo));
             
-            var parsed = Album.ParseJToken(jo.SelectToken("album"));
+            var parsed = FmAlbum.ParseJToken(jo.SelectToken("album"));
 
-            var expected = new Album
+            var expected = new FmAlbum
                 {
                     ArtistId = "283786832",
                     ArtistName = "Grimes",
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Tests.Objects
                                     Url = new Uri("http://www.last.fm/tag/best%20of%202012", UriKind.Absolute)
                                 }
                         },
-                    Tracks = new List<Track>
+                    Tracks = new List<FmTrack>
                         {
                         }
                 };

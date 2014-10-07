@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="pagenumber"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public async Task<PageResponse<Album>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<FmAlbum>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTopAlbumsCommand(Auth, username, span)
                           {
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="pagenumber"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public async Task<PageResponse<Track>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<FmTrack>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentScrobblesCommand(Auth, username, since)
                           {
