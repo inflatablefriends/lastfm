@@ -88,7 +88,6 @@ namespace IF.Lastfm.Core.Objects
             {
                 t.IsLoved = Convert.ToBoolean(lovedToken.Value<int>());
             }
-
             var attrToken = token.SelectToken("@attr");
             if (attrToken != null && attrToken.HasValues)
             {
@@ -97,10 +96,15 @@ namespace IF.Lastfm.Core.Objects
             }
 
             // api returns milliseconds when track.getInfo is called directly
-            var secs = token.Value<double>("duration");
-            if (Math.Abs(secs - default(double)) > double.Epsilon)
+            var secsStr = token.Value<string>("duration");
+            double secs;
+
+            if (double.TryParse(secsStr, out secs))
             {
-                t.Duration = TimeSpan.FromMilliseconds(secs);
+                if (Math.Abs(secs - default(double)) > double.Epsilon)
+                {
+                    t.Duration = TimeSpan.FromMilliseconds(secs);
+                }
             }
 
             return t;
