@@ -46,13 +46,15 @@ namespace IF.Lastfm.Core.Objects
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
-            
+
             var artistToken = token.SelectToken("artist");
-            if (artistToken != null)
+            if (artistToken.Type != JTokenType.String)
             {
                 t.ArtistName = LastArtist.GetNameFromJToken(artistToken);
                 t.ArtistMbid = artistToken.Value<string>("mbid");
             }
+            else
+                t.ArtistName = artistToken.ToObject<string>();
 
             var albumToken = token.SelectToken("album");
             if (albumToken != null)

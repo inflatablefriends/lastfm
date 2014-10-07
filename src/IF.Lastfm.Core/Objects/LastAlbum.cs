@@ -45,21 +45,24 @@ namespace IF.Lastfm.Core.Objects
                 a.ArtistName = token.Value<string>("artist");
                 a.ArtistId = token.Value<string>("id");
 
-                var tracksToken = token.SelectToken("tracks").SelectToken("track");
-                if (tracksToken != null)
+                if (token.Contains("tracks"))
                 {
-                    a.Tracks = tracksToken.Children().Select(trackToken => LastTrack.ParseJToken(trackToken, a.Name));
-                }
+                    var tracksToken = token.SelectToken("tracks").SelectToken("track");
+                    if (tracksToken != null)
+                    {
+                        a.Tracks = tracksToken.Children().Select(trackToken => LastTrack.ParseJToken(trackToken, a.Name));
+                    }
 
-                var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-                if (tagsToken != null)
-                {
-                    a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+                    var tagsToken = token.SelectToken("toptags").SelectToken("tag");
+                    if (tagsToken != null)
+                    {
+                        a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
+                    }
                 }
             }
             catch
             {
-                // for when artist is not a string but a LastArtist object
+                //artist is not a string but a FmArtist object
                 var artist = token.SelectToken("artist").ToObject<LastArtist>();
                 a.ArtistName = artist.Name;
                 a.ArtistId = artist.Mbid;

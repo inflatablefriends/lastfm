@@ -28,7 +28,13 @@ namespace IF.Lastfm.Core.Objects
 
             a.Name = token.Value<string>("name");
             a.Mbid = token.Value<string>("mbid");
-            a.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
+            var url = token.Value<string>("url");
+
+            // for some stupid reason the api returns the url without http in the get similar method, WHY?
+            if (!url.StartsWith("http"))
+                url = "http://" + url;
+
+            a.Url = new Uri(url, UriKind.Absolute);
 
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
             
