@@ -13,6 +13,17 @@ namespace IF.Lastfm.Core.Objects
         public Uri ExtraLarge { get; set; }
         public Uri Mega { get; set; }
 
+        public Uri Largest
+        {
+            get
+            {
+                if (Small == null) return null;
+                if (Medium == null) return Small;
+                if (Large == null) return Medium;
+                return ExtraLarge != null ? (Mega ?? ExtraLarge) : Large;
+            }
+        }
+
         private IEnumerable<Uri> Images
         {
             get
