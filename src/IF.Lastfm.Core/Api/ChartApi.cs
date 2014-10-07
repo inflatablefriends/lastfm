@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<PageResponse<LastArtist>> GetTopArtistAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastArtist>> GetTopArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopArtistsCommand(Auth)
             {

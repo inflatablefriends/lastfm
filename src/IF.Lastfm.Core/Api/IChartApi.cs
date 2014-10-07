@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api
     {
         IAuth Auth { get; }
 
-        Task<PageResponse<LastArtist>> GetTopArtistAsync(
+        Task<PageResponse<LastArtist>> GetTopArtistsAsync(
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
