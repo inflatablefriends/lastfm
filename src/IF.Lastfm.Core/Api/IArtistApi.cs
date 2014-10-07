@@ -15,6 +15,8 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
+        Task<LastResponse<List<LastArtist>>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100);
+
         Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
@@ -39,5 +41,10 @@ namespace IF.Lastfm.Core.Api
             bool autocorrect = false);
 
         Task<LastResponse> AddShoutAsync(string artistname, string messaage);
+
+        Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
     }
 }

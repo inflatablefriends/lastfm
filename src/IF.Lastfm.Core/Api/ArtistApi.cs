@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Helpers;
@@ -46,6 +47,12 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
+        public async Task<LastResponse<List<LastArtist>>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100)
+        {
+            var command = new GetSimilarArtistsCommand(Auth, artistname, autocorrect, limit);
+            return await command.ExecuteAsync();
+        }
+
         public async Task<PageResponse<Tag>> GetUserTagsForArtistAsync(string artist,
             string username,
             bool autocorrect = false,
@@ -74,6 +81,17 @@ namespace IF.Lastfm.Core.Api
         public async Task<LastResponse> AddShoutAsync(string artistname, string messaage)
         {
             var command = new AddShoutCommand(Auth, artistname, messaage);
+
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new SearchArtistsCommand(Auth, artistname)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
 
             return await command.ExecuteAsync();
         }

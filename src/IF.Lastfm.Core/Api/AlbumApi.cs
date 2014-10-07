@@ -40,9 +40,15 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<LastAlbum>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastAlbum>> SearchForAlbumAsync(string albumname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            throw new NotImplementedException();
+            var command = new SearchAlbumsCommand(Auth, albumname)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+
+            return await command.ExecuteAsync();
         }
 
         public async Task<PageResponse<Shout>> GetShoutsAsync(string albumname, string artistname, bool autocorrect = false, int page = 1, int count = LastFm.DefaultPageLength)

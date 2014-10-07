@@ -76,6 +76,12 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
+        public async Task<LastResponse<List<LastTrack>>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
+        {
+            var command = new GetSimilarTracksCommand(Auth, trackname, artistname, autocorrect, limit);
+            return await command.ExecuteAsync();
+        }
+
         public async Task<LastResponse> LoveTrackAsync(string trackname, string artistname)
         {
             var command = new LoveTrackCommand(Auth, trackname, artistname);
@@ -86,6 +92,17 @@ namespace IF.Lastfm.Core.Api
         {
             var command = new UnloveTrackCommand(Auth, trackname, artistname);
             return await command.ExecuteAsync(); 
+        }
+
+        public async Task<PageResponse<LastTrack>> SearchForTrackAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new SearchTracksCommand(Auth, trackname)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+
+            return await command.ExecuteAsync();
         }
 
         //public Task<LastResponse> AddShoutAsync(string trackname, string artistname, string message)

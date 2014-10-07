@@ -100,6 +100,26 @@ namespace IF.Lastfm.Core.Api.Helpers
             PageSize = !string.IsNullOrWhiteSpace(pagesize) ? Convert.ToInt32(pagesize) : 1;
         }
 
+        public void AddPageInfoFromOpenQueryJToken(JToken queryToken)
+        {
+            if (queryToken == null)
+            {
+                return;
+            }
+
+            var page = queryToken.SelectToken("opensearch:Query").Value<string>("startPage");
+            Page = !string.IsNullOrWhiteSpace(page) ? Convert.ToInt32(page) : 1;
+
+            var totalItems = queryToken.Value<string>("opensearch:totalResults");
+            TotalItems = !string.IsNullOrWhiteSpace(totalItems) ? Convert.ToInt32(totalItems) : 1;
+
+            var pagesize = queryToken.Value<string>("opensearch:itemsPerPage");
+            PageSize = !string.IsNullOrWhiteSpace(pagesize) ? Convert.ToInt32(pagesize) : 1;
+
+            // the response doesn't include total pages, bit of improv then.
+            TotalPages = (int)Math.Ceiling((double)TotalItems / PageSize);
+        }
+
 //        {"@attr": {
 //  "user": "tehrikkit",
 //  "page": "",
