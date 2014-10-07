@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetArtistTopTracksCommand : GetAsyncCommandBase<PageResponse<Track>>
+    internal class GetArtistTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string ArtistName { get; set; }
 
@@ -29,7 +29,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             base.DisableCaching();
         }
 
-        public async override Task<PageResponse<Track>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -38,15 +38,15 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var tracks = new List<Track>();
+                var tracks = new List<LastTrack>();
 
                 foreach (var jToken in jtoken.SelectToken("toptracks").SelectToken("track").Children())
                 {
-                    var t = Track.ParseJToken(jToken);
+                    var t = LastTrack.ParseJToken(jToken);
                     tracks.Add(t);
                 }
 
-                var pageresponse = PageResponse<Track>.CreateSuccessResponse(tracks);
+                var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
 
                 var attrToken = jtoken.SelectToken("toptracks").SelectToken("@attr");
                 pageresponse.AddPageInfoFromJToken(attrToken);
@@ -55,7 +55,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<Track>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
             }
         }
     }

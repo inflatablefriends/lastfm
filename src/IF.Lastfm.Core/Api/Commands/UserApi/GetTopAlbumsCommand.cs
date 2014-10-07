@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetTopAlbumsCommand : GetAsyncCommandBase<PageResponse<Album>>
+    internal class GetTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
         public string Username { get; set; }
         public LastStatsTimeSpan TimeSpan { get; set; }
@@ -32,7 +32,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             DisableCaching();
         }
 
-        public async override Task<PageResponse<Album>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -43,13 +43,13 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
                 var albumsToken = jtoken.SelectToken("topalbums").SelectToken("album");
 
-                var albums = albumsToken.Children().Select(Album.ParseJToken);
+                var albums = albumsToken.Children().Select(LastAlbum.ParseJToken);
 
-                return PageResponse<Album>.CreateSuccessResponse(albums);
+                return PageResponse<LastAlbum>.CreateSuccessResponse(albums);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<Album>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
             }
         }
     }

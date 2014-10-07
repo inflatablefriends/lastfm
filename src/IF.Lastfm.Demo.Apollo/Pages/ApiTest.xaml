@@ -39,7 +39,7 @@
             <Button Content="Scrobbling" Click="OnScrobblingLinkClick"/>
             <Button Content="History" Click="OnHistoryLinkClick"/>
             <Button Content="Recent Stations" Click="OnRecentStationsLinkClick"/>
-            <Button Content="Get Artist Info" Click="OnGetArtistInfoLinkClick"/>
+            <Button Content="Get LastArtist Info" Click="OnGetArtistInfoLinkClick"/>
         </StackPanel>
     </Grid>
 

@@ -5,12 +5,12 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Album : ILastFmObject
+    public class LastAlbum : ILastFmObject
     {
         #region Properties
 
         public string Name { get; set; }
-        public IEnumerable<Track> Tracks { get; set; }
+        public IEnumerable<LastTrack> Tracks { get; set; }
         
         public string ArtistName { get; set; }
         public string ArtistId { get; set; }
@@ -36,9 +36,9 @@ namespace IF.Lastfm.Core.Objects
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        internal static Album ParseJToken(JToken token)
+        internal static LastAlbum ParseJToken(JToken token)
         {
-            var a = new Album();
+            var a = new LastAlbum();
 
             try
             {
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Objects
                 var tracksToken = token.SelectToken("tracks").SelectToken("track");
                 if (tracksToken != null)
                 {
-                    a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
+                    a.Tracks = tracksToken.Children().Select(trackToken => LastTrack.ParseJToken(trackToken, a.Name));
                 }
 
                 var tagsToken = token.SelectToken("toptags").SelectToken("tag");
@@ -59,8 +59,8 @@ namespace IF.Lastfm.Core.Objects
             }
             catch
             {
-                // for when artist is not a string but a Artist object
-                var artist = token.SelectToken("artist").ToObject<Artist>();
+                // for when artist is not a string but a LastArtist object
+                var artist = token.SelectToken("artist").ToObject<LastArtist>();
                 a.ArtistName = artist.Name;
                 a.ArtistId = artist.Mbid;
             }

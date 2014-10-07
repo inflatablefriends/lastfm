@@ -12,15 +12,15 @@ namespace IF.Lastfm.Core.Api
     {
         IAuth Auth { get; }
 
-        Task<LastResponse<Artist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
+        Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
-        Task<PageResponse<Album>> GetTopAlbumsForArtistAsync(string artist,
+        Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Track>> GetTopTracksForArtistAsync(string artist,
+        Task<PageResponse<LastTrack>> GetTopTracksForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
