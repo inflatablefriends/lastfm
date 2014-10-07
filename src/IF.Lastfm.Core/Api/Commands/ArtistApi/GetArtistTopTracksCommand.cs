@@ -26,8 +26,8 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
         public override void SetParameters()
         {
             Parameters.Add("artist", ArtistName);
-
-            base.DisableCaching();
+            AddPagingParameters();
+            DisableCaching();
         }
 
         public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
