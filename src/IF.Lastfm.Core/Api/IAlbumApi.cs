@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Api
     {
         IAuth Auth { get; }
 
-        Task<LastResponse<Album>> GetAlbumInfoAsync(string artist, string album, bool autocorrect = false);
+        Task<LastResponse<FmAlbum>> GetAlbumInfoAsync(string artist, string album, bool autocorrect = false);
         
         Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist,
             string album,
@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Api
             string album,
             bool autocorrect = false);
 
-        Task<PageResponse<Album>> SearchForAlbumAsync(string album,
+        Task<PageResponse<FmAlbum>> SearchForAlbumAsync(string album,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 

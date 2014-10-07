@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// Todo bio, tour, similar, stats, streamable
     /// </summary>
-    public class Artist : ILastFmObject
+    public class FmArtist : ILastFmObject
     {
         #region Properties
 
@@ -23,9 +23,9 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
-        internal static Artist ParseJToken(JToken token)
+        internal static FmArtist ParseJToken(JToken token)
         {
-            var a = new Artist();
+            var a = new FmArtist();
 
             a.Name = token.Value<string>("name");
             a.Mbid = token.Value<string>("mbid");

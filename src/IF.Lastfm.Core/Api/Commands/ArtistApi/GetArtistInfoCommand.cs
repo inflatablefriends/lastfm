@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetArtistInfoCommand : GetAsyncCommandBase<LastResponse<Artist>>
+    internal class GetArtistInfoCommand : GetAsyncCommandBase<LastResponse<FmArtist>>
     {
         public string ArtistName { get; set; }
         public string BioLanguage { get; set; }
@@ -35,7 +35,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             base.DisableCaching();
         }
 
-        public async override Task<LastResponse<Artist>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<FmArtist>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -44,13 +44,13 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var artist = Artist.ParseJToken(jtoken.SelectToken("artist"));
+                var artist = FmArtist.ParseJToken(jtoken.SelectToken("artist"));
 
-                return LastResponse<Artist>.CreateSuccessResponse(artist);
+                return LastResponse<FmArtist>.CreateSuccessResponse(artist);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<Artist>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<FmArtist>>(error);
             }
         }
     }

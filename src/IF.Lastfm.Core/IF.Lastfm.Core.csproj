@@ -81,8 +81,8 @@
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="LastFm.cs" />
-    <Compile Include="Objects\Album.cs" />
-    <Compile Include="Objects\Artist.cs" />
+    <Compile Include="Objects\FmAlbum.cs" />
+    <Compile Include="Objects\FmArtist.cs" />
     <Compile Include="Objects\BuyLink.cs" />
     <Compile Include="Objects\CountryCode.cs" />
     <Compile Include="Objects\ILastFmObject.cs" />
@@ -90,7 +90,7 @@
     <Compile Include="Objects\Shout.cs" />
     <Compile Include="Objects\Station.cs" />
     <Compile Include="Objects\Tag.cs" />
-    <Compile Include="Objects\Track.cs" />
+    <Compile Include="Objects\FmTrack.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Objects\UserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,7 +14,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
     public class GetArtistInfoViewModel : BaseViewModel
     {
         private string _artistName;
-        private Artist _artist;
+        private FmArtist _fmArtist;
         private bool _inProgress;
 
         public string ArtistName
@@ -32,17 +32,17 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
-        public Artist Artist
+        public FmArtist FmArtist
         {
-            get { return _artist; }
+            get { return _fmArtist; }
             set
             {
-                if (Equals(value, _artist))
+                if (Equals(value, _fmArtist))
                 {
                     return;
                 }
 
-                _artist = value;
+                _fmArtist = value;
                 OnPropertyChanged();
             }
         }
@@ -83,7 +83,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
                 var artist = await artistApi.GetArtistInfoAsync(ArtistName);
                 if (artist.Success)
                 {
-                    Artist = artist.Content;
+                    FmArtist = artist.Content;
                 }
             }
             

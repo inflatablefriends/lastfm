@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
-    internal class GetAlbumInfoCommand : GetAsyncCommandBase<LastResponse<Album>>
+    internal class GetAlbumInfoCommand : GetAsyncCommandBase<LastResponse<FmAlbum>>
     {
         public string ArtistName { get; private set; }
         public string AlbumName { get; private set; }
@@ -32,7 +32,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             base.DisableCaching();
         }
 
-        public async override Task<LastResponse<Album>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<FmAlbum>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -41,13 +41,13 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var album = Album.ParseJToken(jtoken.SelectToken("album"));
+                var album = FmAlbum.ParseJToken(jtoken.SelectToken("album"));
 
-                return LastResponse<Album>.CreateSuccessResponse(album);
+                return LastResponse<FmAlbum>.CreateSuccessResponse(album);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<Album>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<FmAlbum>>(error);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<LastResponse<Album>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
+        public async Task<LastResponse<FmAlbum>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
         {
             var command = new GetAlbumInfoCommand(Auth, artistname, albumname)
                           {
@@ -40,7 +40,7 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<Album>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public Task<PageResponse<FmAlbum>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             throw new NotImplementedException();
         }
