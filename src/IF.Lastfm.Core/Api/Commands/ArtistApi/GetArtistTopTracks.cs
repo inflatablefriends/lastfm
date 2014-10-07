@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,13 +39,10 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var tracks = new List<LastTrack>();
-
-                foreach (var jToken in jtoken.SelectToken("toptracks").SelectToken("track").Children())
-                {
-                    var t = LastTrack.ParseJToken(jToken);
-                    tracks.Add(t);
-                }
+                var tracks = jtoken.SelectToken("toptracks")
+                    .SelectToken("track").Children()
+                    .Select(LastTrack.ParseJToken)
+                    .ToList();
 
                 var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
 
