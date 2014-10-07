@@ -68,10 +68,22 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastTrack>> GetInfoAsync(string trackname, string artistname, string username = "")
         {
-            var command = new GetTrackInfoCommand(Auth, trackname, artistname)
+            var command = new GetTrackInfoCommand(Auth)
                           {
+                              TrackName = trackname,
+                              ArtistName = artistname,
                               Username = username
                           };
+
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<LastResponse<LastTrack>> GetInfoByMbidAsync(string mbid)
+        {
+            var command = new GetTrackInfoCommand(Auth)
+            {
+                TrackMbid = mbid
+            };
 
             return await command.ExecuteAsync();
         }

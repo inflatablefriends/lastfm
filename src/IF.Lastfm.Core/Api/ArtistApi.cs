@@ -20,8 +20,23 @@ namespace IF.Lastfm.Core.Api
             string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false)
         {
-            var command = new GetArtistInfoCommand(Auth, artist)
+            var command = new GetArtistInfoCommand(Auth)
             {
+                ArtistName = artist,
+                BioLanguage = bioLang,
+                Autocorrect = autocorrect
+            };
+
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid,
+           string bioLang = LastFm.DefaultLanguageCode,
+           bool autocorrect = false)
+        {
+            var command = new GetArtistInfoCommand(Auth)
+            {
+                ArtistMbid = mbid,
                 BioLanguage = bioLang,
                 Autocorrect = autocorrect
             };

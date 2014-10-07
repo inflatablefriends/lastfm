@@ -11,23 +11,27 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
     internal class GetTrackInfoCommand : GetAsyncCommandBase<LastResponse<LastTrack>>
     {
+        public string TrackMbid { get; set; }
         public string TrackName { get; set; }
         public string ArtistName { get; set; }
         public string Username { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetTrackInfoCommand(IAuth auth, string trackname, string artistname)
+        public GetTrackInfoCommand(IAuth auth)
             : base(auth)
         {
             Method = "track.getInfo";
-            TrackName = trackname;
-            ArtistName = artistname;
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("track", TrackName);
-            Parameters.Add("artist", ArtistName);
+            if (TrackMbid != null)
+                Parameters.Add("mbid", TrackMbid);
+            else
+            {
+                Parameters.Add("track", TrackName);
+                Parameters.Add("artist", ArtistName);
+            }
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             if (!string.IsNullOrWhiteSpace(Username))

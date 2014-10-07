@@ -11,15 +11,15 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
     internal class GetArtistInfoCommand : GetAsyncCommandBase<LastResponse<LastArtist>>
     {
+        public string ArtistMbid { get; set; }
         public string ArtistName { get; set; }
         public string BioLanguage { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetArtistInfoCommand(IAuth auth, string artistname)
+        public GetArtistInfoCommand(IAuth auth)
             : base(auth)
         {
             Method = "artist.getInfo";
-            ArtistName = artistname;
         }
 
         /// <summary>
@@ -27,7 +27,10 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
         /// </summary>
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
+            if (ArtistMbid != null)
+                Parameters.Add("mbid", ArtistMbid);
+            else
+                Parameters.Add("artist", ArtistName);
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             base.DisableCaching();
