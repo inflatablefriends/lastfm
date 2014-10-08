@@ -39,7 +39,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                 return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
 
             var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("topalbums");
-            return LastAlbum.ParsePageJToken(jtoken.SelectToken("album"), jtoken.SelectToken("@attr"));
+            return PageResponse<LastAlbum>.CreatePageResponse(jtoken.SelectToken("album"), jtoken.SelectToken("@attr"), LastAlbum.ParseJToken);
         }
     }
 }

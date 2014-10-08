@@ -36,14 +36,13 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
-
-                return Shout.ParsePageJToken(jtoken);
+                return PageResponse<Shout>.CreatePageResponse(jtoken.SelectToken("shout"), jtoken.SelectToken("@attr"), Shout.ParseJToken);
             }
             else
             {

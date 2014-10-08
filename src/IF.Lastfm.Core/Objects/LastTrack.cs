@@ -128,25 +128,5 @@ namespace IF.Lastfm.Core.Objects
 
             return t;
         }
-
-        public static PageResponse<LastTrack> ParsePageJToken(JToken artistsToken, JToken attrToken)
-        {
-            var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse();
-            pageresponse.AddPageInfoFromJToken(attrToken);
-
-            var artists = new List<LastTrack>();
-            if (pageresponse.TotalItems > 0)
-            {
-                if (pageresponse.Page == pageresponse.TotalPages
-                    && pageresponse.TotalItems % pageresponse.PageSize == 1)
-                    // array notation isn't used on the api
-                    artists.Add(ParseJToken(artistsToken));
-                else
-                    artists.AddRange(artistsToken.Children().Select(ParseJToken));
-            }
-            pageresponse.Content = artists;
-
-            return pageresponse;
-        }
     }
 }

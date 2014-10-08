@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using IF.Lastfm.Core.Api.Enums;
 using Newtonsoft.Json.Linq;
 
@@ -118,6 +119,26 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             // the response doesn't include total pages, bit of improv then.
             TotalPages = (int)Math.Ceiling((double)TotalItems / PageSize);
+        }
+
+        public static PageResponse<T> CreatePageResponse(JToken itemsToken, JToken attrToken, Func<JToken, T> parseToken)
+        {
+            var pageresponse = CreateSuccessResponse();
+            pageresponse.AddPageInfoFromJToken(attrToken);
+
+            var albums = new List<T>();
+
+            if (pageresponse.TotalItems > 0)
+            {
+                // array notation isn't used on the api when only one object is available
+                if (itemsToken.Type != JTokenType.Array)
+                    albums.Add(parseToken(itemsToken));
+                else
+                    albums.AddRange(itemsToken.Children().Select(parseToken));
+            }
+            pageresponse.Content = albums;
+
+            return pageresponse;
         }
 
 //        {"@attr": {
