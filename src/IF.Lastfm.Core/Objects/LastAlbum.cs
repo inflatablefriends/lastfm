@@ -59,7 +59,9 @@ namespace IF.Lastfm.Core.Objects
             {
                 var trackToken = tracksToken.SelectToken("track");
                 if (trackToken != null)
-                    a.Tracks = trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name));
+                    a.Tracks = trackToken.Type == JTokenType.Array 
+                        ? trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name)) 
+                        : new List<LastTrack>() { LastTrack.ParseJToken(trackToken, a.Name) };
             }
 
             var tagsToken = token.SelectToken("toptags");
