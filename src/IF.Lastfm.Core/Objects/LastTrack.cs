@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Objects
         public DateTime? TimePlayed { get; set; }
         public bool? IsLoved { get; set; }
         public bool? IsNowPlaying { get; set; }
-        public int Rank { get; set; }
+        public int? Rank { get; set; }
 
         #endregion
 
@@ -92,7 +92,7 @@ namespace IF.Lastfm.Core.Objects
             if (attrToken != null && attrToken.HasValues)
             {
                 t.IsNowPlaying = attrToken.Value<bool>("nowplaying");
-                t.Rank = attrToken.Value<int>("rank");
+                t.Rank = attrToken.Value<int?>("rank");
             }
 
             // api returns milliseconds when track.getInfo is called directly

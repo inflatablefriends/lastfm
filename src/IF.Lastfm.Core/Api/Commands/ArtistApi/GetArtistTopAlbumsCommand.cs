@@ -32,39 +32,14 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 
         public async override Task<PageResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-
-                //first, let's see how many albums
-                //stupid api returns an object intead of an array when there is only one item
-                var attrToken = jtoken.SelectToken("topalbums").SelectToken("@attr");
-
-                var albums = new List<LastAlbum>();
-
-                if (attrToken.Value<int>("count") > 1)
-                    albums = jtoken.SelectToken("topalbums")
-                        .SelectToken("album")
-                        .Children().Select(LastAlbum.ParseJToken)
-                        .ToList();
-                else
-                    albums.Add(LastAlbum.ParseJToken(jtoken.SelectToken("topalbums")
-                        .SelectToken("album")));
-
-                var pageresponse = PageResponse<LastAlbum>.CreateSuccessResponse(albums);
-
-                
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
-            }
-            else
-            {
+            if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
                 return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
-            }
+
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("topalbums");
+            return LastAlbum.ParsePageJToken(jtoken.SelectToken("album"), jtoken.SelectToken("@attr"));
         }
     }
 }
