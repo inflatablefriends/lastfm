@@ -59,7 +59,7 @@ namespace IF.Lastfm.Core.Objects
             {
                 var trackToken = tracksToken.SelectToken("track");
                 if (trackToken != null)
-                    a.Tracks = tracksToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name));
+                    a.Tracks = trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name));
             }
 
             var tagsToken = token.SelectToken("toptags");
