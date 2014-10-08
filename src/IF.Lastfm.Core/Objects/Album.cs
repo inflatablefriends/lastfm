@@ -40,31 +40,35 @@ namespace IF.Lastfm.Core.Objects
         {
             var a = new Album();
 
-            try
+            var artistToken = token["artist"];
+            if (artistToken.Type == JTokenType.String)
             {
                 a.ArtistName = token.Value<string>("artist");
                 a.ArtistId = token.Value<string>("id");
-
-                var tracksToken = token.SelectToken("tracks").SelectToken("track");
-                if (tracksToken != null)
-                {
-                    a.Tracks = tracksToken.Children().Select(trackToken => Track.ParseJToken(trackToken, a.Name));
-                }
-
-                var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-                if (tagsToken != null)
-                {
-                    a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
-                }
             }
-            catch
+            else if (artistToken.Type == JTokenType.Object)
             {
-                // for when artist is not a string but a Artist object
-                var artist = token.SelectToken("artist").ToObject<Artist>();
-                a.ArtistName = artist.Name;
-                a.ArtistId = artist.Mbid;
+                a.ArtistName = artistToken.Value<string>("name");
+                a.ArtistId = artistToken.Value<string>("mbid");
             }
 
+            var tracksToken = token.SelectToken("tracks");
+            if (tracksToken != null)
+            {
+                var trackToken = tracksToken.SelectToken("track");
+                if (trackToken != null)
+                {
+                    a.Tracks = tracksToken.Children().Select(t => Track.ParseJToken(t, a.Name));
+                }
+            }
+
+            var tagsToken = token.SelectToken("toptags");
+            if (tagsToken != null)
+            {
+                var tagToken = tagsToken.SelectToken("tag");
+                a.TopTags = tagToken.Children().Select(Tag.ParseJToken);
+            }
+    
             a.ListenerCount = token.Value<int>("listeners");
             a.Mbid = token.Value<string>("mbid");
             a.Name = token.Value<string>("name");
