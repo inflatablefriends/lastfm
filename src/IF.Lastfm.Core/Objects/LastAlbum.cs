@@ -41,34 +41,34 @@ namespace IF.Lastfm.Core.Objects
         {
             var a = new LastAlbum();
 
-            try
+            var artistToken = token["artist"];
+            switch (artistToken.Type)
             {
-                a.ArtistName = token.Value<string>("artist");
-                a.ArtistId = token.Value<string>("id");
-
-                if (token.Contains("tracks"))
-                {
-                    var tracksToken = token.SelectToken("tracks").SelectToken("track");
-                    if (tracksToken != null)
-                    {
-                        a.Tracks = tracksToken.Children().Select(trackToken => LastTrack.ParseJToken(trackToken, a.Name));
-                    }
-
-                    var tagsToken = token.SelectToken("toptags").SelectToken("tag");
-                    if (tagsToken != null)
-                    {
-                        a.TopTags = tagsToken.Children().Select(Tag.ParseJToken);
-                    }
-                }
-            }
-            catch
-            {
-                //artist is not a string but a FmArtist object
-                var artist = token.SelectToken("artist").ToObject<LastArtist>();
-                a.ArtistName = artist.Name;
-                a.ArtistId = artist.Mbid;
+                case JTokenType.String:
+                    a.ArtistName = token.Value<string>("artist");
+                    a.ArtistId = token.Value<string>("id");
+                    break;
+                case JTokenType.Object:
+                    a.ArtistName = artistToken.Value<string>("name");
+                    a.ArtistId = artistToken.Value<string>("mbid");
+                    break;
             }
 
+            var tracksToken = token.SelectToken("tracks");
+            if (tracksToken != null)
+            {
+                var trackToken = tracksToken.SelectToken("track");
+                if (trackToken != null)
+                    a.Tracks = tracksToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name));
+            }
+
+            var tagsToken = token.SelectToken("toptags");
+            if (tagsToken != null)
+            {
+                var tagToken = tagsToken.SelectToken("tag");
+                a.TopTags = tagToken.Children().Select(Tag.ParseJToken);
+            }
+    
             a.ListenerCount = token.Value<int>("listeners");
             a.Mbid = token.Value<string>("mbid");
             a.Name = token.Value<string>("name");
