@@ -17,10 +17,7 @@ namespace IF.Lastfm.Core.Objects
         {
             get
             {
-                if (Small == null) return null;
-                if (Medium == null) return Small;
-                if (Large == null) return Medium;
-                return ExtraLarge != null ? (Mega ?? ExtraLarge) : Large;
+                return Mega ?? ExtraLarge ?? Large ?? Medium ?? Small;
             }
         }
 
