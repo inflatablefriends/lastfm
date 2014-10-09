@@ -10,6 +10,7 @@ namespace IF.Lastfm.Core.Objects
     {
         #region Properties
 
+        public string Id { get; set; }
         public string Name { get; set; }
         public IEnumerable<LastTrack> Tracks { get; set; }
         
@@ -41,6 +42,7 @@ namespace IF.Lastfm.Core.Objects
         {
             var a = new LastAlbum();
 
+            a.Id = token.Value<string>("id");
             var artistToken = token["artist"];
             switch (artistToken.Type)
             {
@@ -90,7 +92,7 @@ namespace IF.Lastfm.Core.Objects
 
         internal static string GetNameFromJToken(JToken albumToken)
         {
-            var name = albumToken.Value<string>("name");
+            var name = albumToken.Value<string>("title");
 
             if (string.IsNullOrEmpty(name))
             {

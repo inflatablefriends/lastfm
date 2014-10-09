@@ -121,10 +121,14 @@ namespace IF.Lastfm.Core.Api.Helpers
             TotalPages = (int)Math.Ceiling((double)TotalItems / PageSize);
         }
 
-        public static PageResponse<T> CreatePageResponse(JToken itemsToken, JToken attrToken, Func<JToken, T> parseToken)
+        public static PageResponse<T> CreatePageResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
         {
             var pageresponse = CreateSuccessResponse();
-            pageresponse.AddPageInfoFromJToken(attrToken);
+
+            if (isOpenQueryToken)
+                pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
+            else 
+                pageresponse.AddPageInfoFromJToken(pageInfoToken);
 
             var albums = new List<T>();
 

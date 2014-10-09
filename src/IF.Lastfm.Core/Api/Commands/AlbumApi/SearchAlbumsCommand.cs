@@ -31,30 +31,15 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 
         public async override Task<PageResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-
-                var albums = jtoken.SelectToken("results")
-                    .SelectToken("albummatches")
-                    .SelectToken("album")
-                    .Children().Select(LastAlbum.ParseJToken)
-                    .ToList();
-
-                var pageresponse = PageResponse<LastAlbum>.CreateSuccessResponse(albums);
-
-                var attrToken = jtoken.SelectToken("results");
-                pageresponse.AddPageInfoFromOpenQueryJToken(attrToken);
-
-                return pageresponse;
-            }
-            else
-            {
+            if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
                 return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
-            }
+
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("results");
+            return PageResponse<LastAlbum>.CreatePageResponse(jtoken.SelectToken("albumsmatches").SelectToken("album"),
+                jtoken, LastAlbum.ParseJToken, true);
         }
     }
 }
