@@ -36,17 +36,17 @@
                         Margin="12,0">
                 <StackPanel>
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="{Binding Artist.MainImage.Mega}"
+                        <ImageBrush ImageSource="{Binding LastArtist.MainImage.Mega}"
                                     Opacity="0.7"
                                     Stretch="UniformToFill"/>
                     </StackPanel.Background>
                     <TextBlock Text="LASTFM-WP DEMO APP" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
                     <TextBlock Text="artist info" Margin="9,-7,0,12" Style="{StaticResource PhoneTextTitle1Style}"/>
-                    <toolkit:PhoneTextBox Hint="Artist" Text="{Binding ArtistName, Mode=TwoWay}"/>
+                    <toolkit:PhoneTextBox Hint="LastArtist" Text="{Binding ArtistName, Mode=TwoWay}"/>
                 </StackPanel>
                     
                 <TextBlock Text="top tags" Margin="12,12,0,12" Style="{StaticResource PhoneTextTitle2Style}"/>
-                <ItemsControl ItemsSource="{Binding Artist.Tags}"
+                <ItemsControl ItemsSource="{Binding LastArtist.Tags}"
                               VerticalAlignment="Top">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

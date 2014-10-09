@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Helpers;
@@ -15,12 +16,13 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<LastResponse<Artist>> GetArtistInfoAsync(string artist,
+        public async Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist,
             string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false)
         {
-            var command = new GetArtistInfoCommand(Auth, artist)
+            var command = new GetArtistInfoCommand(Auth)
             {
+                ArtistName = artist,
                 BioLanguage = bioLang,
                 Autocorrect = autocorrect
             };
@@ -28,21 +30,49 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Album>> GetTopAlbumsForArtistAsync(string artist,
-            bool autocorrect = false,
-            int page = 1,
-            int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid,
+           string bioLang = LastFm.DefaultLanguageCode,
+           bool autocorrect = false)
         {
-            var command = new GetArtistTopAlbumsCommand(Auth, artist);
+            var command = new GetArtistInfoCommand(Auth)
+            {
+                ArtistMbid = mbid,
+                BioLanguage = bioLang,
+                Autocorrect = autocorrect
+            };
+
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Track>> GetTopTracksForArtistAsync(string artist,
+        public async Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new GetArtistTopTracksCommand(Auth, artist);
+            var command = new GetArtistTopAlbumsCommand(Auth, artist)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastTrack>> GetTopTracksForArtistAsync(string artist,
+            bool autocorrect = false,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetArtistTopTracksCommand(Auth, artist)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<LastResponse<List<LastArtist>>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100)
+        {
+            var command = new GetSimilarArtistsCommand(Auth, artistname, autocorrect, limit);
             return await command.ExecuteAsync();
         }
 
@@ -74,6 +104,17 @@ namespace IF.Lastfm.Core.Api
         public async Task<LastResponse> AddShoutAsync(string artistname, string messaage)
         {
             var command = new AddShoutCommand(Auth, artistname, messaage);
+
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new SearchArtistsCommand(Auth, artistname)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
 
             return await command.ExecuteAsync();
         }

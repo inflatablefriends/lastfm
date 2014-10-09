@@ -9,25 +9,29 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
-    internal class GetTrackInfoCommand : GetAsyncCommandBase<LastResponse<Track>>
+    internal class GetTrackInfoCommand : GetAsyncCommandBase<LastResponse<LastTrack>>
     {
+        public string TrackMbid { get; set; }
         public string TrackName { get; set; }
         public string ArtistName { get; set; }
         public string Username { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetTrackInfoCommand(IAuth auth, string trackname, string artistname)
+        public GetTrackInfoCommand(IAuth auth)
             : base(auth)
         {
             Method = "track.getInfo";
-            TrackName = trackname;
-            ArtistName = artistname;
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("track", TrackName);
-            Parameters.Add("artist", ArtistName);
+            if (TrackMbid != null)
+                Parameters.Add("mbid", TrackMbid);
+            else
+            {
+                Parameters.Add("track", TrackName);
+                Parameters.Add("artist", ArtistName);
+            }
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             if (!string.IsNullOrWhiteSpace(Username))
@@ -36,7 +40,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             }
         }
 
-        public async override Task<LastResponse<Track>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -45,13 +49,13 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var track = Track.ParseJToken(jtoken.SelectToken("track"));
+                var track = LastTrack.ParseJToken(jtoken.SelectToken("track"));
 
-                return LastResponse<Track>.CreateSuccessResponse(track);
+                return LastResponse<LastTrack>.CreateSuccessResponse(track);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<Track>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<LastTrack>>(error);
             }
         }
     }

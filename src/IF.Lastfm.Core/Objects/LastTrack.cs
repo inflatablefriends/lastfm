@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// TODO Wiki, Stream availability
     /// </summary>
-    public class Track : ILastFmObject
+    public class LastTrack : ILastFmObject
     {
         #region Properties
 
@@ -30,6 +30,7 @@ namespace IF.Lastfm.Core.Objects
         public DateTime? TimePlayed { get; set; }
         public bool? IsLoved { get; set; }
         public bool? IsNowPlaying { get; set; }
+        public int? Rank { get; set; }
 
         #endregion
 
@@ -39,25 +40,27 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="token">A valid JToken</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used directly then the duration attribute will be parsed as MILLIseconds</remarks>
-        internal static Track ParseJToken(JToken token)
+        internal static LastTrack ParseJToken(JToken token)
         {
-            var t = new Track();
+            var t = new LastTrack();
 
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
-            
+
             var artistToken = token.SelectToken("artist");
-            if (artistToken != null)
+            if (artistToken.Type != JTokenType.String)
             {
-                t.ArtistName = Artist.GetNameFromJToken(artistToken);
+                t.ArtistName = LastArtist.GetNameFromJToken(artistToken);
                 t.ArtistMbid = artistToken.Value<string>("mbid");
             }
+            else
+                t.ArtistName = artistToken.ToObject<string>();
 
             var albumToken = token.SelectToken("album");
             if (albumToken != null)
             {
-                t.AlbumName = Album.GetNameFromJToken(albumToken);
+                t.AlbumName = LastAlbum.GetNameFromJToken(albumToken);
             }
 
             var tagsToken = token.SelectToken("toptags");
@@ -85,18 +88,23 @@ namespace IF.Lastfm.Core.Objects
             {
                 t.IsLoved = Convert.ToBoolean(lovedToken.Value<int>());
             }
-
             var attrToken = token.SelectToken("@attr");
             if (attrToken != null && attrToken.HasValues)
             {
                 t.IsNowPlaying = attrToken.Value<bool>("nowplaying");
+                t.Rank = attrToken.Value<int?>("rank");
             }
 
             // api returns milliseconds when track.getInfo is called directly
-            var secs = token.Value<double>("duration");
-            if (Math.Abs(secs - default(double)) > double.Epsilon)
+            var secsStr = token.Value<string>("duration");
+            double secs;
+
+            if (double.TryParse(secsStr, out secs))
             {
-                t.Duration = TimeSpan.FromMilliseconds(secs);
+                if (Math.Abs(secs - default(double)) > double.Epsilon)
+                {
+                    t.Duration = TimeSpan.FromMilliseconds(secs);
+                }
             }
 
             return t;
@@ -109,7 +117,7 @@ namespace IF.Lastfm.Core.Objects
         /// <param name="albumName">Name of the album this track belongs to</param>
         /// <returns>track equivalent to the JToken</returns>
         /// <remarks>If this method is used then the duration attribute will be parsed as seconds</remarks>
-        internal static Track ParseJToken(JToken token, string albumName)
+        internal static LastTrack ParseJToken(JToken token, string albumName)
         {
             var t = ParseJToken(token);
             t.AlbumName = albumName;

@@ -12,7 +12,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
     {
         private bool _inProgress;
         private bool _successful;
-        private ObservableCollection<Track> _tracks;
+        private ObservableCollection<LastTrack> _tracks;
         private Auth _auth;
         private PageProgress _historyPageProgress;
 
@@ -63,7 +63,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
             }
         }
 
-        public ObservableCollection<Track> Tracks
+        public ObservableCollection<LastTrack> Tracks
         {
             get { return _tracks; }
             set
@@ -83,7 +83,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
         public HistoryTestViewModel()
         {
             _historyPageProgress = new PageProgress();
-            Tracks = new ObservableCollection<Track>();
+            Tracks = new ObservableCollection<LastTrack>();
         }
 
         public async Task NavigatedTo()

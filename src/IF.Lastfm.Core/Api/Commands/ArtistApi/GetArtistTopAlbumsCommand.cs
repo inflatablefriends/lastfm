@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -9,25 +10,22 @@ using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace IF.Lastfm.Core.Api.Commands.UserApi
+namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
+    internal class GetArtistTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
-        public string Username { get; set; }
-        public LastStatsTimeSpan TimeSpan { get; set; }
+        public string ArtistName { get; set; }
 
-        public GetTopAlbumsCommand(IAuth auth, string username, LastStatsTimeSpan span) : base(auth)
+        public GetArtistTopAlbumsCommand(IAuth auth, string artistname)
+            : base(auth)
         {
-            Method = "user.getTopAlbums";
-            Username = username;
-            TimeSpan = span;
+            Method = "artist.topAlbums";
+            ArtistName = artistname;
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("username", Username);
-            Parameters.Add("period", TimeSpan.GetApiName());
-
+            Parameters.Add("artist", ArtistName);
             AddPagingParameters();
             DisableCaching();
         }
@@ -40,8 +38,8 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
                 return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
 
-            var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-            return PageResponse<LastAlbum>.CreatePageResponse(jtoken.SelectToken("topalbums").SelectToken("album"), jtoken.SelectToken("@attr"), LastAlbum.ParseJToken);
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("topalbums");
+            return PageResponse<LastAlbum>.CreatePageResponse(jtoken.SelectToken("album"), jtoken.SelectToken("@attr"), LastAlbum.ParseJToken);
         }
     }
 }

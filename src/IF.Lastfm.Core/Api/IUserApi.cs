@@ -10,12 +10,12 @@ namespace IF.Lastfm.Core.Api
     {
         IAuth Auth { get; }
 
-        Task<PageResponse<Album>> GetTopAlbums(string username,
+        Task<PageResponse<LastAlbum>> GetTopAlbums(string username,
             LastStatsTimeSpan span,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Track>> GetRecentScrobbles(string username,
+        Task<PageResponse<LastTrack>> GetRecentScrobbles(string username,
             DateTime since,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);

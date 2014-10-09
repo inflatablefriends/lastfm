@@ -15,12 +15,25 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<LastResponse<Album>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
+        public async Task<LastResponse<LastAlbum>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
         {
-            var command = new GetAlbumInfoCommand(Auth, artistname, albumname)
+            var command = new GetAlbumInfoCommand(Auth)
                           {
+                              ArtistName = artistname,
+                              AlbumName = albumname,
                               Autocorrect = autocorrect
                           };
+
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<LastResponse<LastAlbum>> GetAlbumInfoByMbidAsync(string albumMbid, bool autocorrect = false)
+        {
+            var command = new GetAlbumInfoCommand(Auth)
+            {
+                AlbumMbid = albumMbid,
+                Autocorrect = autocorrect
+            };
 
             return await command.ExecuteAsync();
         }
@@ -40,9 +53,15 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<Album>> SearchForAlbumAsync(string album, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastAlbum>> SearchForAlbumAsync(string albumname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            throw new NotImplementedException();
+            var command = new SearchAlbumsCommand(Auth, albumname)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+
+            return await command.ExecuteAsync();
         }
 
         public async Task<PageResponse<Shout>> GetShoutsAsync(string albumname, string artistname, bool autocorrect = false, int page = 1, int count = LastFm.DefaultPageLength)

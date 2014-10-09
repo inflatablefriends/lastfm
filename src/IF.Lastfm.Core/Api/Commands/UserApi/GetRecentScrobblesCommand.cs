@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetRecentScrobblesCommand : GetAsyncCommandBase<PageResponse<Track>>
+    internal class GetRecentScrobblesCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string Username { get; private set; }
         public DateTime From { get; private set; }
@@ -31,7 +31,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             DisableCaching();
         }
 
-        public async override Task<PageResponse<Track>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -42,15 +42,15 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
                 var tracksToken = jtoken.SelectToken("track");
 
-                var tracks = new List<Track>();
+                var tracks = new List<LastTrack>();
                 foreach (var track in tracksToken.Children())
                 {
-                    var t = Track.ParseJToken(track);
+                    var t = LastTrack.ParseJToken(track);
                     
                     tracks.Add(t);
                 }
 
-                var pageresponse = PageResponse<Track>.CreateSuccessResponse(tracks);
+                var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
 
                 var attrToken = jtoken.SelectToken("@attr");
                 pageresponse.AddPageInfoFromJToken(attrToken);
@@ -59,7 +59,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<Track>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
             }
         }
     }

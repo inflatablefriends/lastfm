@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Album : ILastFmObject
+    public class LastAlbum : ILastFmObject
     {
         #region Properties
 
         public string Name { get; set; }
-        public IEnumerable<Track> Tracks { get; set; }
+        public IEnumerable<LastTrack> Tracks { get; set; }
         
         public string ArtistName { get; set; }
         public string ArtistId { get; set; }
@@ -36,20 +37,21 @@ namespace IF.Lastfm.Core.Objects
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        internal static Album ParseJToken(JToken token)
+        internal static LastAlbum ParseJToken(JToken token)
         {
-            var a = new Album();
+            var a = new LastAlbum();
 
             var artistToken = token["artist"];
-            if (artistToken.Type == JTokenType.String)
+            switch (artistToken.Type)
             {
-                a.ArtistName = token.Value<string>("artist");
-                a.ArtistId = token.Value<string>("id");
-            }
-            else if (artistToken.Type == JTokenType.Object)
-            {
-                a.ArtistName = artistToken.Value<string>("name");
-                a.ArtistId = artistToken.Value<string>("mbid");
+                case JTokenType.String:
+                    a.ArtistName = token.Value<string>("artist");
+                    a.ArtistId = token.Value<string>("id");
+                    break;
+                case JTokenType.Object:
+                    a.ArtistName = artistToken.Value<string>("name");
+                    a.ArtistId = artistToken.Value<string>("mbid");
+                    break;
             }
 
             var tracksToken = token.SelectToken("tracks");
@@ -57,9 +59,9 @@ namespace IF.Lastfm.Core.Objects
             {
                 var trackToken = tracksToken.SelectToken("track");
                 if (trackToken != null)
-                {
-                    a.Tracks = tracksToken.Children().Select(t => Track.ParseJToken(t, a.Name));
-                }
+                    a.Tracks = trackToken.Type == JTokenType.Array 
+                        ? trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name)) 
+                        : new List<LastTrack>() { LastTrack.ParseJToken(trackToken, a.Name) };
             }
 
             var tagsToken = token.SelectToken("toptags");

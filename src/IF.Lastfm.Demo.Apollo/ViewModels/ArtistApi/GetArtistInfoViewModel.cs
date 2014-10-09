@@ -10,10 +10,10 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
     public class GetArtistInfoViewModel : BaseViewModel
     {
         private string _artistName;
-        private Artist _artist;
+        private LastArtist _lastArtist;
         private bool _inProgress;
-        private IEnumerable<Track> _topTracks;
-        private IEnumerable<Album> _topAlbums;
+        private IEnumerable<LastTrack> _topTracks;
+        private IEnumerable<LastAlbum> _topAlbums;
 
         public string ArtistName
         {
@@ -30,17 +30,17 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
-        public Artist Artist
+        public LastArtist LastArtist
         {
-            get { return _artist; }
+            get { return _lastArtist; }
             set
             {
-                if (Equals(value, _artist))
+                if (Equals(value, _lastArtist))
                 {
                     return;
                 }
 
-                _artist = value;
+                _lastArtist = value;
                 OnPropertyChanged();
             }
         }
@@ -59,7 +59,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
-        public IEnumerable<Track> TopTracks
+        public IEnumerable<LastTrack> TopTracks
         {
             get { return _topTracks; }
             set
@@ -73,7 +73,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
-        public IEnumerable<Album> TopAlbums
+        public IEnumerable<LastAlbum> TopAlbums
         {
             get { return _topAlbums; }
             set
@@ -113,7 +113,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
                 var artist = await artistApi.GetArtistInfoAsync(ArtistName);
                 if (artist.Success)
                 {
-                    Artist = artist.Content;
+                    LastArtist = artist.Content;
                 }
 
                 var topAlbums = await artistApi.GetTopAlbumsForArtistAsync(ArtistName);

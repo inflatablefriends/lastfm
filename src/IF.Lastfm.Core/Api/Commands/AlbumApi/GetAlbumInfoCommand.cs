@@ -10,29 +10,34 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
-    internal class GetAlbumInfoCommand : GetAsyncCommandBase<LastResponse<Album>>
+    internal class GetAlbumInfoCommand : GetAsyncCommandBase<LastResponse<LastAlbum>>
     {
-        public string ArtistName { get; private set; }
-        public string AlbumName { get; private set; }
+        public string AlbumMbid { get; set; }
+        public string ArtistName { get; set; }
+        public string AlbumName { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetAlbumInfoCommand(IAuth auth, string artistname, string albumname) : base(auth)
+        public GetAlbumInfoCommand(IAuth auth)
+            : base(auth)
         {
             Method = "album.getInfo";
-            ArtistName = artistname;
-            AlbumName = albumname;
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
-            Parameters.Add("album", AlbumName);
+            if (AlbumMbid != null)
+                Parameters.Add("mbid", AlbumMbid);
+            else
+            {
+                Parameters.Add("artist", ArtistName);
+                Parameters.Add("album", AlbumName);
+            }
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             base.DisableCaching();
         }
 
-        public async override Task<LastResponse<Album>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -41,13 +46,13 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
 
-                var album = Album.ParseJToken(jtoken.SelectToken("album"));
+                var album = LastAlbum.ParseJToken(jtoken.SelectToken("album"));
 
-                return LastResponse<Album>.CreateSuccessResponse(album);
+                return LastResponse<LastAlbum>.CreateSuccessResponse(album);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<Album>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<LastAlbum>>(error);
             }
         }
     }
