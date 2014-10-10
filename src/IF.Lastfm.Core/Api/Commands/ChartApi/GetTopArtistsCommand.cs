@@ -28,29 +28,15 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
 
         public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
-            {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-
-                var artists = jtoken.SelectToken("artists")
-                    .SelectToken("artist").Children()
-                    .Select(LastArtist.ParseJToken)
-                    .ToList();
-
-                var pageresponse = PageResponse<LastArtist>.CreateSuccessResponse(artists);
-
-                var attrToken = jtoken.SelectToken("artists").SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
-            }
-            else
-            {
+            if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
                 return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(error);
-            }
+
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("artists");
+            return PageResponse<LastArtist>.CreatePageResponse(jtoken.SelectToken("artist"), jtoken.SelectToken("@attr"),
+                LastArtist.ParseJToken);
         }
     }
 }

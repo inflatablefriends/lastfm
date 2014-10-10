@@ -34,8 +34,8 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
             if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
                 return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
 
-            var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-            return PageResponse<LastTrack>.CreatePageResponse(jtoken.SelectToken("tracks").SelectToken("track"), jtoken.SelectToken("@attr"), LastTrack.ParseJToken);
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("tracks");
+            return PageResponse<LastTrack>.CreatePageResponse(jtoken.SelectToken("track"), jtoken.SelectToken("@attr"), LastTrack.ParseJToken);
         }
     }
 }
