@@ -1,4 +1,5 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+﻿using System;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
@@ -18,19 +19,18 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 
         public int? Limit { get; set; }
 
-        public GetSimilarArtistsCommand(IAuth auth, string artistName, bool autocorrect)
+        public GetSimilarArtistsCommand(IAuth auth, string artistName)
             : base(auth)
         {
             Method = "artist.getSimilar";
 
-            Autocorrect = autocorrect;
             ArtistName = artistName;
         }
 
         public override void SetParameters()
         {
             Parameters.Add("artist", ArtistName);
-            Parameters.Add("autocorrect", Autocorrect.ToInt().ToString());
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             if (Limit != null)
             {
