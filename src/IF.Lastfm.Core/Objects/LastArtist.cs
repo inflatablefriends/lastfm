@@ -12,6 +12,7 @@ namespace IF.Lastfm.Core.Objects
     {
         #region Properties
 
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Mbid { get; set; }
         public Uri Url { get; set; }
@@ -26,6 +27,7 @@ namespace IF.Lastfm.Core.Objects
         {
             var a = new LastArtist();
 
+            a.Id = token.Value<string>("id");
             a.Name = token.Value<string>("name");
             a.Mbid = token.Value<string>("mbid");
             var url = token.Value<string>("url");

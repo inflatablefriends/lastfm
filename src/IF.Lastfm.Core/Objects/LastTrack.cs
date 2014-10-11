@@ -13,6 +13,7 @@ namespace IF.Lastfm.Core.Objects
     {
         #region Properties
 
+        public string Id { get; set; }
         public string Name { get; set; }
         public TimeSpan Duration { get; set; }
         public string Mbid { get; set; }
@@ -44,6 +45,7 @@ namespace IF.Lastfm.Core.Objects
         {
             var t = new LastTrack();
 
+            t.Id = token.Value<string>("id");
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
