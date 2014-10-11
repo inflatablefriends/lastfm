@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
-  <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{3b3cf5ed-2107-4bfa-9e0e-bcb8260c174b}" Title="IF.Lastfm.Demo.Apollo" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="IF.Lastfm.Demo.Apollo author" Description="Sample description" Publisher="IF.Lastfm.Demo.Apollo" PublisherID="{4eae392f-c5cb-4add-b1d0-84a3e639cef0}">
+
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
+  <DefaultLanguage xmlns="" code="en-US"/>
+  <App xmlns="" ProductID="{3b3cf5ed-2107-4bfa-9e0e-bcb8260c174b}" Title="IF.Lastfm.Demo.Apollo" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="IF.Lastfm.Demo.Apollo author" Description="Sample description" Publisher="IF.Lastfm.Demo.Apollo" PublisherID="{4eae392f-c5cb-4add-b1d0-84a3e639cef0}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_NETWORKING"/>
+      <Capability Name="ID_CAP_MEDIALIB_AUDIO"/>
+      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK"/>
+      <Capability Name="ID_CAP_SENSORS"/>
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+      <DefaultTask  Name ="_default" NavigationPage="MainPage.xaml"/>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="IF.Lastfm.Demo.ApolloToken" TaskName="_default">
@@ -29,9 +30,9 @@
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
-      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
-      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
-      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+      <ScreenResolution Name="ID_RESOLUTION_WVGA"/>
+      <ScreenResolution Name="ID_RESOLUTION_WXGA"/>
+      <ScreenResolution Name="ID_RESOLUTION_HD720P"/>
     </ScreenResolutions>
   </App>
 </Deployment>
