@@ -1,29 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
     internal class GetSimilarTracksCommand : GetAsyncCommandBase<LastResponse<List<LastTrack>>>
     {
-        public string ArtistName;
-        public int Limit;
+        public string ArtistName { get; set; }
+
+        public int? Limit { get; set; }
+
         public bool Autocorrect { get; set; }
+
         public string TrackName { get; set; }
 
-        public GetSimilarTracksCommand(IAuth auth, string trackName, string artistName, bool autocorrect, int limit)
+        public GetSimilarTracksCommand(IAuth auth, string trackName, string artistName)
             : base(auth)
         {
-            ArtistName = artistName;
-            Limit = limit;
-            Autocorrect = autocorrect;
             Method = "track.getSimilar";
+
+            ArtistName = artistName;
             TrackName = trackName;
         }
 
@@ -31,14 +34,20 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
         {
             Parameters.Add("track", TrackName);
             Parameters.Add("artist", ArtistName);
-            Parameters.Add("limit", Limit.ToString());
-            Parameters.Add("autocorrect", Autocorrect.ToInt().ToString());
+
+            if (Limit != null)
+            {
+                Parameters.Add("limit", Limit.ToString());
+            }
+
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
+            
             DisableCaching();
         }
 
         public async override Task<LastResponse<List<LastTrack>>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
@@ -50,8 +59,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                     .Children().Select(LastTrack.ParseJToken)
                     .ToList();
 
-                var lastresponse = LastResponse<List<LastTrack>>.CreateSuccessResponse(tracks);
-                return lastresponse;
+                return LastResponse<List<LastTrack>>.CreateSuccessResponse(tracks);
             }
             else
             {

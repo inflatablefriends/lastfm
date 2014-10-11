@@ -1,17 +1,21 @@
+using IF.Lastfm.Core.Api.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    public abstract class LastAsyncCommandBase<T> : IAsyncCommand<T> where T : LastResponse, new()
+    internal abstract class LastAsyncCommandBase<T> : IAsyncCommand<T> where T : LastResponse, new()
     {
         public string Method { get; protected set; }
+
         public Uri Url { get; protected set; }
+
         public IAuth Auth { get; protected set; }
+
         public int Page { get; set; }
+
         public int Count { get; set; }
 
         protected Dictionary<string, string> Parameters { get; set; }
@@ -22,9 +26,8 @@ namespace IF.Lastfm.Core.Api.Commands
         }
 
         public abstract void SetParameters();
+
         protected abstract Uri BuildRequestUrl();
-        public abstract Task<T> ExecuteAsync();
-        public abstract Task<T> HandleResponse(HttpResponseMessage response);
 
         protected void AddPagingParameters()
         {
@@ -40,5 +43,10 @@ namespace IF.Lastfm.Core.Api.Commands
         {
             Parameters.Add("disablecachetoken", DateTime.UtcNow.Ticks.ToString());
         }
+
+        public abstract Task<T> ExecuteAsync();
+
+        public abstract Task<T> HandleResponse(HttpResponseMessage response);
+
     }
 }

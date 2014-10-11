@@ -1,12 +1,14 @@
-﻿using System;
+﻿using IF.Lastfm.Core.Api.Enums;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Text;
-using IF.Lastfm.Core.Api.Enums;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
+[assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
 namespace IF.Lastfm.Core
 {
     public class LastFm

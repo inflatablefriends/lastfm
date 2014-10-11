@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
     internal class GetAlbumShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
     {
         public string AlbumName { get; set; }
+
         public string ArtistName { get; set; }
+
         public bool Autocorrect { get; set; }
 
         public GetAlbumShoutsCommand(IAuth auth, string albumname, string artistname)
             : base(auth)
         {
             Method = "album.getShouts";
+
             AlbumName = albumname;
             ArtistName = artistname;
         }
@@ -31,8 +32,8 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             Parameters.Add("artist", ArtistName);
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.AddPagingParameters();
-            base.DisableCaching();
+            AddPagingParameters();
+            DisableCaching();
         }
         
         public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
@@ -43,7 +44,10 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
-                return PageResponse<Shout>.CreatePageResponse(jtoken.SelectToken("shout"), jtoken.SelectToken("@attr"), Shout.ParseJToken);
+                var itemsToken = jtoken.SelectToken("shout");
+                var pageInfoToken = jtoken.SelectToken("@attr");
+
+                return PageResponse<Shout>.CreateSuccessResponse(itemsToken, pageInfoToken, Shout.ParseJToken);
             }
             else
             {

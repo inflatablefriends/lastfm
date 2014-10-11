@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
@@ -29,14 +27,16 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
         
         public async override Task<LastResponse<User>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var userToken = jtoken.SelectToken("user");
+                var user = User.ParseJToken(userToken);
 
-                return LastResponse<User>.CreateSuccessResponse(User.ParseJToken(jtoken.SelectToken("user")));
+                return LastResponse<User>.CreateSuccessResponse(user);
             }
             else
             {

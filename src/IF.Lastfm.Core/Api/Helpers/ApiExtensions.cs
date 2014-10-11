@@ -24,11 +24,6 @@ namespace IF.Lastfm.Core.Api.Helpers
                 : enumValue.ToString();
         }
 
-        public static int ToInt(this bool b)
-        {
-            return b ? 1 : 0;
-        }
-
         public static int ToUnixTimestamp(this DateTime dt)
         {
             var d = (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;

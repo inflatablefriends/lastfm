@@ -1,23 +1,25 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
     internal class GetRecentScrobblesCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string Username { get; private set; }
+
         public DateTime From { get; private set; }
 
         public GetRecentScrobblesCommand(IAuth auth, string username, DateTime from) : base(auth)
         {
             Method = "user.getRecentTracks";
+
             Username = username;
             From = from;
         }

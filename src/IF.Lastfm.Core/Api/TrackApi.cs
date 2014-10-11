@@ -28,7 +28,7 @@ namespace IF.Lastfm.Core.Api
                 {"album", scrobble.Album},
                 {"track", scrobble.Track},
                 {"albumArtist", scrobble.AlbumArtist},
-                {"chosenByUser", scrobble.ChosenByUser.ToInt().ToString()},
+                {"chosenByUser", Convert.ToInt32(scrobble.ChosenByUser).ToString()},
                 {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()},
                 {"sk", Auth.User.Token}
             };
@@ -90,7 +90,12 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<List<LastTrack>>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
         {
-            var command = new GetSimilarTracksCommand(Auth, trackname, artistname, autocorrect, limit);
+            var command = new GetSimilarTracksCommand(Auth, trackname, artistname)
+            {
+                Autocorrect = autocorrect,
+                Limit = limit
+            };
+
             return await command.ExecuteAsync();
         }
 
@@ -116,11 +121,5 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
-
-        //public Task<LastResponse> AddShoutAsync(string trackname, string artistname, string message)
-        //{
-        //    var command = new AddShoutCommand(Auth, trackname, artistname, message);
-        //    return await command.ExecuteAsync();
-        //}
     }
 }

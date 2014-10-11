@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class PageResponse<T> : LastResponse, IEnumerable<T>
+    public class PageResponse<T> : LastResponse, IEnumerable<T> where T : new()
     {
         public PageResponse()
         {
@@ -17,12 +18,15 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         #region Properties
 
-        public IEnumerable<T> Content { get; set; }
+        public IEnumerable<T> Content { get; internal set; }
 
-        public int Page { get; set; }
-        public int TotalPages { get; set; }
-        public int TotalItems { get; set; }
-        public int PageSize { get; set; }
+        public int Page { get; internal set; }
+
+        public int TotalPages { get; internal set; }
+
+        public int TotalItems { get; internal set; }
+
+        public int PageSize { get; internal set; }
 
         #endregion
 
@@ -67,6 +71,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             return r;
         }
 
+        [Obsolete]
         public static PageResponse<T> CreateSuccessResponse(IEnumerable<T> content)
         {
             var r = new PageResponse<T>
@@ -78,10 +83,45 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             return r;
         }
+        
+        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
+        {
+            var pageresponse = CreateSuccessResponse();
+
+            if (isOpenQueryToken)
+            {
+                pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
+            }
+            else
+            {
+                pageresponse.AddPageInfoFromJToken(pageInfoToken);
+            }
+
+            var albums = new List<T>();
+
+            if (pageresponse.TotalItems > 0)
+            {
+                // array notation isn't used on the api when only one object is available
+                if (itemsToken.Type != JTokenType.Array)
+                {
+                    albums.Add(parseToken(itemsToken));
+                }
+                else
+                {
+                    var items = itemsToken.Children().Select(parseToken);
+
+                    albums.AddRange(items);
+                }
+            }
+
+            pageresponse.Content = albums;
+
+            return pageresponse;
+        }
 
         #endregion
 
-        public void AddPageInfoFromJToken(JToken attrToken)
+        internal void AddPageInfoFromJToken(JToken attrToken)
         {
             if (attrToken == null)
             {
@@ -101,7 +141,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             PageSize = !string.IsNullOrWhiteSpace(pagesize) ? Convert.ToInt32(pagesize) : 1;
         }
 
-        public void AddPageInfoFromOpenQueryJToken(JToken queryToken)
+        private void AddPageInfoFromOpenQueryJToken(JToken queryToken)
         {
             if (queryToken == null)
             {
@@ -120,37 +160,5 @@ namespace IF.Lastfm.Core.Api.Helpers
             // the response doesn't include total pages, bit of improv then.
             TotalPages = (int)Math.Ceiling((double)TotalItems / PageSize);
         }
-
-        public static PageResponse<T> CreatePageResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
-        {
-            var pageresponse = CreateSuccessResponse();
-
-            if (isOpenQueryToken)
-                pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
-            else 
-                pageresponse.AddPageInfoFromJToken(pageInfoToken);
-
-            var albums = new List<T>();
-
-            if (pageresponse.TotalItems > 0)
-            {
-                // array notation isn't used on the api when only one object is available
-                if (itemsToken.Type != JTokenType.Array)
-                    albums.Add(parseToken(itemsToken));
-                else
-                    albums.AddRange(itemsToken.Children().Select(parseToken));
-            }
-            pageresponse.Content = albums;
-
-            return pageresponse;
-        }
-
-//        {"@attr": {
-//  "user": "tehrikkit",
-//  "page": "",
-//  "perPage": "",
-//  "totalPages": "",
-//  "total": "15"
-//}}
     }
 }

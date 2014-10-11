@@ -1,41 +1,48 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
     internal class GetSimilarArtistsCommand : GetAsyncCommandBase<LastResponse<List<LastArtist>>>
     {
-        public int Limit;
         public bool Autocorrect { get; set; }
+
         public string ArtistName { get; set; }
 
-        public GetSimilarArtistsCommand(IAuth auth, string artistName, bool autocorrect, int limit)
+        public int? Limit { get; set; }
+
+        public GetSimilarArtistsCommand(IAuth auth, string artistName, bool autocorrect)
             : base(auth)
         {
-            Limit = limit;
-            Autocorrect = autocorrect;
             Method = "artist.getSimilar";
+
+            Autocorrect = autocorrect;
             ArtistName = artistName;
         }
 
         public override void SetParameters()
         {
             Parameters.Add("artist", ArtistName);
-            Parameters.Add("limit", Limit.ToString());
             Parameters.Add("autocorrect", Autocorrect.ToInt().ToString());
+
+            if (Limit != null)
+            {
+                Parameters.Add("limit", Limit.ToString());
+            }
+
             DisableCaching();
         }
 
         public async override Task<LastResponse<List<LastArtist>>> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
@@ -47,8 +54,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                     .Children().Select(LastArtist.ParseJToken)
                     .ToList();
 
-                var lastresponse = LastResponse<List<LastArtist>>.CreateSuccessResponse(artists);
-                return lastresponse;
+                return LastResponse<List<LastArtist>>.CreateSuccessResponse(artists);
             }
             else
             {

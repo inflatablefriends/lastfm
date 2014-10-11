@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Helpers;
+﻿using IF.Lastfm.Core.Api.Helpers;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {

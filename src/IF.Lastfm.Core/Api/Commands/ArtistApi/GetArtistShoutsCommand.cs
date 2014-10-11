@@ -1,15 +1,15 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    public class GetArtistShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
+    internal class GetArtistShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
     {
         public string ArtistName { get; set; }
         public bool Autocorrect { get; set; }
@@ -26,8 +26,8 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             Parameters.Add("artist", ArtistName);
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
-            base.AddPagingParameters();
-            base.DisableCaching();
+            AddPagingParameters();
+            DisableCaching();
         }
 
         public override async Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
@@ -37,8 +37,12 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
-                return PageResponse<Shout>.CreatePageResponse(jtoken.SelectToken("shout"), jtoken.SelectToken("@attr"), Shout.ParseJToken);
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var shoutsToken = jtoken.SelectToken("shouts");
+                var itemsToken = shoutsToken.SelectToken("shout");
+                var pageInfoToken = shoutsToken.SelectToken("@attr");
+
+                return PageResponse<Shout>.CreateSuccessResponse(itemsToken, pageInfoToken, Shout.ParseJToken);
             }
             else
             {

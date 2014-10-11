@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
@@ -18,6 +16,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             : base(auth)
         {
             Method = "album.search";
+
             AlbumName = albumName;
         }
 
@@ -34,12 +33,18 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
-            if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
-                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
+            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            {
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var resultsToken = jtoken.SelectToken("results");
+                var itemsToken = resultsToken.SelectToken("albummatches").SelectToken("album");
 
-            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("results");
-            return PageResponse<LastAlbum>.CreatePageResponse(jtoken.SelectToken("albumsmatches").SelectToken("album"),
-                jtoken, LastAlbum.ParseJToken, true);
+                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, jtoken, LastAlbum.ParseJToken, true);
+            }
+            else
+            {
+                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
+            }
         }
     }
 }

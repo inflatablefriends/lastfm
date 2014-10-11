@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
@@ -33,12 +32,19 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             var json = await response.Content.ReadAsStringAsync();
 
             LastFmApiError error;
-            if (!LastFm.IsResponseValid(json, out error) || !response.IsSuccessStatusCode)
-                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(error);
+            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            {
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var resultsToken = jtoken.SelectToken("results");
+                var itemsToken = resultsToken.SelectToken("artistsmatches").SelectToken("artist");
 
-            var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("results");
-            return PageResponse<LastArtist>.CreatePageResponse(jtoken.SelectToken("artistsmatches").SelectToken("artist"),
-                jtoken, LastArtist.ParseJToken, true);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, jtoken, LastArtist.ParseJToken, true);
+            }
+            else
+            {
+                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(error);
+            }
+
         }
     }
 }
