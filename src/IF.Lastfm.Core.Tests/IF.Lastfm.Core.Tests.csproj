@@ -67,6 +67,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
@@ -77,14 +78,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
     <Compile Include="Resources\AlbumApiResponses.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>AlbumApiResponses.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Resources\TrackApiResponses.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>TrackApiResponses.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -93,21 +94,14 @@
     </None>
     <None Include="packages.config" />
     <None Include="Resources\AlbumApi\AlbumGetInfo.json" />
+    <None Include="Resources\AlbumApi\AlbumSearch.json" />
+    <None Include="Resources\AlbumApi\AlbumSearchEmpty.json" />
+    <None Include="Resources\AlbumApi\AlbumSearchError.json" />
+    <None Include="Resources\AlbumApi\AlbumSearchSingle.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsSingle.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\AlbumApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\TrackApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
@@ -116,7 +110,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Api\Commands\AlbumApi\" />
+    <EmbeddedResource Include="Resources\AlbumApiResponses.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrackApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public int Count { get; set; }
 
-        protected Dictionary<string, string> Parameters { get; set; }
+        public Dictionary<string, string> Parameters { get; set; }
 
         protected LastAsyncCommandBase()
         {

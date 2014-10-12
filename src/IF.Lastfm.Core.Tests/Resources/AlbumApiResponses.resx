@@ -121,4 +121,16 @@
   <data name="AlbumGetInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumGetInfo.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AlbumSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumSearch.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumSearchEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumSearchEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumSearchError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumSearchError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumSearchSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumSearchSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using IF.Lastfm.Core.Api.Commands.TrackApi;
+﻿using IF.Lastfm.Core.Api.Commands.AlbumApi;
+using IF.Lastfm.Core.Api.Commands.TrackApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -6,20 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
+namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
     [TestClass]
-    public class GetTrackShoutsCommandTests : CommandTestsBase
+    public class SearchAlbumsCommandTests : CommandTestsBase
     {
-        private GetTrackShoutsCommand _command;
+        private SearchAlbumsCommand _command;
 
-        public GetTrackShoutsCommandTests()
+        public SearchAlbumsCommandTests()
         {
-            _command = new GetTrackShoutsCommand(MAuth.Object, "Genesis", "Grimes")
+            _command = new SearchAlbumsCommand(MAuth.Object, "By the throat")
                        {
-                           Autocorrect = true,
-                           Page = 5,
-                           Count = 7
+                           Page = 2,
+                           Count = 3
                        };
 
             _command.SetParameters();
@@ -28,33 +28,30 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [TestMethod]
         public override void Constructor()
         {
-            Assert.AreEqual(_command.Method, "track.getShouts");
+            Assert.AreEqual(_command.Method, "album.search");
 
-            Assert.AreEqual(_command.Parameters["track"], "Genesis");
-            Assert.AreEqual(_command.Parameters["artist"], "Grimes");
-            Assert.AreEqual(_command.Parameters["autocorrect"], "1");
-            Assert.AreEqual(_command.Parameters["page"], "5");
-            Assert.AreEqual(_command.Parameters["limit"], "7");
-            //Assert.AreEqual(_command.Parameters["disablecachetoken"], "1");
+            Assert.AreEqual(_command.Parameters["album"], "By the throat");
+            Assert.AreEqual(_command.Parameters["page"], "2");
+            Assert.AreEqual(_command.Parameters["limit"], "3");
         }
 
         [TestMethod]
         public async override Task HandleSuccessResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShouts));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearch));
 
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
             Assert.IsNotNull(parsed.Content);
-            Assert.IsTrue(parsed.Page == 5);
-            Assert.IsTrue(parsed.Content.Count() == 7);
+            Assert.IsTrue(parsed.Page == 2);
+            Assert.IsTrue(parsed.Content.Count() == 3);
         }
 
         [TestMethod]
         public async override Task HandleResponseSingle()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsSingle));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchSingle));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -66,7 +63,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [TestMethod]
         public async override Task HandleEmptyResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchEmpty));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -78,7 +75,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [TestMethod]
         public async override Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsError));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchError));
 
             var parsed = await _command.HandleResponse(response);
 
