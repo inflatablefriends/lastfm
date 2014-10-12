@@ -36,9 +36,9 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var resultsToken = jtoken.SelectToken("results");
-                var itemsToken = resultsToken.SelectToken("artistsmatches").SelectToken("artist");
+                var itemsToken = resultsToken.SelectToken("artistmatches").SelectToken("artist");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, jtoken, LastArtist.ParseJToken, true);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, true);
             }
             else
             {

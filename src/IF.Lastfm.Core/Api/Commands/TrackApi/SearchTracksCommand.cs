@@ -38,7 +38,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var resultsToken = jtoken.SelectToken("results");
                 var itemsToken = resultsToken.SelectToken("trackmatches").SelectToken("track");
 
-                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, jtoken, LastTrack.ParseJToken, true);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, resultsToken, LastTrack.ParseJToken, true);
             }
             else
             {
