@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using IF.Lastfm.Core.Api;
+using Moq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api;
-using Moq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
@@ -21,6 +18,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
         public abstract void Constructor();
         public abstract Task HandleSuccessResponse();
+        public abstract Task HandleResponseSingle();
+        public abstract Task HandleEmptyResponse();
+        public abstract Task HandleErrorResponse();
 
         protected HttpResponseMessage CreateResponseMessage(string message)
         {

@@ -1,12 +1,9 @@
-﻿using System;
+﻿using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Tests.Resources;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Objects
 {
@@ -15,7 +12,7 @@ namespace IF.Lastfm.Core.Tests.Objects
     {
         public void AlbumParsesValidJson()
         {
-            var jo = ResourceManager.LoadResource(Encoding.UTF8.GetString(TestData.AlbumGetInfo));
+            var jo = ResourceManager.LoadResource(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfo));
             
             var parsed = LastAlbum.ParseJToken(jo.SelectToken("album"));
 

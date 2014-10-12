@@ -17,11 +17,12 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             Page = 1;
             TotalPages = 1;
+            Content = new List<T>();
         }
 
         #region Properties
 
-        public IEnumerable<T> Content { get; internal set; }
+        public List<T> Content { get; internal set; }
 
         public int Page { get; internal set; }
 
@@ -87,10 +88,11 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             var r = new PageResponse<T>
             {
-                Content = content,
                 Success = true,
                 Error = LastFmApiError.None
             };
+
+            r.Content.AddRange(content);
 
             return r;
         }
@@ -98,20 +100,19 @@ namespace IF.Lastfm.Core.Api.Helpers
         public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
         {
             var pageresponse = CreateSuccessResponse();
-            var content = new List<T>();
 
-            if (itemsToken.Children().Any())
+            if (itemsToken != null && itemsToken.Children().Any())
             {
                 // array notation isn't used on the api when only one object is available
                 if (itemsToken.Type != JTokenType.Array)
                 {
                     var item = parseToken(itemsToken);
-                    content.Add(item);
+                    pageresponse.Content.Add(item);
                 }
                 else
                 {
                     var items = itemsToken.Children().Select(parseToken);
-                    content.AddRange(items);
+                    pageresponse.Content.AddRange(items);
                 }
             }
 
@@ -128,10 +129,8 @@ namespace IF.Lastfm.Core.Api.Helpers
             }
             else
             {
-                pageresponse.AddDefaultPageInfo(content.Count);
+                pageresponse.AddDefaultPageInfo(pageresponse.Content.Count);
             }
-
-            pageresponse.Content = content;
 
             return pageresponse;
         }

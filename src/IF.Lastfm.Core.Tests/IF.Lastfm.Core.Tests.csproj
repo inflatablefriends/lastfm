@@ -76,10 +76,15 @@
     <Compile Include="LastFmTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
-    <Compile Include="TestData.Designer.cs">
+    <Compile Include="Resources\AlbumApiResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestData.resx</DependentUpon>
+      <DependentUpon>AlbumApiResponses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\TrackApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrackApiResponses.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -87,23 +92,31 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Resources\AlbumGetInfo.json" />
-    <None Include="Resources\TrackGetShoutsSingle.json" />
+    <None Include="Resources\AlbumApi\AlbumGetInfo.json" />
+    <None Include="Resources\TrackApi\TrackGetShouts.json" />
+    <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
+    <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
+    <None Include="Resources\TrackApi\TrackGetShoutsSingle.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestData.resx">
+    <EmbeddedResource Include="Resources\AlbumApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TestData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TrackGetShouts.json" />
+    <EmbeddedResource Include="Resources\TrackApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\Commands\AlbumApi\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
