@@ -1,4 +1,5 @@
 ﻿using IF.Lastfm.Core.Api.Commands.TrackApi;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -75,6 +76,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
+            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
             Assert.IsNotNull(parsed.Content);
             Assert.IsTrue(!parsed.Content.Any());
         }
