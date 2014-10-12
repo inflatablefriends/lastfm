@@ -37,7 +37,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var tracksToken = jtoken.SelectToken("toptracks");
                 var itemsToken = tracksToken.SelectToken("track");
-                var pageInfoToken = jtoken.SelectToken("@attr");
+                var pageInfoToken = tracksToken.SelectToken("@attr");
 
                 return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, pageInfoToken, LastTrack.ParseJToken);
             }
