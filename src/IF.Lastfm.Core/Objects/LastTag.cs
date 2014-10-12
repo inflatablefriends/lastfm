@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Tag
+    public class LastTag : ILastfmObject
     {
         #region Properties
 
@@ -12,9 +12,9 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
-        internal static Tag ParseJToken(JToken token)
+        internal static LastTag ParseJToken(JToken token)
         {
-            var t = new Tag();
+            var t = new LastTag();
 
             t.Name = token.Value<string>("name");
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);

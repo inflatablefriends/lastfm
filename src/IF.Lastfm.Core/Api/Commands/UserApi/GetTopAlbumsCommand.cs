@@ -13,7 +13,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
         public string Username { get; set; }
         public LastStatsTimeSpan TimeSpan { get; set; }
 
-        public GetTopAlbumsCommand(IAuth auth, string username, LastStatsTimeSpan span) : base(auth)
+        public GetTopAlbumsCommand(ILastAuth auth, string username, LastStatsTimeSpan span) : base(auth)
         {
             Method = "user.getTopAlbums";
             Username = username;

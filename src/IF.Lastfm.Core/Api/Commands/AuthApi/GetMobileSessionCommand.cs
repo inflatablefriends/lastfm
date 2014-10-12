@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AuthApi
 {
-    internal class GetMobileSessionCommand : PostAsyncCommandBase<LastResponse<UserSession>>
+    internal class GetMobileSessionCommand : PostAsyncCommandBase<LastResponse<LastUserSession>>
     {
         public string Username { get; set; }
 
         public string Password { get; set; }
 
-        public GetMobileSessionCommand(IAuth auth, string username, string password) : base(auth)
+        public GetMobileSessionCommand(ILastAuth auth, string username, string password) : base(auth)
         {
             Method = "auth.getMobileSession";
             Username = username;
@@ -33,7 +33,7 @@ namespace IF.Lastfm.Core.Api.Commands.AuthApi
             Parameters.Add("password", Password);
         }
 
-        public async override Task<LastResponse<UserSession>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<LastUserSession>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -41,13 +41,13 @@ namespace IF.Lastfm.Core.Api.Commands.AuthApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
-                var session = JsonConvert.DeserializeObject<UserSession>(sessionObject.ToString());
+                var session = JsonConvert.DeserializeObject<LastUserSession>(sessionObject.ToString());
 
-                return LastResponse<UserSession>.CreateSuccessResponse(session);
+                return LastResponse<LastUserSession>.CreateSuccessResponse(session);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<UserSession>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<LastUserSession>>(error);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 
         public bool Autocorrect { get; set; }
 
-        public GetAlbumShoutsCommand(IAuth auth, string albumname, string artistname)
+        public GetAlbumShoutsCommand(ILastAuth auth, string albumname, string artistname)
             : base(auth)
         {
             Method = "album.getShouts";

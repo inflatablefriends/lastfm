@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class LastAlbum : ILastFmObject
+    public class LastAlbum : ILastfmObject
     {
         #region Properties
 
@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Objects
 
         public string Mbid { get; set; }
 
-        public IEnumerable<Tag> TopTags { get; set; }
+        public IEnumerable<LastTag> TopTags { get; set; }
 
         public Uri Url { get; set; }
 
@@ -70,7 +70,7 @@ namespace IF.Lastfm.Core.Objects
             if (tagsToken != null)
             {
                 var tagToken = tagsToken.SelectToken("tag");
-                a.TopTags = tagToken.Children().Select(Tag.ParseJToken);
+                a.TopTags = tagToken.Children().Select(LastTag.ParseJToken);
             }
     
             a.ListenerCount = token.Value<int>("listeners");

@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// Todo bio, tour, similar, stats, streamable
     /// </summary>
-    public class LastArtist : ILastFmObject
+    public class LastArtist : ILastfmObject
     {
         #region Properties
 
@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Objects
         public string Mbid { get; set; }
         public Uri Url { get; set; }
         public bool OnTour { get; set; }
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<LastTag> Tags { get; set; }
 
         public LastImageSet MainImage { get; set; }
 
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Objects
             var tagsToken = token.SelectToken("tags");
             if (tagsToken != null && tagsToken.HasValues)
             {
-                a.Tags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
+                a.Tags = tagsToken.SelectToken("tag").Children().Select(LastTag.ParseJToken);
             }
 
             var images = token.SelectToken("image");

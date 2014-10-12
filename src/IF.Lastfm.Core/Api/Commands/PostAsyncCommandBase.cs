@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Api.Commands
 {
     internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {
-        protected PostAsyncCommandBase(IAuth auth)
+        protected PostAsyncCommandBase(ILastAuth auth)
         {
             Auth = auth;
         }
@@ -24,9 +24,9 @@ namespace IF.Lastfm.Core.Api.Commands
 
             Url = BuildRequestUrl();
 
-            if (Auth.HasAuthenticated)
+            if (Auth.Authenticated)
             {
-                Parameters.Add("sk", Auth.User.Token);
+                Parameters.Add("sk", Auth.UserSession.Token);
             }
 
             var apisig = Auth.GenerateMethodSignature(Method, Parameters);

@@ -13,22 +13,22 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
         private bool _inProgress;
         private bool _successful;
         private ObservableCollection<LastTrack> _tracks;
-        private Auth _auth;
+        private LastAuth _lastAuth;
         private PageProgress _historyPageProgress;
 
         #region Properties 
 
-        public Auth Auth
+        public LastAuth Auth
         {
-            get { return _auth; }
+            get { return _lastAuth; }
             set
             {
-                if (Equals(value, _auth))
+                if (Equals(value, _lastAuth))
                 {
                     return;
                 }
 
-                _auth = value;
+                _lastAuth = value;
                 OnPropertyChanged();
             }
         }
@@ -100,7 +100,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
             var username = appsettings.Get<string>("username");
             var pass = appsettings.Get<string>("pass");
 
-            var auth = new Auth(apikey, apisecret);
+            var auth = new LastAuth(apikey, apisecret);
 
             InProgress = true;
             await auth.GetSessionTokenAsync(username, pass);
@@ -120,7 +120,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
 
             var userApi = new Core.Api.UserApi(Auth);
 
-            var response = await userApi.GetRecentScrobbles(Auth.User.Username, DateTime.UtcNow.AddMonths(-1), _historyPageProgress.ExpectedPage, 50);
+            var response = await userApi.GetRecentScrobbles(Auth.UserSession.Username, DateTime.UtcNow.AddMonths(-1), _historyPageProgress.ExpectedPage, 50);
 
             Successful = response.Success;
 

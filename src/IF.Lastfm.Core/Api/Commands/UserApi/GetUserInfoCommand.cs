@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetUserInfoCommand : GetAsyncCommandBase<LastResponse<User>>
+    internal class GetUserInfoCommand : GetAsyncCommandBase<LastResponse<LastUser>>
     {
         public string Username { get; set; }
 
-        public GetUserInfoCommand(IAuth auth, string username) : base(auth)
+        public GetUserInfoCommand(ILastAuth auth, string username) : base(auth)
         {
             Method = "user.getInfo";
             Username = username;
@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             DisableCaching();
         }
         
-        public async override Task<LastResponse<User>> HandleResponse(HttpResponseMessage response)
+        public async override Task<LastResponse<LastUser>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -34,13 +34,13 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var userToken = jtoken.SelectToken("user");
-                var user = User.ParseJToken(userToken);
+                var user = LastUser.ParseJToken(userToken);
 
-                return LastResponse<User>.CreateSuccessResponse(user);
+                return LastResponse<LastUser>.CreateSuccessResponse(user);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<User>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<LastUser>>(error);
             }
         }
     }

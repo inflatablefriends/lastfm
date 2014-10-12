@@ -21,7 +21,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public string TrackName { get; set; }
 
-        public GetSimilarTracksCommand(IAuth auth, string trackName, string artistName)
+        public GetSimilarTracksCommand(ILastAuth auth, string trackName, string artistName)
             : base(auth)
         {
             Method = "track.getSimilar";

@@ -8,9 +8,9 @@ namespace IF.Lastfm.Core.Api
 {
     public class AlbumApi : IAlbumApi
     {
-        public IAuth Auth { get; private set; }
+        public ILastAuth Auth { get; private set; }
 
-        public AlbumApi(IAuth auth)
+        public AlbumApi(ILastAuth auth)
         {
             Auth = auth;
         }
@@ -43,12 +43,12 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<Tag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
+        public Task<PageResponse<LastTag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<Tag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
+        public Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
         {
             throw new NotImplementedException();
         }

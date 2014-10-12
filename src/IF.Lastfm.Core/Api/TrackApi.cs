@@ -11,9 +11,9 @@ namespace IF.Lastfm.Core.Api
 {
     public class TrackApi : ITrackApi
     {
-        public IAuth Auth { get; private set; }
+        public ILastAuth Auth { get; private set; }
 
-        public TrackApi(IAuth auth)
+        public TrackApi(ILastAuth auth)
         {
             Auth = auth;
         }
@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Api
                 {"albumArtist", scrobble.AlbumArtist},
                 {"chosenByUser", Convert.ToInt32(scrobble.ChosenByUser).ToString()},
                 {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()},
-                {"sk", Auth.User.Token}
+                {"sk", Auth.UserSession.Token}
             };
 
             var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);

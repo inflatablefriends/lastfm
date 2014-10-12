@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class User
+    public class LastUser : ILastfmObject
     {
         #region Properties
 
@@ -35,9 +35,9 @@ namespace IF.Lastfm.Core.Objects
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        internal static User ParseJToken(JToken token)
+        internal static LastUser ParseJToken(JToken token)
         {
-            var u = new User();
+            var u = new LastUser();
 
             u.Name = token.Value<string>("name");
             u.FullName = token.Value<string>("realname");

@@ -7,9 +7,9 @@ namespace IF.Lastfm.Core.Tests.Api
     {
         public AlbumApi Object { get; private set; }
 
-        public Mock<IAuth> Auth { get; private set; }
+        public Mock<ILastAuth> Auth { get; private set; }
 
-        public MockAlbumApi(Mock<IAuth> auth)
+        public MockAlbumApi(Mock<ILastAuth> auth)
         {
             Auth = auth;
             

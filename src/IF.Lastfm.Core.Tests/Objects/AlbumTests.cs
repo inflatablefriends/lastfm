@@ -26,14 +26,14 @@ namespace IF.Lastfm.Core.Tests.Objects
                     Name = "Visions",
                     ReleaseDateUtc = new DateTime(2012, 02, 21, 0, 0, 0),
                     Url = new Uri("http://www.last.fm/music/Grimes/Visions", UriKind.Absolute),
-                    TopTags = new List<Tag>
+                    TopTags = new List<LastTag>
                         {
-                            new Tag
+                            new LastTag
                                 {
                                     Name = "2012",
                                     Url = new Uri("http://www.last.fm/tag/2012", UriKind.Absolute)
                                 },
-                            new Tag
+                            new LastTag
                                 {
                                     Name = "best of 2012",
                                     Url = new Uri("http://www.last.fm/tag/best%20of%202012", UriKind.Absolute)

@@ -39,7 +39,7 @@
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
-    <Compile Include="Api\Auth.cs" />
+    <Compile Include="Api\LastAuth.cs" />
     <Compile Include="Api\ChartApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\AddShoutCommand.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommand.cs" />
@@ -81,7 +81,7 @@
     <Compile Include="Api\Helpers\PageResponse.cs" />
     <Compile Include="Api\IAlbumApi.cs" />
     <Compile Include="Api\IArtistApi.cs" />
-    <Compile Include="Api\IAuth.cs" />
+    <Compile Include="Api\ILastAuth.cs" />
     <Compile Include="Api\IChartApi.cs" />
     <Compile Include="Api\ITrackApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
@@ -97,11 +97,11 @@
     <Compile Include="Objects\ILastFmObject.cs" />
     <Compile Include="Objects\LastImageSet.cs" />
     <Compile Include="Objects\Shout.cs" />
-    <Compile Include="Objects\Station.cs" />
-    <Compile Include="Objects\Tag.cs" />
+    <Compile Include="Objects\LastStation.cs" />
+    <Compile Include="Objects\LastTag.cs" />
     <Compile Include="Objects\LastTrack.cs" />
-    <Compile Include="Objects\User.cs" />
-    <Compile Include="Objects\UserSession.cs" />
+    <Compile Include="Objects\LastUser.cs" />
+    <Compile Include="Objects\LastUserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

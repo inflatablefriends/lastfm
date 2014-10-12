@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
         public string Message { get; set; }
 
-        public AddShoutCommand(IAuth auth, string recipient, string message)
+        public AddShoutCommand(ILastAuth auth, string recipient, string message)
             : base(auth)
         {
             Method = "user.shout";

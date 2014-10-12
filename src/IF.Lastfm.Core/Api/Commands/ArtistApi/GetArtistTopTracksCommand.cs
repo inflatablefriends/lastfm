@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
     {
         public string ArtistName { get; set; }
 
-        public GetArtistTopTracksCommand(IAuth auth, string artistname)
+        public GetArtistTopTracksCommand(ILastAuth auth, string artistname)
             : base(auth)
         {
             Method = "artist.topTracks";

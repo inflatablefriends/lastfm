@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public Uri Url { get; protected set; }
 
-        public IAuth Auth { get; protected set; }
+        public ILastAuth Auth { get; protected set; }
 
         public int Page { get; set; }
 

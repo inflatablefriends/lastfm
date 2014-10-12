@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public string ArtistName { get; set; }
 
-        public LoveTrackCommand(IAuth auth, string trackname, string artistname)
+        public LoveTrackCommand(ILastAuth auth, string trackname, string artistname)
             : base(auth)
         {
             Method = "track.love";

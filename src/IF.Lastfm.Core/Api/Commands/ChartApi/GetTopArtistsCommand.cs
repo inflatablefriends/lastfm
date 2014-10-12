@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
 {
     internal class GetTopArtistsCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
     {
-        public GetTopArtistsCommand(IAuth auth)
+        public GetTopArtistsCommand(ILastAuth auth)
             : base(auth)
         {
             Method = "chart.getTopArtists";

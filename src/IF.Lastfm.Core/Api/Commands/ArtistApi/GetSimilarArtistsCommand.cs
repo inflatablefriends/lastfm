@@ -19,7 +19,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 
         public int? Limit { get; set; }
 
-        public GetSimilarArtistsCommand(IAuth auth, string artistName)
+        public GetSimilarArtistsCommand(ILastAuth auth, string artistName)
             : base(auth)
         {
             Method = "artist.getSimilar";

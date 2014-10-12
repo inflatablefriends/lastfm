@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// TODO Wiki, Stream availability
     /// </summary>
-    public class LastTrack : ILastFmObject
+    public class LastTrack : ILastfmObject
     {
         #region Properties
 
@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Objects
 
         public int? ListenerCount { get; set; }
         public int? TotalPlayCount { get; set; }
-        public IEnumerable<Tag> TopTags { get; set; }
+        public IEnumerable<LastTag> TopTags { get; set; }
 
         public DateTime? TimePlayed { get; set; }
         public bool? IsLoved { get; set; }
@@ -68,7 +68,7 @@ namespace IF.Lastfm.Core.Objects
             var tagsToken = token.SelectToken("toptags");
             if (tagsToken != null && tagsToken.HasValues)
             {
-                t.TopTags = tagsToken.SelectToken("tag").Children().Select(Tag.ParseJToken);
+                t.TopTags = tagsToken.SelectToken("tag").Children().Select(LastTag.ParseJToken);
             }
 
             var date = token.SelectToken("date");

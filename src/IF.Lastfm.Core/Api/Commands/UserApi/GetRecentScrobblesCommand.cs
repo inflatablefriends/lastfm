@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
         public DateTime From { get; private set; }
 
-        public GetRecentScrobblesCommand(IAuth auth, string username, DateTime from) : base(auth)
+        public GetRecentScrobblesCommand(ILastAuth auth, string username, DateTime from) : base(auth)
         {
             Method = "user.getRecentTracks";
 

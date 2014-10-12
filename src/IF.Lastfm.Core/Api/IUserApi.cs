@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Api
 {
     public interface IUserApi
     {
-        IAuth Auth { get; }
+        ILastAuth Auth { get; }
 
         Task<PageResponse<LastAlbum>> GetTopAlbums(string username,
             LastStatsTimeSpan span,
@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Api
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Station>> GetRecentStations(string username,
+        Task<PageResponse<LastStation>> GetRecentStations(string username,
             int pagenumber,
             int count = LastFm.DefaultPageLength);
 
@@ -28,7 +28,7 @@ namespace IF.Lastfm.Core.Api
             int pagenumber,
             int count = LastFm.DefaultPageLength);
 
-        Task<LastResponse<User>> GetInfoAsync(string username);
+        Task<LastResponse<LastUser>> GetInfoAsync(string username);
 
         Task<LastResponse> AddShoutAsync(string recipient, string message);
     }

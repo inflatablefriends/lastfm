@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
     {
         public string Username { get; set; }
 
-        public GetUserShoutsCommand(IAuth auth, string username) : base(auth)
+        public GetUserShoutsCommand(ILastAuth auth, string username) : base(auth)
         {
             Method = "user.getShouts";
             Username = username;

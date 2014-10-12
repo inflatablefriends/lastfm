@@ -11,9 +11,9 @@ namespace IF.Lastfm.Core.Api
 {
     public class ChartApi : IChartApi
     {
-        public IAuth Auth { get; private set; }
+        public ILastAuth Auth { get; private set; }
 
-        public ChartApi(IAuth auth)
+        public ChartApi(ILastAuth auth)
         {
             Auth = auth;
         }

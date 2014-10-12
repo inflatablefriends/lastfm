@@ -9,15 +9,15 @@ using xBrainLab.Security.Cryptography;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class Auth : IAuth
+    public class LastAuth : ILastAuth
     {
         private readonly string _apiSecret;
 
-        public bool HasAuthenticated { get { return User != null; } }
+        public bool Authenticated { get { return UserSession != null; } }
         public string ApiKey { get; private set; }
-        public UserSession User { get; private set; }
+        public LastUserSession UserSession { get; private set; }
 
-        public Auth(string apikey, string secret)
+        public LastAuth(string apikey, string secret)
         {
             ApiKey = apikey;
             _apiSecret = secret;
@@ -28,9 +28,9 @@ namespace IF.Lastfm.Core.Api
         /// </summary>
         /// <param name="session">Session to load</param>
         /// <returns>Whether session object is valid</returns>
-        public bool LoadSession(UserSession session)
+        public bool LoadSession(LastUserSession session)
         {
-            User = session;
+            UserSession = session;
             return true;
         }
 
@@ -41,7 +41,7 @@ namespace IF.Lastfm.Core.Api
 
             if (response.Success)
             {
-                User = response.Content;
+                UserSession = response.Content;
                 return LastResponse.CreateSuccessResponse();
             }
             else

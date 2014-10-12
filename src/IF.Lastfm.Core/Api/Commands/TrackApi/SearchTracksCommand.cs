@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
     {
         public string TrackName { get; set; }
 
-        public SearchTracksCommand(IAuth auth, string trackName)
+        public SearchTracksCommand(ILastAuth auth, string trackName)
             : base(auth)
         {
             Method = "track.search";

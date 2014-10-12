@@ -13,7 +13,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
         public string Message { get; set; }
 
 
-        public AddShoutCommand(IAuth auth, string track, string artist, string message) : base(auth)
+        public AddShoutCommand(ILastAuth auth, string track, string artist, string message) : base(auth)
         {
             Method = "track.shout";
 

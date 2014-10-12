@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class UserSession
+    public class LastUserSession
     {
         [JsonProperty("name")]
         public string Username { get; set; }

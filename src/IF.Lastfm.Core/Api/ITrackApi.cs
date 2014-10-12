@@ -7,7 +7,7 @@ namespace IF.Lastfm.Core.Api
 {
     public interface ITrackApi
     {
-        IAuth Auth { get; }
+        ILastAuth Auth { get; }
 
         Task<LastResponse> ScrobbleAsync(Scrobble scrobble);
         //Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble);

@@ -6,7 +6,7 @@ namespace IF.Lastfm.Core.Api
 {
     public interface IAlbumApi
     {
-        IAuth Auth { get; }
+        ILastAuth Auth { get; }
 
         Task<LastResponse<LastAlbum>> GetAlbumInfoAsync(string artist, string album, bool autocorrect = false);
 
@@ -17,12 +17,12 @@ namespace IF.Lastfm.Core.Api
             CountryCode country,
             bool autocorrect = false);
         
-        Task<PageResponse<Tag>> GetUserTagsForAlbumAsync(string artist,
+        Task<PageResponse<LastTag>> GetUserTagsForAlbumAsync(string artist,
             string album,
             string username,
             bool autocorrect = false);
 
-        Task<PageResponse<Tag>> GetTopTagsForAlbumAsync(string artist,
+        Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist,
             string album,
             bool autocorrect = false);
 

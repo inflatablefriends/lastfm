@@ -9,11 +9,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     public abstract class CommandTestsBase
     {
-        public Mock<IAuth> MAuth { get; private set; }
+        public Mock<ILastAuth> MAuth { get; private set; }
 
         protected CommandTestsBase()
         {
-            MAuth = new Mock<IAuth>();
+            MAuth = new Mock<ILastAuth>();
         }
 
         public abstract void Constructor();

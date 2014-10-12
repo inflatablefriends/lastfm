@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
 {
     internal class GetTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
-        public GetTopTracksCommand(IAuth auth)
+        public GetTopTracksCommand(ILastAuth auth)
             : base(auth)
         {
             Method = "chart.getTopTracks";

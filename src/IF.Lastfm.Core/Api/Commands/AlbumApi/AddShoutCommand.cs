@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 
         public string Message { get; set; }
 
-        public AddShoutCommand(IAuth auth, string album, string artist, string message)
+        public AddShoutCommand(ILastAuth auth, string album, string artist, string message)
             : base(auth)
         {
             Method = "album.shout";

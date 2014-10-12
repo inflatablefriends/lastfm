@@ -5,11 +5,11 @@ namespace IF.Lastfm.Core.Tests
 {
     public class MockLastFm
     {
-        public Mock<IAuth> Auth { get; set; }
+        public Mock<ILastAuth> Auth { get; set; }
 
         public MockLastFm()
         {
-            Auth = new Mock<IAuth>();
+            Auth = new Mock<ILastAuth>();
         }
     }
 }

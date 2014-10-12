@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetRecentStationsCommand : PostAsyncCommandBase<PageResponse<Station>>
+    internal class GetRecentStationsCommand : PostAsyncCommandBase<PageResponse<LastStation>>
     {
         public string Username { get; private set; }
 
-        public GetRecentStationsCommand(IAuth auth, string username) : base(auth)
+        public GetRecentStationsCommand(ILastAuth auth, string username) : base(auth)
         {
             Method = "user.getRecentStations";
             Username = username;
@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             AddPagingParameters();
         }
 
-        public async override Task<PageResponse<Station>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastStation>> HandleResponse(HttpResponseMessage response)
         {
             string json = await response.Content.ReadAsStringAsync();
 
@@ -37,9 +37,9 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
                 var stationsToken = jtoken.SelectToken("station");
 
-                var stations = stationsToken.Children().Select(Station.ParseJToken).ToList();
+                var stations = stationsToken.Children().Select(LastStation.ParseJToken).ToList();
 
-                var pageresponse = PageResponse<Station>.CreateSuccessResponse(stations);
+                var pageresponse = PageResponse<LastStation>.CreateSuccessResponse(stations);
 
                 var attrToken = jtoken.SelectToken("@attr");
                 pageresponse.AddPageInfoFromJToken(attrToken);
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<Station>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastStation>>(error);
             }
         }
     }

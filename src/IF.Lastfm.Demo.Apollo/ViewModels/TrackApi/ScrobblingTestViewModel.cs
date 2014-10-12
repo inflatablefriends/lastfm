@@ -120,7 +120,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.TrackApi
             var username = appsettings.Get<string>("username");
             var pass = appsettings.Get<string>("pass");
 
-            var auth = new Auth(apikey, apisecret);
+            var auth = new LastAuth(apikey, apisecret);
             await auth.GetSessionTokenAsync(username, pass);
 
             var trackApi = new Core.Api.TrackApi(auth);

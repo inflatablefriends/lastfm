@@ -115,11 +115,11 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             var username = appsettings.Get<string>("username");
             var pass = appsettings.Get<string>("pass");
 
-            var auth = new Auth(apikey, apisecret);
+            var auth = new LastAuth(apikey, apisecret);
 
             var response = await auth.GetSessionTokenAsync(username, pass);
 
-            if (response.Success && auth.HasAuthenticated)
+            if (response.Success && auth.Authenticated)
             {
                 ClearLists();
 

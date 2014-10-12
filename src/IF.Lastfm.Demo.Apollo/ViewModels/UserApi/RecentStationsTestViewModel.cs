@@ -10,24 +10,24 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
 {
     public class RecentStationsTestViewModel : BaseViewModel
     {
-        private Auth _auth;
+        private LastAuth _lastAuth;
         private bool _inProgress;
         private PageProgress _stationPageProgress;
-        private ObservableCollection<Station> _stations;
+        private ObservableCollection<LastStation> _stations;
 
         #region Properties 
 
-        public Auth Auth
+        public LastAuth Auth
         {
-            get { return _auth; }
+            get { return _lastAuth; }
             set
             {
-                if (Equals(value, _auth))
+                if (Equals(value, _lastAuth))
                 {
                     return;
                 }
 
-                _auth = value;
+                _lastAuth = value;
                 OnPropertyChanged();
             }
         }
@@ -47,7 +47,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
             }
         }
 
-        public ObservableCollection<Station> Stations
+        public ObservableCollection<LastStation> Stations
         {
             get { return _stations; }
             set
@@ -63,7 +63,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
         public RecentStationsTestViewModel()
         {
             _stationPageProgress = new PageProgress();
-            Stations = new ObservableCollection<Station>();
+            Stations = new ObservableCollection<LastStation>();
         }
 
         public async Task NavigatedTo()
@@ -80,7 +80,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
             var username = appsettings.Get<string>("username");
             var pass = appsettings.Get<string>("pass");
 
-            var auth = new Auth(apikey, apisecret);
+            var auth = new LastAuth(apikey, apisecret);
 
             InProgress = true;
             await auth.GetSessionTokenAsync(username, pass);
@@ -101,7 +101,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.UserApi
 
             var userApi = new Core.Api.UserApi(Auth);
 
-            var response = await userApi.GetRecentStations(Auth.User.Username, _stationPageProgress.ExpectedPage, 5);
+            var response = await userApi.GetRecentStations(Auth.UserSession.Username, _stationPageProgress.ExpectedPage, 5);
 
             _stationPageProgress.PageLoaded(response.Success);
 

@@ -9,9 +9,9 @@ namespace IF.Lastfm.Core.Api
 {
     public class UserApi : IUserApi
     {
-        public IAuth Auth { get; private set; }
+        public ILastAuth Auth { get; private set; }
 
-        public UserApi(IAuth auth)
+        public UserApi(ILastAuth auth)
         {
             Auth = auth;
         }
@@ -54,7 +54,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<Station>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastStation>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentStationsCommand(Auth, username)
                           {
@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<User>> GetInfoAsync(string username)
+        public async Task<LastResponse<LastUser>> GetInfoAsync(string username)
         {
             var command = new GetUserInfoCommand(Auth, username);
 

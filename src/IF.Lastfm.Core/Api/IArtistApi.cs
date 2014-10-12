@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
 {
     public interface IArtistApi
     {
-        IAuth Auth { get; }
+        ILastAuth Auth { get; }
 
         Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
@@ -30,13 +30,13 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Tag>> GetUserTagsForArtistAsync(string artist,
+        Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist,
             string username,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Tag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false);
+        Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false);
 
         Task<PageResponse<Shout>> GetShoutsForArtistAsync(string artistname,
             int page = 0,

@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public bool Autocorrect { get; set; }
 
-        public GetTrackShoutsCommand(IAuth auth, string trackname, string artistname)
+        public GetTrackShoutsCommand(ILastAuth auth, string trackname, string artistname)
             : base(auth)
         {
             Method = "track.getShouts";

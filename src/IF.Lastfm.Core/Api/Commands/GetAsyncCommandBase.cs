@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Api.Commands
 {
     internal abstract class GetAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {           
-        protected GetAsyncCommandBase(IAuth auth)
+        protected GetAsyncCommandBase(ILastAuth auth)
         {
             Auth = auth;
         }

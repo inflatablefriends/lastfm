@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
 {
     public interface IChartApi
     {
-        IAuth Auth { get; }
+        ILastAuth Auth { get; }
 
         Task<PageResponse<LastArtist>> GetTopArtistsAsync(
             int page = 1,
