@@ -55,6 +55,17 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                
+                <TextBlock Text="similar artists" Margin="12,12,24,12" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <ItemsControl ItemsSource="{Binding SimilarArtists}"
+                              VerticalAlignment="Top">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"
+                                       Style="{StaticResource PhoneTextNormalStyle}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <TextBlock Text="top albums" Margin="12,12,24,12" Style="{StaticResource PhoneTextTitle2Style}"/>
                 <ItemsControl ItemsSource="{Binding TopAlbums}"

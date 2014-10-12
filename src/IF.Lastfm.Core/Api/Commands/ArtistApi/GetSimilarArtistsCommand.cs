@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetSimilarArtistsCommand : GetAsyncCommandBase<LastResponse<List<LastArtist>>>
+    internal class GetSimilarArtistsCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
     {
         public bool Autocorrect { get; set; }
 
@@ -40,7 +40,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             DisableCaching();
         }
 
-        public async override Task<LastResponse<List<LastArtist>>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -48,17 +48,13 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var itemsToken = jtoken.SelectToken("similarartists").SelectToken("artist");
 
-                var artists = jtoken.SelectToken("similarartists")
-                    .SelectToken("artist")
-                    .Children().Select(LastArtist.ParseJToken)
-                    .ToList();
-
-                return LastResponse<List<LastArtist>>.CreateSuccessResponse(artists);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, null, LastArtist.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<List<LastArtist>>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(error);
             }
         }
     }

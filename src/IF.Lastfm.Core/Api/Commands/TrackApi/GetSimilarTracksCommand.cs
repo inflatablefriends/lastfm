@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
-    internal class GetSimilarTracksCommand : GetAsyncCommandBase<LastResponse<List<LastTrack>>>
+    internal class GetSimilarTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string ArtistName { get; set; }
 
@@ -45,7 +45,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             DisableCaching();
         }
 
-        public async override Task<LastResponse<List<LastTrack>>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -53,17 +53,13 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var itemsToken = jtoken.SelectToken("similartracks").SelectToken("track");
 
-                var tracks = jtoken.SelectToken("similartracks")
-                    .SelectToken("track")
-                    .Children().Select(LastTrack.ParseJToken)
-                    .ToList();
-
-                return LastResponse<List<LastTrack>>.CreateSuccessResponse(tracks);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, null, LastTrack.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<List<LastTrack>>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
             }
         }
     }

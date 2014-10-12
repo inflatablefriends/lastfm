@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace IF.Lastfm.Core.Api.Helpers
@@ -36,6 +39,13 @@ namespace IF.Lastfm.Core.Api.Helpers
             var d = new DateTime(1970, 1, 1).ToUniversalTime();
             d = d.AddSeconds(stamp);
             return d;
+        }
+
+        public static int CountOrDefault<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable != null
+                ? enumerable.Count()
+                : 0;
         }
     }
 }

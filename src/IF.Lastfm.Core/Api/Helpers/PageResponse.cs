@@ -10,6 +10,9 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public class PageResponse<T> : LastResponse, IEnumerable<T> where T : new()
     {
+        private int? _totalItems;
+        private int? _pageSize;
+
         public PageResponse()
         {
             Page = 1;
@@ -24,9 +27,17 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         public int TotalPages { get; internal set; }
 
-        public int TotalItems { get; internal set; }
+        public int TotalItems
+        {
+            get { return _totalItems ?? Content.CountOrDefault(); }
+            internal set { _totalItems = value; }
+        }
 
-        public int PageSize { get; internal set; }
+        public int PageSize
+        {
+            get { return _pageSize ?? Content.CountOrDefault(); }
+            internal set { _pageSize = value; }
+        }
 
         #endregion
 
@@ -87,36 +98,50 @@ namespace IF.Lastfm.Core.Api.Helpers
         public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
         {
             var pageresponse = CreateSuccessResponse();
+            var content = new List<T>();
 
-            if (isOpenQueryToken)
-            {
-                pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
-            }
-            else
-            {
-                pageresponse.AddPageInfoFromJToken(pageInfoToken);
-            }
-
-            var albums = new List<T>();
-
-            if (pageresponse.TotalItems > 0)
+            if (itemsToken.Children().Any())
             {
                 // array notation isn't used on the api when only one object is available
                 if (itemsToken.Type != JTokenType.Array)
                 {
-                    albums.Add(parseToken(itemsToken));
+                    var item = parseToken(itemsToken);
+                    content.Add(item);
                 }
                 else
                 {
                     var items = itemsToken.Children().Select(parseToken);
-
-                    albums.AddRange(items);
+                    content.AddRange(items);
                 }
             }
 
-            pageresponse.Content = albums;
+            if (pageInfoToken != null)
+            {
+                if (isOpenQueryToken)
+                {
+                    pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
+                }
+                else
+                {
+                    pageresponse.AddPageInfoFromJToken(pageInfoToken);
+                }
+            }
+            else
+            {
+                pageresponse.AddDefaultPageInfo(content.Count);
+            }
+
+            pageresponse.Content = content;
 
             return pageresponse;
+        }
+
+        private void AddDefaultPageInfo(int count)
+        {
+            Page = 1;
+            TotalPages = 1;
+            TotalItems = count;
+            PageSize = count;
         }
 
         #endregion

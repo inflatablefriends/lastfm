@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Cimbalino.Phone.Toolkit.Services;
 using IF.Lastfm.Core.Api;
@@ -14,6 +15,7 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
         private bool _inProgress;
         private IEnumerable<LastTrack> _topTracks;
         private IEnumerable<LastAlbum> _topAlbums;
+        private IEnumerable<LastArtist> _similarArtists;
 
         public string ArtistName
         {
@@ -73,6 +75,17 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
             }
         }
 
+        public IEnumerable<LastArtist> SimilarArtists
+        {
+            get { return _similarArtists; }
+            set
+            {
+                if (Equals(value, _similarArtists)) return;
+                _similarArtists = value;
+                OnPropertyChanged();
+            }
+        }
+
         public IEnumerable<LastAlbum> TopAlbums
         {
             get { return _topAlbums; }
@@ -108,12 +121,14 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
 
             if (response.Success && auth.HasAuthenticated)
             {
+                ClearLists();
+
                 var artistApi = new Core.Api.ArtistApi(auth);
 
-                var artist = await artistApi.GetArtistInfoAsync(ArtistName);
-                if (artist.Success)
+                var topTracks = await artistApi.GetTopTracksForArtistAsync(ArtistName);
+                if (topTracks.Success)
                 {
-                    LastArtist = artist.Content;
+                    TopTracks = topTracks;
                 }
 
                 var topAlbums = await artistApi.GetTopAlbumsForArtistAsync(ArtistName);
@@ -121,15 +136,29 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.ArtistApi
                 {
                     TopAlbums = topAlbums;
                 }
-
-                var topTracks = await artistApi.GetTopTracksForArtistAsync(ArtistName);
-                if (topTracks.Success)
+                
+                var similarArtists = await artistApi.GetSimilarArtistsAsync(ArtistName, false, 20);
+                if (similarArtists.Success)
                 {
-                    TopTracks = topTracks;
+                    SimilarArtists = similarArtists;
+                }
+
+                var artist = await artistApi.GetArtistInfoAsync(ArtistName);
+                if (artist.Success)
+                {
+                    LastArtist = artist.Content;
                 }
             }
             
             InProgress = false;
+        }
+
+        private void ClearLists()
+        {
+            LastArtist = null;
+            SimilarArtists = null;
+            TopAlbums = null;
+            TopTracks = null;
         }
     }
 }

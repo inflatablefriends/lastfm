@@ -70,7 +70,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<List<LastArtist>>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100)
+        public async Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100)
         {
             var command = new GetSimilarArtistsCommand(Auth, artistname)
             {

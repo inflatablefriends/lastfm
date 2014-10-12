@@ -88,7 +88,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<List<LastTrack>>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
+        public async Task<PageResponse<LastTrack>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
         {
             var command = new GetSimilarTracksCommand(Auth, trackname, artistname)
             {

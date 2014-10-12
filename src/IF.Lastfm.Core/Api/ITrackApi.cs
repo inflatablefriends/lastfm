@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Api
 
         Task<LastResponse<LastTrack>> GetInfoAsync(string trackname, string artistname, string username = "");
         Task<LastResponse<LastTrack>> GetInfoByMbidAsync(string mbid);
-        Task<LastResponse<List<LastTrack>>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100);
+        Task<PageResponse<LastTrack>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100);
 
         Task<LastResponse> LoveTrackAsync(string trackname, string artistname);
         Task<LastResponse> UnloveTrackAsync(string trackname, string artistname);

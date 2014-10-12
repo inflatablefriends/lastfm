@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
-        Task<LastResponse<List<LastArtist>>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100);
+        Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100);
 
         Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist,
             bool autocorrect = false,
