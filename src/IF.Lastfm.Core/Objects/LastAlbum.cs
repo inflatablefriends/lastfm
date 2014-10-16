@@ -70,7 +70,8 @@ namespace IF.Lastfm.Core.Objects
             if (tagsToken != null)
             {
                 var tagToken = tagsToken.SelectToken("tag");
-                a.TopTags = tagToken.Children().Select(LastTag.ParseJToken);
+                if (tagToken != null)
+                	a.TopTags = tagToken.Children().Select(LastTag.ParseJToken);
             }
     
             a.ListenerCount = token.Value<int>("listeners");
