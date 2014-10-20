@@ -30,9 +30,8 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("artists");
-                var artistsToken = jtoken.SelectToken("artists");
-                var itemsToken = artistsToken.SelectToken("artist");
-                var pageInfoToken = artistsToken.SelectToken("@attr");
+                var itemsToken = jtoken.SelectToken("artist");
+                var pageInfoToken = jtoken.SelectToken("@attr");
 
                 return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, pageInfoToken, LastArtist.ParseJToken);
             }
