@@ -6,10 +6,16 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class LastAsyncCommandBase<T> : IAsyncCommand<T> where T : LastResponse, new()
+    /// <summary>
+    /// Having this type makes reflection easier - there probably isn't any other need for it
+    /// </summary>
+    internal abstract class LastAsyncCommandBase
     {
         public string Method { get; protected set; }
+    }
 
+    internal abstract class LastAsyncCommandBase<T> : LastAsyncCommandBase, IAsyncCommand<T> where T : LastResponse, new()
+    {
         public Uri Url { get; protected set; }
 
         public ILastAuth Auth { get; protected set; }
