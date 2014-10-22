@@ -71,7 +71,12 @@ namespace IF.Lastfm.Core.Objects
             {
                 var tagToken = tagsToken.SelectToken("tag");
                 if (tagToken != null)
-                	a.TopTags = tagToken.Children().Select(LastTag.ParseJToken);
+                {
+                    a.TopTags = 
+                        tagToken.Type == JTokenType.Array 
+                        ? tagToken.Children().Select(LastTag.ParseJToken) 
+                        : new List<LastTag> { LastTag.ParseJToken(tagToken) };
+                }
             }
     
             a.ListenerCount = token.Value<int>("listeners");

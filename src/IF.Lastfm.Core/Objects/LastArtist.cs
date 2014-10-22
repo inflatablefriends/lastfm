@@ -41,9 +41,16 @@ namespace IF.Lastfm.Core.Objects
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
             
             var tagsToken = token.SelectToken("tags");
-            if (tagsToken != null && tagsToken.HasValues)
+            if (tagsToken != null)
             {
-                a.Tags = tagsToken.SelectToken("tag").Children().Select(LastTag.ParseJToken);
+                var tagToken = tagsToken.SelectToken("tag");
+                if (tagToken != null)
+                {
+                    a.Tags =
+                        tagToken.Type == JTokenType.Array
+                        ? tagToken.Children().Select(LastTag.ParseJToken)
+                        : new List<LastTag> { LastTag.ParseJToken(tagToken) };
+                }
             }
 
             var images = token.SelectToken("image");
