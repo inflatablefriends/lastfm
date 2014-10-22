@@ -66,9 +66,16 @@ namespace IF.Lastfm.Core.Objects
             }
 
             var tagsToken = token.SelectToken("toptags");
-            if (tagsToken != null && tagsToken.HasValues)
+            if (tagsToken != null)
             {
-                t.TopTags = tagsToken.SelectToken("tag").Children().Select(LastTag.ParseJToken);
+                var tagToken = tagsToken.SelectToken("tag");
+                if (tagToken != null)
+                {
+                    t.TopTags =
+                        tagToken.Type == JTokenType.Array
+                        ? tagToken.Children().Select(LastTag.ParseJToken)
+                        : new List<LastTag> { LastTag.ParseJToken(tagToken) };
+                }
             }
 
             var date = token.SelectToken("date");
