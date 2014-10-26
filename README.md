@@ -26,6 +26,10 @@ Some documentation is available on the [GitHub wiki](https://github.com/rikkit/l
 - Provide functionality beyond mere API bindings, to spread the joy of Last.fm to developers everywhere.
 - To be the very best, like no-one ever was.
 
+## Implemented Features
+
+Check the [progress report](https://github.com/inflatablefriends/lastfm/blob/master/PROGRESS.md) for a list of implemented methods.
+
 ## Planned Features
 
 Everyone working with Last.fm is likely to need similar kinds of features, so it makes sense for us to work on them together. Here are a few things to look for in the future:
