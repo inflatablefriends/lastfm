@@ -9,12 +9,12 @@ namespace IF.Lastfm.Core.Api.Commands
     /// <summary>
     /// Having this type makes reflection easier - there probably isn't any other need for it
     /// </summary>
-    internal abstract class LastAsyncCommandBase
+    public abstract class LastAsyncCommandBase
     {
         public string Method { get; protected set; }
     }
 
-    internal abstract class LastAsyncCommandBase<T> : LastAsyncCommandBase, IAsyncCommand<T> where T : LastResponse, new()
+    public abstract class LastAsyncCommandBase<T> : LastAsyncCommandBase, IAsyncCommand<T> where T : LastResponse, new()
     {
         public Uri Url { get; protected set; }
 
