@@ -1,30 +1,23 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+using System.Net.Http;
+using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
-namespace IF.Lastfm.Core.Api.Commands.ArtistApi
+namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class SearchArtistsCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
+    internal class GetRecommendedArtistsCommand : PostAsyncCommandBase<PageResponse<LastArtist>>
     {
-        public string ArtistName { get; set; }
-
-        public SearchArtistsCommand(ILastAuth auth, string artistName)
-            : base(auth)
+        public GetRecommendedArtistsCommand(ILastAuth auth) : base(auth)
         {
-            Method = "artist.search";
-            ArtistName = artistName;
+            Method = "user.getRecommendedArtists";
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
-
             AddPagingParameters();
-            DisableCaching();
         }
 
         public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
@@ -36,7 +29,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var resultsToken = jtoken.SelectToken("results");
-                var itemsToken = resultsToken.SelectToken("artistmatches").SelectToken("artist");
+                var itemsToken = resultsToken.SelectToken("recommendations").SelectToken("artist");
 
                 return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, true);
             }

@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
+    <Compile Include="Api\Commands\UserApi\GetRecommendedArtistsCommand.cs" />
     <Compile Include="Api\LastAuth.cs" />
     <Compile Include="Api\ChartApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\AddShoutCommand.cs" />

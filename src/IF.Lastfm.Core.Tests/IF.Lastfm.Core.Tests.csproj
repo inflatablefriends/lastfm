@@ -70,6 +70,7 @@
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
+    <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
     <Compile Include="Objects\AlbumTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
