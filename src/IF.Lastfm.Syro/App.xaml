@@ -8,16 +8,36 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
-                <ResourceDictionary
-                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/accents/Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Styles.xaml" />
+                <ResourceDictionary Source="Resources/SyroTabControl.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="SyroBrush" Color="#C0D73B"/>
+            <Color x:Key="HighlightColor">#C0D73B</Color>
+            <Color x:Key="SyroColour">#C0D73B</Color>
+            <SolidColorBrush x:Key="SyroBrush" Color="{StaticResource SyroColour}"/>
             <SolidColorBrush x:Key="SyroWindowTitleBrush" Color="#222222"/>
+            <SolidColorBrush x:Key="BackgroundSelected" Color="{StaticResource SyroColour}" />
+            <SolidColorBrush x:Key="ForegroundSelected" Color="#222" />
+
+            <Style x:Key="SyroHeaderFontStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="{StaticResource HeaderFontSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource HeaderFontFamily}"/>
+                <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+            </Style>
+
+            <Style x:Key="SyroSubHeaderFontStyle" TargetType="TextBlock" BasedOn="{StaticResource SyroHeaderFontStyle}">
+                <Setter Property="FontSize" Value="{StaticResource SubHeaderFontSize}"/>
+            </Style>
+
+            <Style x:Key="SyroNormalFontStyle" TargetType="TextBlock" BasedOn="{StaticResource SyroHeaderFontStyle}">
+                <Setter Property="FontSize" Value="{StaticResource NormalFontSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource ContentFontFamily}"/>
+            </Style>
+
+
         </ResourceDictionary>
-        
-
     </Application.Resources>
-
 </Application>

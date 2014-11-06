@@ -5,9 +5,34 @@
     xmlns:local="using:IF.Lastfm.Dev.Syro.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d"
+    d:DataContext="{Binding Source=MainViewModel}">
+    
+    
 
     <Grid>
-
+        <TabControl Style="{StaticResource SyroTabControlStyle}">
+            <TabItem Header="Request Builder">
+                <Border Padding="28,10">
+                    <Grid>
+                        <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                   Foreground="{StaticResource GrayNormalBrush}">Coming soon...</TextBlock>
+                    </Grid>
+                </Border>
+            </TabItem>
+            <TabItem Header="Progress Report">
+                <Border Padding="28,10">
+                    <Grid>
+                        <Button VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Command="{Binding GenerateProgressReportCommand}">
+                            <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                       Margin="10,5">Generate report</TextBlock>
+                        </Button>
+                    </Grid>
+                </Border>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

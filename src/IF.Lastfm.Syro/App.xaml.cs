@@ -11,5 +11,10 @@ namespace IF.Lastfm.Syro
         private static ViewModelLocator _kernel;
 
         public static ViewModelLocator Kernel { get { return _kernel; } }
+
+        public App()
+        {
+            _kernel = new ViewModelLocator();
+        }
     }
 }
