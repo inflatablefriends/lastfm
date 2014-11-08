@@ -39,6 +39,7 @@
             </Style>
 
             <resources:BoolFlipConverter x:Key="BoolFlipConverter"/>
+            <resources:NullToInvisibleConverter x:Key="NullToInvisibleConverter"/>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using IF.Common.Metro.Mvvm;
 using IF.Lastfm.Syro.Tools;
@@ -16,6 +17,8 @@ namespace IF.Lastfm.Syro.ViewModels
         private bool _generatingProgressReport;
         private List<string> _remainingCommands;
         private int _apiProgress;
+        private string _reportPath;
+        private const string ReportFilename = "PROGRESS.md";
 
         public bool GeneratingProgressReport
         {
@@ -62,15 +65,17 @@ namespace IF.Lastfm.Syro.ViewModels
         }
 
         public ICommand GenerateProgressReportCommand { get; private set; }
+        public ICommand OpenReportCommand { get; private set; }
 
         public MainViewModel()
         {
             GenerateProgressReportCommand = new AsyncDelegateCommand(GenerateProgressReport);
+            OpenReportCommand = new DelegateCommand(OpenProgressReport);
 
-            var currentDir = System.AppDomain.CurrentDomain.BaseDirectory;
+            var currentDir = AppDomain.CurrentDomain.BaseDirectory;
             SolutionDir = Path.GetFullPath(currentDir + "../../../../"); // assuming this is running in debug dir
         }
-
+        
         private async Task GenerateProgressReport()
         {
             if (GeneratingProgressReport)
@@ -93,8 +98,8 @@ namespace IF.Lastfm.Syro.ViewModels
                 var allImplemented = ProgressReport.GetImplementedCommands().ToList();
 
                 // generate the markdown
-                var path = Path.GetFullPath(SolutionDir + "PROGRESS.md");
-                ProgressReport.WriteReport(apiGroup, allImplemented, path);
+                _reportPath = Path.GetFullPath(SolutionDir + ReportFilename);
+                ProgressReport.WriteReport(apiGroup, allImplemented, _reportPath);
 
                 // ui, duplicating code but w/e
                 ApiProgress = (int)ProgressReport.GetPercentage(apiGroup, allImplemented);
@@ -112,6 +117,12 @@ namespace IF.Lastfm.Syro.ViewModels
             });
 
             GeneratingProgressReport = false;
+        }
+        private void OpenProgressReport()
+        {
+            var path = _reportPath ?? Path.GetFullPath(SolutionDir + ReportFilename);
+
+            Process.Start(path);
         }
     }
 }

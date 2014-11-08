@@ -38,9 +38,18 @@
                                                    Width="30"
                                                    Height="30"/>
                         </StackPanel>
-                        <TextBlock Style="{StaticResource SyroNormalFontStyle}">
-                            <Run Text="{Binding ApiProgress}"/>% complete, <Run Text="{Binding RemainingCommands.Count, Mode=OneWay}"/> commands left
-                        </TextBlock>
+                        <StackPanel Visibility="{Binding RemainingCommands, Converter={StaticResource NullToInvisibleConverter}}">
+                            <TextBlock Style="{StaticResource SyroNormalFontStyle}">
+                                <Run Text="{Binding ApiProgress}"/>% complete, <Run Text="{Binding RemainingCommands.Count, Mode=OneWay}"/> commands left
+                            </TextBlock>
+                            <Button Command="{Binding OpenReportCommand}"
+                                    HorizontalAlignment="Left"
+                                    IsEnabled="{Binding GeneratingProgressReport, Converter={StaticResource BoolFlipConverter}}"
+                                    Margin="0,10,0,0">
+                            <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                       Margin="10,5">Open PROGRESS.md</TextBlock>
+                        </Button>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
             </TabItem>

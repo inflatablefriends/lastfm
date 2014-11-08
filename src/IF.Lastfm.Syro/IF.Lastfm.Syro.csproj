@@ -90,6 +90,7 @@
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Resources\BoolFlipConverter.cs" />
+    <Compile Include="Resources\NullToInvisibleConverter.cs" />
     <Compile Include="Tools\Program.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
