@@ -4,7 +4,7 @@
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       Height="350"
                       MinHeight="300"
-                      MinWidth="200"
+                      MinWidth="400"
                       Width="525"
                       Foreground="#111111"
                       WindowTitleBrush="{StaticResource SyroWindowTitleBrush}"

@@ -5,12 +5,12 @@
         <ResourceDictionary>
             <!-- General -->
             <Color x:Key="SyroColour">#C0D73B</Color>
-            <SolidColorBrush x:Key="BackgroundHighlighted" Color="#54545C" />
-            <SolidColorBrush x:Key="BorderBrushHighlighted" Color="#6A6A75" />
+            <SolidColorBrush x:Key="BackgroundHighlighted" Color="#222" />
+            <SolidColorBrush x:Key="BorderBrushHighlighted" Color="#333" />
             <SolidColorBrush x:Key="BackgroundSelected" Color="{StaticResource SyroColour}" />
             <SolidColorBrush x:Key="BorderBrushSelected" Color="{StaticResource SyroColour}" />
-            <SolidColorBrush x:Key="BackgroundNormal" Color="#3F3F46" />
-            <SolidColorBrush x:Key="BorderBrushNormal" Color="#54545C" />
+            <SolidColorBrush x:Key="BackgroundNormal" Color="#222" />
+            <SolidColorBrush x:Key="BorderBrushNormal" Color="#333" />
             <!-- Close Button -->
             <SolidColorBrush x:Key="CloseButtonBackgroundHighlighted" Color="#39ADFB" />
             <SolidColorBrush x:Key="CloseButtonBackgroundPressed" Color="#084E7D" />
@@ -27,7 +27,7 @@
                 <Setter Property="Background"
                         Value="Transparent" />
                 <Setter Property="Foreground"
-                        Value="#111" />
+                        Value="#cccccc" />
                 <Setter Property="HeaderTemplate">
                     <Setter.Value>
                         <DataTemplate>
@@ -147,11 +147,15 @@
                                          Value="true">
                                     <Setter Property="Background"
                                             Value="{DynamicResource BorderBrushSelected}" />
+                                    <Setter Property="Foreground"
+                                            Value="{DynamicResource ForegroundSelected}"/>
                                 </Trigger>
                                 <Trigger Property="IsSelected"
                                          Value="true">
                                     <Setter Property="Background"
                                             Value="{DynamicResource BackgroundSelected}" />
+                                    <Setter Property="Foreground"
+                                            Value="{DynamicResource ForegroundSelected}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -167,7 +171,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Border Background="Transparent"
+                        <Border Background="#222"
                                 BorderBrush="{DynamicResource BackgroundSelected}"
                                 BorderThickness="0,0,0,1">
                             <TabPanel Name="HeaderPanel"

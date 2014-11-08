@@ -2,15 +2,12 @@
     x:Class="IF.Lastfm.Syro.Pages.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:IF.Lastfm.Dev.Syro.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     mc:Ignorable="d"
     d:DataContext="{Binding Source=MainViewModel}">
     
-    
-
     <Grid>
         <TabControl Style="{StaticResource SyroTabControlStyle}">
             <TabItem Header="Request Builder">
@@ -23,14 +20,28 @@
             </TabItem>
             <TabItem Header="Progress Report">
                 <Border Padding="28,10">
-                    <Grid>
-                        <Button VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                Command="{Binding GenerateProgressReportCommand}">
-                            <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                   Text="Solution Directory"
+                                   Margin="0,0,0,10"/>
+                        <TextBox Text="{Binding SolutionDir, Mode=TwoWay}"
+                                 Margin="0,0,0,15"/>
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,0,0,15">
+                            <Button Command="{Binding GenerateProgressReportCommand}"
+                                    IsEnabled="{Binding GeneratingProgressReport, Converter={StaticResource BoolFlipConverter}}"
+                                    Margin="0,0,10,0">
+                                <TextBlock Style="{StaticResource SyroNormalFontStyle}"
                                        Margin="10,5">Generate report</TextBlock>
-                        </Button>
-                    </Grid>
+                            </Button>
+                            <controls:ProgressRing IsActive="{Binding GeneratingProgressReport}"
+                                                   Width="30"
+                                                   Height="30"/>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource SyroNormalFontStyle}">
+                            <Run Text="{Binding ApiProgress}"/>% complete, <Run Text="{Binding RemainingCommands.Count, Mode=OneWay}"/> commands left
+                        </TextBlock>
+                    </StackPanel>
                 </Border>
             </TabItem>
         </TabControl>
