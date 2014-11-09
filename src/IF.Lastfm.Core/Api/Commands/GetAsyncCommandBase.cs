@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Api.Commands
 
             try
             {
-                var httpClient = new HttpClient();
+                var httpClient = GetHttpClient();
                 var response = await httpClient.GetAsync(Url);
                 return await HandleResponse(response);
             }
