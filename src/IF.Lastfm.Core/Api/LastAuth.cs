@@ -59,6 +59,10 @@ namespace IF.Lastfm.Core.Api
 
             parameters.Add("api_key", ApiKey);
             parameters.Add("method", method);
+            if (Authenticated)
+            {
+                parameters.Add("sk", UserSession.Token);
+            }
 
             var builder = new StringBuilder();
 

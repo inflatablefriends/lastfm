@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace IF.Common.Metro.Mvvm
+namespace IF.Lastfm.Syro.Helpers
 {
     public class AsyncDelegateCommand : ICommand
     {

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using IF.Lastfm.Syro.ViewModels;
 
 namespace IF.Lastfm.Syro.Pages

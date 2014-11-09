@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
-[assembly: InternalsVisibleTo("IF.Lastfm.ProgressReport")]
+[assembly: InternalsVisibleTo("IF.Lastfm.Syro")]
 namespace IF.Lastfm.Core
 {
     public class LastFm

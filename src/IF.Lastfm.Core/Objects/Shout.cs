@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Shout
+    public class Shout : ILastfmObject
     {
         #region Properties
 

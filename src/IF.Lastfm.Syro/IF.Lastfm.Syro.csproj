@@ -56,6 +56,10 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
@@ -87,11 +91,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\AsyncDelegateCommand.cs" />
+    <Compile Include="Helpers\DummyGetAsyncCommand.cs" />
+    <Compile Include="Helpers\DummyPostAsyncCommand.cs" />
+    <Compile Include="Helpers\IDummyCommand.cs" />
+    <Compile Include="Helpers\Pair.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Resources\BoolFlipConverter.cs" />
     <Compile Include="Resources\NullToInvisibleConverter.cs" />
-    <Compile Include="Tools\Program.cs" />
+    <Compile Include="Tools\ProgressReport.cs" />
+    <Compile Include="Tools\Reflektor.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />

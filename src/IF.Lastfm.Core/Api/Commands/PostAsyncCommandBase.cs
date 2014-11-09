@@ -23,12 +23,7 @@ namespace IF.Lastfm.Core.Api.Commands
             SetParameters();
 
             Url = BuildRequestUrl();
-
-            if (Auth.Authenticated)
-            {
-                Parameters.Add("sk", Auth.UserSession.Token);
-            }
-
+            
             var apisig = Auth.GenerateMethodSignature(Method, Parameters);
 
             var postContent = LastFm.CreatePostBody(Method,

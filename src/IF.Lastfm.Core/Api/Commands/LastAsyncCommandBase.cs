@@ -12,19 +12,19 @@ namespace IF.Lastfm.Core.Api.Commands
     public abstract class LastAsyncCommandBase
     {
         public string Method { get; protected set; }
+
+        public Dictionary<string, string> Parameters { get; set; }
     }
 
     public abstract class LastAsyncCommandBase<T> : LastAsyncCommandBase, IAsyncCommand<T> where T : LastResponse, new()
     {
-        public Uri Url { get; protected set; }
-
         public ILastAuth Auth { get; protected set; }
 
         public int Page { get; set; }
 
         public int Count { get; set; }
 
-        public Dictionary<string, string> Parameters { get; set; }
+        public Uri Url { get; protected set; }
 
         protected LastAsyncCommandBase()
         {

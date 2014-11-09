@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace IF.Common.Metro.Mvvm
+namespace IF.Lastfm.Syro.Helpers
 {
     public class DelegateCommand : ICommand
     {
