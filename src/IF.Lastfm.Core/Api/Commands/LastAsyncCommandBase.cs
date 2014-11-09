@@ -54,5 +54,16 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public abstract Task<T> HandleResponse(HttpResponseMessage response);
 
+        /// <summary>
+        /// </summary>
+        protected HttpClient GetHttpClient()
+        {
+            var client = new HttpClient();
+            
+            // See http://stackoverflow.com/questions/14595021/how-to-disable-the-expect-100-continue-header-in-winrts-httpwebrequest
+            client.DefaultRequestHeaders.ExpectContinue = false;
+
+            return client;
+        }
     }
 }
