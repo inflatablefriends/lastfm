@@ -279,21 +279,11 @@ namespace IF.Lastfm.Syro.ViewModels
                 var parametersProperty = genericType.GetProperty("Parameters",
                     BindingFlags.Public | BindingFlags.Instance);
                 parametersProperty.SetValue(instance, parameters);
-
-                //test
-                var command = new GetRecentStationsCommand(_lastAuth, "tehrikkit")
-                {
-                    Count = 5,
-                    Page = 1
-                };
-                await command.ExecuteAsync();
-
+                
                 // execute
                 var executeMethod = genericType.GetMethods().First(m => m.Name == "ExecuteAsync");
                 await (dynamic) executeMethod.Invoke(instance, null);
-
                 
-
                 // cast so we can get the Json response
                 var dummyCommand = (IDummyCommand) instance;
                 var jo = dummyCommand.Response;
