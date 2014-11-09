@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Arcnet.MyConvert;
 using IF.Lastfm.Core.Api.Commands.AuthApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using xBrainLab.Security.Cryptography;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -74,7 +74,10 @@ namespace IF.Lastfm.Core.Api
 
             builder.Append(_apiSecret);
 
-            return MD5.GetHashString(builder.ToString());
+            var md5 = builder.ToString().ToMd5();
+
+            return md5;
+
         }
     }
 }
