@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.ArtistApi
 {
-    internal class GetArtistTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
+    internal class GetTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string ArtistName { get; set; }
 
-        public GetArtistTopAlbumsCommand(ILastAuth auth, string artistname)
+        public GetTopTracksCommand(ILastAuth auth, string artistname)
             : base(auth)
         {
-            Method = "artist.topAlbums";
+            Method = "artist.getTopTracks";
             ArtistName = artistname;
         }
 
@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -35,15 +35,15 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var albumsToken = jtoken.SelectToken("topalbums");
-                var itemsToken = albumsToken.SelectToken("album");
-                var pageInfoToken = albumsToken.SelectToken("@attr");
+                var tracksToken = jtoken.SelectToken("toptracks");
+                var itemsToken = tracksToken.SelectToken("track");
+                var pageInfoToken = tracksToken.SelectToken("@attr");
 
-                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, pageInfoToken, LastAlbum.ParseJToken);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, pageInfoToken, LastTrack.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
             }
         }
     }

@@ -49,7 +49,7 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new GetArtistTopAlbumsCommand(Auth, artist)
+            var command = new GetTopAlbumsCommand(Auth, artist)
             {
                 Page = page,
                 Count = itemsPerPage
@@ -62,7 +62,7 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new GetArtistTopTracksCommand(Auth, artist)
+            var command = new GetTopTracksCommand(Auth, artist)
             {
                 Page = page,
                 Count = itemsPerPage

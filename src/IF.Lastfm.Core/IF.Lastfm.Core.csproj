@@ -49,8 +49,8 @@
     <Compile Include="Api\Commands\ArtistApi\AddShoutCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetArtistTopAlbumsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetArtistTopTracksCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetTopAlbumsCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\GetTopTracksCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\GetSimilarArtistsCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\SearchArtistsCommand.cs" />
     <Compile Include="Api\Commands\AuthApi\GetMobileSessionCommand.cs" />
