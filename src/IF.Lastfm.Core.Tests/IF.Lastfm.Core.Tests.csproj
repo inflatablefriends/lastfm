@@ -69,6 +69,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommandTests.cs" />
+    <Compile Include="Api\Commands\AlbumApi\GetAlbumShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
@@ -97,6 +98,10 @@
     <None Include="packages.config" />
     <None Include="Resources\AlbumApi\AlbumGetInfoMissing.json" />
     <None Include="Resources\AlbumApi\AlbumGetInfoSuccess.json" />
+    <None Include="Resources\AlbumApi\AlbumGetShoutsAlbumMissing.json" />
+    <None Include="Resources\AlbumApi\AlbumGetShoutsEmpty.json" />
+    <None Include="Resources\AlbumApi\AlbumGetShoutsMultiple.json" />
+    <None Include="Resources\AlbumApi\AlbumGetShoutsSingle.json" />
     <None Include="Resources\AlbumApi\AlbumSearch.json" />
     <None Include="Resources\AlbumApi\AlbumSearchEmpty.json" />
     <None Include="Resources\AlbumApi\AlbumSearchError.json" />

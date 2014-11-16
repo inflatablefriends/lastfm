@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using IF.Lastfm.Core.Api.Helpers;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace IF.Lastfm.Core.Objects
 {
@@ -12,10 +8,23 @@ namespace IF.Lastfm.Core.Objects
         #region Properties
 
         public string Body { get; set; }
+
         public string Author { get; set; }
-        public DateTime TimePosted { get; set; }
+
+        public DateTimeOffset TimePosted { get; set; }
 
         #endregion
+
+        public Shout()
+        {
+        }
+
+        public Shout(string author, string body, string time)
+        {
+            Author = author;
+            Body = body;
+            TimePosted = DateTime.Parse(time);
+        }
 
         public static Shout ParseJToken(JToken token)
         {
@@ -23,18 +32,12 @@ namespace IF.Lastfm.Core.Objects
 
             s.Body = token.Value<string>("body");
             s.Author = token.Value<string>("author");
-
-
-            var provider = CultureInfo.InvariantCulture;
-
+            
             var date = token.Value<string>("date");
-            DateTime time;
-            // Tue, 18 Jun 2013 17:39:50
-            var success = DateTime.TryParseExact(date, "ddd, dd MMM yyyy HH:mm:ss", provider, DateTimeStyles.AssumeUniversal, out time);
-
-            if (success)
+            DateTimeOffset postedAt;
+            if (DateTimeOffset.TryParse(date, out postedAt))
             {
-                s.TimePosted = time;
+                s.TimePosted = postedAt;
             }
 
             return s;

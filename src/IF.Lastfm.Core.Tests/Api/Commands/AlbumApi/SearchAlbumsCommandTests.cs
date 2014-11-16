@@ -1,5 +1,4 @@
 ﻿using IF.Lastfm.Core.Api.Commands.AlbumApi;
-using IF.Lastfm.Core.Api.Commands.TrackApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

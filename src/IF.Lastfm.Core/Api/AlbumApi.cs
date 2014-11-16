@@ -17,10 +17,8 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastAlbum>> GetAlbumInfoAsync(string artistname, string albumname, bool autocorrect = false)
         {
-            var command = new GetAlbumInfoCommand(Auth)
+            var command = new GetAlbumInfoCommand(Auth, albumname, artistname)
                           {
-                              ArtistName = artistname,
-                              AlbumName = albumname,
                               Autocorrect = autocorrect
                           };
 

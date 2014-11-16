@@ -25,6 +25,13 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             Method = "album.getInfo";
         }
 
+        public GetAlbumInfoCommand(ILastAuth auth, string album, string artist)
+            : this(auth)
+        {
+            AlbumName = album;
+            ArtistName = artist;
+        }
+
         public override void SetParameters()
         {
             if (AlbumMbid != null)

@@ -83,6 +83,46 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] AlbumGetShoutsAlbumMissing {
+            get {
+                object obj = ResourceManager.GetObject("AlbumGetShoutsAlbumMissing", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlbumGetShoutsEmpty {
+            get {
+                object obj = ResourceManager.GetObject("AlbumGetShoutsEmpty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlbumGetShoutsMultiple {
+            get {
+                object obj = ResourceManager.GetObject("AlbumGetShoutsMultiple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] AlbumGetShoutsSingle {
+            get {
+                object obj = ResourceManager.GetObject("AlbumGetShoutsSingle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] AlbumSearch {
             get {
                 object obj = ResourceManager.GetObject("AlbumSearch", resourceCulture);
