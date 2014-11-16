@@ -15,13 +15,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             MAuth = new Mock<ILastAuth>();
         }
-
-        public abstract void Constructor();
-        public abstract Task HandleSuccessResponse();
-        public abstract Task HandleResponseSingle();
-        public abstract Task HandleEmptyResponse();
-        public abstract Task HandleErrorResponse();
-
+        
         protected HttpResponseMessage CreateResponseMessage(string message)
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)

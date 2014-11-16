@@ -118,8 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AlbumGetInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>AlbumApi\AlbumGetInfo.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="AlbumGetInfoMissing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetInfoMissing.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetInfoSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetInfoSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumSearch.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

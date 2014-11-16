@@ -68,17 +68,16 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommandTests.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
-    <Compile Include="Objects\AlbumTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
     <Compile Include="LastFmTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceManager.cs" />
     <Compile Include="Resources\AlbumApiResponses.Designer.cs">
       <DependentUpon>AlbumApiResponses.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -89,13 +88,15 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Resources\AlbumApi\AlbumGetInfo.json" />
+    <None Include="Resources\AlbumApi\AlbumGetInfoMissing.json" />
+    <None Include="Resources\AlbumApi\AlbumGetInfoSuccess.json" />
     <None Include="Resources\AlbumApi\AlbumSearch.json" />
     <None Include="Resources\AlbumApi\AlbumSearchEmpty.json" />
     <None Include="Resources\AlbumApi\AlbumSearchError.json" />

@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         }
 
         [TestMethod]
-        public override void Constructor()
+        public void Constructor()
         {
             Assert.AreEqual(_command.Method, "track.getShouts");
 
@@ -39,7 +39,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         }
 
         [TestMethod]
-        public async override Task HandleSuccessResponse()
+        public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShouts));
 
@@ -52,7 +52,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         }
 
         [TestMethod]
-        public async override Task HandleResponseSingle()
+        public async Task HandleResponseSingle()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsSingle));
 
@@ -64,7 +64,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         }
 
         [TestMethod]
-        public async override Task HandleEmptyResponse()
+        public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
 
@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         }
 
         [TestMethod]
-        public async override Task HandleErrorResponse()
+        public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsError));
 

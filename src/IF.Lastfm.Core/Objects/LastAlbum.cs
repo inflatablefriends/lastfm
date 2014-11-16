@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
@@ -15,9 +14,8 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<LastTrack> Tracks { get; set; }
         
         public string ArtistName { get; set; }
-        public string ArtistId { get; set; }
         
-        public DateTime ReleaseDateUtc { get; set; }
+        public DateTimeOffset ReleaseDateUtc { get; set; }
 
         public int ListenerCount { get; set; }
         public int TotalPlayCount { get; set; }
@@ -32,12 +30,6 @@ namespace IF.Lastfm.Core.Objects
         
         #endregion
 
-        /// <summary>
-        /// TODO datetime parsing
-        /// TODO images
-        /// </summary>
-        /// <param name="token"></param>
-        /// <returns></returns>
         internal static LastAlbum ParseJToken(JToken token)
         {
             var a = new LastAlbum();
@@ -48,11 +40,9 @@ namespace IF.Lastfm.Core.Objects
             {
                 case JTokenType.String:
                     a.ArtistName = token.Value<string>("artist");
-                    a.ArtistId = token.Value<string>("id");
                     break;
                 case JTokenType.Object:
                     a.ArtistName = artistToken.Value<string>("name");
-                    a.ArtistId = artistToken.Value<string>("mbid");
                     break;
             }
 
@@ -92,6 +82,13 @@ namespace IF.Lastfm.Core.Objects
             }
             
             a.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
+
+            var dateString = token.Value<string>("releasedate");
+            DateTimeOffset releaseDate;
+            if (DateTimeOffset.TryParse(dateString, out releaseDate))
+            {
+                a.ReleaseDateUtc = releaseDate;
+            }
 
             return a;
         }

@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         }
 
         [TestMethod]
-        public override void Constructor()
+        public void Constructor()
         {
             Assert.AreEqual(_command.Method, "album.search");
 
@@ -36,7 +36,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         }
 
         [TestMethod]
-        public async override Task HandleSuccessResponse()
+        public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearch));
 
@@ -49,7 +49,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         }
 
         [TestMethod]
-        public async override Task HandleResponseSingle()
+        public async Task HandleResponseSingle()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchSingle));
 
@@ -61,7 +61,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         }
 
         [TestMethod]
-        public async override Task HandleEmptyResponse()
+        public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchEmpty));
 
@@ -73,7 +73,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         }
 
         [TestMethod]
-        public async override Task HandleErrorResponse()
+        public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchError));
 

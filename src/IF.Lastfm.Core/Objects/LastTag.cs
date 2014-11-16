@@ -12,6 +12,16 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
+        public LastTag()
+        {
+        }
+
+        public LastTag(string name, string uri)
+        {
+            Name = name;
+            Url = new Uri(uri, UriKind.RelativeOrAbsolute);
+        }
+
         internal static LastTag ParseJToken(JToken token)
         {
             var t = new LastTag();
