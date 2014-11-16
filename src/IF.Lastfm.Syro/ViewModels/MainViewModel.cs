@@ -271,9 +271,6 @@ namespace IF.Lastfm.Syro.ViewModels
 
                     var countProperty = genericType.GetProperty("Count", BindingFlags.Public | BindingFlags.Instance);
                     countProperty.SetValue(instance, int.Parse(CommandItemCount));
-
-                    var addPageParamsMethod = genericType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).First(m => m.Name == "AddPagingParameters");
-                    addPageParamsMethod.Invoke(instance, null);
                 }
 
                 var parametersProperty = genericType.GetProperty("Parameters",
