@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>IF.Lastfm</id>
+		<version>$version</version>
+		<authors>Rikki Tooley (@rikkilt)</authors>
+		<licenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</licenseUrl>
+		<projectUrl>https://github.com/inflatablefriends/lastfm</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Simple Last.fm SDK for modern .NET platforms</description>
+		<copyright>Copyright 2014 Inflatable Friends</copyright>
+		<tags>lastfm last.fm inflatable friends sdk api</tags>
+		<dependencies>
+			<dependency id="Newtonsoft.Json" version="6.0.5"/>
+			<dependency id="Microsoft.Net.Http" version="2.2.28"/>
+			<dependency id="MyConvert" version="1.0.1.6"/>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll" target="lib\portable-win8+net45+wp8+wpa81"/>
+	</files>
+</package>
