@@ -3,7 +3,7 @@
     only:
       - master
 
-  version: 0.2.0.{build}-prerelease
+  version: 0.2.0.{build}
 
   assembly_info:
     patch: true
@@ -21,12 +21,12 @@
     project: IF.Lastfm.sln
 
   after_test:
-    - ps: .nuget\pack.ps1
+    - ps: .nuget\pack.ps1 -versionSuffix prerelease
 
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
       name: IF.Lastfm.Core.dll
-    - path: '**\*.nupkg'
+    - path: '**\*-prerelease.nupkg'
 
   nuget:
     project_feed: true
@@ -36,6 +36,7 @@
     only:
       - release
 
+  # don't forget to update this!
   version: 0.1.2.{build}
 
   assembly_info:
