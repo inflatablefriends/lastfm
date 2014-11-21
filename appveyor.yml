@@ -26,7 +26,7 @@
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
       name: IF.Lastfm.Core.dll
-    - path: '**\*-prerelease.nupkg'
+    - path: '\*-prerelease.nupkg'
 
   nuget:
     project_feed: true
@@ -60,7 +60,7 @@
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
       name: IF.Lastfm.Core.dll
-    - path: '**\*.nupkg'
+    - path: '\*.nupkg'
 
   deploy:
     provider: NuGet
