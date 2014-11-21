@@ -22,3 +22,6 @@ $content = $content -replace '\$version',$versionStr
 $content | Out-File $root\.nuget\IF.Lastfm.$versionStr.compiled.nuspec
 
 & $root\.nuget\NuGet.exe pack $root\.nuget\IF.Lastfm.$versionStr.compiled.nuspec
+
+# publish to appveyor feeds
+appveyor PushArtifact IF.Lastfm.$versionStr.nupkg

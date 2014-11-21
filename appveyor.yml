@@ -28,9 +28,6 @@
       name: IF.Lastfm.Core.dll
     - path: '\*-prerelease.nupkg'
 
-  nuget:
-    project_feed: true
-
 -
   branches:
     only:
@@ -67,7 +64,3 @@
     api_key:
       secure: b4Q8KLmOfeQHZNGbTf4OYud3pvi3aR4rKE35dcLHYBTBaQwc9QeoIkDoG13Jpbxs
     artifact: /.*\.nupkg/
-
-  nuget:
-    account_feed: true
-    project_feed: true
