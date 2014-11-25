@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>IF.Lastfm</id>
+		<id>Inflatable.Lastfm</id>
+		<title>Inflatable Last.fm SDK</title>
 		<version>$version</version>
 		<authors>Rikki Tooley (@rikkilt)</authors>
 		<licenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</licenseUrl>
 		<projectUrl>https://github.com/inflatablefriends/lastfm</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Simple Last.fm SDK for modern .NET platforms</description>
+		<description>Simple, portable Last.fm SDK for modern .NET platforms</description>
 		<copyright>Copyright 2014 Inflatable Friends</copyright>
 		<tags>lastfm last.fm inflatable friends sdk api</tags>
 		<dependencies>
