@@ -4,7 +4,7 @@ MIT licensed. Maintained by [@rikkilt](http://twitter.com/rikkilt).
 
 Feature request? Bug? Or just wanna help out? Check out [the issues on GitHub](https://github.com/inflatablefriends/lastfm/issues).
 
-If you have comments or need some help, post to our chat room on [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+If you have comments or need some help, post to our chat room on [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge).
 
 ## Project Goals
 
@@ -13,14 +13,16 @@ If you have comments or need some help, post to our chat room on [![Gitter](http
 - To be the very best, like no-one ever was.
 
 ## Quickstart
-### Acquiring the SDK
+### Installing the SDK
 
-You can either:
+If you want to work with the Last.fm API, you should install [the NuGet package](
+https://www.nuget.org/packages/Inflatable.Lastfm/). Search for ```Inflatable.Lastfm``` in the NuGet package browser or run this commmand in the NuGet package console:
 
-- clone this repo and build from source, referencing IF.Lastfm.Core in your project (requires a version of Visual Studio that supports portable class libraries - i.e. any version of VS 2012/2013 *except* 2012 Express)
-- download and reference the .dlls from the [latest release](https://github.com/inflatablefriends/lastfm/releases)
+```ps
+PM> Install-Package Inflatable.Lastfm
+```
 
-A NuGet package is coming soon.
+You can also clone this repo and build from source, referencing IF.Lastfm.Core in your project. Keep in mind this requires a version of Visual Studio that supports portable class libraries and PCL profile 259 - Visual Studio 2012/3 Pro or higher running on Windows 8 or higher.
 
 ### Using the SDK
 
