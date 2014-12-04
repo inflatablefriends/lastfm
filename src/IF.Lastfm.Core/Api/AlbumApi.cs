@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
         {
-            var command = new AlbumTopTagsCommand(Auth)
+            var command = new GetAlbumTopTagsCommand(Auth)
             {
                 ArtistName = artist,
                 AlbumName = album
