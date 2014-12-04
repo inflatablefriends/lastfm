@@ -136,6 +136,15 @@
   <data name="AlbumGetShoutsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>albumapi\albumgetshoutssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AlbumGetTopTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTopTags.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetTopTagsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTopTagsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetTopTagsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTopTagsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="AlbumSearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumSearch.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

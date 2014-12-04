@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
-    internal class AlbumTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
+    internal class GetAlbumTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
         public string AlbumMbid { get; set; }
 
@@ -22,13 +22,13 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 
         public bool Autocorrect { get; set; }
 
-        public AlbumTopTagsCommand(ILastAuth auth)
+        public GetAlbumTopTagsCommand(ILastAuth auth)
             : base(auth)
         {
             Method = "album.gettoptags";
         }
 
-        public AlbumTopTagsCommand(ILastAuth auth, string album, string artist)
+        public GetAlbumTopTagsCommand(ILastAuth auth, string album, string artist)
             : this(auth)
         {
             AlbumName = album;
