@@ -1,1 +1,8 @@
-{"error":6,"message":"Album not found","links":[]}
+{
+    "toptags":
+    {
+        "#text":"\n",
+        "artist":"Amit Sana",
+        "album":"Chal Diye"
+    }
+}
