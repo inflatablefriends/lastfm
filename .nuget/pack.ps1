@@ -16,12 +16,12 @@ else
 
 Write-Host "Setting .nuspec version tag to $versionStr"
 
-$content = (Get-Content $root\.nuget\IF.Lastfm.nuspec) 
+$content = (Get-Content $root\.nuget\Inflatable.Lastfm.nuspec) 
 $content = $content -replace '\$version',$versionStr
 
-$content | Out-File $root\.nuget\IF.Lastfm.$versionStr.compiled.nuspec
+$content | Out-File $root\.nuget\Inflatable.Lastfm.$versionStr.compiled.nuspec
 
-& $root\.nuget\NuGet.exe pack $root\.nuget\IF.Lastfm.$versionStr.compiled.nuspec
+& $root\.nuget\NuGet.exe pack $root\.nuget\Inflatable.Lastfm.$versionStr.compiled.nuspec
 
 # publish to appveyor feeds
-appveyor PushArtifact IF.Lastfm.$versionStr.nupkg
+appveyor PushArtifact Inflatable.Lastfm.$versionStr.nupkg
