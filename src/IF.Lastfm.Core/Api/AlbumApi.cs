@@ -46,9 +46,15 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
+        public async Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)
         {
-            throw new NotImplementedException();
+            var command = new GetAlbumTopTagsCommand(Auth)
+            {
+                ArtistName = artist,
+                AlbumName = album
+            };
+
+            return await command.ExecuteAsync();
         }
 
         public async Task<PageResponse<LastAlbum>> SearchForAlbumAsync(string albumname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
