@@ -55,7 +55,7 @@ namespace IF.Lastfm.Core.Api
             }
         }
 
-        public async Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname, string artistname, bool autocorrect = false, int page = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastShout>> GetShoutsForTrackAsync(string trackname, string artistname, bool autocorrect = false, int page = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTrackShoutsCommand(Auth, trackname, artistname)
                           {

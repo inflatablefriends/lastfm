@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Shout>> GetShoutsAsync(string albumname,
+        Task<PageResponse<LastShout>> GetShoutsAsync(string albumname,
             string artistname,
             bool autocorrect = false,
             int page = 1,

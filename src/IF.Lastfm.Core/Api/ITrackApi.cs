@@ -12,7 +12,7 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse> ScrobbleAsync(Scrobble scrobble);
         //Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble);
 
-        Task<PageResponse<Shout>> GetShoutsForTrackAsync(string trackname,
+        Task<PageResponse<LastShout>> GetShoutsForTrackAsync(string trackname,
             string artistname,
             bool autocorrect = false,
             int page = 0,

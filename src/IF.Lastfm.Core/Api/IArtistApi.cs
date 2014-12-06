@@ -38,7 +38,7 @@ namespace IF.Lastfm.Core.Api
 
         Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false);
 
-        Task<PageResponse<Shout>> GetShoutsForArtistAsync(string artistname,
+        Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artistname,
             int page = 0,
             int count = LastFm.DefaultPageLength,
             bool autocorrect = false);

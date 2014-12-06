@@ -94,7 +94,7 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public async Task<PageResponse<Shout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
+        public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
         {
             var command = new GetArtistShoutsCommand(Auth, artist)
                           {

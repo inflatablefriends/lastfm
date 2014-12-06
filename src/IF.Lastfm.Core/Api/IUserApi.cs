@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Api
             int pagenumber,
             int count = LastFm.DefaultPageLength);
 
-        Task<PageResponse<Shout>> GetShoutsAsync(string username,
+        Task<PageResponse<LastShout>> GetShoutsAsync(string username,
             int pagenumber,
             int count = LastFm.DefaultPageLength);
 

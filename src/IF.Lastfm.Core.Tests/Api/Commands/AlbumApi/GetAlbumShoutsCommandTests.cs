@@ -31,10 +31,10 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(parsed.Success);
             Assert.IsNotNull(parsed.Content);
 
-            var expectedShouts = new List<Shout>
+            var expectedShouts = new List<LastShout>
             {
-                new Shout("uhIgor", "Nunca vou cansar disso.", "Thu, 23 Oct 2014 02:20:30"),
-                new Shout("Zachary-K",
+                new LastShout("uhIgor", "Nunca vou cansar disso.", "Thu, 23 Oct 2014 02:20:30"),
+                new LastShout("Zachary-K",
                     "Oblivion is the best song on whole album. Maybe i dig it but i don't want to really. Or i'm not in the right mood for it.",
                     "Wed, 17 Sep 2014 21:04:36")
             };

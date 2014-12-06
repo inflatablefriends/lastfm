@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
-    internal class GetTrackShoutsCommand : GetAsyncCommandBase<PageResponse<Shout>>
+    internal class GetTrackShoutsCommand : GetAsyncCommandBase<PageResponse<LastShout>>
     {
         public string TrackName { get; set; }
 
@@ -36,7 +36,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             DisableCaching();
         }
 
-        public async override Task<PageResponse<Shout>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastShout>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -47,11 +47,11 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var itemsToken = jtoken.SelectToken("shout");
                 var pageInfoToken = jtoken.SelectToken("@attr");
 
-                return PageResponse<Shout>.CreateSuccessResponse(itemsToken, pageInfoToken, Shout.ParseJToken);
+                return PageResponse<LastShout>.CreateSuccessResponse(itemsToken, pageInfoToken, LastShout.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<Shout>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastShout>>(error);
             }
         }
     }

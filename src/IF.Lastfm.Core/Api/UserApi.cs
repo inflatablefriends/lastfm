@@ -65,7 +65,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
          
-        public async Task<PageResponse<Shout>> GetShoutsAsync(string username, int pagenumber, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastShout>> GetShoutsAsync(string username, int pagenumber, int count = LastFm.DefaultPageLength)
         {
             var command = new GetUserShoutsCommand(Auth, username)
                           {

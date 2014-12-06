@@ -3,7 +3,7 @@ using System;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class Shout : ILastfmObject
+    public class LastShout : ILastfmObject
     {
         #region Properties
 
@@ -15,20 +15,20 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
-        public Shout()
+        public LastShout()
         {
         }
 
-        public Shout(string author, string body, string time)
+        public LastShout(string author, string body, string time)
         {
             Author = author;
             Body = body;
             TimePosted = DateTime.Parse(time);
         }
 
-        public static Shout ParseJToken(JToken token)
+        public static LastShout ParseJToken(JToken token)
         {
-            var s = new Shout();
+            var s = new LastShout();
 
             s.Body = token.Value<string>("body");
             s.Author = token.Value<string>("author");
