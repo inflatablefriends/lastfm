@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [TestMethod]
         public void Constructor()
         {
-            Assert.AreEqual(_command.Method, "album.gettoptags");
+            Assert.AreEqual(_command.Method, "album.getTopTags");
             Assert.AreEqual(_command.Parameters["album"], "Believe");
             Assert.AreEqual(_command.Parameters["artist"], "Cher");
         }
