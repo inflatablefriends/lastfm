@@ -23,5 +23,5 @@ $content | Out-File $root\.nuget\Inflatable.Lastfm.$versionStr.compiled.nuspec
 
 & $root\.nuget\NuGet.exe pack $root\.nuget\Inflatable.Lastfm.$versionStr.compiled.nuspec
 
-# publish to appveyor feeds
-appveyor PushArtifact Inflatable.Lastfm.$versionStr.nupkg
+# publish to appveyor feeds //TODO fix this
+# appveyor PushArtifact Inflatable.Lastfm.$versionStr.nupkg
