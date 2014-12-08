@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
         public GetAlbumTopTagsCommand(ILastAuth auth)
             : base(auth)
         {
-            Method = "album.gettoptags";
+            Method = "album.getTopTags";
         }
 
         public GetAlbumTopTagsCommand(ILastAuth auth, string album, string artist)
