@@ -18,6 +18,14 @@ Once you have those installed, you can fork [the repo](https://github.com/inflat
 
 Right now we want to get all the API commands finished! So choose one [from this list](https://github.com/inflatablefriends/lastfm/blob/master/PROGRESS.md).
 
+## Branching
+
+In order to keep [the commit history](https://github.com/inflatablefriends/lastfm/commits/master) tidy, I might ```git squash``` commits from a PR before merging them in. This can cause problems with maintaining a fork: **if you send a PR from the master branch of your fork, then you will need to ```git pull --force``` after I merge in your changes**. To prevent this extra effort, you can either:
+
+1. Create a branch especially for your work, then send the PR from this branch. This means that any changes I make can never conflict with the master branch of your fork.
+2. Squash your own commits before the PR is merged in.
+  1. Multiple commits per PR is totally fine, as long as each single commit explains what it does. "Adds tests" is not as good a commit message as "Adds tests and JSON responses for GetAlbumShoutsCommand", for example.
+
 ### Writing a command
 
 The API is structured according to [the command pattern](http://en.wikipedia.org/wiki/Command_pattern). This is to reduce duplication of code and make testing easier.
