@@ -2,16 +2,12 @@
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
-
-
     [TestClass]
     public class GetAlbumTopTagsCommandTest : CommandTestsBase
     {
@@ -31,10 +27,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [TestMethod]
         public void Constructor()
         {
-            Assert.AreEqual(_command.Method, "album.gettoptags");
+            Assert.AreEqual(_command.Method, "album.getTopTags");
             Assert.AreEqual(_command.Parameters["album"], "Believe");
             Assert.AreEqual(_command.Parameters["artist"], "Cher");
-
         }
 
         [TestMethod]
@@ -48,7 +43,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsNotNull(parsed.Content);
 
         }
-
 
         [TestMethod]
         public async Task HandleEmptyResponse()
@@ -75,6 +69,4 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(!parsed.Content.Any());
         }
     }
-
-
 }
