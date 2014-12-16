@@ -21,6 +21,10 @@ namespace IF.Lastfm.Core.Api
             string album,
             string username,
             bool autocorrect = false);
+        
+        Task<PageResponse<LastTag>> GetUserTagsForAlbumAsync(string artist,
+           string album,
+           bool autocorrect = false);
 
         Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist,
             string album,
