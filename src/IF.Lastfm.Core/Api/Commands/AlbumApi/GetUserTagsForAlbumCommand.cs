@@ -23,15 +23,11 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
         public string UserName { get; set; }
         public bool Autocorrect { get; set; }
 
-        public GetUserTagsForAlbumCommand(ILastAuth auth)
+        public GetUserTagsForAlbumCommand(ILastAuth auth, string album, string artist, string username)
             : base(auth)
         {
             Method = "album.getTags";
-        }
 
-        public GetUserTagsForAlbumCommand(ILastAuth auth, string album, string artist, string username)
-            : this(auth)
-        {
             AlbumName = album;
             ArtistName = artist;
             UserName = username;
