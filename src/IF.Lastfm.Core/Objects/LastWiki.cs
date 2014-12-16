@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
 {
-    public class LastBio : ILastfmObject
+    public class LastWiki : ILastfmObject
     {
         #region Properties
 
@@ -18,9 +18,9 @@ namespace IF.Lastfm.Core.Objects
 
         #endregion
 
-        internal static LastBio ParseJToken(JToken token)
+        internal static LastWiki ParseJToken(JToken token)
         {
-            return new LastBio
+            return new LastWiki
             {
                 Published = token.Value<DateTime>("published"),
                 Summary = token.Value<string>("summary").Trim(),

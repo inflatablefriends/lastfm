@@ -14,7 +14,7 @@ namespace IF.Lastfm.Core.Objects
 
         public string Id { get; set; }
         public string Name { get; set; }
-        public LastBio Bio { get; set; }
+        public LastWiki Bio { get; set; }
         public string Mbid { get; set; }
         public Uri Url { get; set; }
         public bool OnTour { get; set; }
@@ -44,7 +44,7 @@ namespace IF.Lastfm.Core.Objects
             var bioToken = token.SelectToken("bio");
             if (bioToken != null)
             {
-                a.Bio = LastBio.ParseJToken(bioToken);
+                a.Bio = LastWiki.ParseJToken(bioToken);
             }
 
             var tagsToken = token.SelectToken("tags");
