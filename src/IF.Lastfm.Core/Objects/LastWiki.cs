@@ -20,13 +20,18 @@ namespace IF.Lastfm.Core.Objects
 
         internal static LastWiki ParseJToken(JToken token)
         {
-            return new LastWiki
+            var wiki = new LastWiki
             {
-                Published = token.Value<DateTime>("published"),
                 Summary = token.Value<string>("summary").Trim(),
                 Content = token.Value<string>("content").Trim(),
                 YearFormed = token.Value<int>("yearformed")
             };
+            try
+            {
+                wiki.Published = token.Value<DateTime>("published");
+            }
+            catch { }
+            return wiki;
         }
     }
 }
