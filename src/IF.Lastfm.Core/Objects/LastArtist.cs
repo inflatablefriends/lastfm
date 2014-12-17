@@ -14,11 +14,12 @@ namespace IF.Lastfm.Core.Objects
 
         public string Id { get; set; }
         public string Name { get; set; }
+        public LastWiki Bio { get; set; }
         public string Mbid { get; set; }
         public Uri Url { get; set; }
         public bool OnTour { get; set; }
         public IEnumerable<LastTag> Tags { get; set; }
-
+        public List<LastArtist> Similar { get; set; }
         public LastImageSet MainImage { get; set; }
 
         #endregion
@@ -39,7 +40,13 @@ namespace IF.Lastfm.Core.Objects
             a.Url = new Uri(url, UriKind.Absolute);
 
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
-            
+
+            var bioToken = token.SelectToken("bio");
+            if (bioToken != null)
+            {
+                a.Bio = LastWiki.ParseJToken(bioToken);
+            }
+
             var tagsToken = token.SelectToken("tags");
             if (tagsToken != null)
             {
@@ -59,7 +66,28 @@ namespace IF.Lastfm.Core.Objects
                 var imageCollection = LastImageSet.ParseJToken(images);
                 a.MainImage = imageCollection;
             }
-            
+
+            a.Similar = new List<LastArtist>();
+            var similarToken = token.SelectToken("similar");
+            if (similarToken != null)
+            {
+                var similarArtists = similarToken.SelectToken("artist");
+                if (similarArtists != null && similarArtists.Children().Any())
+                {
+                    // array notation isn't used on the api when only one object is available
+                    if (similarArtists.Type != JTokenType.Array)
+                    {
+                        var item = ParseJToken(similarArtists);
+                        a.Similar.Add(item);
+                    }
+                    else
+                    {
+                        var items = similarArtists.Children().Select(ParseJToken);
+                        a.Similar.AddRange(items);
+                    }
+                }
+            }
+
             return a;
         }
 
