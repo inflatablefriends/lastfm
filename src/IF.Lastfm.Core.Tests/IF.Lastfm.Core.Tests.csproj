@@ -79,6 +79,7 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommandTest.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
+    <Compile Include="Api\Commands\Library\GetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
@@ -90,6 +91,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlbumApiResponses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\LibraryApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryApiResponses.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\TrackApiResponses.Designer.cs">
       <DependentUpon>TrackApiResponses.resx</DependentUpon>
@@ -116,6 +122,7 @@
     <None Include="Resources\AlbumApi\AlbumSearchError.json" />
     <None Include="Resources\AlbumApi\AlbumSearchSingle.json" />
     <None Include="Resources\AlbumApi\AlbumGetTopTags.json" />
+    <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
@@ -132,6 +139,10 @@
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
