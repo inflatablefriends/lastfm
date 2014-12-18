@@ -26,11 +26,10 @@ namespace IF.Lastfm.Core.Objects
                 Content = token.Value<string>("content").Trim(),
                 YearFormed = token.Value<int>("yearformed")
             };
-            try
-            {
+            
+            if (!string.IsNullOrEmpty(token.Value<string>("published")))
                 wiki.Published = token.Value<DateTime>("published");
-            }
-            catch { }
+                
             return wiki;
         }
     }
