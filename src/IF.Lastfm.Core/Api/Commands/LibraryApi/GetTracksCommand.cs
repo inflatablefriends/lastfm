@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.LibraryApi
 {
@@ -52,13 +53,9 @@ namespace IF.Lastfm.Core.Api.Commands.LibraryApi
 
                 var tracksToken = jtoken.SelectToken("track");
 
-                var tracks = new List<LastTrack>();
-                foreach (var track in tracksToken.Children())
-                {
-                    var t = LastTrack.ParseJToken(track);
-                    
-                    tracks.Add(t);
-                }
+                IEnumerable<LastTrack> tracks = tracksToken.Type == JTokenType.Array
+                    ? tracksToken.Children().Select(t => LastTrack.ParseJToken(t))
+                    : new List<LastTrack>() { LastTrack.ParseJToken(tracksToken) };
 
                 var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
 

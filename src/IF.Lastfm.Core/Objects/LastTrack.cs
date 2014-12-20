@@ -52,6 +52,10 @@ namespace IF.Lastfm.Core.Objects
             t.Id = token.Value<string>("id");
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
+
+            //0 to null
+            t.TotalPlayCount = token.Value<int?>("playcount");
+
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
 
             var artistToken = token.SelectToken("artist");
