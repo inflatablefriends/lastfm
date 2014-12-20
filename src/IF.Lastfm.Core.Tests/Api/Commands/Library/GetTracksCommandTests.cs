@@ -20,19 +20,10 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
         public GetTracksCommandTests()
         {
 
-
             _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
             {
                 Count = 1
-            };
-            //_command = new GetTracksCommand(MAuth.Object, )
-            //{
-            //    AlbumName = "Ray of Light",
-            //    ArtistName = "Madonna"
-            //};
-        //_command.SetParameters();
-
-            
+            };            
         }
 
 

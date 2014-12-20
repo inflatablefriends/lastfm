@@ -53,16 +53,10 @@ namespace IF.Lastfm.Core.Api.Commands.LibraryApi
 
                 var tracksToken = jtoken.SelectToken("track");
 
-                IEnumerable<LastTrack> tracks = tracksToken.Type == JTokenType.Array
-                    ? tracksToken.Children().Select(t => LastTrack.ParseJToken(t))
-                    : new List<LastTrack>() { LastTrack.ParseJToken(tracksToken) };
+                var pageInfoToken = jtoken.SelectToken("@attr");
+ 
+                return PageResponse<LastTrack>.CreateSuccessResponse(tracksToken, pageInfoToken, LastTrack.ParseJToken, false);
 
-                var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
-
-                var attrToken = jtoken.SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
-
-                return pageresponse;
             }
             else
             {
