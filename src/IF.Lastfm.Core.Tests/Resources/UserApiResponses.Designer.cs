@@ -22,14 +22,14 @@ namespace IF.Lastfm.Core.Tests.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LibraryApiResponses {
+    internal class UserApiResponses {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LibraryApiResponses() {
+        internal UserApiResponses() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace IF.Lastfm.Core.Tests.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IF.Lastfm.Core.Tests.Resources.LibraryApiResponses", typeof(LibraryApiResponses).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("IF.Lastfm.Core.Tests.Resources.UserApiResponses", typeof(UserApiResponses).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LibraryGetTracksMultiple {
+        internal static byte[] UserGetRecentTracksEmpty {
             get {
-                object obj = ResourceManager.GetObject("LibraryGetTracksMultiple", resourceCulture);
+                object obj = ResourceManager.GetObject("UserGetRecentTracksEmpty", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,39 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] LibraryGetTracksSingle {
+        internal static byte[] UserGetRecentTracksError {
             get {
-                object obj = ResourceManager.GetObject("LibraryGetTracksSingle", resourceCulture);
+                object obj = ResourceManager.GetObject("UserGetRecentTracksError", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetRecentTracksMissing {
+            get {
+                object obj = ResourceManager.GetObject("UserGetRecentTracksMissing", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetRecentTracksMultiple {
+            get {
+                object obj = ResourceManager.GetObject("UserGetRecentTracksMultiple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetRecentTracksSingle {
+            get {
+                object obj = ResourceManager.GetObject("UserGetRecentTracksSingle", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -118,10 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LibraryGetTracksMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>libraryapi\librarygettracksmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="UserGetRecentTracksEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergetrecenttracksempty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="LibraryGetTracksSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>libraryapi\librarygettrackssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="UserGetRecentTracksError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergetrecenttrackserror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetRecentTracksMissing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergetrecenttracksmissing.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetRecentTracksMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergetrecenttracksmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetRecentTracksSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetRecentTracksSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
