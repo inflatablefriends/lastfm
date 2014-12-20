@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
@@ -41,16 +42,31 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recenttracks");
+                
+
+
+
+                IEnumerable<LastTrack> tracks;
 
                 var tracksToken = jtoken.SelectToken("track");
 
-                var tracks = new List<LastTrack>();
-                foreach (var track in tracksToken.Children())
-                {
-                    var t = LastTrack.ParseJToken(track);
+               
+                tracks = tracksToken.Type == JTokenType.Array
+                    ? tracksToken.Children().Select(t => LastTrack.ParseJToken(t))
+                    : new List<LastTrack>() { LastTrack.ParseJToken(tracksToken) };
+
+
+                
+
+
+
+                //var tracks = new List<LastTrack>();
+                //foreach (var track in tracksToken.Children())
+                //{
+                //    var t = LastTrack.ParseJToken(track);
                     
-                    tracks.Add(t);
-                }
+                //    tracks.Add(t);
+                //}
 
                 var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
 

@@ -9,6 +9,7 @@ using IF.Lastfm.Core.Api.Commands.LibraryApi;
 using IF.Lastfm.Core.Objects;
 using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.UserApi
 {
@@ -17,8 +18,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.UserApi
     {
         private GetRecentScrobblesCommand _command;
 
-        private const string apiKey = "a6ab4b9376e54cdb06912bfbd9c1f288";
-private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
+        //private const string apiKey = "a6ab4b9376e54cdb06912bfbd9c1f288";
+        //private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 
         public GetRecentScrobblesCommandTests()
         {
@@ -27,9 +28,6 @@ private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
                 Count = 1
             };
         }
-
-
-       
 
 
         [TestMethod]
@@ -69,10 +67,13 @@ private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
             {
                 ArtistName = "Rick James",
                // Duration = new TimeSpan(0, 3, 47),
-                TotalPlayCount = 81,
-                Mbid = "f22c19bf-1c88-4651-a0d3-8c50735f3c93",
+                //TotalPlayCount = 81,
+                Mbid = "",
                 Name = "Super Freak (Part 1) - 1981 Single Version",
                 ArtistMbid = "cba9cec2-be8d-41bd-91b4-a1cd7de39b0c",
+
+                TimePlayed = new DateTime(2014,12,20,10,16,52, DateTimeKind.Utc),
+                AlbumName = "The Definitive Collection",
                 Url = new Uri("http://www.last.fm/music/Rick+James/_/Super+Freak+(Part+1)+-+1981+Single+Version", UriKind.Absolute),
 
                // Id = "1934",
@@ -85,20 +86,10 @@ private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
             };
 
 
-            await CheckResult_Single(_command, expectedTrack, UserApiResponses.UserGetRecentTracksSingle);
-            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksSingle));
-            //var parsed = await _command.HandleResponse(response);
+            var expected = new List<LastTrack> { expectedTrack };
 
-            //Assert.IsTrue(parsed.Success);
+            await CheckResult_Single(_command, expected, UserApiResponses.UserGetRecentTracksSingle);
 
-            //var actual = parsed.Content;
-
-            ////Check if object not array
-
-            //var expectedJson = JsonConvert.SerializeObject(expectedTrack, Formatting.Indented);
-            //var actualJson = JsonConvert.SerializeObject(parsed.Content, Formatting.Indented);
-
-            //Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
         [TestMethod]
@@ -114,56 +105,3 @@ private const string apiSecret = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 
     }
 }
-
-//namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
-//{
-//    [TestClass]
-//    public class GetTracksCommandTests : CommandTestsBase
-//    {
-//        private GetTracksCommand _command;
-
-      
-
-
-//        [TestMethod]
-//        public async Task HandleSuccessResponseSingleTrack()
-//        {
-           
-                
-//            var expectedTrack = new LastTrack
-//            {
-//                ArtistName = "Dire Straits",
-//                Duration = new TimeSpan(0, 3, 47),
-//                TotalPlayCount = 81,
-//                Mbid = "0317e524-7f70-4910-bc12-95dd468a29fc",
-//                Name = "Sultans of Swing",
-//                ArtistMbid = "614e3804-7d34-41ba-857f-811bad7c2b7a",
-//                Url = new Uri("http://www.last.fm/music/Dire+Straits/_/Sultans+of+Swing", UriKind.Absolute),
-
-//                Id = "1934",
-//                Images = new LastImageSet(
-//                    "http://userserve-ak.last.fm/serve/34s/56827829.jpg",
-//                    "http://userserve-ak.last.fm/serve/64s/56827829.jpg",
-//                    "http://userserve-ak.last.fm/serve/126/56827829.jpg",
-//                    "http://userserve-ak.last.fm/serve/300x300/56827829.jpg")
-                    
-//            };
-
-//            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksSingle));
-//            var parsed = await _command.HandleResponse(response);
-
-//            Assert.IsTrue(parsed.Success);
-
-//            var actual = parsed.Content;
-//            Assert.IsTrue(actual.Count() == 1);
-//            actual = null;
-
-//            var expectedJson = JsonConvert.SerializeObject(expectedTrack, Formatting.Indented);
-//            var actualJson = JsonConvert.SerializeObject(parsed.Content, Formatting.Indented);
-
-//            Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
-//        }
-
-       
-//    }
-//}
