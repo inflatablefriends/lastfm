@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using IF.Lastfm.Core.Api.Commands.LibraryApi;
+﻿using IF.Lastfm.Core.Api.Commands.LibraryApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
-namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
+namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
     [TestClass]
-    public class GetTracksCommandTests : CommandTestsBase
+    public class LibraryGetTracksCommandTests : CommandTestsBase
     {
-        private GetTracksCommand _command;
+        private readonly LibraryGetTracksCommand _command;
 
-        public GetTracksCommandTests()
+        public LibraryGetTracksCommandTests()
         {
-
-            _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
+            _command = new LibraryGetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
             {
                 Count = 1
             };            
         }
-
-
-
+        
         [TestMethod]
-        public async Task HandleSuccessResponse_Library_GetTracks_Multiple()
+        public async Task HandleResponseMultiple()
         {
             //Testing the second track returned
             var expectedTrack = new LastTrack
@@ -37,14 +32,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
                 ArtistName = "Stevie Wonder",
                 Duration = new TimeSpan(0, 4, 8),
                 TotalPlayCount = 56,
-                //TimePlayed = new DateTime(2014, 12, 19, 16, 13, 55, DateTimeKind.Utc),
                 Mbid = "0161855d-0b98-4f2d-b2ab-446dbd8d6759",
                 Name = "Superstition",
                 ArtistMbid = "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
                 AlbumName = "Number Ones",
                 Url = new Uri("http://www.last.fm/music/Stevie+Wonder/_/Superstition", UriKind.Absolute),
-
-                // Id = "1934",
                 Images = new LastImageSet(
                     "http://userserve-ak.last.fm/serve/34s/99695819.jpg",
                     "http://userserve-ak.last.fm/serve/64s/99695819.jpg",
@@ -53,14 +45,12 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
 
             };
 
-
-            await CheckResult_MultipleSample(_command, expectedTrack, 1, LibraryApiResponses.LibraryGetTracksMultiple);
+            await CompareResultsMultiple(_command, expectedTrack, LibraryApiResponses.LibraryGetTracksMultiple, 1);
         }
 
         [TestMethod]
-        public async Task HandleSuccessResponse_Library_GetTracks_Single()
+        public async Task HandleResponseSingle()
         {
-            //Broken until single objects work in the parser
             var expectedTrack = new LastTrack
             {
                 ArtistName = "Dire Straits",
@@ -71,24 +61,18 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.LibraryApi
                 ArtistMbid = "614e3804-7d34-41ba-857f-811bad7c2b7a",
                 AlbumName = "Dire Straits (Remastered)",
                 Url = new Uri("http://www.last.fm/music/Dire+Straits/_/Sultans+of+Swing", UriKind.Absolute),
-
-                //Id = "1934",
                 Images = new LastImageSet(
                     "http://userserve-ak.last.fm/serve/34s/56827829.jpg",
                     "http://userserve-ak.last.fm/serve/64s/56827829.jpg",
                     "http://userserve-ak.last.fm/serve/126/56827829.jpg",
                     "http://userserve-ak.last.fm/serve/300x300/56827829.jpg")
-
             };
-
 
             var expected = new List<LastTrack> { expectedTrack };
 
-            await CheckResult_Single(_command, expected, LibraryApiResponses.LibraryGetTracksSingle);
-
+            await CompareResultsSingle(_command, expected, LibraryApiResponses.LibraryGetTracksSingle);
         }
-
-
+        
         [TestMethod]
         public async Task HandleErrorResponse()
         {

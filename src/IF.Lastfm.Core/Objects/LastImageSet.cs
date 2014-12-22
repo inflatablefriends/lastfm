@@ -11,7 +11,7 @@ namespace IF.Lastfm.Core.Objects
         {
         }
 
-        public LastImageSet(string s, string m, string l, string xl, string xxl=null)
+        public LastImageSet(string s, string m, string l, string xl, string xxl = null)
         {
             Small = new Uri(s);
             Medium = new Uri(m);
@@ -19,7 +19,9 @@ namespace IF.Lastfm.Core.Objects
             ExtraLarge = new Uri(xl);
 
             if (xxl != null)
+            {
                 Mega = new Uri(xxl);
+            }
         }
 
         public Uri Small { get; set; }

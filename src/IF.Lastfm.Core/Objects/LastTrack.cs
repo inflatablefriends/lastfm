@@ -34,11 +34,7 @@ namespace IF.Lastfm.Core.Objects
         public int? Rank { get; set; }
 
         #endregion
-
-        public LastTrack()
-        {
-        }
-
+        
         /// <summary>
         /// Parses the given JToken into a track
         /// </summary>

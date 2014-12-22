@@ -31,45 +31,34 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             return response;
         }
 
-        public void CheckResult(object expected, object actual)
+        private static void JsonCompare(object expected, object actual)
         {
             var expectedJson = JsonConvert.SerializeObject(expected, Formatting.Indented);
             var actualJson = JsonConvert.SerializeObject(actual, Formatting.Indented);
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
-
-
         }
 
-        public async Task CheckResult_Single(GetAsyncCommandBase<PageResponse<LastTrack>> _command, object expected, byte[] Data) 
+        protected async Task CompareResultsSingle(GetAsyncCommandBase<PageResponse<LastTrack>> command, object expected, byte[] resource) 
         {
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(resource));
 
-
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(Data));
-            //Check if object not array
-            var parsed = await _command.HandleResponse(response);
+            var parsed = await command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
-
             var actual = parsed.Content;
-
-            CheckResult(expected, actual);
-
+            JsonCompare(expected, actual);
         }
 
-        public async Task CheckResult_MultipleSample(GetAsyncCommandBase<PageResponse<LastTrack>> _command, object expected, int arrayID, byte[] Data) 
+        protected async Task CompareResultsMultiple(GetAsyncCommandBase<PageResponse<LastTrack>> command, object expected, byte[] resource, int itemIndex) 
         {
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(resource));
 
-
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(Data));
-            var parsed = await _command.HandleResponse(response);
+            var parsed = await command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
-
-            var actual = parsed.Content[arrayID];
-
-            CheckResult(expected, actual);
-
+            var actual = parsed.Content[itemIndex];
+            JsonCompare(expected, actual);
         }
     }
 }

@@ -9,33 +9,25 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace IF.Lastfm.Core.Api.Commands.LibraryApi
+namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
+    internal class UserGetRecentTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string Username { get; private set; }
 
-        public string Artist { get; private set; }
-
-        public string Album { get; private set; }
-
         public DateTime From { get; private set; }
 
-        public GetTracksCommand(ILastAuth auth, string username, string artist, string album, DateTime from) : base(auth)
+        public UserGetRecentTracksCommand(ILastAuth auth, string username, DateTime from) : base(auth)
         {
-            Method = "library.getTracks";
+            Method = "user.getRecentTracks";
 
             Username = username;
-            Artist = artist;
-            Album = album;
             From = from;
         }
 
         public override void SetParameters()
         {
             Parameters.Add("user", Username);
-            Parameters.Add("artist", Artist);
-            Parameters.Add("album", Album);
             Parameters.Add("from", From.ToUnixTimestamp().ToString());
 
             AddPagingParameters();
@@ -49,14 +41,11 @@ namespace IF.Lastfm.Core.Api.Commands.LibraryApi
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("tracks");
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recenttracks");
+                var itemsToken = jtoken.SelectToken("track");
+                var attrToken = jtoken.SelectToken("@attr");
 
-                var tracksToken = jtoken.SelectToken("track");
-
-                var pageInfoToken = jtoken.SelectToken("@attr");
- 
-                return PageResponse<LastTrack>.CreateSuccessResponse(tracksToken, pageInfoToken, LastTrack.ParseJToken, false);
-
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, attrToken, LastTrack.ParseJToken, false);
             }
             else
             {

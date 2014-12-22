@@ -87,8 +87,6 @@
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
     <Compile Include="LastFmTests.cs" />
-    <Compile Include="Objects\ObjectsTestsBase.cs" />
-    <Compile Include="Objects\LastTrackTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AlbumApiResponses.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -157,6 +155,7 @@
     <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
