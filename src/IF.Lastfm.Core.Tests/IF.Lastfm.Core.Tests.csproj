@@ -79,9 +79,9 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommandTest.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
-    <Compile Include="Api\Commands\Library\GetTracksCommandTests.cs" />
+    <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
-    <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommandTests.cs" />
+    <Compile Include="Api\Commands\UserApi\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
