@@ -7,16 +7,17 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.UserApi
 {
-    internal class GetRecentScrobblesCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
+    internal class UserGetRecentTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string Username { get; private set; }
 
         public DateTime From { get; private set; }
 
-        public GetRecentScrobblesCommand(ILastAuth auth, string username, DateTime from) : base(auth)
+        public UserGetRecentTracksCommand(ILastAuth auth, string username, DateTime from) : base(auth)
         {
             Method = "user.getRecentTracks";
 
@@ -40,24 +41,11 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recenttracks");
-
-                var tracksToken = jtoken.SelectToken("track");
-
-                var tracks = new List<LastTrack>();
-                foreach (var track in tracksToken.Children())
-                {
-                    var t = LastTrack.ParseJToken(track);
-                    
-                    tracks.Add(t);
-                }
-
-                var pageresponse = PageResponse<LastTrack>.CreateSuccessResponse(tracks);
-
+                var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recenttracks");
+                var itemsToken = jtoken.SelectToken("track");
                 var attrToken = jtoken.SelectToken("@attr");
-                pageresponse.AddPageInfoFromJToken(attrToken);
 
-                return pageresponse;
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, attrToken, LastTrack.ParseJToken, false);
             }
             else
             {

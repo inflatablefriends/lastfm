@@ -79,7 +79,9 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommandTest.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
+    <Compile Include="Api\Commands\Library\GetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
+    <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
@@ -91,10 +93,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AlbumApiResponses.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\LibraryApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibraryApiResponses.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\TrackApiResponses.Designer.cs">
       <DependentUpon>TrackApiResponses.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Resources\UserApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserApiResponses.resx</DependentUpon>
     </Compile>
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
@@ -116,10 +128,17 @@
     <None Include="Resources\AlbumApi\AlbumSearchError.json" />
     <None Include="Resources\AlbumApi\AlbumSearchSingle.json" />
     <None Include="Resources\AlbumApi\AlbumGetTopTags.json" />
+    <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
+    <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsSingle.json" />
+    <None Include="Resources\UserApi\UserGetRecentTracksEmpty.json" />
+    <None Include="Resources\UserApi\UserGetRecentTracksError.json" />
+    <None Include="Resources\UserApi\UserGetRecentTracksMissing.json" />
+    <None Include="Resources\UserApi\UserGetRecentTracksMultiple.json" />
+    <None Include="Resources\UserApi\UserGetRecentTracksSingle.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj">
@@ -133,9 +152,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UserApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>

@@ -102,6 +102,11 @@ namespace IF.Lastfm.Core.Objects
                 name = albumToken.Value<string>("#text");
             }
 
+            if (string.IsNullOrEmpty(name))
+            {
+                name = albumToken.Value<string>("name"); // Used in Library track lists
+            }
+
             return name;
         }
     }
