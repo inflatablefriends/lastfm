@@ -39,14 +39,7 @@ namespace IF.Lastfm.Core.Api.Commands
             }
             catch (HttpRequestException)
             {
-                if (LastFm.CatchRequestExceptions)
-                {
-                    return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
-                }
-                else
-                {
-                    throw;
-                }
+                return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace IF.Lastfm.Core.Api.Commands
             Auth = auth;
         }
 
-        public async override Task<T> ExecuteAsync()
+        public override async Task<T> ExecuteAsync()
         {
             SetParameters();
 
@@ -30,14 +30,7 @@ namespace IF.Lastfm.Core.Api.Commands
             }
             catch (HttpRequestException)
             {
-                if (LastFm.CatchRequestExceptions)
-                {
-                    return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
         }
 
