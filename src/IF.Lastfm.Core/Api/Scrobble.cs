@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Api
         public Scrobble(string artist, string album, string track, DateTime timeplayed, TimeSpan duration,
             string albumartist = "", bool chosenByUser = true) : this(artist, album, track, timeplayed, albumartist, chosenByUser)
         {
-            Duration = TimeSpan.Zero;
+            Duration = duration;
         }
     }
 }
