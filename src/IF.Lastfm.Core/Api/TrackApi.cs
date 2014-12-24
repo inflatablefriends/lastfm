@@ -22,9 +22,6 @@ namespace IF.Lastfm.Core.Api
         {
             const string apiMethod = "track.scrobble";
 
-            if (Auth.UserSession == null) 
-                return LastResponse.CreateErrorResponse<LastResponse>(LastFmApiError.BadAuth);
-
             var methodParameters = new Dictionary<string, string>
             {
                 {"artist", scrobble.Artist},
@@ -32,8 +29,7 @@ namespace IF.Lastfm.Core.Api
                 {"track", scrobble.Track},
                 {"albumArtist", scrobble.AlbumArtist},
                 {"chosenByUser", Convert.ToInt32(scrobble.ChosenByUser).ToString()},
-                {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()},
-                {"sk", Auth.UserSession.Token}
+                {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()}
             };
 
             var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
