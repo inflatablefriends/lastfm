@@ -24,11 +24,48 @@ namespace IF.Lastfm.Core.Api
 
             var methodParameters = new Dictionary<string, string>
             {
+                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : scrobble.Duration.TotalSeconds.ToString()},
                 {"artist", scrobble.Artist},
                 {"album", scrobble.Album},
                 {"track", scrobble.Track},
                 {"albumArtist", scrobble.AlbumArtist},
                 {"chosenByUser", Convert.ToInt32(scrobble.ChosenByUser).ToString()},
+                {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()}
+            };
+
+            var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
+
+            var postContent = LastFm.CreatePostBody(apiMethod,
+                Auth.ApiKey,
+                apisig,
+                methodParameters);
+
+            var httpClient = new HttpClient();
+            HttpResponseMessage response = await httpClient.PostAsync(LastFm.ApiRoot, postContent);
+            string json = await response.Content.ReadAsStringAsync();
+
+            LastFmApiError error;
+            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            {
+                return LastResponse.CreateSuccessResponse();
+            }
+            else
+            {
+                return LastResponse.CreateErrorResponse<LastResponse>(error);
+            }
+        }
+
+        public async Task<LastResponse> UpdateNowPlayingAsync(Scrobble scrobble)
+        {
+            const string apiMethod = "track.updateNowPlaying";
+
+            var methodParameters = new Dictionary<string, string>
+            {
+                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : scrobble.Duration.TotalSeconds.ToString()},
+                {"artist", scrobble.Artist},
+                {"album", scrobble.Album},
+                {"track", scrobble.Track},
+                {"albumArtist", scrobble.AlbumArtist},
                 {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()}
             };
 
