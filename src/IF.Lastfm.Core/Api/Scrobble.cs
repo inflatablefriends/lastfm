@@ -16,15 +16,22 @@ namespace IF.Lastfm.Core.Api
 
         #endregion
 
-        public Scrobble(string artist, string album, string track, DateTime timeplayed,
+        public Scrobble(string artist, string album, string track,
             string albumartist = "", bool chosenByUser = true)
         {
             Artist = artist;
             Album = album;
             Track = track;
-            TimePlayed = timeplayed;
             AlbumArtist = string.IsNullOrWhiteSpace(albumartist) ? artist : albumartist;
             ChosenByUser = chosenByUser;
+        }
+
+        public Scrobble(string artist, string album, string track, DateTime timeplayed,
+            string albumartist = "", bool chosenByUser = true)
+            : this(artist, album, track, albumartist, chosenByUser)
+        {
+
+            TimePlayed = timeplayed;
         }
 
         public Scrobble(string artist, string album, string track, DateTime timeplayed, TimeSpan duration,

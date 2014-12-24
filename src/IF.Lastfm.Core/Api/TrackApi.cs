@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Api
 
             var methodParameters = new Dictionary<string, string>
             {
-                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : scrobble.Duration.TotalSeconds.ToString()},
+                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : ((int)scrobble.Duration.TotalSeconds).ToString()},
                 {"artist", scrobble.Artist},
                 {"album", scrobble.Album},
                 {"track", scrobble.Track},
@@ -61,12 +61,11 @@ namespace IF.Lastfm.Core.Api
 
             var methodParameters = new Dictionary<string, string>
             {
-                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : scrobble.Duration.TotalSeconds.ToString()},
+                {"duration", scrobble.Duration.TotalSeconds == 0 ? "" : ((int)scrobble.Duration.TotalSeconds).ToString()},
                 {"artist", scrobble.Artist},
                 {"album", scrobble.Album},
                 {"track", scrobble.Track},
-                {"albumArtist", scrobble.AlbumArtist},
-                {"timestamp", scrobble.TimePlayed.ToUnixTimestamp().ToString()}
+                {"albumArtist", scrobble.AlbumArtist}
             };
 
             var apisig = Auth.GenerateMethodSignature(apiMethod, methodParameters);
