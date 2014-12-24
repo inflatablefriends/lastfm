@@ -29,7 +29,7 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         public static int ToUnixTimestamp(this DateTime dt)
         {
-            var d = (dt - new DateTime(1970, 1, 1).ToUniversalTime()).TotalSeconds;
+            var d = (dt - new DateTime(1970, 1, 1)).TotalSeconds;
 
             return Convert.ToInt32(d);
         }
