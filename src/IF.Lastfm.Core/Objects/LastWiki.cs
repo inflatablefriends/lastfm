@@ -27,6 +27,8 @@ namespace IF.Lastfm.Core.Objects
                 YearFormed = token.Value<int>("yearformed")
             };
             
+            //Artist that do not contain an official bio will come with an empty published property.
+            //To avoid a parse exception, check if is null or empty.
             if (!string.IsNullOrEmpty(token.Value<string>("published")))
                 wiki.Published = token.Value<DateTime>("published");
                 
