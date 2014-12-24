@@ -22,6 +22,9 @@ namespace IF.Lastfm.Core.Api
         {
             const string apiMethod = "track.scrobble";
 
+            if (Auth.UserSession == null) 
+                return LastResponse.CreateErrorResponse<LastResponse>(LastFmApiError.BadAuth);
+
             var methodParameters = new Dictionary<string, string>
             {
                 {"artist", scrobble.Artist},
