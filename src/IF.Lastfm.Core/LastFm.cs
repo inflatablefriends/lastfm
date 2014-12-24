@@ -27,17 +27,6 @@ namespace IF.Lastfm.Core
         
         #endregion
         
-        /// <summary>
-        /// Determines whether commands should throw HttpRequestExceptions or wrap them
-        /// in the response.
-        /// 
-        /// Using this can make client code neater, but it violates the principles of 
-        /// separation of concerns and single responsibility a bit. This property won't
-        /// get removed but please only use it if you understand what it does!
-        /// </summary>
-        [Obsolete]
-        public static bool CatchRequestExceptions { get; set; }
-
         #region Api helper methods
 
         public static string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.UserApi;
+﻿using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
+using System;
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -16,14 +16,6 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        /// <summary>
-        /// Gets the top albums for the given user.
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="span"></param>
-        /// <param name="pagenumber"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
         public async Task<PageResponse<LastAlbum>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTopAlbumsCommand(Auth, username, span)
@@ -35,17 +27,9 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        /// <summary>
-        /// Gets scrobbles and stuff
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="since"></param>
-        /// <param name="pagenumber"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
         public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new GetRecentScrobblesCommand(Auth, username, since)
+            var command = new UserGetRecentTracksCommand(Auth, username, since)
                           {
                               Page = pagenumber,
                               Count = count

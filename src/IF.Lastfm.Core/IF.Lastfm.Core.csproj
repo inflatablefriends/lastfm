@@ -41,7 +41,9 @@
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
+    <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecommendedArtistsCommand.cs" />
+    <Compile Include="Api\ILibraryApi.cs" />
     <Compile Include="Api\LastAuth.cs" />
     <Compile Include="Api\ChartApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\AddShoutCommand.cs" />
@@ -70,7 +72,7 @@
     <Compile Include="Api\Commands\TrackApi\SearchTracksCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\UnloveTrackCommand.cs" />
     <Compile Include="Api\Commands\UserApi\AddShoutCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\GetRecentScrobblesCommand.cs" />
+    <Compile Include="Api\Commands\UserApi\UserGetRecentTracksCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecentStationsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
     <Compile Include="Api\Commands\UserApi\GetUserInfoCommand.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Api\IChartApi.cs" />
     <Compile Include="Api\ITrackApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
+    <Compile Include="Api\LibraryApi.cs" />
     <Compile Include="Api\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />

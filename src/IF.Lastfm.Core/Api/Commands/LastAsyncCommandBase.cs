@@ -54,8 +54,6 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public abstract Task<T> HandleResponse(HttpResponseMessage response);
 
-        /// <summary>
-        /// </summary>
         protected HttpClient GetHttpClient()
         {
             var client = new HttpClient();
