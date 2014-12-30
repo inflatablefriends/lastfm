@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.ArtistApi;
+using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
+using AddShoutCommand = IF.Lastfm.Core.Api.Commands.ArtistApi.AddShoutCommand;
+using GetTopAlbumsCommand = IF.Lastfm.Core.Api.Commands.ArtistApi.GetTopAlbumsCommand;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -63,6 +66,16 @@ namespace IF.Lastfm.Core.Api
             int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopTracksCommand(Auth, artist)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastArtist>> GetRecommendedArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetRecommendedArtistsCommand(Auth)
             {
                 Page = page,
                 Count = itemsPerPage

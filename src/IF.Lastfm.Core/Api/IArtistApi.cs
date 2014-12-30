@@ -30,6 +30,10 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
+        Task<PageResponse<LastArtist>> GetRecommendedArtistsAsync(
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
         Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist,
             string username,
             bool autocorrect = false,
