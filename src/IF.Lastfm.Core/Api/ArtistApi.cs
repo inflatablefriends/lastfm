@@ -1,23 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#region
+
+using System;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.ArtistApi;
-using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using AddShoutCommand = IF.Lastfm.Core.Api.Commands.ArtistApi.AddShoutCommand;
-using GetTopAlbumsCommand = IF.Lastfm.Core.Api.Commands.ArtistApi.GetTopAlbumsCommand;
+
+#endregion
 
 namespace IF.Lastfm.Core.Api
 {
     public class ArtistApi : IArtistApi
     {
-        public ILastAuth Auth { get; private set; }
-
         public ArtistApi(ILastAuth auth)
         {
             Auth = auth;
         }
+
+        public ILastAuth Auth { get; private set; }
 
         public async Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist,
             string bioLang = LastFm.DefaultLanguageCode,
@@ -34,8 +34,8 @@ namespace IF.Lastfm.Core.Api
         }
 
         public async Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid,
-           string bioLang = LastFm.DefaultLanguageCode,
-           bool autocorrect = false)
+            string bioLang = LastFm.DefaultLanguageCode,
+            bool autocorrect = false)
         {
             var command = new GetArtistInfoCommand(Auth)
             {
@@ -73,17 +73,8 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastArtist>> GetRecommendedArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
-        {
-            var command = new GetRecommendedArtistsCommand(Auth)
-            {
-                Page = page,
-                Count = itemsPerPage
-            };
-            return await command.ExecuteAsync();
-        }
-
-        public async Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100)
+        public async Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false,
+            int limit = 100)
         {
             var command = new GetSimilarArtistsCommand(Auth, artistname)
             {
@@ -107,14 +98,15 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
+        public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0,
+            int count = LastFm.DefaultPageLength, bool autocorrect = false)
         {
             var command = new GetArtistShoutsCommand(Auth, artist)
-                          {
-                              Autocorrect = autocorrect,
-                              Page = page,
-                              Count = count
-                          };
+            {
+                Autocorrect = autocorrect,
+                Page = page,
+                Count = count
+            };
             return await command.ExecuteAsync();
         }
 
@@ -125,7 +117,8 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new SearchArtistsCommand(Auth, artistname)
             {

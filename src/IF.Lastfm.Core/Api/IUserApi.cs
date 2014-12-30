@@ -10,6 +10,10 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
+        Task<PageResponse<LastArtist>> GetRecommendedArtistsAsync(
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
         Task<PageResponse<LastAlbum>> GetTopAlbums(string username,
             LastStatsTimeSpan span,
             int startIndex = 0,

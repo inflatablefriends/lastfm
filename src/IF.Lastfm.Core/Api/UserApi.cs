@@ -16,6 +16,16 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
+        public async Task<PageResponse<LastArtist>> GetRecommendedArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetRecommendedArtistsCommand(Auth)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+            return await command.ExecuteAsync();
+        }
+
         public async Task<PageResponse<LastAlbum>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTopAlbumsCommand(Auth, username, span)
