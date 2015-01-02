@@ -84,6 +84,7 @@
     <Compile Include="Api\Commands\UserApi\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
+    <Compile Include="Api\LastAuthTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
     <Compile Include="LastFmTests.cs" />
