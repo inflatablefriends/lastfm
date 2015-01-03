@@ -14,23 +14,35 @@ namespace IF.Lastfm.Core.Objects
         #region Properties
 
         public string Id { get; set; }
+
         public string Name { get; set; }
-        public TimeSpan Duration { get; set; }
+
+        public TimeSpan? Duration { get; set; }
+
         public string Mbid { get; set; }
+
         public string ArtistName { get; set; }
+
         public string ArtistMbid { get; set; }
+
         public Uri Url { get; set; }
+
         public LastImageSet Images { get; set; }
         
         public string AlbumName { get; set; }
 
         public int? ListenerCount { get; set; }
+
         public int? TotalPlayCount { get; set; }
+
         public IEnumerable<LastTag> TopTags { get; set; }
 
         public DateTime? TimePlayed { get; set; }
+
         public bool? IsLoved { get; set; }
+
         public bool? IsNowPlaying { get; set; }
+
         public int? Rank { get; set; }
 
         #endregion

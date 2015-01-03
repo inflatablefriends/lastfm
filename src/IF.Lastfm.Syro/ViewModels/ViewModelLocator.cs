@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight.Ioc;
+using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
 using Microsoft.Practices.ServiceLocation;
 
@@ -17,7 +18,7 @@ namespace IF.Lastfm.Syro.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            var auth = new LastAuth("a6ab4b9376e54cdb06912bfbd9c1f288", "3aa7202fd1bc6d5a7ac733246cbccc4b");
+            var auth = new LastAuth(LastFm.TEST_APIKEY, LastFm.TEST_APISECRET);
             SimpleIoc.Default.Register<ILastAuth>(() => auth);
             SimpleIoc.Default.Register<MainViewModel>();
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    public abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
+    internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {
         protected PostAsyncCommandBase(ILastAuth auth)
         {
@@ -18,17 +18,22 @@ namespace IF.Lastfm.Core.Api.Commands
             return new Uri(LastFm.ApiRoot, UriKind.Absolute);
         }
 
-        public override async Task<T> ExecuteAsync()
+        public override Task<T> ExecuteAsync()
         {
             if (!Auth.Authenticated)
             {
-                return LastResponse.CreateErrorResponse<T>(LastFmApiError.BadAuth);
+                return Task.FromResult(LastResponse.CreateErrorResponse<T>(LastFmApiError.BadAuth));
             }
 
+            return ExecuteAsyncInternal();
+        }
+
+        protected async Task<T> ExecuteAsyncInternal()
+        {
             SetParameters();
 
             Url = BuildRequestUrl();
-            
+
             var apisig = Auth.GenerateMethodSignature(Method, Parameters);
 
             var postContent = LastFm.CreatePostBody(Method,

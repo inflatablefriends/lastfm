@@ -13,7 +13,8 @@ namespace IF.Lastfm.Core.Tests
         {
             _testSerialiserSettings = new JsonSerializerSettings
             {
-                DateFormatString = "yyyyMMDD HHmmss"
+                DateFormatString = "yyyy-MM-dd HH:mm:ss.SSS zzz",
+                NullValueHandling = NullValueHandling.Ignore
             };
         }
 
