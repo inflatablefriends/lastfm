@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
-    internal abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
+    public abstract class PostAsyncCommandBase<T> : LastAsyncCommandBase<T> where T : LastResponse, new()
     {
         protected PostAsyncCommandBase(ILastAuth auth)
         {
