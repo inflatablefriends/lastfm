@@ -20,6 +20,11 @@ namespace IF.Lastfm.Core.Api.Commands
 
         public override async Task<T> ExecuteAsync()
         {
+            if (!Auth.Authenticated)
+            {
+                return LastResponse.CreateErrorResponse<T>(LastFmApiError.BadAuth);
+            }
+
             SetParameters();
 
             Url = BuildRequestUrl();
