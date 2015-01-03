@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         [TestMethod]
         public async Task ScrobblesSingle()
         {
-            var trackPlayed = DateTime.UtcNow;
+            var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
             var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over", trackPlayed, "Hot Chip", false);
 
             var trackApi = new TrackApi(Auth);
@@ -40,7 +40,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                     "http://userserve-ak.last.fm/serve/64s/50921593.png",
                     "http://userserve-ak.last.fm/serve/126/50921593.png",
                     "http://userserve-ak.last.fm/serve/300x300/50921593.png"),
-                TimePlayed = trackPlayed
+                TimePlayed = trackPlayed.AddMilliseconds(-trackPlayed.Millisecond)
             };
 
             var expectedJson = expectedTrack.TestSerialise();
