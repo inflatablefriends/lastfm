@@ -61,8 +61,13 @@ namespace IF.Lastfm.Core.Objects
             t.Name = token.Value<string>("name");
             t.Mbid = token.Value<string>("mbid");
 
-            //0 to null
-            t.TotalPlayCount = token.Value<int?>("playcount");
+            //some tracks do not contain the playcount prop, it will throw a FormatException
+            var playCountStr = token.Value<string>("playcount");
+            int playCount;
+            if (int.TryParse(playCountStr, out playCount))
+            {
+                t.TotalPlayCount = playCount;
+            }
 
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
 

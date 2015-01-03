@@ -17,8 +17,13 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         [TestMethod]
         public async Task ScrobblesSingle()
         {
-            var trackPlayed = DateTime.UtcNow;
-            var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over", trackPlayed, "Hot Chip", false);
+            var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
+            var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over")
+            {
+                AlbumArtist = ARTIST_NAME,
+                TimePlayed = trackPlayed,
+                ChosenByUser = false
+            };
 
             var trackApi = new TrackApi(Auth);
             var response = await trackApi.ScrobbleAsync(testScrobble);
@@ -26,7 +31,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             Assert.IsTrue(response.Success);
 
             var userApi = new UserApi(Auth);
-            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, trackPlayed.AddSeconds(-10), 0, 1);
+            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 0, 1);
 
             var expectedTrack = new LastTrack
             {
@@ -40,7 +45,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                     "http://userserve-ak.last.fm/serve/64s/50921593.png",
                     "http://userserve-ak.last.fm/serve/126/50921593.png",
                     "http://userserve-ak.last.fm/serve/300x300/50921593.png"),
-                TimePlayed = trackPlayed
+                TimePlayed = trackPlayed.RoundToNearestSecond()
             };
 
             var expectedJson = expectedTrack.TestSerialise();

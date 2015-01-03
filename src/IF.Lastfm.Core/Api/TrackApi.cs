@@ -1,4 +1,7 @@
-﻿using IF.Lastfm.Core.Api.Commands.TrackApi;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using IF.Lastfm.Core.Api.Commands.TrackApi;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
@@ -17,6 +20,12 @@ namespace IF.Lastfm.Core.Api
         public Task<LastResponse> ScrobbleAsync(Scrobble scrobble)
         {
             var command = new TrackScrobbleCommand(Auth, scrobble);
+            return command.ExecuteAsync();
+        }
+
+        public Task<LastResponse> UpdateNowPlayingAsync(Scrobble scrobble)
+        {
+            var command = new TrackUpdateNowPlayingCommand(Auth, scrobble);
             return command.ExecuteAsync();
         }
 

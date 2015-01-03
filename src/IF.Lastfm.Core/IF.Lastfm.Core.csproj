@@ -43,6 +43,7 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
     <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\TrackScrobbleCommand.cs" />
+    <Compile Include="Api\Commands\TrackApi\TrackUpdateNowPlayingCommand.cs" />
     <Compile Include="Api\Commands\UnauthenticatedPostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecommendedArtistsCommand.cs" />
     <Compile Include="Api\ILibraryApi.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="LastFm.cs" />
+    <Compile Include="MD5.cs" />
     <Compile Include="Objects\LastAlbum.cs" />
     <Compile Include="Objects\LastArtist.cs" />
     <Compile Include="Objects\BuyLink.cs" />
@@ -114,9 +116,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MyConvert">
-      <HintPath>..\..\packages\MyConvert.1.0.1.6\lib\MyConvert.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
