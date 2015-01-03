@@ -1,12 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace IF.Lastfm.Core.Objects
 {
+    /// <summary>
+    /// TODO YearFormed -> FormationList
+    /// "formationlist": {
+    ///   "formation": {
+    ///     "yearfrom": "2003",
+    ///     "yearto": ""
+    ///   }
+    /// }
+    /// 
+    /// TODO links 
+    /// "links": {
+    ///   "link": {
+    ///     "#text": "",
+    ///     "rel": "original",
+    ///     "href": "http://www.last.fm/music/Frightened+Rabbit/+wiki"
+    ///   }
+    /// }
+    /// </summary>
     public class LastWiki : ILastfmObject
     {
         #region Properties

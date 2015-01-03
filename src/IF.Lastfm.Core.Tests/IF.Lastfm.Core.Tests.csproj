@@ -81,6 +81,7 @@
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
+    <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
@@ -93,6 +94,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AlbumApiResponses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ArtistApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ArtistApiResponses.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\LibraryApiResponses.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -129,6 +135,8 @@
     <None Include="Resources\AlbumApi\AlbumSearchError.json" />
     <None Include="Resources\AlbumApi\AlbumSearchSingle.json" />
     <None Include="Resources\AlbumApi\AlbumGetTopTags.json" />
+    <None Include="Resources\ArtistApi\ArtistGetInfoMissing.json" />
+    <None Include="Resources\ArtistApi\ArtistGetInfoSuccess.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
@@ -153,6 +161,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ArtistApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ArtistApiResponses.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
@@ -167,6 +179,7 @@
       <LastGenOutput>UserApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

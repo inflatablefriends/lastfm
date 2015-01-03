@@ -6,7 +6,40 @@ using Newtonsoft.Json.Linq;
 namespace IF.Lastfm.Core.Objects
 {
     /// <summary>
-    /// Todo bio, tour, similar, stats, streamable
+    /// Todo stats
+    /// "stats": {
+    ///   "listeners": "513447",
+    ///   "playcount": "16319896"
+    /// }
+    /// 
+    /// TODO streamable
+    /// "streamable": "0"
+    /// 
+    /// TODO band members
+    /// "bandmembers": {
+    ///   "member": [
+    ///     {
+    ///       "name": "Scott Hutchison",
+    ///       "yearfrom": "2003"
+    ///     },
+    ///     {
+    ///       "name": "Billy Kennedy",
+    ///       "yearfrom": "2006"
+    ///     },
+    ///     {
+    ///       "name": "Grant Hutchison",
+    ///       "yearfrom": "2004"
+    ///     },
+    ///     {
+    ///       "name": "Andy Monaghan",
+    ///       "yearfrom": "2008"
+    ///     },
+    ///     {
+    ///       "name": "Gordon Skene",
+    ///       "yearfrom": "2009"
+    ///     }
+    ///   ]
+    /// }
     /// </summary>
     public class LastArtist : ILastfmObject
     {
@@ -23,6 +56,12 @@ namespace IF.Lastfm.Core.Objects
         public LastImageSet MainImage { get; set; }
 
         #endregion
+
+        public LastArtist()
+        {
+            Tags = Enumerable.Empty<LastTag>();
+            Similar = Enumerable.Empty<LastArtist>().ToList();
+        }
 
         internal static LastArtist ParseJToken(JToken token)
         {
@@ -67,10 +106,10 @@ namespace IF.Lastfm.Core.Objects
                 a.MainImage = imageCollection;
             }
 
-            a.Similar = new List<LastArtist>();
             var similarToken = token.SelectToken("similar");
             if (similarToken != null)
             {
+                a.Similar = new List<LastArtist>();
                 var similarArtists = similarToken.SelectToken("artist");
                 if (similarArtists != null && similarArtists.Children().Any())
                 {

@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Tests.Api
                 {"test2", "value2"}
             };
 
-            const string expectedHash = "910231882F8AA6D4BBACB7C5FE5F5CC8";
+            const string expectedHash = "41919D4DF853702763556BFE2085406B";
             var actual = _auth.GenerateMethodSignature(method, parameters);
 
             Assert.AreEqual(expectedHash, actual);

@@ -1,10 +1,26 @@
 ﻿using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Tests
 {
     public static class TestHelper
     {
+        private static JsonSerializerSettings _testSerialiserSettings;
+
+        static TestHelper()
+        {
+            _testSerialiserSettings = new JsonSerializerSettings
+            {
+                DateFormatString = "yyyyMMDD HHmmss"
+            };
+        }
+
+        public static string TestSerialise<T>(this T poco)
+        {
+            return JsonConvert.SerializeObject(poco, Formatting.Indented, _testSerialiserSettings);
+        }
+
         public static string DifferencesTo(this string first, string second)
         {
             const string start = "\n\nDifferences:\n";
