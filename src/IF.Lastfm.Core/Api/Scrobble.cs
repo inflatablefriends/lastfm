@@ -14,7 +14,7 @@ namespace IF.Lastfm.Core.Api
 
         public string Track { get; private set; }
 
-        public DateTime? TimePlayed { get; set; }
+        public DateTime TimePlayed { get; private set; }
 
         public bool ChosenByUser { get; set; }
 
@@ -22,11 +22,12 @@ namespace IF.Lastfm.Core.Api
 
         #endregion
 
-        public Scrobble(string artist, string album, string track)
+        public Scrobble(string artist, string album, string track, DateTime timeplayed)
         {
             Artist = artist;
             Album = album;
             Track = track;
+            TimePlayed = timeplayed;
         }
     }
 }

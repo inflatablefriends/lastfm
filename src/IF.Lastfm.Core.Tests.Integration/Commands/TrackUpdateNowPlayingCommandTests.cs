@@ -1,10 +1,9 @@
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Objects;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Api.Commands.TrackApi;
-using IF.Lastfm.Core.Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
@@ -19,9 +18,8 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         public async Task UpdatesNowPlaying()
         {
             var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
-            var testScrobble = new Scrobble(ARTIST_NAME, ALBUM_NAME, TRACK_NAME)
+            var testScrobble = new Scrobble(ARTIST_NAME, ALBUM_NAME, TRACK_NAME, trackPlayed)
             {
-                TimePlayed = trackPlayed,
                 Duration = new TimeSpan(0, 3, 49),
                 AlbumArtist = ARTIST_NAME
             };

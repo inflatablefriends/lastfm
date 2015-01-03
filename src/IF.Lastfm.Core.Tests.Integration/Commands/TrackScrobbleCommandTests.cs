@@ -18,10 +18,9 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         public async Task ScrobblesSingle()
         {
             var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
-            var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over")
+            var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over", trackPlayed)
             {
                 AlbumArtist = ARTIST_NAME,
-                TimePlayed = trackPlayed,
                 ChosenByUser = false
             };
 

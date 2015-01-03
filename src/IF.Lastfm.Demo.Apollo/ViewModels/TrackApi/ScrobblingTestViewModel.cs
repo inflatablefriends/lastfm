@@ -125,7 +125,10 @@ namespace IF.Lastfm.Demo.Apollo.ViewModels.TrackApi
 
             var trackApi = new Core.Api.TrackApi(auth);
 
-            var scrobble = new Scrobble(Artist, Album, Track, DateTime.UtcNow, AlbumArtist);
+            var scrobble = new Scrobble(Artist, Album, Track, DateTime.UtcNow)
+            {
+                AlbumArtist = AlbumArtist
+            };
 
             var response = await trackApi.ScrobbleAsync(scrobble);
 
