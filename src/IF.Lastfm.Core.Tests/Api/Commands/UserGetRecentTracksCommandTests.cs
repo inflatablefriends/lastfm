@@ -8,14 +8,15 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IF.Lastfm.Core.Tests.Api.Commands.UserApi
+namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
     public class UserGetRecentTracksCommandTests : CommandTestsBase
     {
         private UserGetRecentTracksCommand _command;
 
-        public UserGetRecentTracksCommandTests()
+        [TestInitialize]
+        public void Initialise()
         {
             _command = new UserGetRecentTracksCommand(MAuth.Object, "rj", DateTime.MinValue)
             {

@@ -28,10 +28,10 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("results");
-                var itemsToken = resultsToken.SelectToken("recommendations").SelectToken("artist");
+                var resultsToken = jtoken.SelectToken("recommendations");
+                var itemsToken = resultsToken.SelectToken("artist");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, true);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, false);
             }
             else
             {

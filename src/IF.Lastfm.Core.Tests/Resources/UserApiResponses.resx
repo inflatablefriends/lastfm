@@ -133,4 +133,10 @@
   <data name="UserGetRecentTracksSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>UserApi\UserGetRecentTracksSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UserGetRecommendedArtistsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetRecommendedArtistsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetRecommendedArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetRecommendedArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -67,5 +68,9 @@ namespace IF.Lastfm.Core.Tests
             return !string.IsNullOrEmpty(line);
         }
 
+        public static IEnumerable<T> WrapEnumerable<T>(this T t)
+        {
+            return new[] {t};
+        }
     }
 }

@@ -40,6 +40,8 @@ namespace IF.Lastfm.Core.Objects
     ///     }
     ///   ]
     /// }
+    /// 
+    /// TODO context -> similar, rename similar to related
     /// </summary>
     public class LastArtist : ILastfmObject
     {

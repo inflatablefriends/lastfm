@@ -270,7 +270,7 @@ namespace IF.Lastfm.Syro.ViewModels
                 var responseType = SelectedResponseType.MakeGenericType(SelectedLastObjectType);
                 var genericType = SelectedBaseCommandType.MakeGenericType(responseType);
 
-                if (_lastAuth.UserSession.Username != LastUsername
+                if ((_lastAuth.UserSession == null || _lastAuth.UserSession.Username != LastUsername)
                     && SelectedBaseCommandType == typeof (DummyPostAsyncCommand<>))
                 {
                     await _lastAuth.GetSessionTokenAsync(LastUsername, LastPassword);
