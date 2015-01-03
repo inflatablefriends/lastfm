@@ -43,6 +43,7 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
     <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\TrackScrobbleCommand.cs" />
+    <Compile Include="Api\Commands\TrackApi\TrackUpdateNowPlayingCommand.cs" />
     <Compile Include="Api\Commands\UnauthenticatedPostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\UserApi\GetRecommendedArtistsCommand.cs" />
     <Compile Include="Api\ILibraryApi.cs" />

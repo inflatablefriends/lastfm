@@ -1,4 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using System;
 using System.Net.Http;
@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.TrackApi
 {
-    internal class TrackScrobbleCommand : PostAsyncCommandBase<LastResponse>
+    internal class TrackUpdateNowPlayingCommand : PostAsyncCommandBase<LastResponse>
     {
         public string Artist { get; set; }
 
@@ -16,26 +16,25 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public string AlbumArtist { get; set; }
 
-        public DateTime? TimePlayed { get; set; }
-
         public bool ChosenByUser { get; set; }
-        
-        public TrackScrobbleCommand(ILastAuth auth, string artist, string album, string track, string albumArtist, DateTime? timeplayed)
+
+        public TimeSpan? Duration { get; set; }
+
+        public TrackUpdateNowPlayingCommand(ILastAuth auth, string artist, string album, string track)
             : base(auth)
         {
-            Method = "track.scrobble";
+            Method = "track.updateNowPlaying";
 
             Artist = artist;
             Album = album;
             Track = track;
-            AlbumArtist = albumArtist;
-            TimePlayed = timeplayed;
         }
 
-        public TrackScrobbleCommand(ILastAuth auth, Scrobble scrobble)
-            : this(auth, scrobble.Artist, scrobble.Album, scrobble.Track, scrobble.AlbumArtist, scrobble.TimePlayed)
+        public TrackUpdateNowPlayingCommand(ILastAuth auth, Scrobble scrobble)
+            : this(auth, scrobble.Artist, scrobble.Album, scrobble.Track)
         {
             ChosenByUser = scrobble.ChosenByUser;
+            Duration = scrobble.Duration;
         }
 
         public override void SetParameters()
@@ -45,10 +44,10 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             Parameters.Add("track", Track);
             Parameters.Add("albumArtist", AlbumArtist);
             Parameters.Add("chosenByUser", Convert.ToInt32(ChosenByUser).ToString());
-            
-            if (TimePlayed.HasValue)
+
+            if (Duration.HasValue)
             {
-                Parameters.Add("timestamp", TimePlayed.Value.ToUnixTimestamp().ToString());
+                Parameters.Add("duration", Duration.Value.TotalSeconds.ToString());
             }
         }
 

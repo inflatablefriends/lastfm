@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [TestInitialize]
         public void Initialise()
         {
-            _command = new UserGetRecentTracksCommand(MAuth.Object, "rj", DateTime.MinValue)
+            _command = new UserGetRecentTracksCommand(MAuth.Object, "rj")
             {
                 Count = 1
             };

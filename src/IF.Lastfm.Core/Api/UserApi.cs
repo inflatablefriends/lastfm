@@ -37,12 +37,21 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        /// <summary>
+        /// Gets a list of recent scrobbled tracks for this user in reverse date order.
+        /// </summary>
+        /// <param name="username">Username to get scrobbles for.</param>
+        /// <param name="since">Lower threshold for scrobbles. Will not return scrobbles from before this time.</param>
+        /// <param name="pagenumber">Page numbering starts from 1. If set to 0, will not include the "now playing" track</param>
+        /// <param name="count">Amount of scrobbles to return for this page.</param>
+        /// <returns>Enumerable of LastTrack</returns>
+        public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTime? since = null, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new UserGetRecentTracksCommand(Auth, username, since)
+            var command = new UserGetRecentTracksCommand(Auth, username)
                           {
                               Page = pagenumber,
-                              Count = count
+                              Count = count,
+                              From = since
                           };
 
             return await command.ExecuteAsync();
