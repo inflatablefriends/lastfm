@@ -124,4 +124,16 @@
   <data name="ArtistGetInfoSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ArtistApi\ArtistGetInfoSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ArtistGetTopTagsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ArtistApi\ArtistGetTopTagsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ArtistGetTopTagsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ArtistApi\ArtistGetTopTagsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ArtistGetTopTagsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ArtistApi\ArtistGetTopTagsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ArtistGetTopTagsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ArtistApi\ArtistGetTopTagsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

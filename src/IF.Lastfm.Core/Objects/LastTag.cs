@@ -8,7 +8,10 @@ namespace IF.Lastfm.Core.Objects
         #region Properties
 
         public string Name { get; set; }
+        
         public Uri Url { get; set; }
+
+        public int? Count { get; set; }
 
         #endregion
 
@@ -16,20 +19,26 @@ namespace IF.Lastfm.Core.Objects
         {
         }
 
-        public LastTag(string name, string uri)
+        public LastTag(string name, string uri, int? count = null)
         {
             Name = name;
             Url = new Uri(uri, UriKind.RelativeOrAbsolute);
+            Count = count;
         }
 
         internal static LastTag ParseJToken(JToken token)
         {
-            var t = new LastTag();
+            var name = token.Value<string>("name");
+            var url = token.Value<string>("url");
 
-            t.Name = token.Value<string>("name");
-            t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
+            int? count = null;
+            var countToken = token.SelectToken("count");
+            if (countToken != null)
+            {
+                count = countToken.ToObject<int?>();
+            }
 
-            return t;
+            return new LastTag(name, url, count);
         }
     }
 }

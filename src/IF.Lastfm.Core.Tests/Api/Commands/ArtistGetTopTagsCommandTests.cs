@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
+using IF.Lastfm.Core.Api.Commands.ArtistApi;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Tests.Resources;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.AlbumApi;
-using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Objects;
-using IF.Lastfm.Core.Tests.Api.Commands;
-using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
-    public class AlbumGetTagsByUserCommandTests : CommandTestsBase
+    public class ArtistGetTopTagsCommandTests : CommandTestsBase
     {
-        private AlbumGetTagsByUserCommand _command;
+        private ArtistGetTopTagsCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new AlbumGetTagsByUserCommand(MAuth.Object, "", "", "");
+            _command = new ArtistGetTopTagsCommand(MAuth.Object, "");
         }
 
         [TestMethod]
@@ -27,10 +26,10 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             var expectedTags = new List<LastTag>
             {
-                new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
+                new LastTag("electronic", "http://www.last.fm/tag/electronic", 100)
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsSingle));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsSingle));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -45,24 +44,27 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             var expectedTags = new List<LastTag>
             {
-                new LastTag("test tag 2: electric boogaloo", "http://www.last.fm/tag/test%20tag%202%3A%20electric%20boogaloo"),
-                new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
+                new LastTag("electronic", "http://www.last.fm/tag/electronic", 100),
+                new LastTag("experimental", "http://www.last.fm/tag/experimental", 100),
+                new LastTag("Bandcamp", "http://www.last.fm/tag/bandcamp", 100),
+                new LastTag("ambient", "http://www.last.fm/tag/ambient", 50),
+                new LastTag("psychedelic", "http://www.last.fm/tag/psychedelic", 50)
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsMultiple));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsMultiple));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
             var actualJson = parsed.Content.TestSerialise();
 
-            parsed.AssertValues(true, 2, 2, 1, 1);
+            parsed.AssertValues(true, 5, 5, 1, 1);
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
         [TestMethod]
         public async Task HandleResponseEmpty()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsEmpty));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsEmpty));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(true, 0, 0, 1, 1);
@@ -72,7 +74,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [TestMethod]
         public async Task HandleResponseError()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsError));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsError));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(false, 0, 0, 1, 1);
@@ -80,5 +82,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
             Assert.IsTrue(!parsed.Content.Any());
         }
+
     }
 }

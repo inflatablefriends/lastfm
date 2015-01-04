@@ -80,6 +80,7 @@
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommandTest.cs" />
     <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\AlbumGetTagsByUserCommandTests.cs" />
+    <Compile Include="Api\Commands\ArtistGetTopTagsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
@@ -139,6 +140,10 @@
     <None Include="Resources\AlbumApi\AlbumGetTopTags.json" />
     <None Include="Resources\ArtistApi\ArtistGetInfoMissing.json" />
     <None Include="Resources\ArtistApi\ArtistGetInfoSuccess.json" />
+    <None Include="Resources\ArtistApi\ArtistGetTopTagsEmpty.json" />
+    <None Include="Resources\ArtistApi\ArtistGetTopTagsError.json" />
+    <None Include="Resources\ArtistApi\ArtistGetTopTagsMultiple.json" />
+    <None Include="Resources\ArtistApi\ArtistGetTopTagsSingle.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
