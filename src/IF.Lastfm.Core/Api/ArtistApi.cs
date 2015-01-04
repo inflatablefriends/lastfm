@@ -1,12 +1,7 @@
-﻿#region
-
-using System;
-using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.ArtistApi;
+﻿using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-
-#endregion
+using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -84,13 +79,20 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist,
+        public Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist,
             string username,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength)
         {
-            throw new NotImplementedException();
+            var command = new ArtistGetTagsByUserCommand(Auth, artist, username)
+            {
+                Autocorrect = autocorrect,
+                Page = page,
+                Count = itemsPerPage
+            };
+
+            return command.ExecuteAsync();
         }
 
         public Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)

@@ -1,4 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Commands.AlbumApi;
+using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
-    public class AlbumGetTagsByUserCommandTests : CommandTestsBase
+    public class ArtistGetTagsByUserCommandTests : CommandTestsBase
     {
-        private AlbumGetTagsByUserCommand _command;
+        private ArtistGetTagsByUserCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new AlbumGetTagsByUserCommand(MAuth.Object, "", "", "");
+            _command = new ArtistGetTagsByUserCommand(MAuth.Object, "", "");
         }
 
         [TestMethod]
@@ -26,10 +26,10 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             var expectedTags = new List<LastTag>
             {
-                new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
+                new LastTag("the fate of the world is safe in crystal castles", "http://www.last.fm/tag/the%20fate%20of%20the%20world%20is%20safe%20in%20crystal%20castles")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsSingle));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsSingle));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -44,11 +44,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             var expectedTags = new List<LastTag>
             {
-                new LastTag("test tag 2: electric boogaloo", "http://www.last.fm/tag/test%20tag%202%3A%20electric%20boogaloo"),
-                new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
+                new LastTag("the fate of the world is safe in crystal castles", "http://www.last.fm/tag/the%20fate%20of%20the%20world%20is%20safe%20in%20crystal%20castles"),
+                new LastTag("if this were a pokemon i would catch it", "http://www.last.fm/tag/if%20this%20were%20a%20pokemon%20i%20would%20catch%20it")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsMultiple));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsMultiple));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -61,7 +61,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [TestMethod]
         public async Task HandleResponseEmpty()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsEmpty));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsEmpty));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(true, 0, 0, 1, 1);
@@ -71,7 +71,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [TestMethod]
         public async Task HandleResponseError()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsError));
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsError));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(false, 0, 0, 1, 1);

@@ -83,6 +83,46 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] ArtistGetTagsEmpty {
+            get {
+                object obj = ResourceManager.GetObject("ArtistGetTagsEmpty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ArtistGetTagsError {
+            get {
+                object obj = ResourceManager.GetObject("ArtistGetTagsError", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ArtistGetTagsMultiple {
+            get {
+                object obj = ResourceManager.GetObject("ArtistGetTagsMultiple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ArtistGetTagsSingle {
+            get {
+                object obj = ResourceManager.GetObject("ArtistGetTagsSingle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] ArtistGetTopTagsEmpty {
             get {
                 object obj = ResourceManager.GetObject("ArtistGetTopTagsEmpty", resourceCulture);

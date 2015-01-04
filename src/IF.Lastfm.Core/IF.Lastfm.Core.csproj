@@ -42,6 +42,7 @@
     <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
     <Compile Include="Api\Commands\AlbumApi\AlbumGetTagsByUserCommand.cs" />
+    <Compile Include="Api\Commands\ArtistApi\ArtistGetTagsByUserCommand.cs" />
     <Compile Include="Api\Commands\ArtistApi\ArtistGetTopTagsCommand.cs" />
     <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\TrackScrobbleCommand.cs" />
