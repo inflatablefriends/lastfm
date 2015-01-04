@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
         public ArtistGetTagsByUserCommand(ILastAuth auth, string artist, string username)
             : base(auth)
         {
-            Method = "album.getTags";
+            Method = "artist.getTags";
 
             ArtistName = artist;
             Username = username;
