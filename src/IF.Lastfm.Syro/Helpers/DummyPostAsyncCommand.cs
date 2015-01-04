@@ -18,6 +18,7 @@ namespace IF.Lastfm.Syro.Helpers
 
         public override void SetParameters()
         {
+            AddPagingParameters();
         }
 
         public async override Task<T> HandleResponse(HttpResponseMessage response)

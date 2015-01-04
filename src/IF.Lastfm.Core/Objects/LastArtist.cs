@@ -6,7 +6,42 @@ using Newtonsoft.Json.Linq;
 namespace IF.Lastfm.Core.Objects
 {
     /// <summary>
-    /// Todo bio, tour, similar, stats, streamable
+    /// Todo stats
+    /// "stats": {
+    ///   "listeners": "513447",
+    ///   "playcount": "16319896"
+    /// }
+    /// 
+    /// TODO streamable
+    /// "streamable": "0"
+    /// 
+    /// TODO band members
+    /// "bandmembers": {
+    ///   "member": [
+    ///     {
+    ///       "name": "Scott Hutchison",
+    ///       "yearfrom": "2003"
+    ///     },
+    ///     {
+    ///       "name": "Billy Kennedy",
+    ///       "yearfrom": "2006"
+    ///     },
+    ///     {
+    ///       "name": "Grant Hutchison",
+    ///       "yearfrom": "2004"
+    ///     },
+    ///     {
+    ///       "name": "Andy Monaghan",
+    ///       "yearfrom": "2008"
+    ///     },
+    ///     {
+    ///       "name": "Gordon Skene",
+    ///       "yearfrom": "2009"
+    ///     }
+    ///   ]
+    /// }
+    /// 
+    /// TODO context -> similar, rename similar to related
     /// </summary>
     public class LastArtist : ILastfmObject
     {
@@ -14,14 +49,21 @@ namespace IF.Lastfm.Core.Objects
 
         public string Id { get; set; }
         public string Name { get; set; }
+        public LastWiki Bio { get; set; }
         public string Mbid { get; set; }
         public Uri Url { get; set; }
         public bool OnTour { get; set; }
         public IEnumerable<LastTag> Tags { get; set; }
-
+        public List<LastArtist> Similar { get; set; }
         public LastImageSet MainImage { get; set; }
 
         #endregion
+
+        public LastArtist()
+        {
+            Tags = Enumerable.Empty<LastTag>();
+            Similar = Enumerable.Empty<LastArtist>().ToList();
+        }
 
         internal static LastArtist ParseJToken(JToken token)
         {
@@ -39,7 +81,13 @@ namespace IF.Lastfm.Core.Objects
             a.Url = new Uri(url, UriKind.Absolute);
 
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
-            
+
+            var bioToken = token.SelectToken("bio");
+            if (bioToken != null)
+            {
+                a.Bio = LastWiki.ParseJToken(bioToken);
+            }
+
             var tagsToken = token.SelectToken("tags");
             if (tagsToken != null)
             {
@@ -59,7 +107,28 @@ namespace IF.Lastfm.Core.Objects
                 var imageCollection = LastImageSet.ParseJToken(images);
                 a.MainImage = imageCollection;
             }
-            
+
+            var similarToken = token.SelectToken("similar");
+            if (similarToken != null)
+            {
+                a.Similar = new List<LastArtist>();
+                var similarArtists = similarToken.SelectToken("artist");
+                if (similarArtists != null && similarArtists.Children().Any())
+                {
+                    // array notation isn't used on the api when only one object is available
+                    if (similarArtists.Type != JTokenType.Array)
+                    {
+                        var item = ParseJToken(similarArtists);
+                        a.Similar.Add(item);
+                    }
+                    else
+                    {
+                        var items = similarArtists.Children().Select(ParseJToken);
+                        a.Similar.AddRange(items);
+                    }
+                }
+            }
+
             return a;
         }
 

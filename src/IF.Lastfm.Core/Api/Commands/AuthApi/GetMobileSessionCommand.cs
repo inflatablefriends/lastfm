@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AuthApi
 {
-    internal class GetMobileSessionCommand : PostAsyncCommandBase<LastResponse<LastUserSession>>
+    internal class GetMobileSessionCommand : UnauthenticatedPostAsyncCommandBase<LastResponse<LastUserSession>>
     {
         public string Username { get; set; }
 

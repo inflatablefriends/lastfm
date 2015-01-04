@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Security.AccessControl;
-using IF.Lastfm.Core;
-using IF.Lastfm.Core.Api;
+﻿using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands;
-using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Syro.Helpers;
 using IF.Lastfm.Syro.Tools;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Newtonsoft.Json;
 
 namespace IF.Lastfm.Syro.ViewModels
 {
@@ -38,6 +34,8 @@ namespace IF.Lastfm.Syro.ViewModels
         private string _commandMethodName;
         private string _commandPageNumber;
         private string _commandItemCount;
+        private string _lastPassword;
+        private string _lastUsername;
         private const string ReportFilename = "PROGRESS.md";
 
         #region Binding properties 
@@ -196,6 +194,28 @@ namespace IF.Lastfm.Syro.ViewModels
             }
         }
 
+        public string LastUsername
+        {
+            get { return _lastUsername; }
+            set
+            {
+                if (value == _lastUsername) return;
+                _lastUsername = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LastPassword
+        {
+            get { return _lastPassword; }
+            set
+            {
+                if (value == _lastPassword) return;
+                _lastPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         public MainViewModel(ILastAuth lastAuth)
@@ -250,9 +270,10 @@ namespace IF.Lastfm.Syro.ViewModels
                 var responseType = SelectedResponseType.MakeGenericType(SelectedLastObjectType);
                 var genericType = SelectedBaseCommandType.MakeGenericType(responseType);
 
-                if (!_lastAuth.Authenticated)
+                if ((_lastAuth.UserSession == null || _lastAuth.UserSession.Username != LastUsername)
+                    && SelectedBaseCommandType == typeof (DummyPostAsyncCommand<>))
                 {
-                    await _lastAuth.GetSessionTokenAsync("tehrikkit", "#facedusk17a");
+                    await _lastAuth.GetSessionTokenAsync(LastUsername, LastPassword);
                 }
 
                 var instance = Activator.CreateInstance(genericType, _lastAuth);

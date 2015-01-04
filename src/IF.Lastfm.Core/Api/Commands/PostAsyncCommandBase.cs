@@ -18,12 +18,22 @@ namespace IF.Lastfm.Core.Api.Commands
             return new Uri(LastFm.ApiRoot, UriKind.Absolute);
         }
 
-        public override async Task<T> ExecuteAsync()
+        public override Task<T> ExecuteAsync()
+        {
+            if (!Auth.Authenticated)
+            {
+                return Task.FromResult(LastResponse.CreateErrorResponse<T>(LastFmApiError.BadAuth));
+            }
+
+            return ExecuteAsyncInternal();
+        }
+
+        protected async Task<T> ExecuteAsyncInternal()
         {
             SetParameters();
 
             Url = BuildRequestUrl();
-            
+
             var apisig = Auth.GenerateMethodSignature(Method, Parameters);
 
             var postContent = LastFm.CreatePostBody(Method,
@@ -39,14 +49,7 @@ namespace IF.Lastfm.Core.Api.Commands
             }
             catch (HttpRequestException)
             {
-                if (LastFm.CatchRequestExceptions)
-                {
-                    return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
-                }
-                else
-                {
-                    throw;
-                }
+                return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
             }
         }
     }

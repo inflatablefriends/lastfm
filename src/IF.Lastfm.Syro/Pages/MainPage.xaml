@@ -179,6 +179,23 @@
                     </StackPanel>
                 </Border>
             </TabItem>
+            <TabItem Header="Sign in">
+                <Border Padding="28,10">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                   Text="Username"
+                                   Margin="0,0,0,10" />
+                        <TextBox Text="{Binding LastUsername, Mode=TwoWay}"
+                                 Margin="0,0,0,15" />
+
+                        <TextBlock Style="{StaticResource SyroNormalFontStyle}"
+                                   Text="Password"
+                                   Margin="0,0,0,10" />
+                        <TextBox Text="{Binding LastPassword, Mode=TwoWay}"
+                                 Margin="0,0,0,15" />
+                    </StackPanel>
+                </Border>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

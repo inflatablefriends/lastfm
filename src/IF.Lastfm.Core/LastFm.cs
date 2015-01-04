@@ -9,12 +9,16 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
+[assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests.Integration")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Syro")]
 namespace IF.Lastfm.Core
 {
     public class LastFm
     {
         #region Constants
+
+        internal const string TEST_APIKEY = "a6ab4b9376e54cdb06912bfbd9c1f288";
+        internal const string TEST_APISECRET = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 
         public const string ApiRoot = "http://ws.audioscrobbler.com/2.0/";
         public const string ApiRootSsl = "https://ws.audioscrobbler.com/2.0/";
@@ -27,17 +31,6 @@ namespace IF.Lastfm.Core
         
         #endregion
         
-        /// <summary>
-        /// Determines whether commands should throw HttpRequestExceptions or wrap them
-        /// in the response.
-        /// 
-        /// Using this can make client code neater, but it violates the principles of 
-        /// separation of concerns and single responsibility a bit. This property won't
-        /// get removed but please only use it if you understand what it does!
-        /// </summary>
-        [Obsolete]
-        public static bool CatchRequestExceptions { get; set; }
-
         #region Api helper methods
 
         public static string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)

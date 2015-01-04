@@ -1,10 +1,29 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Tests
 {
     public static class TestHelper
     {
+        private static readonly JsonSerializerSettings _testSerialiserSettings;
+
+        static TestHelper()
+        {
+            _testSerialiserSettings = new JsonSerializerSettings
+            {
+                DateFormatString = "yyyy-MM-dd HH:mm:ss.fff",
+                NullValueHandling = NullValueHandling.Ignore
+            };
+        }
+
+        public static string TestSerialise<T>(this T poco)
+        {
+            return JsonConvert.SerializeObject(poco, Formatting.Indented, _testSerialiserSettings);
+        }
+
         public static string DifferencesTo(this string first, string second)
         {
             const string start = "\n\nDifferences:\n";
@@ -51,5 +70,18 @@ namespace IF.Lastfm.Core.Tests
             return !string.IsNullOrEmpty(line);
         }
 
+        public static IEnumerable<T> WrapEnumerable<T>(this T t)
+        {
+            return new[] {t};
+        }
+
+        public static DateTime RoundToNearestSecond(this DateTime dt)
+        {
+            var ms = dt.Millisecond;
+
+            return ms < 500 
+                ? dt.AddMilliseconds(-ms)
+                : dt.AddMilliseconds(1000 - ms);
+        }
     }
 }

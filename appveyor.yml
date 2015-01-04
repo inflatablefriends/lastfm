@@ -28,13 +28,19 @@
       name: IF.Lastfm.Core.dll
     - path: '\*-prerelease.nupkg'
 
+  notifications:
+    - provider: Webhook # ping Gitter ticker 
+      url: https://webhooks.gitter.im/e/8184d0f9a61041aee927
+
+#---------------------------------------------------------------
+
 -
   branches:
     only:
       - release
 
   # don't forget to update this!
-  version: 0.1.2.{build}
+  version: 0.1.3.{build}
 
   assembly_info:
     patch: true
@@ -64,3 +70,7 @@
     api_key:
       secure: b4Q8KLmOfeQHZNGbTf4OYud3pvi3aR4rKE35dcLHYBTBaQwc9QeoIkDoG13Jpbxs
     artifact: /.*\.nupkg/
+
+  notifications:
+    - provider: Webhook # ping Gitter ticker 
+      url: https://webhooks.gitter.im/e/8184d0f9a61041aee927
