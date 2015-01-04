@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
                 var itemsToken = jtoken.SelectToken("track");
                 var attrToken = jtoken.SelectToken("@attr");
 
-                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, attrToken, LastTrack.ParseJToken, false);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, attrToken, LastTrack.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

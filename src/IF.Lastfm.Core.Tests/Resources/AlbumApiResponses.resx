@@ -136,6 +136,18 @@
   <data name="AlbumGetShoutsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>albumapi\albumgetshoutssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="AlbumGetTagsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTagsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetTagsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTagsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetTagsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTagsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AlbumGetTagsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>AlbumApi\AlbumGetTagsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="AlbumGetTopTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumGetTopTags.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

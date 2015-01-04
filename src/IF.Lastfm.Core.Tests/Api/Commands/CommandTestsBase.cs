@@ -1,4 +1,5 @@
-﻿using IF.Lastfm.Core.Api;
+﻿using System.Threading.Tasks;
+using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
@@ -8,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {

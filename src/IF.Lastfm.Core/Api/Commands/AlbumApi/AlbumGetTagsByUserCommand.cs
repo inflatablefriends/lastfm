@@ -6,47 +6,37 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
-    internal class GetAlbumTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
+    internal class AlbumGetTagsByUserCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
-        public string AlbumMbid { get; set; }
-
         public string ArtistName { get; set; }
 
         public string AlbumName { get; set; }
 
+        public string Username { get; set; }
+
         public bool Autocorrect { get; set; }
 
-        public GetAlbumTopTagsCommand(ILastAuth auth)
+        public AlbumGetTagsByUserCommand(ILastAuth auth, string artist, string album, string username)
             : base(auth)
         {
-            Method = "album.getTopTags";
-        }
+            Method = "album.getTags";
 
-        public GetAlbumTopTagsCommand(ILastAuth auth, string album, string artist)
-            : this(auth)
-        {
-            AlbumName = album;
             ArtistName = artist;
+            AlbumName = album;
+            Username = username;
         }
 
         public override void SetParameters()
         {
-            if (AlbumMbid != null)
-            {
-                Parameters.Add("mbid", AlbumMbid);
-            }
-            else
-            {
-                Parameters.Add("artist", ArtistName);
-                Parameters.Add("album", AlbumName);
-            }
-
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("album", AlbumName);
+            Parameters.Add("user", Username);
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             AddPagingParameters();
@@ -61,14 +51,14 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("toptags");
+                var resultsToken = jtoken.SelectToken("tags");
                 var itemsToken = resultsToken.SelectToken("tag");
 
-                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, resultsToken, LastTag.ParseJToken, LastPageResultsType.Attr);
+                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, LastTag.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastTag>>(error);
+                return PageResponse<LastTag>.CreateErrorResponse(error);
             }
         }
     }

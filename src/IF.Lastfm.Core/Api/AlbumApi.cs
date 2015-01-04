@@ -36,14 +36,19 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist, string album, CountryCode country, bool autocorrect = false)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist, string album, CountryCode country, bool autocorrect = false)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<PageResponse<LastTag>> GetUserTagsForAlbumAsync(string artist, string album, string username, bool autocorrect = false)
+        public Task<PageResponse<LastTag>> GetTagsByUserAsync(string artist, string album, string username, bool autocorrect = false)
         {
-            throw new NotImplementedException();
+            var command = new AlbumGetTagsByUserCommand(Auth, artist, album, username)
+            {
+                Autocorrect = autocorrect
+            };
+
+            return command.ExecuteAsync();
         }
 
         public async Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist, string album, bool autocorrect = false)

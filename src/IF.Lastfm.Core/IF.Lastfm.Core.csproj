@@ -41,6 +41,7 @@
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
     <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
+    <Compile Include="Api\Commands\AlbumApi\AlbumGetTagsByUserCommand.cs" />
     <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\TrackScrobbleCommand.cs" />
     <Compile Include="Api\Commands\TrackApi\TrackUpdateNowPlayingCommand.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
+    <Compile Include="Json\PageResponseJsonConverter.cs" />
     <Compile Include="LastFm.cs" />
     <Compile Include="MD5.cs" />
     <Compile Include="Objects\LastAlbum.cs" />

@@ -4,7 +4,14 @@ using IF.Lastfm.Core.Api.Enums;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class LastResponse
+    public interface ILastResponse
+    {
+        bool Success { get; set; }
+
+        LastFmApiError Error { get; set; }
+    }
+
+    public class LastResponse : ILastResponse
     {
         #region Properties
 

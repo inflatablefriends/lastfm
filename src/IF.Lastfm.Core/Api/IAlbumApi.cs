@@ -12,12 +12,12 @@ namespace IF.Lastfm.Core.Api
 
         Task<LastResponse<LastAlbum>> GetAlbumInfoByMbidAsync(string albumMbid, bool autocorrect = false);
         
-        Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist,
-            string album,
-            CountryCode country,
-            bool autocorrect = false);
+        //Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist,
+        //    string album,
+        //    CountryCode country,
+        //    bool autocorrect = false);
         
-        Task<PageResponse<LastTag>> GetUserTagsForAlbumAsync(string artist,
+        Task<PageResponse<LastTag>> GetTagsByUserAsync(string artist,
             string album,
             string username,
             bool autocorrect = false);

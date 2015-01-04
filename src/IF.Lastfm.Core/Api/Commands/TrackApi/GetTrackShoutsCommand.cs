@@ -47,7 +47,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var itemsToken = jtoken.SelectToken("shout");
                 var pageInfoToken = jtoken.SelectToken("@attr");
 
-                return PageResponse<LastShout>.CreateSuccessResponse(itemsToken, pageInfoToken, LastShout.ParseJToken);
+                return PageResponse<LastShout>.CreateSuccessResponse(itemsToken, pageInfoToken, LastShout.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

@@ -29,4 +29,11 @@ namespace IF.Lastfm.Core.Api.Enums
         Male,
         Female
     }
+
+    public enum LastPageResultsType
+    {
+        None = 0,
+        Attr,
+        OpenQuery
+    }
 }

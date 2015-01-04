@@ -34,7 +34,7 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
                 var itemsToken = tracksToken.SelectToken("track");
                 var pageInfoToken = tracksToken.SelectToken("@attr");
 
-                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, pageInfoToken, LastTrack.ParseJToken);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, pageInfoToken, LastTrack.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {
