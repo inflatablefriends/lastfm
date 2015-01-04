@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using IF.Lastfm.Core.Api.Helpers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Tests
@@ -82,6 +84,23 @@ namespace IF.Lastfm.Core.Tests
             return ms < 500 
                 ? dt.AddMilliseconds(-ms)
                 : dt.AddMilliseconds(1000 - ms);
+        }
+
+        public static void AssertValues<T>(this PageResponse<T> pageResponse, bool success, int totalItems, int pageSize, int page, int totalPages)
+            where T : new()
+        {
+            const string messageFormat = "Page response:\n{0}\n\nExpected {1} to equal {2}";
+            var json = pageResponse.TestSerialise();
+            Func<string, dynamic, string> testMessage = (property, count) => string.Format(messageFormat, json, property, count);
+            
+            Assert.IsTrue(pageResponse.Success == success, testMessage("success", success));
+            Assert.IsTrue(pageResponse.TotalItems == totalItems, testMessage("totalitems", totalItems));
+            Assert.IsTrue(pageResponse.PageSize == pageSize, testMessage("pagesize", pageSize));
+            Assert.IsTrue(pageResponse.Page == page, testMessage("page", page));
+            Assert.IsTrue(pageResponse.TotalPages == totalPages, testMessage("totalpages", totalPages));
+
+            Assert.IsNotNull(pageResponse.Content, "page content is null");
+            Assert.IsTrue(pageResponse.Content.Count == totalItems, testMessage("content length", totalItems));
         }
     }
 }

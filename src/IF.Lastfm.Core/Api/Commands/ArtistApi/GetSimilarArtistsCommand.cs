@@ -50,7 +50,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var itemsToken = jtoken.SelectToken("similarartists").SelectToken("artist");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, null, LastArtist.ParseJToken);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, LastArtist.ParseJToken);
             }
             else
             {

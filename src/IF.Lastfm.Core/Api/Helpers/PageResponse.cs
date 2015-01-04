@@ -1,28 +1,48 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Helpers
 {
-    public class PageResponse<T> : LastResponse, IEnumerable<T> where T : new()
+    public interface IPageResponse<out T> : ILastResponse, IEnumerable<T> where T : new()
+    {
+        IReadOnlyList<T> Content { get; }
+
+        int Page { get; }
+
+        int PageSize { get; }
+
+        int TotalPages { get; }
+
+        int TotalItems { get; }
+    }
+
+    [JsonConverter(typeof(PageResponseJsonConverter))]
+    public class PageResponse<T> : LastResponse, IPageResponse<T> where T : new()
     {
         private int? _totalItems;
         private int? _pageSize;
 
-        public PageResponse()
+        public PageResponse() : this(Enumerable.Empty<T>())
+        {
+        }
+
+        public PageResponse(IEnumerable<T> content)
         {
             Page = 1;
             TotalPages = 1;
-            Content = new List<T>();
+            Content = new ReadOnlyCollection<T>(content.ToList());
         }
 
         #region Properties
 
-        public List<T> Content { get; internal set; }
+        public IReadOnlyList<T> Content { get; internal set; }
 
         public int Page { get; internal set; }
 
@@ -46,14 +66,9 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         public IEnumerator<T> GetEnumerator()
         {
-            if (Content != null)
-            {
-                return Content.GetEnumerator();
-            }
-            else
-            {
-                return null;
-            }
+            return Content != null
+                ? Content.GetEnumerator()
+                : null;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -72,6 +87,20 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         #region Factory methods
 
+        public static PageResponse<T> CreateErrorResponse(LastFmApiError error)
+        {
+            var r = new PageResponse<T>
+            {
+                Success = false,
+                Error = error
+            };
+
+            r.AddDefaultPageInfo();
+
+            return r;
+        }
+
+
         public new static PageResponse<T> CreateSuccessResponse()
         {
             var r = new PageResponse<T>
@@ -80,70 +109,85 @@ namespace IF.Lastfm.Core.Api.Helpers
                 Error = LastFmApiError.None
             };
 
+            r.AddDefaultPageInfo();
+
             return r;
         }
 
         [Obsolete]
         public static PageResponse<T> CreateSuccessResponse(IEnumerable<T> content)
         {
-            var r = new PageResponse<T>
+            var r = new PageResponse<T>(content)
             {
                 Success = true,
                 Error = LastFmApiError.None
             };
-
-            r.Content.AddRange(content);
-
+            
             return r;
         }
-        
-        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, bool isOpenQueryToken = false)
-        {
-            var pageresponse = CreateSuccessResponse();
 
+        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, Func<JToken, T> parseToken)
+        {
+            return CreateSuccessResponse(itemsToken, null, parseToken, LastPageResultsType.None);
+        }
+        
+        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, LastPageResultsType pageResultsType)
+        {
+            IEnumerable<T> items;
             if (itemsToken != null && itemsToken.Children().Any())
             {
                 // array notation isn't used on the api when only one object is available
                 if (itemsToken.Type != JTokenType.Array)
                 {
                     var item = parseToken(itemsToken);
-                    pageresponse.Content.Add(item);
-                }
-                else
-                {
-                    var items = itemsToken.Children().Select(parseToken);
-                    pageresponse.Content.AddRange(items);
-                }
-            }
+                    items = new[] {item};
 
-            if (pageInfoToken != null)
-            {
-                if (isOpenQueryToken)
-                {
-                    pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
                 }
                 else
                 {
-                    pageresponse.AddPageInfoFromJToken(pageInfoToken);
+                    items = itemsToken.Children().Select(parseToken);
                 }
             }
             else
             {
-                pageresponse.AddDefaultPageInfo(pageresponse.Content.Count);
+                items = Enumerable.Empty<T>();
             }
+
+            var pageresponse = new PageResponse<T>(items);
+
+            switch (pageResultsType)
+            {
+                case LastPageResultsType.Attr:
+                    pageresponse.AddPageInfoFromJToken(pageInfoToken);
+                    break;
+                case LastPageResultsType.OpenQuery:
+                    pageresponse.AddPageInfoFromOpenQueryJToken(pageInfoToken);
+                    break;
+                case LastPageResultsType.None:
+                default:
+                    pageresponse.AddDefaultPageInfo(pageresponse.Content);
+                    break;
+            }
+
+            pageresponse.Success = true;
 
             return pageresponse;
         }
 
-        private void AddDefaultPageInfo(int count)
+        #endregion
+
+        private void AddDefaultPageInfo()
+        {
+            AddDefaultPageInfo(Enumerable.Empty<T>().ToList());
+        }
+
+        private void AddDefaultPageInfo(IReadOnlyCollection<T> items)
         {
             Page = 1;
             TotalPages = 1;
-            TotalItems = count;
-            PageSize = count;
+            TotalItems = items.Count;
+            PageSize = items.Count;
         }
-
-        #endregion
 
         internal void AddPageInfoFromJToken(JToken attrToken)
         {

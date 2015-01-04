@@ -42,7 +42,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
                 var itemsToken = shoutsToken.SelectToken("shout");
                 var pageInfoToken = shoutsToken.SelectToken("@attr");
 
-                return PageResponse<LastShout>.CreateSuccessResponse(itemsToken, pageInfoToken, LastShout.ParseJToken);
+                return PageResponse<LastShout>.CreateSuccessResponse(itemsToken, pageInfoToken, LastShout.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

@@ -12,40 +12,31 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Api.Commands.AlbumApi
 {
-    internal class GetUserTagsForAlbumCommand: GetAsyncCommandBase<PageResponse<LastTag>>
+    internal class AlbumGetTagsByUserCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
-        public string AlbumMbid { get; set; }
-
         public string ArtistName { get; set; }
 
         public string AlbumName { get; set; }
 
-        public string UserName { get; set; }
+        public string Username { get; set; }
+
         public bool Autocorrect { get; set; }
 
-        public GetUserTagsForAlbumCommand(ILastAuth auth, string album, string artist, string username)
+        public AlbumGetTagsByUserCommand(ILastAuth auth, string artist, string album, string username)
             : base(auth)
         {
             Method = "album.getTags";
 
-            AlbumName = album;
             ArtistName = artist;
-            UserName = username;
+            AlbumName = album;
+            Username = username;
         }
-
 
         public override void SetParameters()
         {
-            if (AlbumMbid != null)
-            {
-                Parameters.Add("mbid", AlbumMbid);
-            }
-            else
-            {
-                Parameters.Add("artist", ArtistName);
-                Parameters.Add("album", AlbumName);
-                Parameters.Add("user", UserName);
-            }
+            Parameters.Add("artist", ArtistName);
+            Parameters.Add("album", AlbumName);
+            Parameters.Add("user", Username);
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             AddPagingParameters();
@@ -60,14 +51,14 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("toptags");
+                var resultsToken = jtoken.SelectToken("tags");
                 var itemsToken = resultsToken.SelectToken("tag");
 
-                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, resultsToken, LastTag.ParseJToken, false);
+                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, LastTag.ParseJToken);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastTag>>(error);
+                return PageResponse<LastTag>.CreateErrorResponse(error);
             }
         }
     }

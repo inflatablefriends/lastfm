@@ -55,7 +55,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var itemsToken = jtoken.SelectToken("similartracks").SelectToken("track");
 
-                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, null, LastTrack.ParseJToken);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, LastTrack.ParseJToken);
             }
             else
             {

@@ -31,7 +31,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
                 var resultsToken = jtoken.SelectToken("recommendations");
                 var itemsToken = resultsToken.SelectToken("artist");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, false);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

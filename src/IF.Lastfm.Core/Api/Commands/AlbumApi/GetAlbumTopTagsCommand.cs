@@ -64,7 +64,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
                 var resultsToken = jtoken.SelectToken("toptags");
                 var itemsToken = resultsToken.SelectToken("tag");
 
-                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, resultsToken, LastTag.ParseJToken, false);
+                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, resultsToken, LastTag.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

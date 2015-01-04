@@ -40,7 +40,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
                 var itemsToken = jtoken.SelectToken("topalbums").SelectToken("album");
                 var pageInfoToken = jtoken.SelectToken("@attr");
 
-                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, pageInfoToken, LastAlbum.ParseJToken);
+                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, pageInfoToken, LastAlbum.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

@@ -33,7 +33,7 @@ namespace IF.Lastfm.Core.Api.Commands.ChartApi
                 var itemsToken = jtoken.SelectToken("artist");
                 var pageInfoToken = jtoken.SelectToken("@attr");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, pageInfoToken, LastArtist.ParseJToken);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, pageInfoToken, LastArtist.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {

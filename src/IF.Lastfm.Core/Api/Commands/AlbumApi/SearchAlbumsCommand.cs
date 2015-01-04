@@ -39,7 +39,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
                 var resultsToken = jtoken.SelectToken("results");
                 var itemsToken = resultsToken.SelectToken("albummatches").SelectToken("album");
 
-                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, resultsToken, LastAlbum.ParseJToken, true);
+                return PageResponse<LastAlbum>.CreateSuccessResponse(itemsToken, resultsToken, LastAlbum.ParseJToken, LastPageResultsType.OpenQuery);
             }
             else
             {
