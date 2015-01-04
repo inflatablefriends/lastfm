@@ -93,9 +93,14 @@ namespace IF.Lastfm.Core.Api
             throw new NotImplementedException();
         }
 
-        public async Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
+        public Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
         {
-            throw new NotImplementedException();
+            var command = new ArtistGetTopTagsCommand(Auth, artist)
+            {
+                Autocorrect = autocorrect
+            };
+
+            return command.ExecuteAsync();
         }
 
         public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0,

@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -12,6 +13,8 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
     {
         public string ArtistName { get; set; }
 
+        public bool Autocorrect { get; set; }
+
         public ArtistGetTopTagsCommand(ILastAuth auth, string artistName) : base(auth)
         {
             Method = "artist.getTopTags";
@@ -22,6 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.ArtistApi
         public override void SetParameters()
         {
             Parameters.Add("artist", ArtistName);
+            Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
         }
 
         public async override Task<PageResponse<LastTag>> HandleResponse(HttpResponseMessage response)
