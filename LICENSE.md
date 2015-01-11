@@ -1,4 +1,4 @@
-# Licence
+# License
 
 The source code hosted at [github.com/inflatablefriends/lastfm](https://github.com/inflatablefriends/lastfm) is licensed under the MIT License (MIT).
 
