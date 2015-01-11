@@ -47,7 +47,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
             if (Duration.HasValue)
             {
-                Parameters.Add("duration", Duration.Value.TotalSeconds.ToString());
+                Parameters.Add("duration",Math.Round(Duration.Value.TotalSeconds).ToString());
             }
         }
 
