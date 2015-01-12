@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
             var testScrobble = new Scrobble(ARTIST_NAME, ALBUM_NAME, TRACK_NAME, trackPlayed)
             {
-                Duration = new TimeSpan(0, 3, 49),
+                Duration = new TimeSpan(0, 0, 3, 49, 200),
                 AlbumArtist = ARTIST_NAME
             };
 
