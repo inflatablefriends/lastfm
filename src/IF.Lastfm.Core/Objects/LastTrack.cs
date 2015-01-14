@@ -37,7 +37,7 @@ namespace IF.Lastfm.Core.Objects
 
         public IEnumerable<LastTag> TopTags { get; set; }
 
-        public DateTime? TimePlayed { get; set; }
+        public DateTimeOffset? TimePlayed { get; set; }
 
         public bool? IsLoved { get; set; }
 
@@ -103,7 +103,7 @@ namespace IF.Lastfm.Core.Objects
             if (date != null)
             {
                 var stamp = date.Value<double>("uts");
-                t.TimePlayed = stamp.ToDateTimeUtc();
+                t.TimePlayed = stamp.FromUnixTime();
             }
 
             var images = token.SelectToken("image");

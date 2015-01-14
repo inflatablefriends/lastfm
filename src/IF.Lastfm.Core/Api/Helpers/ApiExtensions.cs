@@ -8,6 +8,11 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public static class ApiExtensions
     {
+        public static DateTimeOffset UnixEpoch
+        {
+            get { return new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero); }
+        }
+
         public static T GetAttribute<T>(this Enum enumValue)
         where T : Attribute
         {
@@ -27,17 +32,16 @@ namespace IF.Lastfm.Core.Api.Helpers
                 : enumValue.ToString();
         }
 
-        public static int ToUnixTimestamp(this DateTime dt)
+        public static int AsUnixTime(this DateTimeOffset dt)
         {
-            var d = (dt - new DateTime(1970, 1, 1)).TotalSeconds;
+            var d = (dt - UnixEpoch).TotalSeconds;
 
             return Convert.ToInt32(d);
         }
 
-        public static DateTime ToDateTimeUtc(this double stamp)
+        public static DateTimeOffset FromUnixTime(this double stamp)
         {
-            var d = new DateTime(1970, 1, 1).ToUniversalTime();
-            d = d.AddSeconds(stamp);
+            var d = UnixEpoch.AddSeconds(stamp);
             return d;
         }
 

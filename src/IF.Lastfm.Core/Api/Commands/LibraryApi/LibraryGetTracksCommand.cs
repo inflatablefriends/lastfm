@@ -17,9 +17,10 @@ namespace IF.Lastfm.Core.Api.Commands.LibraryApi
 
         public string Album { get; private set; }
 
-        public DateTime From { get; private set; }
+        public DateTimeOffset From { get; private set; }
 
-        public LibraryGetTracksCommand(ILastAuth auth, string username, string artist, string album, DateTime from) : base(auth)
+        public LibraryGetTracksCommand(ILastAuth auth, string username, string artist, string album, DateTimeOffset from)
+            : base(auth)
         {
             Method = "library.getTracks";
 
@@ -34,7 +35,7 @@ namespace IF.Lastfm.Core.Api.Commands.LibraryApi
             Parameters.Add("user", Username);
             Parameters.Add("artist", Artist);
             Parameters.Add("album", Album);
-            Parameters.Add("from", From.ToUnixTimestamp().ToString());
+            Parameters.Add("from", From.AsUnixTime().ToString());
 
             AddPagingParameters();
             DisableCaching();

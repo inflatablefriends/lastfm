@@ -16,11 +16,11 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
 
         public string AlbumArtist { get; set; }
 
-        public DateTime? TimePlayed { get; set; }
+        public DateTimeOffset? TimePlayed { get; set; }
 
         public bool ChosenByUser { get; set; }
-        
-        public TrackScrobbleCommand(ILastAuth auth, string artist, string album, string track, string albumArtist, DateTime? timeplayed)
+
+        public TrackScrobbleCommand(ILastAuth auth, string artist, string album, string track, string albumArtist, DateTimeOffset? timeplayed)
             : base(auth)
         {
             Method = "track.scrobble";
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api.Commands.TrackApi
             
             if (TimePlayed.HasValue)
             {
-                Parameters.Add("timestamp", TimePlayed.Value.ToUnixTimestamp().ToString());
+                Parameters.Add("timestamp", TimePlayed.Value.AsUnixTime().ToString());
             }
         }
 

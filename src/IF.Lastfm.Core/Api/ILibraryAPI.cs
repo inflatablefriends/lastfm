@@ -13,7 +13,7 @@ namespace IF.Lastfm.Core.Api
         Task<PageResponse<LastTrack>> GetTracks(string username,
             string artist,
             string album,
-            DateTime since,
+            DateTimeOffset since,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 

@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
     {
         public ILastAuth Auth { get; private set; }
 
-        public async Task<PageResponse<LastTrack>> GetTracks(string username, string artist, string album, DateTime since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastTrack>> GetTracks(string username, string artist, string album, DateTimeOffset since, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new LibraryGetTracksCommand(Auth, username, artist, album, since)
                           {

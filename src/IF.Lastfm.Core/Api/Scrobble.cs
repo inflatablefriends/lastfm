@@ -4,8 +4,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class Scrobble
     {
-        #region Properties
-
         public string Artist { get; private set; }
 
         public string AlbumArtist { get; set; }
@@ -14,15 +12,13 @@ namespace IF.Lastfm.Core.Api
 
         public string Track { get; private set; }
 
-        public DateTime TimePlayed { get; private set; }
+        public DateTimeOffset TimePlayed { get; private set; }
 
         public bool ChosenByUser { get; set; }
 
         public TimeSpan? Duration { get; set; }
-
-        #endregion
-
-        public Scrobble(string artist, string album, string track, DateTime timeplayed)
+        
+        public Scrobble(string artist, string album, string track, DateTimeOffset timeplayed)
         {
             Artist = artist;
             Album = album;

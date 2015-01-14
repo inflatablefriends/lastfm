@@ -7,8 +7,6 @@ namespace IF.Lastfm.Core.Objects
 {
     public class LastAlbum : ILastfmObject
     {
-        #region Properties
-
         public string Id { get; set; }
         public string Name { get; set; }
         public IEnumerable<LastTrack> Tracks { get; set; }
@@ -28,7 +26,6 @@ namespace IF.Lastfm.Core.Objects
 
         public LastImageSet Images { get; set; }
         
-        #endregion
 
         internal static LastAlbum ParseJToken(JToken token)
         {
