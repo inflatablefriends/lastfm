@@ -32,13 +32,14 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var userApi = new UserApi(Auth);
             var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 0, 1);
 
+            var testGuid = Guid.Empty;
             var expectedTrack = new LastTrack
             {
                 Name = TRACK_NAME,
                 ArtistName = ARTIST_NAME,
                 AlbumName = ALBUM_NAME,
-                Mbid = "c1af4137-92c5-43e4-ba4a-b43c7004a624",
-                ArtistMbid = "d8915e13-d67a-4aa0-9c0b-1f126af951af",
+                Mbid = testGuid.ToString("D"),
+                ArtistMbid = testGuid.ToString("D"),
                 Url = new Uri("http://www.last.fm/music/Hot+Chip/_/Over+and+Over"),
                 Images = new LastImageSet("http://userserve-ak.last.fm/serve/34s/50921593.png",
                     "http://userserve-ak.last.fm/serve/64s/50921593.png",
@@ -48,7 +49,15 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             };
 
             var expectedJson = expectedTrack.TestSerialise();
-            var actualJson = tracks.Content.FirstOrDefault().TestSerialise();
+            var actual = tracks.Content.FirstOrDefault();
+
+            // MBIDs returned by last.fm change from time to time, so let's just test that they're there.
+            Assert.IsTrue(Guid.Parse(actual.Mbid) != Guid.Empty);
+            Assert.IsTrue(Guid.Parse(actual.ArtistMbid) != Guid.Empty);
+            actual.Mbid = testGuid.ToString("D");
+            actual.ArtistMbid = testGuid.ToString("D");
+
+            var actualJson = actual.TestSerialise();
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
