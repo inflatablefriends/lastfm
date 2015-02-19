@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core.Tests", "src\IF.Lastfm.Core.Tests\IF.Lastfm.Core.Tests.csproj", "{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}"
 EndProject
@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{81B53C
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Demo.Apollo", "src\IF.Lastfm.Demo.Apollo\IF.Lastfm.Demo.Apollo.csproj", "{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core", "src\IF.Lastfm.Core\IF.Lastfm.Core.csproj", "{3CF4B78F-8B48-49CB-942F-83DB13474A4F}"
 EndProject
@@ -51,30 +49,6 @@ Global
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|ARM.ActiveCfg = Release|Any CPU
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|x64.ActiveCfg = Release|Any CPU
 		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}.Release|x86.ActiveCfg = Release|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug ARM|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug ARM|ARM.ActiveCfg = Debug|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug ARM|x64.ActiveCfg = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug ARM|x86.ActiveCfg = Release|x86
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|ARM.ActiveCfg = Debug|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|ARM.Build.0 = Debug|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|ARM.Deploy.0 = Debug|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|x86.Build.0 = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Debug|x86.Deploy.0 = Debug|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|ARM.ActiveCfg = Release|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|ARM.Build.0 = Release|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|ARM.Deploy.0 = Release|ARM
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|x64.ActiveCfg = Release|Any CPU
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|x86.ActiveCfg = Release|x86
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|x86.Build.0 = Release|x86
-		{3B3CF5ED-2107-4BFA-9E0E-BCB8260C174B}.Release|x86.Deploy.0 = Release|x86
 		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Debug ARM|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Debug ARM|Any CPU.Build.0 = Debug|Any CPU
 		{3CF4B78F-8B48-49CB-942F-83DB13474A4F}.Debug ARM|ARM.ActiveCfg = Debug|Any CPU
