@@ -33,7 +33,7 @@ namespace IF.Lastfm.Core.Objects
 
         public int? ListenerCount { get; set; }
 
-        public int? TotalPlayCount { get; set; }
+        public int? PlayCount { get; set; }
 
         public IEnumerable<LastTag> TopTags { get; set; }
 
@@ -66,7 +66,7 @@ namespace IF.Lastfm.Core.Objects
             int playCount;
             if (int.TryParse(playCountStr, out playCount))
             {
-                t.TotalPlayCount = playCount;
+                t.PlayCount = playCount;
             }
 
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);

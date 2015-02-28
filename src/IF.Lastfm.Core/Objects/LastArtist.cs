@@ -56,6 +56,7 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<LastTag> Tags { get; set; }
         public List<LastArtist> Similar { get; set; }
         public LastImageSet MainImage { get; set; }
+        public int PlayCount { get; set; }
 
         #endregion
 
@@ -73,6 +74,13 @@ namespace IF.Lastfm.Core.Objects
             a.Name = token.Value<string>("name");
             a.Mbid = token.Value<string>("mbid");
             var url = token.Value<string>("url");
+
+            var playCountStr = token.Value<string>("playcount");
+            int playCount;
+            if (int.TryParse(playCountStr, out playCount))
+            {
+                a.PlayCount = playCount;
+            }
 
             // for some stupid reason the api returns the url without http in the get similar method, WHY?
             if (!url.StartsWith("http"))

@@ -25,8 +25,10 @@ namespace IF.Lastfm.Core.Api.Commands
             try
             {
                 var httpClient = GetHttpClient();
-                var response = await httpClient.GetAsync(Url);
-                return await HandleResponse(response);
+                using (var response = await httpClient.GetAsync(Url))
+                {
+                    return await HandleResponse(response);
+                }
             }
             catch (HttpRequestException)
             {

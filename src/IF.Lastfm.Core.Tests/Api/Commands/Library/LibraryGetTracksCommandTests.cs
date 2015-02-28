@@ -31,7 +31,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
             {
                 ArtistName = "Stevie Wonder",
                 Duration = new TimeSpan(0, 4, 8),
-                TotalPlayCount = 56,
+                PlayCount = 56,
                 Mbid = "0161855d-0b98-4f2d-b2ab-446dbd8d6759",
                 Name = "Superstition",
                 ArtistMbid = "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
@@ -55,7 +55,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
             {
                 ArtistName = "Dire Straits",
                 Duration = new TimeSpan(0, 5, 47),
-                TotalPlayCount = 81,
+                PlayCount = 81,
                 Mbid = "0317e524-7f70-4910-bc12-95dd468a29fc",
                 Name = "Sultans of Swing",
                 ArtistMbid = "614e3804-7d34-41ba-857f-811bad7c2b7a",
