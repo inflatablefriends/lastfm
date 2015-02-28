@@ -36,7 +36,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             {
                 ArtistName = "Madonna",
                 ListenerCount = 509271,
-                TotalPlayCount = 7341494,
+                PlayCount = 7341494,
                 Mbid = "ddb3168d-66a9-4b2d-af02-05278da8a23d",
                 Url = new Uri("http://www.last.fm/music/Madonna/Ray+of+Light", UriKind.Absolute),
                 Name = "Ray of Light",

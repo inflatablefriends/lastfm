@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Objects
         public DateTimeOffset ReleaseDateUtc { get; set; }
 
         public int ListenerCount { get; set; }
-        public int TotalPlayCount { get; set; }
+        public int PlayCount { get; set; }
 
         public string Mbid { get; set; }
 
@@ -69,7 +69,13 @@ namespace IF.Lastfm.Core.Objects
             a.ListenerCount = token.Value<int>("listeners");
             a.Mbid = token.Value<string>("mbid");
             a.Name = token.Value<string>("name");
-            a.TotalPlayCount = token.Value<int>("playcount");
+
+            var playCountStr = token.Value<string>("playcount");
+            int playCount;
+            if (int.TryParse(playCountStr, out playCount))
+            {
+                a.PlayCount = playCount;
+            }
 
             var images = token.SelectToken("image");
             if (images != null)
