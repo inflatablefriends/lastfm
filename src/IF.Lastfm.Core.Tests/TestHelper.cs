@@ -1,29 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using IF.Lastfm.Core.Api.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests
 {
     public static class TestHelper
     {
-        private static readonly JsonSerializerSettings _testSerialiserSettings;
-
-        static TestHelper()
+        private static JsonSerializer GetTestSerialiser()
         {
-            _testSerialiserSettings = new JsonSerializerSettings
+            return new JsonSerializer
             {
                 DateFormatString = "yyyy-MM-dd HH:mm:ss.fff",
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new OrderedContractResolver()
             };
+        }
+
+        private static JObject WithSortedProperties(this JObject jo)
+        {
+            var result = new JObject();
+            foreach (var prop in jo.Properties().OrderBy(p => p.Name))
+            {
+                var nestedJo = prop.Value as JObject;
+                if (nestedJo != null)
+                {
+                    result.Add(nestedJo.WithSortedProperties());
+                }
+                else
+                {
+                    result.Add(prop);
+                }
+            }
+            return result;
         }
 
         public static string TestSerialise<T>(this T poco)
         {
-            return JsonConvert.SerializeObject(poco, Formatting.Indented, _testSerialiserSettings);
+            var serialiser = GetTestSerialiser();
+            var jo = JObject.FromObject(poco, serialiser);
+            var ordered = jo.WithSortedProperties();
+
+            return ordered.ToString();
+        }
+
+        public static void AssertEqual<T>(T one, T two)
+        {
+            var ones = one.TestSerialise();
+            var twos = two.TestSerialise();
+
+            Assert.AreEqual(ones, twos, ones.DifferencesTo(twos));
         }
 
         public static string DifferencesTo<T>(this IEnumerable<T> expected, IEnumerable<T> actual)

@@ -22,7 +22,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
 
         public override void SetParameters()
         {
-            Parameters.Add("username", Username);
+            Parameters.Add("user", Username);
             Parameters.Add("period", TimeSpan.GetApiName());
 
             AddPagingParameters();

@@ -95,6 +95,7 @@
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />
     <Compile Include="LastFmTests.cs" />
+    <Compile Include="OrderedContractResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AlbumApiResponses.Designer.cs">
       <AutoGen>True</AutoGen>
