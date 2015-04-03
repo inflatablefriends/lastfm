@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         [TestMethod]
         public async Task ScrobblesSingle()
         {
-            var trackPlayed = DateTime.UtcNow.AddMinutes(-1);
+            var trackPlayed = DateTimeOffset.UtcNow.AddMinutes(-1).RoundToNearestSecond();
             var testScrobble = new Scrobble("Hot Chip", "The Warning", "Over and Over", trackPlayed)
             {
                 AlbumArtist = ARTIST_NAME,
@@ -28,10 +28,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var response = await trackApi.ScrobbleAsync(testScrobble);
 
             Assert.IsTrue(response.Success);
-
-            var userApi = new UserApi(Auth);
-            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 0, 1);
-
+            
             var testGuid = Guid.Empty;
             var expectedTrack = new LastTrack
             {
@@ -44,12 +41,18 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 Images = new LastImageSet("http://userserve-ak.last.fm/serve/34s/50921593.png",
                     "http://userserve-ak.last.fm/serve/64s/50921593.png",
                     "http://userserve-ak.last.fm/serve/126/50921593.png",
-                    "http://userserve-ak.last.fm/serve/300x300/50921593.png"),
-                TimePlayed = trackPlayed.RoundToNearestSecond()
+                    "http://userserve-ak.last.fm/serve/300x300/50921593.png")
             };
-
             var expectedJson = expectedTrack.TestSerialise();
-            var actual = tracks.Content.FirstOrDefault();
+
+            var userApi = new UserApi(Auth);
+            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 0, 1);
+            Assert.IsTrue(tracks.Any());
+
+            var actual = tracks.Content.First();
+            
+            TestHelper.AssertSerialiseEqual(trackPlayed, actual.TimePlayed);
+            actual.TimePlayed = null;
 
             // MBIDs returned by last.fm change from time to time, so let's just test that they're there.
             Assert.IsTrue(Guid.Parse(actual.Mbid) != Guid.Empty);
