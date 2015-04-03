@@ -108,6 +108,7 @@
     <Compile Include="Resources\NullToInvisibleConverter.cs" />
     <Compile Include="Tools\ProgressReport.cs" />
     <Compile Include="Tools\Reflektor.cs" />
+    <Compile Include="ViewModels\MainState.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />

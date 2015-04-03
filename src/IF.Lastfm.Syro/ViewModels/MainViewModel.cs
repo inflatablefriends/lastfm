@@ -13,7 +13,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Syro.ViewModels
 {
@@ -24,25 +26,21 @@ namespace IF.Lastfm.Syro.ViewModels
         private List<string> _remainingCommands;
         private int _apiProgress;
         private string _reportPath;
-        private Type _selectedCommandType;
-        private ObservableCollection<Pair<string, string>> _commandParameters;
-        private Type _selectedLastObjectType;
-        private bool _executingCommand;
-        private Type _selectedResponseType;
         private ILastAuth _lastAuth;
+        private bool _executingCommand;
         private string _commandResult;
-        private string _commandMethodName;
-        private string _commandPageNumber;
-        private string _commandItemCount;
-        private string _lastPassword;
-        private string _lastUsername;
+        private const string SYRO_CONFIG_FILENAME = "syro.json";
         private const string ReportFilename = "PROGRESS.md";
+        private MainState _state;
+        private string _configPath;
+        private ObservableCollection<Pair<string, string>> _commandParameters;
 
         #region Binding properties 
         
         public ICommand GenerateProgressReportCommand { get; private set; }
         public ICommand OpenReportCommand { get; private set; }
         public ICommand ExecuteSelectedCommandCommand { get; private set; }
+        public ICommand DeleteConfigCommand { get; private set; }
 
         public string CommandResult
         {
@@ -99,42 +97,30 @@ namespace IF.Lastfm.Syro.ViewModels
             }
         }
 
-        public IEnumerable<Type> BaseCommandTypes { get; private set; }
-
-        public Type SelectedBaseCommandType
+        public MainState State
         {
-            get { return _selectedCommandType; }
+            get { return _state; }
             set
             {
-                if (value == _selectedCommandType) return;
-
-                _selectedCommandType = value;
+                if (Equals(value, _state)) return;
+                _state = value;
                 OnPropertyChanged();
             }
         }
 
+        public IEnumerable<Type> BaseCommandTypes { get; private set; }
+        
         public IEnumerable<Type> LastObjectTypes { get; private set; }
 
-        public Type SelectedLastObjectType
-        {
-            get { return _selectedLastObjectType; }
-            set
-            {
-                if (value == _selectedLastObjectType) return;
-                _selectedLastObjectType = value;
-                OnPropertyChanged();
-            }
-        }
-
         public IEnumerable<Type> LastResponseTypes { get; private set; }
-
-        public Type SelectedResponseType
+        
+        public bool ExecutingCommand
         {
-            get { return _selectedResponseType; }
+            get { return _executingCommand; }
             set
             {
-                if (value == _selectedResponseType) return;
-                _selectedResponseType = value;
+                if (value.Equals(_executingCommand)) return;
+                _executingCommand = value;
                 OnPropertyChanged();
             }
         }
@@ -150,72 +136,6 @@ namespace IF.Lastfm.Syro.ViewModels
             }
         }
 
-        public bool ExecutingCommand
-        {
-            get { return _executingCommand; }
-            set
-            {
-                if (value.Equals(_executingCommand)) return;
-                _executingCommand = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string CommandMethodName
-        {
-            get { return _commandMethodName; }
-            set
-            {
-                if (value == _commandMethodName) return;
-                _commandMethodName = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string CommandPageNumber
-        {
-            get { return _commandPageNumber; }
-            set
-            {
-                if (value == _commandPageNumber) return;
-                _commandPageNumber = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string CommandItemCount
-        {
-            get { return _commandItemCount; }
-            set
-            {
-                if (value == _commandItemCount) return;
-                _commandItemCount = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string LastUsername
-        {
-            get { return _lastUsername; }
-            set
-            {
-                if (value == _lastUsername) return;
-                _lastUsername = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string LastPassword
-        {
-            get { return _lastPassword; }
-            set
-            {
-                if (value == _lastPassword) return;
-                _lastPassword = value;
-                OnPropertyChanged();
-            }
-        }
-
         #endregion
 
         public MainViewModel(ILastAuth lastAuth)
@@ -225,34 +145,90 @@ namespace IF.Lastfm.Syro.ViewModels
             GenerateProgressReportCommand = new AsyncDelegateCommand(GenerateProgressReport);
             OpenReportCommand = new DelegateCommand(OpenProgressReport);
             ExecuteSelectedCommandCommand = new AsyncDelegateCommand(ExecuteSelectedCommand);
+            DeleteConfigCommand = new DelegateCommand(() =>
+            {
+                if (_configPath != null && File.Exists(_configPath))
+                {
+                    File.Delete(_configPath);
+                }
+
+                InitialiseState();
+            });
 
             var currentDir = AppDomain.CurrentDomain.BaseDirectory;
             SolutionDir = Path.GetFullPath(currentDir + "../../../../"); // assuming this is running in debug dir
+            _configPath = Path.GetFullPath(SolutionDir + SYRO_CONFIG_FILENAME);
 
             BaseCommandTypes = new List<Type>
             {
                 typeof(DummyGetAsyncCommand<>),
                 typeof(DummyPostAsyncCommand<>)
             };
-            LastObjectTypes = Reflektor.FindClassesCastableTo(typeof (ILastfmObject));
-            LastResponseTypes = Reflektor.FindClassesCastableTo(typeof (LastResponse));
+            LastObjectTypes = Reflektor.FindClassesCastableTo(typeof(ILastfmObject));
+            LastResponseTypes = Reflektor.FindClassesCastableTo(typeof(LastResponse));
 
-            SelectedBaseCommandType = BaseCommandTypes.FirstOrDefault();
-            SelectedLastObjectType = LastObjectTypes.FirstOrDefault();
-            SelectedResponseType = LastResponseTypes.FirstOrDefault();
+            InitialiseState();
 
-            CommandParameters = new ObservableCollection<Pair<string, string>>(new List<Pair<string, string>>
+            Application.Current.Exit += OnAppExit;
+        }
+
+        private void InitialiseState()
+        {
+            var state = LoadState();
+            var pairs = state.CommandParameters != null
+                ? state.CommandParameters.Select(kv => new Pair<string, string>(kv.Key, kv.Value))
+                : Enumerable.Repeat(new Pair<string, string>(), 5);
+
+            State = state;
+            CommandParameters = new ObservableCollection<Pair<string, string>>(pairs);
+        }
+
+        private void OnAppExit(object sender, ExitEventArgs e)
+        {
+            var json = JsonConvert.SerializeObject(_state);
+            var lines = new[]
             {
-                new Pair<string, string>(),
-                new Pair<string, string>(),
-                new Pair<string, string>(),
-                new Pair<string, string>(),
-                new Pair<string, string>()
-            });
+                json
+            };
 
-            CommandMethodName = "album.getInfo";
-            CommandPageNumber = "0";
-            CommandItemCount = "20";
+            File.WriteAllLines(_configPath, lines);
+        }
+
+        public MainState LoadState()
+        {
+            MainState state = null;
+            if (File.Exists(_configPath))
+            {
+                try
+                {
+                    var json = File.ReadAllText(_configPath);
+                    state = JsonConvert.DeserializeObject<MainState>(json);
+                }
+                catch
+                {
+                    state = null;
+                }
+            }
+
+            if (state == null)
+            {
+                state = new MainState
+                {
+                    SelectedBaseCommandType = BaseCommandTypes.FirstOrDefault(),
+                    SelectedLastObjectType = LastObjectTypes.FirstOrDefault(),
+                    SelectedResponseType = LastResponseTypes.FirstOrDefault(),
+
+                    CommandParameters = new Dictionary<string, string>{
+                        {"album", "The Fall of Math"},
+                        {"artist", "65daysofstatic"}
+                    },
+                    CommandMethodName = "album.getInfo",
+                    CommandPageNumber = "0",
+                    CommandItemCount = "20",
+                };
+            }
+
+            return state;
         }
 
         private async Task ExecuteSelectedCommand()
@@ -267,13 +243,13 @@ namespace IF.Lastfm.Syro.ViewModels
             try
             {
                 // build up the command<response<lastobject>>
-                var responseType = SelectedResponseType.MakeGenericType(SelectedLastObjectType);
-                var genericType = SelectedBaseCommandType.MakeGenericType(responseType);
+                var responseType = _state.SelectedResponseType.MakeGenericType(_state.SelectedLastObjectType);
+                var genericType = _state.SelectedBaseCommandType.MakeGenericType(responseType);
 
-                if ((_lastAuth.UserSession == null || _lastAuth.UserSession.Username != LastUsername)
-                    && SelectedBaseCommandType == typeof (DummyPostAsyncCommand<>))
+                if ((_lastAuth.UserSession == null || _lastAuth.UserSession.Username != _state.LastUsername)
+                    && _state.SelectedBaseCommandType == typeof(DummyPostAsyncCommand<>))
                 {
-                    await _lastAuth.GetSessionTokenAsync(LastUsername, LastPassword);
+                    await _lastAuth.GetSessionTokenAsync(_state.LastUsername, _state.LastPassword);
                 }
 
                 var instance = Activator.CreateInstance(genericType, _lastAuth);
@@ -283,15 +259,16 @@ namespace IF.Lastfm.Syro.ViewModels
                     .ToDictionary(pair => pair.Key, pair => pair.Value);
 
                 var methodProperty = genericType.GetProperty("Method", BindingFlags.Public | BindingFlags.Instance);
-                methodProperty.SetValue(instance, CommandMethodName);
+                methodProperty.SetValue(instance, _state.CommandMethodName);
 
-                if (SelectedResponseType == typeof(PageResponse<>))
+                if (_state.SelectedResponseType == typeof(PageResponse<>)
+                    || _state.CommandMethodName.EndsWith("s")) // yolo
                 {
                     var pageProperty = genericType.GetProperty("Page", BindingFlags.Public | BindingFlags.Instance);
-                    pageProperty.SetValue(instance, int.Parse(CommandPageNumber));
+                    pageProperty.SetValue(instance, int.Parse(_state.CommandPageNumber));
 
                     var countProperty = genericType.GetProperty("Count", BindingFlags.Public | BindingFlags.Instance);
-                    countProperty.SetValue(instance, int.Parse(CommandItemCount));
+                    countProperty.SetValue(instance, int.Parse(_state.CommandItemCount));
                 }
 
                 var parametersProperty = genericType.GetProperty("Parameters",
@@ -309,8 +286,7 @@ namespace IF.Lastfm.Syro.ViewModels
                 var formattedJson = jo.ToString(Formatting.Indented);
 
                 // writeout to file
-                var filename = string.Format("syro-{0}-{1}.json", jo.Properties().First().Name,
-                    DateTime.Now.ToString("yyMMdd-HHmmss"));
+                var filename = string.Format("syro-{0}-{1}.json", _state.CommandMethodName.Replace(".", "-"), DateTime.Now.ToString("yyMMdd-HHmmss"));
                 var tempDirPath = Path.GetFullPath(SolutionDir + "tmp/");
 
                 if (!Directory.Exists(tempDirPath))

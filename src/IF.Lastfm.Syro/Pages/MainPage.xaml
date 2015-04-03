@@ -5,8 +5,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
       xmlns:viewModels="clr-namespace:IF.Lastfm.Syro.ViewModels"
-      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-      xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance viewModels:MainViewModel}" d:DesignWidth="400" d:DesignHeight="308">
 
@@ -30,17 +28,17 @@
 
                             <ComboBox Grid.Column="0"
                                   ItemsSource="{Binding BaseCommandTypes}"
-                                  SelectedItem="{Binding SelectedBaseCommandType, Mode=TwoWay}"
+                                  SelectedItem="{Binding State.SelectedBaseCommandType, Mode=TwoWay}"
                                   IsTextSearchEnabled="False" />
 
                             <ComboBox Grid.Column="1"
                                   ItemsSource="{Binding LastResponseTypes}"
-                                  SelectedItem="{Binding SelectedResponseType, Mode=TwoWay}"
+                                  SelectedItem="{Binding State.SelectedResponseType, Mode=TwoWay}"
                                   IsTextSearchEnabled="False" />
 
                             <ComboBox Grid.Column="2"
                                   ItemsSource="{Binding LastObjectTypes}"
-                                  SelectedItem="{Binding SelectedLastObjectType, Mode=TwoWay}"
+                                  SelectedItem="{Binding State.SelectedLastObjectType, Mode=TwoWay}"
                                   IsTextSearchEnabled="False" />
                         </Grid>
                         <Grid Row="1"
@@ -61,7 +59,7 @@
                                            Style="{StaticResource SyroNormalFontStyle}"
                                            Margin="0,0,10,0"/>
                                 <TextBox Grid.Column="1"
-                                         Text="{Binding CommandMethodName, Mode=TwoWay}"/>
+                                         Text="{Binding State.CommandMethodName, Mode=TwoWay}"/>
                             </Grid>
 
                             <Grid Grid.Column="1">
@@ -74,7 +72,7 @@
                                            Style="{StaticResource SyroNormalFontStyle}"
                                            Margin="10,0"/>
                                 <TextBox Grid.Column="1"
-                                         Text="{Binding CommandPageNumber, Mode=TwoWay}"/>
+                                         Text="{Binding State.CommandPageNumber, Mode=TwoWay}"/>
                             </Grid>
 
                             <Grid Grid.Column="2">
@@ -87,7 +85,7 @@
                                            Style="{StaticResource SyroNormalFontStyle}"
                                            Margin="10,0"/>
                                 <TextBox Grid.Column="1"
-                                         Text="{Binding CommandItemCount, Mode=TwoWay}"/>
+                                         Text="{Binding State.CommandItemCount, Mode=TwoWay}"/>
                             </Grid>
                         </Grid>
 
@@ -179,20 +177,26 @@
                     </StackPanel>
                 </Border>
             </TabItem>
-            <TabItem Header="Sign in">
+            <TabItem Header="Config">
                 <Border Padding="28,10">
                     <StackPanel>
                         <TextBlock Style="{StaticResource SyroNormalFontStyle}"
                                    Text="Username"
                                    Margin="0,0,0,10" />
-                        <TextBox Text="{Binding LastUsername, Mode=TwoWay}"
+                        <TextBox Text="{Binding State.LastUsername, Mode=TwoWay}"
                                  Margin="0,0,0,15" />
 
                         <TextBlock Style="{StaticResource SyroNormalFontStyle}"
                                    Text="Password"
                                    Margin="0,0,0,10" />
-                        <TextBox Text="{Binding LastPassword, Mode=TwoWay}"
-                                 Margin="0,0,0,15" />
+                        <TextBox Text="{Binding State.LastPassword, Mode=TwoWay}"
+                                 Margin="0,0,0,25" />
+                        <Button Command="{Binding DeleteConfigCommand}"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,10,10">
+                            <TextBlock Style="{StaticResource SyroNormalFontStyle}" Margin="10,5">Reset config</TextBlock>
+                        </Button>
+                        <TextBlock>Config is automatically saved to (SolutionDir)/syro.json on exit.</TextBlock>
                     </StackPanel>
                 </Border>
             </TabItem>
