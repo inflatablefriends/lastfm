@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Objects
     {
         #region Properties
 
-        public DateTime Published { get; set; }
+        public DateTimeOffset Published { get; set; }
         public string Summary { get; set; }
         public string Content { get; set; }
         public int YearFormed { get; set; }

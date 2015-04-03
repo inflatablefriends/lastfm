@@ -31,7 +31,7 @@ namespace IF.Lastfm.Core.Tests
                 var nestedJo = prop.Value as JObject;
                 if (nestedJo != null)
                 {
-                    result.Add(nestedJo.WithSortedProperties());
+                    result.Add(new JProperty(prop.Name, nestedJo.WithSortedProperties()));
                 }
                 else
                 {
@@ -44,10 +44,31 @@ namespace IF.Lastfm.Core.Tests
         public static string TestSerialise<T>(this T poco)
         {
             var serialiser = GetTestSerialiser();
-            var jo = JObject.FromObject(poco, serialiser);
-            var ordered = jo.WithSortedProperties();
+            var jt = JToken.FromObject(poco, serialiser);
 
-            return ordered.ToString();
+            string ordered;
+            if (jt.Type == JTokenType.Array)
+            {
+                var ja = (JArray) jt;
+
+                var orderedJa =
+                    new JArray(
+                        ja.Descendants()
+                            .Where(t => t.Type == JTokenType.Object)
+                            .Cast<JObject>()
+                            .Select(o => o.WithSortedProperties()));
+
+                ordered = orderedJa.ToString();
+            }
+            else
+            {
+                var jo = (JObject)jt;
+                var orderedJo = jo.WithSortedProperties();
+
+                ordered = orderedJo.ToString();
+            }
+
+            return ordered;
         }
 
         public static void AssertSerialiseEqual<T>(T one, T two)
