@@ -1,7 +1,5 @@
-﻿using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Api.Commands.UserApi;
+﻿using IF.Lastfm.Core.Api.Commands.UserApi;
 using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Moq;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
@@ -84,69 +81,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             Assert.IsFalse(parsed.Success);
             Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
-        }
-    }
-
-    [TestClass]
-    public class UserGetTopAlbumsCommandTests : CommandTestsBase
-    {
-        private const string USER = "test";
-        private const LastStatsTimeSpan SPAN = LastStatsTimeSpan.Month;
-
-        private GetTopAlbumsCommand _command;
-        private Mock<ILastAuth> _mockAuth;
-
-        [TestInitialize]
-        public void TestInitialise()
-        {
-            _mockAuth = new Mock<ILastAuth>();
-            _command = new GetTopAlbumsCommand(_mockAuth.Object, USER, SPAN)
-            {
-                Page = 5,
-                Count = 20
-            };
-
-            _command.SetParameters();
-        }
-
-        [TestMethod]
-        public void CorrectParameters()
-        {
-            var expected = new Dictionary<string, string>
-            {
-                {"user", USER},
-                {"period", SPAN.GetApiName()},
-                {"limit", "20"},
-                {"page", "5"},
-                {"disablecachetoken", ""}
-            };
-
-            _command.Parameters["disablecachetoken"] = "";
-
-            TestHelper.AssertEqual(expected, _command.Parameters);
-        }
-
-        public void HandleErrorResponse()
-        {
-            
-        }
-
-        [TestMethod]
-        public void HandleResponseEmpty()
-        {
-            
-        }
-
-        [TestMethod]
-        public void HandleResponseSingle()
-        {
-
-        }
-
-        [TestMethod]
-        public void HandleResponseMultiple()
-        {
-
         }
     }
 }

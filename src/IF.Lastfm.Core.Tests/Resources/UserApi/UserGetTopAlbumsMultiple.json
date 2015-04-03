@@ -1,0 +1,110 @@
+{
+  "topalbums": {
+    "album": [
+      {
+        "name": "Crystal Castles",
+        "playcount": "2206",
+        "mbid": "a432a420-f374-4556-8421-b4ea097c7fe9",
+        "url": "http://www.last.fm/music/Crystal+Castles/Crystal+Castles",
+        "artist": {
+          "name": "Crystal Castles",
+          "mbid": "b1570544-93ab-4b2b-8398-131735394202",
+          "url": "http://www.last.fm/music/Crystal+Castles"
+        },
+        "image": [
+          {
+            "#text": "http://userserve-ak.last.fm/serve/34s/78606386.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/64s/78606386.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/126/78606386.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/300x300/78606386.png",
+            "size": "extralarge"
+          }
+        ],
+        "@attr": {
+          "rank": "1"
+        }
+      },
+      {
+        "name": "In Ghost Colours",
+        "playcount": "1422",
+        "mbid": "32bb96fa-e91b-49e7-ba07-98c2e5edd28c",
+        "url": "http://www.last.fm/music/Cut+Copy/In+Ghost+Colours",
+        "artist": {
+          "name": "Cut Copy",
+          "mbid": "caaba574-dfbc-4681-8e56-19b5150897d2",
+          "url": "http://www.last.fm/music/Cut+Copy"
+        },
+        "image": [
+          {
+            "#text": "http://userserve-ak.last.fm/serve/34s/69495270.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/64s/69495270.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/126/69495270.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/300x300/69495270.png",
+            "size": "extralarge"
+          }
+        ],
+        "@attr": {
+          "rank": "2"
+        }
+      },
+      {
+        "name": "The Reminder",
+        "playcount": "1360",
+        "mbid": "48d53708-53f0-3a66-8520-5d8093a0e477",
+        "url": "http://www.last.fm/music/Feist/The+Reminder",
+        "artist": {
+          "name": "Feist",
+          "mbid": "a670e05a-cea8-4b37-bce9-d82daf1a0fa4",
+          "url": "http://www.last.fm/music/Feist"
+        },
+        "image": [
+          {
+            "#text": "http://userserve-ak.last.fm/serve/34s/67147496.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/64s/67147496.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/126/67147496.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/300x300/67147496.png",
+            "size": "extralarge"
+          }
+        ],
+        "@attr": {
+          "rank": "3"
+        }
+      }
+    ],
+    "@attr": {
+      "user": "tehrikkit",
+      "type": "overall",
+      "page": "0",
+      "perPage": "3",
+      "totalPages": "1014",
+      "total": "3040"
+    }
+  }
+}

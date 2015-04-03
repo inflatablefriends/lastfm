@@ -139,4 +139,16 @@
   <data name="UserGetRecommendedArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>UserApi\UserGetRecommendedArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UserGetTopAlbumsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergettopalbumsempty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopAlbumsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergettopalbumserror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopAlbumsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergettopalbumsmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopAlbumsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>userapi\usergettopalbumssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

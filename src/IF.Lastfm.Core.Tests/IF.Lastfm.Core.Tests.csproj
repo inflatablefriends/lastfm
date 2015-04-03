@@ -90,6 +90,7 @@
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecommendedArtistsCommandTests.cs" />
+    <Compile Include="Api\Commands\UserGetTopAlbumsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
     <Compile Include="Api\LastAuthTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
@@ -165,6 +166,10 @@
     <None Include="Resources\UserApi\UserGetRecentTracksSingle.json" />
     <None Include="Resources\UserApi\UserGetRecommendedArtistsMultiple.json" />
     <None Include="Resources\UserApi\UserGetRecommendedArtistsSingle.json" />
+    <None Include="Resources\UserApi\UserGetTopAlbumsEmpty.json" />
+    <None Include="Resources\UserApi\UserGetTopAlbumsError.json" />
+    <None Include="Resources\UserApi\UserGetTopAlbumsMultiple.json" />
+    <None Include="Resources\UserApi\UserGetTopAlbumsSingle.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj">

@@ -129,5 +129,45 @@ namespace IF.Lastfm.Core.Tests.Resources {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetTopAlbumsEmpty {
+            get {
+                object obj = ResourceManager.GetObject("UserGetTopAlbumsEmpty", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetTopAlbumsError {
+            get {
+                object obj = ResourceManager.GetObject("UserGetTopAlbumsError", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetTopAlbumsMultiple {
+            get {
+                object obj = ResourceManager.GetObject("UserGetTopAlbumsMultiple", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] UserGetTopAlbumsSingle {
+            get {
+                object obj = ResourceManager.GetObject("UserGetTopAlbumsSingle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

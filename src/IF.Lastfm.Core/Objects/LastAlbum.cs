@@ -8,15 +8,18 @@ namespace IF.Lastfm.Core.Objects
     public class LastAlbum : ILastfmObject
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
+
         public IEnumerable<LastTrack> Tracks { get; set; }
         
         public string ArtistName { get; set; }
         
-        public DateTimeOffset ReleaseDateUtc { get; set; }
+        public DateTimeOffset? ReleaseDateUtc { get; set; }
 
-        public int ListenerCount { get; set; }
-        public int PlayCount { get; set; }
+        public int? ListenerCount { get; set; }
+
+        public int? PlayCount { get; set; }
 
         public string Mbid { get; set; }
 
@@ -26,7 +29,6 @@ namespace IF.Lastfm.Core.Objects
 
         public LastImageSet Images { get; set; }
         
-
         internal static LastAlbum ParseJToken(JToken token)
         {
             var a = new LastAlbum();
@@ -48,9 +50,13 @@ namespace IF.Lastfm.Core.Objects
             {
                 var trackToken = tracksToken.SelectToken("track");
                 if (trackToken != null)
-                    a.Tracks = trackToken.Type == JTokenType.Array 
-                        ? trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name)) 
-                        : new List<LastTrack>() { LastTrack.ParseJToken(trackToken, a.Name) };
+                    a.Tracks = trackToken.Type == JTokenType.Array
+                        ? trackToken.Children().Select(t => LastTrack.ParseJToken(t, a.Name))
+                        : new List<LastTrack>() {LastTrack.ParseJToken(trackToken, a.Name)};
+            }
+            else
+            {
+                a.Tracks = Enumerable.Empty<LastTrack>();
             }
 
             var tagsToken = token.SelectToken("toptags");
@@ -65,8 +71,12 @@ namespace IF.Lastfm.Core.Objects
                         : new List<LastTag> { LastTag.ParseJToken(tagToken) };
                 }
             }
+            else
+            {
+                a.TopTags = Enumerable.Empty<LastTag>();
+            }
     
-            a.ListenerCount = token.Value<int>("listeners");
+            a.ListenerCount = token.Value<int?>("listeners");
             a.Mbid = token.Value<string>("mbid");
             a.Name = token.Value<string>("name");
 
@@ -98,18 +108,10 @@ namespace IF.Lastfm.Core.Objects
 
         internal static string GetNameFromJToken(JToken albumToken)
         {
-            var name = albumToken.Value<string>("title");
-
-            if (string.IsNullOrEmpty(name))
-            {
-                name = albumToken.Value<string>("#text");
-            }
-
-            if (string.IsNullOrEmpty(name))
-            {
-                name = albumToken.Value<string>("name"); // Used in Library track lists
-            }
-
+            var name = albumToken.Value<string>("title")
+                       ?? albumToken.Value<string>("#text")
+                       ?? albumToken.Value<string>("name"); // Used in Library track lists
+            
             return name;
         }
     }

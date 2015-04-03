@@ -36,7 +36,7 @@ namespace IF.Lastfm.Core.Api.Commands.UserApi
             LastFmApiError error;
             if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
             {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+                var jtoken = JToken.Parse(json);
                 var itemsToken = jtoken.SelectToken("topalbums").SelectToken("album");
                 var pageInfoToken = jtoken.SelectToken("@attr");
 

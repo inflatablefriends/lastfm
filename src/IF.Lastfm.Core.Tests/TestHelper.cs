@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using IF.Lastfm.Core.Api.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +18,7 @@ namespace IF.Lastfm.Core.Tests
             return new JsonSerializer
             {
                 DateFormatString = "yyyy-MM-dd HH:mm:ss.fff",
-                NullValueHandling = NullValueHandling.Ignore,
+                NullValueHandling = NullValueHandling.Include,
                 ContractResolver = new OrderedContractResolver()
             };
         }
@@ -49,7 +50,7 @@ namespace IF.Lastfm.Core.Tests
             return ordered.ToString();
         }
 
-        public static void AssertEqual<T>(T one, T two)
+        public static void AssertSerialiseEqual<T>(T one, T two)
         {
             var ones = one.TestSerialise();
             var twos = two.TestSerialise();
@@ -67,7 +68,7 @@ namespace IF.Lastfm.Core.Tests
 
         public static string DifferencesTo(this string first, string second)
         {
-            const string lineDiffTemplate = "{0}A: {1}\n{0}B: {2}";
+            const string lineDiffTemplate = "{0}E: {1}\n{0}A: {2}";
             var start = Environment.NewLine + Environment.NewLine + "Differences:" + Environment.NewLine;
 
             var sb = new StringBuilder(start);
@@ -89,7 +90,7 @@ namespace IF.Lastfm.Core.Tests
                         {
                             if (line1 != line2)
                             {
-                                var line = string.Format(lineDiffTemplate, count, line1, line2);
+                                var line = String.Format(lineDiffTemplate, count, line1, line2);
                                 sb.AppendLine(line);
                             }
                         }
@@ -119,7 +120,10 @@ namespace IF.Lastfm.Core.Tests
 
         public static IEnumerable<T> WrapEnumerable<T>(this T t)
         {
-            return new[] {t};
+            return new[]
+            {
+                t
+            };
         }
 
         public static DateTime RoundToNearestSecond(this DateTime dt)
@@ -141,7 +145,8 @@ namespace IF.Lastfm.Core.Tests
         {
             const string messageFormat = "Page response:\n{0}\n\nExpected {1} to equal {2}";
             var json = pageResponse.TestSerialise();
-            Func<string, dynamic, string> testMessage = (property, count) => string.Format(messageFormat, json, property, count);
+            Func<string, dynamic, string> testMessage =
+                (property, count) => string.Format(messageFormat, json, property, count);
 
             Assert.IsTrue(pageResponse.Success == success, testMessage("success", success));
             Assert.IsTrue(pageResponse.TotalItems == totalItems, testMessage("totalitems", totalItems));

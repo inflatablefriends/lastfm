@@ -1,3 +1,7 @@
+# Ignore syro config
+/config.json
+/syro.json
+
 #################
 ## Visual Studio
 #################
