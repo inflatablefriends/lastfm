@@ -20,5 +20,7 @@ namespace IF.Lastfm.Core.Api
             string artist,
             string track,
             DateTimeOffset timestamp );
+
+        Task<LastResponse> RemoveTrack( string artist, string track );
     }
 }
