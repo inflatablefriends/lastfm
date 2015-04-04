@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core.Tests", "src\IF.Lastfm.Core.Tests\IF.Lastfm.Core.Tests.csproj", "{EC1526C6-AE22-4F12-8640-F9613DFCCE1A}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Syro", "src\IF.Lastfm.Syro\IF.Lastfm.Syro.csproj", "{2BDE74CF-AB11-441D-9641-5EAAD38DD01D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core.Tests.Integration", "src\IF.Lastfm.Core.Tests.Integration\IF.Lastfm.Core.Tests.Integration.csproj", "{39C00A2D-9896-4392-B751-540CD16B3315}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5185BD96-FDB5-4DB2-A967-9152D6556150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,5 +100,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC1526C6-AE22-4F12-8640-F9613DFCCE1A} = {5185BD96-FDB5-4DB2-A967-9152D6556150}
+		{39C00A2D-9896-4392-B751-540CD16B3315} = {5185BD96-FDB5-4DB2-A967-9152D6556150}
 	EndGlobalSection
 EndGlobal
