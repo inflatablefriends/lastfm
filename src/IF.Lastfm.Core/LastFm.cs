@@ -10,6 +10,7 @@ using System.Text;
 
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests.Integration")]
+[assembly: InternalsVisibleTo("IF.Lastfm.SQLite")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Syro")]
 namespace IF.Lastfm.Core
 {

@@ -130,6 +130,13 @@
     <Compile Include="Objects\LastUser.cs" />
     <Compile Include="Objects\LastUserSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scrobblers\IScrobbler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scrobblers\ScrobblerBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Scrobblers\ScrobbleResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

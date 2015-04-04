@@ -7,8 +7,6 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public interface ILastResponse
     {
-        bool Success { get; }
-
         LastResponseStatus Status { get; }
     }
 
