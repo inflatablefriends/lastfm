@@ -1,12 +1,12 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
-namespace IF.Lastfm.Core.Api.Commands.AlbumApi
+namespace IF.Lastfm.Core.Api.Commands.Album
 {
     internal class SearchCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
@@ -32,8 +32,8 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var resultsToken = jtoken.SelectToken("results");
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api.Commands.AlbumApi
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastAlbum>>(status);
             }
         }
     }

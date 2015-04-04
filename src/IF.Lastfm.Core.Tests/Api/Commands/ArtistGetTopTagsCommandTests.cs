@@ -79,7 +79,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             parsed.AssertValues(false, 0, 0, 1, 1);
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);
             Assert.IsTrue(!parsed.Content.Any());
         }
 

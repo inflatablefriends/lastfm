@@ -1,21 +1,21 @@
-﻿using IF.Lastfm.Core.Api.Commands.AlbumApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Album;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
     [TestClass]
     public class SearchAlbumsCommandTests : CommandTestsBase
     {
-        private SearchAlbumsCommand _command;
+        private SearchCommand _command;
 
         public SearchAlbumsCommandTests()
         {
-            _command = new SearchAlbumsCommand(MAuth.Object, "By the throat")
+            _command = new SearchCommand(MAuth.Object, "By the throat")
                        {
                            Page = 2,
                            Count = 3
@@ -79,7 +79,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);
             Assert.IsNotNull(parsed.Content);
             Assert.IsTrue(!parsed.Content.Any());
         }

@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
-    internal class GetAlbumShoutsCommand : GetAsyncCommandBase<PageResponse<LastShout>>
+    internal class GetShoutsCommand : GetAsyncCommandBase<PageResponse<LastShout>>
     {
         public string AlbumName { get; set; }
 
@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Api.Commands.Album
 
         public bool Autocorrect { get; set; }
 
-        public GetAlbumShoutsCommand(ILastAuth auth, string albumname, string artistname)
+        public GetShoutsCommand(ILastAuth auth, string albumname, string artistname)
             : base(auth)
         {
             Method = "album.getShouts";
@@ -40,8 +40,8 @@ namespace IF.Lastfm.Core.Api.Commands.Album
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("shouts");
                 var itemsToken = jtoken.SelectToken("shout");
@@ -51,7 +51,7 @@ namespace IF.Lastfm.Core.Api.Commands.Album
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastShout>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastShout>>(status);
             }
         }
     }

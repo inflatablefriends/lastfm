@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.AlbumApi;
+using IF.Lastfm.Core.Api.Commands.Album;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
@@ -14,11 +14,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
     [TestClass]
     public class GetAlbumShoutsCommandTests : CommandTestsBase
     {
-        private GetAlbumShoutsCommand _command;
+        private GetShoutsCommand _command;
 
         public GetAlbumShoutsCommandTests()
         {
-            _command = new GetAlbumShoutsCommand(MAuth.Object, "Visions", "Grimes");
+            _command = new GetShoutsCommand(MAuth.Object, "Visions", "Grimes");
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Error == LastResponseStatus.MissingParameters);
             Assert.IsNotNull(parsed.Content);
             Assert.IsTrue(!parsed.Content.Any());
         }

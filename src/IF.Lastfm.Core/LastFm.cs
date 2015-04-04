@@ -15,8 +15,6 @@ namespace IF.Lastfm.Core
 {
     public class LastFm
     {
-        #region Constants
-
         internal const string TEST_APIKEY = "a6ab4b9376e54cdb06912bfbd9c1f288";
         internal const string TEST_APISECRET = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 
@@ -29,10 +27,6 @@ namespace IF.Lastfm.Core
         public const string DefaultLanguageCode = "en";
         public const int DefaultPageLength = 20;
         
-        #endregion
-        
-        #region Api helper methods
-
         public static string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)
         {
             if (parameters == null)
@@ -87,13 +81,13 @@ namespace IF.Lastfm.Core
         /// TODO see issue #5
         /// </summary>
         /// <param name="json">String of JSON</param>
-        /// <param name="error">Enum indicating the error, .None if there is no error</param>
-        /// <returns>True when the JSON could be parsed and it didn't describe a known Last.Fm error.</returns>
-        public static bool IsResponseValid(string json, out LastFmApiError error)
+        /// <param name="status">Enum indicating the Status, Unknown if there is no Status</param>
+        /// <returns>True when the JSON could be parsed and it didn't describe a known Last.Fm Status.</returns>
+        public static bool IsResponseValid(string json, out LastResponseStatus status)
         {
             if (string.IsNullOrWhiteSpace(json))
             {
-                error = LastFmApiError.Unknown;
+                status = LastResponseStatus.Unknown;
                 return false;
             }
 
@@ -104,18 +98,18 @@ namespace IF.Lastfm.Core
             }
             catch (JsonException)
             {
-                error = LastFmApiError.Unknown;
+                status = LastResponseStatus.Unknown;
                 return false;
             }
 
-            var codeString = jo.Value<string>("error");
+            var codeString = jo.Value<string>("Status");
             if (string.IsNullOrWhiteSpace(codeString) && json.Length > 1)
             {
-                error = LastFmApiError.None;
+                status = LastResponseStatus.Successful;
                 return true;
             }
 
-            error = LastFmApiError.Unknown;
+            status = LastResponseStatus.Unknown;
 
             int code;
             if (Int32.TryParse(codeString, out code))
@@ -123,53 +117,51 @@ namespace IF.Lastfm.Core
                 switch (code)
                 {
                     case 2:
-                        error = LastFmApiError.ServiceServiceWhereArtThou;
+                        status = LastResponseStatus.BadService;
                         break;
                     case 3:
-                        error = LastFmApiError.BadMethod;
+                        status = LastResponseStatus.BadMethod;
                         break;
                     case 4:
-                        error = LastFmApiError.BadAuth;
+                        status = LastResponseStatus.BadAuth;
                         break;
                     case 5:
-                        error = LastFmApiError.BadFormat;
+                        status = LastResponseStatus.BadFormat;
                         break;
                     case 6:
-                        error = LastFmApiError.MissingParameters;
+                        status = LastResponseStatus.MissingParameters;
                         break;
                     case 7:
-                        error = LastFmApiError.BadResource;
+                        status = LastResponseStatus.BadResource;
                         break;
                     case 8:
-                        error = LastFmApiError.Failure;
+                        status = LastResponseStatus.Failure;
                         break;
                     case 9:
-                        error = LastFmApiError.SessionExpired;
+                        status = LastResponseStatus.SessionExpired;
                         break;
                     case 10:
-                        error = LastFmApiError.BadApiKey;
+                        status = LastResponseStatus.BadApiKey;
                         break;
                     case 11:
-                        error = LastFmApiError.ServiceDown;
+                        status = LastResponseStatus.ServiceDown;
                         break;
                     case 13:
-                        error = LastFmApiError.BadMethodSignature;
+                        status = LastResponseStatus.BadMethodSignature;
                         break;
                     case 16:
-                        error = LastFmApiError.TemporaryFailure;
+                        status = LastResponseStatus.TemporaryFailure;
                         break;
                     case 26:
-                        error = LastFmApiError.KeySuspended;
+                        status = LastResponseStatus.KeySuspended;
                         break;
                     case 29:
-                        error = LastFmApiError.RateLimited;
+                        status = LastResponseStatus.RateLimited;
                         break;
                 }
             }
 
             return false;
         }
-
-        #endregion
     }
 }

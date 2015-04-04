@@ -30,8 +30,8 @@ namespace IF.Lastfm.Core.Api.Commands.User
         {
             string json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 JToken jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("recentstations");
 
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Api.Commands.User
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastStation>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastStation>>(status);
             }
         }
     }

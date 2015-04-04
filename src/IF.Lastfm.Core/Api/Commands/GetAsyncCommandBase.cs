@@ -32,7 +32,7 @@ namespace IF.Lastfm.Core.Api.Commands
             }
             catch (HttpRequestException)
             {
-                throw;
+                return LastResponse.CreateErrorResponse<T>(LastResponseStatus.RequestFailed);
             }
         }
 

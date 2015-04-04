@@ -17,8 +17,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             var r = new LastResponse<T>
             {
                 Content = content,
-                Success = true,
-                Error = LastFmApiError.None
+                Status = LastResponseStatus.Successful
             };
 
             return r;

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using IF.Lastfm.Core.Api.Commands.AlbumApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Album;
 using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
@@ -15,11 +15,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
     [TestClass]
     public class GetAlbumInfoCommandTests : CommandTestsBase
     {
-        private GetAlbumInfoCommand _command;
+        private GetInfoCommand _command;
 
         public GetAlbumInfoCommandTests()
         {
-            _command = new GetAlbumInfoCommand(MAuth.Object)
+            _command = new GetInfoCommand(MAuth.Object)
             {
                 AlbumName = "Ray of Light",
                 ArtistName = "Madonna"
@@ -81,7 +81,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Error == LastResponseStatus.MissingParameters);
         }
     }
 }

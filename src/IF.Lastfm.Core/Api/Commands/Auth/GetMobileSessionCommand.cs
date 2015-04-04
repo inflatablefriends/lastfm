@@ -37,8 +37,8 @@ namespace IF.Lastfm.Core.Api.Commands.Auth
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var sessionObject = JsonConvert.DeserializeObject<JObject>(json).GetValue("session");
                 var session = JsonConvert.DeserializeObject<LastUserSession>(sessionObject.ToString());
@@ -47,7 +47,7 @@ namespace IF.Lastfm.Core.Api.Commands.Auth
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<LastUserSession>>(error);
+                return LastResponse.CreateErrorResponse<LastResponse<LastUserSession>>(status);
             }
         }
     }

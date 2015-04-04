@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
-    internal class GetAlbumInfoCommand : GetAsyncCommandBase<LastResponse<LastAlbum>>
+    internal class GetTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
         public string AlbumMbid { get; set; }
 
@@ -19,13 +19,13 @@ namespace IF.Lastfm.Core.Api.Commands.Album
 
         public bool Autocorrect { get; set; }
 
-        public GetAlbumInfoCommand(ILastAuth auth)
+        public GetTopTagsCommand(ILastAuth auth)
             : base(auth)
         {
-            Method = "album.getInfo";
+            Method = "album.getTopTags";
         }
 
-        public GetAlbumInfoCommand(ILastAuth auth, string album, string artist)
+        public GetTopTagsCommand(ILastAuth auth, string album, string artist)
             : this(auth)
         {
             AlbumName = album;
@@ -46,26 +46,27 @@ namespace IF.Lastfm.Core.Api.Commands.Album
 
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
+            AddPagingParameters();
             DisableCaching();
         }
 
-        public async override Task<LastResponse<LastAlbum>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastTag>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var album = LastAlbum.ParseJToken(jtoken.SelectToken("album"));
+                var resultsToken = jtoken.SelectToken("toptags");
+                var itemsToken = resultsToken.SelectToken("tag");
 
-                return LastResponse<LastAlbum>.CreateSuccessResponse(album);
+                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, resultsToken, LastTag.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse<LastAlbum>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTag>>(status);
             }
         }
     }
-
 }

@@ -22,7 +22,7 @@ namespace IF.Lastfm.Core.Api.Commands
         {
             if (!Auth.Authenticated)
             {
-                return Task.FromResult(LastResponse.CreateErrorResponse<T>(LastFmApiError.BadAuth));
+                return Task.FromResult(LastResponse.CreateErrorResponse<T>(LastResponseStatus.BadAuth));
             }
 
             return ExecuteAsyncInternal();
@@ -51,7 +51,7 @@ namespace IF.Lastfm.Core.Api.Commands
             }
             catch (HttpRequestException)
             {
-                return LastResponse.CreateErrorResponse<T>(LastFmApiError.RequestFailed);
+                return LastResponse.CreateErrorResponse<T>(LastResponseStatus.RequestFailed);
             }
         }
     }

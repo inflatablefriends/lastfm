@@ -46,13 +46,13 @@
     <Compile Include="Api\Commands\Album\GetTagsByUserCommand.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Api\Commands\Album\GetAlbumInfoCommand.cs">
+    <Compile Include="Api\Commands\Album\GetInfoCommand.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Api\Commands\Album\GetAlbumShoutsCommand.cs">
+    <Compile Include="Api\Commands\Album\GetShoutsCommand.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Api\Commands\Album\GetAlbumTopTagsCommand.cs">
+    <Compile Include="Api\Commands\Album\GetTopTagsCommand.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Api\Commands\Album\SearchCommand.cs">
@@ -95,7 +95,7 @@
     <Compile Include="Api\Commands\User\GetTopAlbumsCommand.cs" />
     <Compile Include="Api\Commands\User\GetInfoCommand.cs" />
     <Compile Include="Api\Commands\User\GetShoutsCommand.cs" />
-    <Compile Include="Api\Enums\LastFmApiError.cs" />
+    <Compile Include="Api\Enums\LastResponseStatus.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />
     <Compile Include="Api\Helpers\ApiNameAttribute.cs" />

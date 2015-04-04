@@ -1,5 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Commands.AlbumApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,18 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Album;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
     public class AlbumGetTagsByUserCommandTests : CommandTestsBase
     {
-        private AlbumGetTagsByUserCommand _command;
+        private GetTagsByUserCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new AlbumGetTagsByUserCommand(MAuth.Object, "", "", "");
+            _command = new GetTagsByUserCommand(MAuth.Object, "", "", "");
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             parsed.AssertValues(false, 0, 0, 1, 1);
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Error == LastResponseStatus.MissingParameters);
             Assert.IsTrue(!parsed.Content.Any());
         }
     }

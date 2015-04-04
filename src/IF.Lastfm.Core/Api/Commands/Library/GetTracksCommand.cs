@@ -45,8 +45,8 @@ namespace IF.Lastfm.Core.Api.Commands.Library
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json).SelectToken("tracks");
                 var tracksToken = jtoken.SelectToken("track");
@@ -56,7 +56,7 @@ namespace IF.Lastfm.Core.Api.Commands.Library
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(error);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(status);
             }
         }
     }

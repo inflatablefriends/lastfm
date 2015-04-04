@@ -80,7 +80,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastFmApiError.MissingParameters);
+            Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);
         }
     }
 }

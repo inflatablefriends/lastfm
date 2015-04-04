@@ -40,8 +40,6 @@ namespace IF.Lastfm.Core.Api.Helpers
             Content = new ReadOnlyCollection<T>(content.ToList());
         }
 
-        #region Properties
-
         public IReadOnlyList<T> Content { get; internal set; }
 
         public int Page { get; internal set; }
@@ -59,10 +57,6 @@ namespace IF.Lastfm.Core.Api.Helpers
             get { return _pageSize ?? Content.CountOrDefault(); }
             internal set { _pageSize = value; }
         }
-
-        #endregion
-
-        #region IEnumerable
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -83,16 +77,11 @@ namespace IF.Lastfm.Core.Api.Helpers
             }
         }
 
-        #endregion
-
-        #region Factory methods
-
-        public static PageResponse<T> CreateErrorResponse(LastFmApiError error)
+        public static PageResponse<T> CreateErrorResponse(LastResponseStatus status)
         {
             var r = new PageResponse<T>
             {
-                Success = false,
-                Error = error
+                Status = status
             };
 
             r.AddDefaultPageInfo();
@@ -105,8 +94,7 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             var r = new PageResponse<T>
             {
-                Success = true,
-                Error = LastFmApiError.None
+                Status = LastResponseStatus.Successful
             };
 
             r.AddDefaultPageInfo();
@@ -119,8 +107,7 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             var r = new PageResponse<T>(content)
             {
-                Success = true,
-                Error = LastFmApiError.None
+                Status = LastResponseStatus.Successful
             };
             
             return r;
@@ -153,7 +140,10 @@ namespace IF.Lastfm.Core.Api.Helpers
                 items = Enumerable.Empty<T>();
             }
 
-            var pageresponse = new PageResponse<T>(items);
+            var pageresponse = new PageResponse<T>(items)
+            {
+                Status = LastResponseStatus.Successful
+            };
 
             switch (pageResultsType)
             {
@@ -169,12 +159,8 @@ namespace IF.Lastfm.Core.Api.Helpers
                     break;
             }
 
-            pageresponse.Success = true;
-
             return pageresponse;
         }
-
-        #endregion
 
         private void AddDefaultPageInfo()
         {

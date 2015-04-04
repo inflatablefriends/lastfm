@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 
@@ -6,39 +7,38 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public interface ILastResponse
     {
-        bool Success { get; set; }
+        bool Success { get; }
 
-        LastFmApiError Error { get; set; }
+        LastResponseStatus Status { get; }
     }
 
     public class LastResponse : ILastResponse
     {
-        #region Properties
+        public bool Success
+        {
+            get { return Status == LastResponseStatus.Successful; }
+        }
 
-        public bool Success { get; set; }
-        public LastFmApiError Error { get; set; }
+        public LastResponseStatus Status { get; internal set; }
 
-        #endregion
-
-        #region Factory methods
-
+        [Obsolete("This property has been renamed to Status and will be removed soon.")]
+        public LastResponseStatus Error { get { return Status; } }
+        
         public static LastResponse CreateSuccessResponse()
         {
             var r = new LastResponse
             {
-                Success = true,
-                Error = LastFmApiError.None
+                Status = LastResponseStatus.Unknown
             };
 
             return r;
         }
 
-        public static T CreateErrorResponse<T>(LastFmApiError error) where T : LastResponse, new()
+        public static T CreateErrorResponse<T>(LastResponseStatus status) where T : LastResponse, new()
         {
             var r = new T
             {
-                Success = false,
-                Error = error
+                Status = status
             };
 
             return r;
@@ -48,17 +48,15 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             string json = await response.Content.ReadAsStringAsync();
 
-            LastFmApiError error;
-            if (LastFm.IsResponseValid(json, out error) && response.IsSuccessStatusCode)
+            LastResponseStatus status;
+            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 return LastResponse.CreateSuccessResponse();
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse>(error);
+                return LastResponse.CreateErrorResponse<LastResponse>(status);
             }
         }
-
-        #endregion
     }
 }
