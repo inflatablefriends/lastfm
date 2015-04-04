@@ -2,6 +2,10 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Objects;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Api.Commands.Library {
     internal class RemoveScrobbleCommand : PostAsyncCommandBase<LastResponse> {
@@ -22,7 +26,7 @@ namespace IF.Lastfm.Core.Api.Commands.Library {
         public override void SetParameters() {
             Parameters.Add( "artist", Artist );
             Parameters.Add( "track", Track );
-            Parameters.Add( "timestamp", Timestamp.ToUnixTimeSeconds().ToString() );
+            Parameters.Add( "timestamp", Timestamp.AsUnixTime().ToString() );
         }
 
         public async override Task<LastResponse> HandleResponse( HttpResponseMessage response ) {
