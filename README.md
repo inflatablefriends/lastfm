@@ -66,25 +66,11 @@ Some documentation is available on the [GitHub wiki](https://github.com/rikkit/l
 
 Any problems, just ask in [Gitter](https://gitter.im/inflatablefriends/lastfm).
 
-## Dependency Injection
+## Documentation
 
-The SDK is built to work with IoC libraries like MvvmLight and Ninject. To inject an API as a dependency to a viewmodel, you just need to register ```ILastAuth``` to an instance of ```LastAuth```:
-
-```c#
-// mvvmlight
-var auth = new LastAuth("apikey", "apisecret");
-SimpleIoc.Default.Register<ILastAuth>(() => auth);
-
-// ...
-
-var artistApi = ServiceLocator.Current.GetInstance<ArtistApi>();
-var response = await artistApi.GetArtistInfoAsync("The Knife");
-var theKnife = artist.Content;
-```
-
-## Implemented Features
-
-Check the [progress report](https://github.com/inflatablefriends/lastfm/blob/master/PROGRESS.md) for a list of implemented methods.
+- [Api method progress report](PROGRESS.md)
+- [Scrobbling](doc/scrobbling.md)
+- [Dependency Injection](doc/dependency-injection.md)
 
 ## Planned Features
 
