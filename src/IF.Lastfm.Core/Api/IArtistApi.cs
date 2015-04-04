@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api
             int count = LastFm.DefaultPageLength,
             bool autocorrect = false);
 
-        Task<LastResponse> AddShoutAsync(string artistname, string messaage);
+        Task<LastResponse> AddShoutAsync(string artistname, string message);
 
         Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname,
             int page = 1,

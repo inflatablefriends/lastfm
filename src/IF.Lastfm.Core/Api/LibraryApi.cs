@@ -20,5 +20,10 @@ namespace IF.Lastfm.Core.Api
 
             return await command.ExecuteAsync();
         }
+
+        public async Task<LastResponse> RemoveScrobble( string artist, string track, DateTimeOffset timestamp ) {
+            var command = new RemoveScrobbleCommand( Auth, artist, track, timestamp );
+            return await command.ExecuteAsync();
+        }
     }
 }
