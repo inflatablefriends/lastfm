@@ -28,7 +28,7 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             var r = new LastResponse
             {
-                Status = LastResponseStatus.Unknown
+                Status = LastResponseStatus.Successful
             };
 
             return r;

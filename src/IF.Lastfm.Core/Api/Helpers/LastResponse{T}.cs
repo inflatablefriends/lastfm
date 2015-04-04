@@ -4,14 +4,8 @@ namespace IF.Lastfm.Core.Api.Helpers
 {
     public class LastResponse<T> : LastResponse
     {
-        #region Properties
-
         public T Content { get; set; }
-
-        #endregion
-
-        #region Factory methods
-
+        
         public static LastResponse<T> CreateSuccessResponse(T content)
         {
             var r = new LastResponse<T>
@@ -22,7 +16,5 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             return r;
         }
-
-        #endregion
     }
 }
