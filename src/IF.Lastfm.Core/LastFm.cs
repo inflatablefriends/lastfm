@@ -103,7 +103,7 @@ namespace IF.Lastfm.Core
                 return false;
             }
 
-            var codeString = jo.Value<string>("Status");
+            var codeString = jo.Value<string>("error");
             if (string.IsNullOrWhiteSpace(codeString) && json.Length > 1)
             {
                 status = LastResponseStatus.Successful;
