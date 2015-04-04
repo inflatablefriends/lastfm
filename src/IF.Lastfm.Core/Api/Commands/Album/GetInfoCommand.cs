@@ -67,5 +67,4 @@ namespace IF.Lastfm.Core.Api.Commands.Album
             }
         }
     }
-
 }
