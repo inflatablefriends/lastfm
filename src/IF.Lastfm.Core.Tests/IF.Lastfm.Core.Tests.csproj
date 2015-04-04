@@ -123,7 +123,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserApiResponses.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scrobblers\ScrobblerTests.cs" />
     <Compile Include="TestHelper.cs" />
+    <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -159,6 +161,7 @@
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsSingle.json" />
+    <None Include="Resources\TrackApi\TrackScrobbleSuccess.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksEmpty.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksError.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksMissing.json" />

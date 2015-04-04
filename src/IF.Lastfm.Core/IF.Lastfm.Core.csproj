@@ -112,6 +112,9 @@
     <Compile Include="Api\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />
+    <Compile Include="Helpers\ApiBase.cs" />
+    <Compile Include="Helpers\FakeResponseHandler.cs" />
+    <Compile Include="Helpers\QueueFakeResponseHandler.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
     <Compile Include="Json\PageResponseJsonConverter.cs" />
     <Compile Include="LastFm.cs" />
@@ -133,6 +136,7 @@
     <Compile Include="Scrobblers\IScrobbler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Scrobblers\Scrobbler.cs" />
     <Compile Include="Scrobblers\ScrobblerBase.cs">
       <SubType>Code</SubType>
     </Compile>

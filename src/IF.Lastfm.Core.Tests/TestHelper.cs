@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using IF.Lastfm.Core.Api.Helpers;
@@ -183,28 +185,18 @@ namespace IF.Lastfm.Core.Tests
             Assert.IsNotNull(pageResponse.Content, "page content is null");
             Assert.IsTrue(pageResponse.Content.Count == totalItems, testMessage("content length", totalItems));
         }
-    }
 
-    [TestClass]
-    public class TestHelperTests
-    {
-        [TestMethod]
-        public void RoundsToNearestSecond()
+        public static HttpResponseMessage CreateResponseMessage(HttpStatusCode status, byte[] resource)
         {
-            var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);
+            var responseJson = Encoding.UTF8.GetString(resource);
+            var stringContent = new StringContent(responseJson, Encoding.UTF8, "application/json");
 
-            var testDto1 = now.AddMilliseconds(450);
-            var actualDto1 = testDto1.RoundToNearestSecond();
+            var testResponseMessage = new HttpResponseMessage(status)
+            {
+                Content = stringContent
+            };
 
-            Assert.AreEqual(now, actualDto1);
-            TestHelper.AssertSerialiseEqual(now, actualDto1);
-
-            var expectedDto2 = now.AddSeconds(1);
-            var testDto2 = now.AddMilliseconds(550);
-            var actualDto2 = testDto2.RoundToNearestSecond();
-
-            Assert.AreEqual(expectedDto2, actualDto2);
-            TestHelper.AssertSerialiseEqual(expectedDto2, actualDto2);
+            return testResponseMessage;
         }
     }
 }

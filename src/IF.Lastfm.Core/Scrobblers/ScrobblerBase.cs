@@ -1,20 +1,21 @@
+using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Api.Commands.Track;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Api.Commands.Track;
-using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Scrobblers
 {
-    public abstract class ScrobblerBase : IScrobbler
+    public abstract class ScrobblerBase : ApiBase, IScrobbler
     {
         private ILastAuth _auth;
 
-        protected ScrobblerBase(ILastAuth auth)
+        protected ScrobblerBase(ILastAuth auth, HttpClient httpClient = null) : base(httpClient)
         {
             _auth = auth;
         }
@@ -28,7 +29,10 @@ namespace IF.Lastfm.Core.Scrobblers
                 scrobble
             };
 
-            var command = new ScrobbleCommand(_auth, pending);
+            var command = new ScrobbleCommand(_auth, scrobble)
+            {
+                HttpClient = HttpClient
+            };
 
             LastResponse originalResponse = null;
             HttpRequestException exception = null;
@@ -44,13 +48,18 @@ namespace IF.Lastfm.Core.Scrobblers
             {
                 exception = httpEx;
             }
-            
+
+
             ScrobbleResponse cacheResponse;
             try
             {
-                await CacheAsync(scrobble);
+                var originalResponseStatus = originalResponse != null && originalResponse.Status != LastResponseStatus.Unknown
+                    ? originalResponse.Status
+                    : LastResponseStatus.RequestFailed; // TODO check httpEx
 
-                cacheResponse = new ScrobbleResponse(LastResponseStatus.Cached);
+                var cacheStatus = await CacheAsync(scrobble, originalResponseStatus);
+
+                cacheResponse = new ScrobbleResponse(cacheStatus);
             }
             catch (Exception e)
             {
@@ -63,8 +72,8 @@ namespace IF.Lastfm.Core.Scrobblers
             return cacheResponse;
         }
 
-        public abstract Task<IEnumerable<Scrobble>> GetCachedAsync();
+        protected abstract Task<IEnumerable<Scrobble>> GetCachedAsync();
 
-        public abstract Task CacheAsync(Scrobble scrobble);
+        protected abstract Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus);
     }
 }
