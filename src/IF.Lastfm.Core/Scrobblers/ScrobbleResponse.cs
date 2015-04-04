@@ -8,9 +8,19 @@ namespace IF.Lastfm.Core.Scrobblers
     {
         public LastResponseStatus Status { get; internal set; }
 
-        public bool Cached
+        public bool Success
         {
-            get { return Status == LastResponseStatus.Cached; }
+            get
+            {
+                switch (Status)
+                {
+                    case LastResponseStatus.Successful:
+                    case LastResponseStatus.Cached:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
         }
 
         public Exception Exception { get; internal set; }

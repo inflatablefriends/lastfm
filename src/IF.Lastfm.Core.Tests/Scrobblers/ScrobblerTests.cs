@@ -34,8 +34,6 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             _scrobbler = new Scrobbler(_mockAuth.Object, httpClient);
         }
 
-
-
         [TestMethod]
         public async Task CorrectResponseWithBadAuth()
         {

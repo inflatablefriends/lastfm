@@ -12,6 +12,7 @@ namespace IF.Lastfm.Core.Json
 
             dynamic container = new
             {
+                success = pageResponse.Success,
                 items = pageResponse.Content,
                 page = new
                 {
