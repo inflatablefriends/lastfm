@@ -1,5 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Commands.UserApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.User;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
@@ -14,12 +14,12 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
     [TestClass]
     public class UserGetRecentTracksCommandTests : CommandTestsBase
     {
-        private UserGetRecentTracksCommand _command;
+        private GetRecentTracksCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new UserGetRecentTracksCommand(MAuth.Object, "rj")
+            _command = new GetRecentTracksCommand(MAuth.Object, "rj")
             {
                 Count = 1
             };

@@ -40,49 +40,61 @@
   <ItemGroup>
     <Compile Include="Api\AlbumApi.cs" />
     <Compile Include="Api\ArtistApi.cs" />
-    <Compile Include="Api\Commands\AlbumApi\GetAlbumTopTagsCommand.cs" />
-    <Compile Include="Api\Commands\AlbumApi\AlbumGetTagsByUserCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\ArtistGetTagsByUserCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\ArtistGetTopTagsCommand.cs" />
-    <Compile Include="Api\Commands\LibraryApi\LibraryGetTracksCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\TrackScrobbleCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\TrackUpdateNowPlayingCommand.cs" />
+    <Compile Include="Api\Commands\Album\AddShoutCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Album\GetTagsByUserCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Album\GetAlbumInfoCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Album\GetAlbumShoutsCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Album\GetAlbumTopTagsCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Album\SearchCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Commands\Artist\GetTagsByUserCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetTopTagsCommand.cs" />
+    <Compile Include="Api\Commands\Library\GetTracksCommand.cs" />
+    <Compile Include="Api\Commands\Track\ScrobbleCommand.cs" />
+    <Compile Include="Api\Commands\Track\UpdateNowPlayingCommand.cs" />
     <Compile Include="Api\Commands\UnauthenticatedPostAsyncCommandBase.cs" />
-    <Compile Include="Api\Commands\UserApi\GetRecommendedArtistsCommand.cs" />
+    <Compile Include="Api\Commands\User\GetRecommendedArtistsCommand.cs" />
     <Compile Include="Api\ILibraryApi.cs" />
     <Compile Include="Api\LastAuth.cs" />
     <Compile Include="Api\ChartApi.cs" />
-    <Compile Include="Api\Commands\AlbumApi\AddShoutCommand.cs" />
-    <Compile Include="Api\Commands\AlbumApi\GetAlbumInfoCommand.cs" />
-    <Compile Include="Api\Commands\AlbumApi\GetAlbumShoutsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\AddShoutCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetArtistInfoCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetArtistShoutsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetTopAlbumsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetTopTracksCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\GetSimilarArtistsCommand.cs" />
-    <Compile Include="Api\Commands\ArtistApi\SearchArtistsCommand.cs" />
-    <Compile Include="Api\Commands\AuthApi\GetMobileSessionCommand.cs" />
-    <Compile Include="Api\Commands\ChartApi\GetTopArtistsCommand.cs" />
-    <Compile Include="Api\Commands\ChartApi\GetTopTracksCommand.cs" />
+    <Compile Include="Api\Commands\Artist\AddShoutCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetInfoCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetShoutsCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetTopAlbumsCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetTopTracksCommand.cs" />
+    <Compile Include="Api\Commands\Artist\GetSimilarCommand.cs" />
+    <Compile Include="Api\Commands\Artist\SearchCommand.cs" />
+    <Compile Include="Api\Commands\Auth\GetMobileSessionCommand.cs" />
+    <Compile Include="Api\Commands\Chart\GetTopArtistsCommand.cs" />
+    <Compile Include="Api\Commands\Chart\GetTopTracksCommand.cs" />
     <Compile Include="Api\Commands\GetAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\IAsyncCommand.cs" />
     <Compile Include="Api\Commands\LastAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\PostAsyncCommandBase.cs" />
-    <Compile Include="Api\Commands\AlbumApi\SearchAlbumsCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\AddShoutCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\GetSimilarTracksCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\GetTrackInfoCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\LoveTrackCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\SearchTracksCommand.cs" />
-    <Compile Include="Api\Commands\TrackApi\UnloveTrackCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\AddShoutCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\UserGetRecentTracksCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\GetRecentStationsCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\GetTopAlbumsCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\GetUserInfoCommand.cs" />
-    <Compile Include="Api\Commands\UserApi\GetUserShoutsCommand.cs" />
+    <Compile Include="Api\Commands\Track\AddShoutCommand.cs" />
+    <Compile Include="Api\Commands\Track\GetSimilarCommand.cs" />
+    <Compile Include="Api\Commands\Track\GetInfoCommand.cs" />
+    <Compile Include="Api\Commands\Track\GetShoutsCommand.cs" />
+    <Compile Include="Api\Commands\Track\LoveCommand.cs" />
+    <Compile Include="Api\Commands\Track\SearchCommand.cs" />
+    <Compile Include="Api\Commands\Track\UnloveCommand.cs" />
+    <Compile Include="Api\Commands\User\AddShoutCommand.cs" />
+    <Compile Include="Api\Commands\User\GetRecentTracksCommand.cs" />
+    <Compile Include="Api\Commands\User\GetRecentStationsCommand.cs" />
+    <Compile Include="Api\Commands\User\GetTopAlbumsCommand.cs" />
+    <Compile Include="Api\Commands\User\GetInfoCommand.cs" />
+    <Compile Include="Api\Commands\User\GetShoutsCommand.cs" />
     <Compile Include="Api\Enums\LastFmApiError.cs" />
     <Compile Include="Api\Enums\LastStatsTimeSpan.cs" />
     <Compile Include="Api\Helpers\ApiExtensions.cs" />

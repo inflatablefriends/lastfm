@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using IF.Lastfm.Core.Api.Commands.TrackApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Track;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -19,19 +19,19 @@ namespace IF.Lastfm.Core.Api
 
         public Task<LastResponse> ScrobbleAsync(Scrobble scrobble)
         {
-            var command = new TrackScrobbleCommand(Auth, scrobble);
+            var command = new ScrobbleCommand(Auth, scrobble);
             return command.ExecuteAsync();
         }
 
         public Task<LastResponse> UpdateNowPlayingAsync(Scrobble scrobble)
         {
-            var command = new TrackUpdateNowPlayingCommand(Auth, scrobble);
+            var command = new UpdateNowPlayingCommand(Auth, scrobble);
             return command.ExecuteAsync();
         }
 
         public async Task<PageResponse<LastShout>> GetShoutsForTrackAsync(string trackname, string artistname, bool autocorrect = false, int page = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new GetTrackShoutsCommand(Auth, trackname, artistname)
+            var command = new GetShoutsCommand(Auth, trackname, artistname)
                           {
                               Page = page,
                               Count = count,
@@ -42,7 +42,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastTrack>> GetInfoAsync(string trackname, string artistname, string username = "")
         {
-            var command = new GetTrackInfoCommand(Auth)
+            var command = new GetInfoCommand(Auth)
                           {
                               TrackName = trackname,
                               ArtistName = artistname,
@@ -54,7 +54,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastTrack>> GetInfoByMbidAsync(string mbid)
         {
-            var command = new GetTrackInfoCommand(Auth)
+            var command = new GetInfoCommand(Auth)
             {
                 TrackMbid = mbid
             };
@@ -64,7 +64,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastTrack>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
         {
-            var command = new GetSimilarTracksCommand(Auth, trackname, artistname)
+            var command = new GetSimilarCommand(Auth, trackname, artistname)
             {
                 Autocorrect = autocorrect,
                 Limit = limit
@@ -75,19 +75,19 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse> LoveTrackAsync(string trackname, string artistname)
         {
-            var command = new LoveTrackCommand(Auth, trackname, artistname);
+            var command = new LoveCommand(Auth, trackname, artistname);
             return await command.ExecuteAsync();
         }
 
         public async Task<LastResponse> UnloveTrackAsync(string trackname, string artistname)
         {
-            var command = new UnloveTrackCommand(Auth, trackname, artistname);
+            var command = new UnloveCommand(Auth, trackname, artistname);
             return await command.ExecuteAsync(); 
         }
 
         public async Task<PageResponse<LastTrack>> SearchForTrackAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new SearchTracksCommand(Auth, trackname)
+            var command = new SearchCommand(Auth, trackname)
             {
                 Page = page,
                 Count = itemsPerPage

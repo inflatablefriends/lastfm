@@ -1,7 +1,7 @@
-﻿using IF.Lastfm.Core.Api.Commands.ArtistApi;
-using IF.Lastfm.Core.Api.Helpers;
+﻿using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
-            var command = new GetArtistInfoCommand(Auth)
+            var command = new GetInfoCommand(Auth)
             {
                 ArtistName = artist,
                 BioLanguage = bioLang,
@@ -28,7 +28,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
-            var command = new GetArtistInfoCommand(Auth)
+            var command = new GetInfoCommand(Auth)
             {
                 ArtistMbid = mbid,
                 BioLanguage = bioLang,
@@ -60,7 +60,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
         {
-            var command = new GetSimilarArtistsCommand(Auth, artistname)
+            var command = new GetSimilarCommand(Auth, artistname)
             {
                 Autocorrect = autocorrect,
                 Limit = limit
@@ -70,7 +70,7 @@ namespace IF.Lastfm.Core.Api
 
         public Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist, string username, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new ArtistGetTagsByUserCommand(Auth, artist, username)
+            var command = new GetTagsByUserCommand(Auth, artist, username)
             {
                 Autocorrect = autocorrect,
                 Page = page,
@@ -82,7 +82,7 @@ namespace IF.Lastfm.Core.Api
 
         public Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
         {
-            var command = new ArtistGetTopTagsCommand(Auth, artist)
+            var command = new GetTopTagsCommand(Auth, artist)
             {
                 Autocorrect = autocorrect
             };
@@ -92,7 +92,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
         {
-            var command = new GetArtistShoutsCommand(Auth, artist)
+            var command = new GetShoutsCommand(Auth, artist)
             {
                 Autocorrect = autocorrect,
                 Page = page,
@@ -110,7 +110,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new SearchArtistsCommand(Auth, artistname)
+            var command = new SearchCommand(Auth, artistname)
             {
                 Page = page,
                 Count = itemsPerPage

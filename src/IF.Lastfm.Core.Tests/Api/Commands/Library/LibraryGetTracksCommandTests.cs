@@ -1,5 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Commands.LibraryApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,17 +6,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Library;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
     [TestClass]
     public class LibraryGetTracksCommandTests : CommandTestsBase
     {
-        private readonly LibraryGetTracksCommand _command;
+        private readonly GetTracksCommand _command;
 
         public LibraryGetTracksCommandTests()
         {
-            _command = new LibraryGetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
+            _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
             {
                 Count = 1
             };            

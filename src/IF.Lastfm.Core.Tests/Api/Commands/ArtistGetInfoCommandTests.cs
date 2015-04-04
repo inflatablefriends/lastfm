@@ -1,5 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Commands.ArtistApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,18 +6,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
     public class ArtistGetInfoCommandTests : CommandTestsBase
     {
-        private GetArtistInfoCommand _command;
+        private GetInfoCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new GetArtistInfoCommand(MAuth.Object)
+            _command = new GetInfoCommand(MAuth.Object)
             {
                 ArtistName = "Frightened Rabbit"
             };

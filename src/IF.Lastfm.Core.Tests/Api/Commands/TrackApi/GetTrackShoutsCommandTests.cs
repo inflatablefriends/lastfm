@@ -1,21 +1,21 @@
-﻿using IF.Lastfm.Core.Api.Commands.TrackApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Track;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
 {
     [TestClass]
     public class GetTrackShoutsCommandTests : CommandTestsBase
     {
-        private GetTrackShoutsCommand _command;
+        private GetShoutsCommand _command;
 
         public GetTrackShoutsCommandTests()
         {
-            _command = new GetTrackShoutsCommand(MAuth.Object, "Genesis", "Grimes")
+            _command = new GetShoutsCommand(MAuth.Object, "Genesis", "Grimes")
                        {
                            Autocorrect = true,
                            Page = 5,

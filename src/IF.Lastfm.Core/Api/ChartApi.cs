@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.ChartApi;
+using IF.Lastfm.Core.Api.Commands.Chart;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 

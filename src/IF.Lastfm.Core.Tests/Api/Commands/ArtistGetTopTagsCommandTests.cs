@@ -1,4 +1,3 @@
-using IF.Lastfm.Core.Api.Commands.ArtistApi;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
@@ -7,18 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
     [TestClass]
     public class ArtistGetTopTagsCommandTests : CommandTestsBase
     {
-        private ArtistGetTopTagsCommand _command;
+        private GetTopTagsCommand _command;
 
         [TestInitialize]
         public void Initialise()
         {
-            _command = new ArtistGetTopTagsCommand(MAuth.Object, "");
+            _command = new GetTopTagsCommand(MAuth.Object, "");
         }
 
         [TestMethod]

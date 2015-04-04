@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Commands.AuthApi;
+using IF.Lastfm.Core.Api.Commands.Auth;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 

@@ -1,9 +1,9 @@
-﻿using IF.Lastfm.Core.Api.Commands.UserApi;
-using IF.Lastfm.Core.Api.Enums;
+﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Commands.User;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -47,7 +47,7 @@ namespace IF.Lastfm.Core.Api
         /// <returns>Enumerable of LastTrack</returns>
         public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTimeOffset? since = null, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
-            var command = new UserGetRecentTracksCommand(Auth, username)
+            var command = new GetRecentTracksCommand(Auth, username)
                           {
                               Page = pagenumber,
                               Count = count,
@@ -70,7 +70,7 @@ namespace IF.Lastfm.Core.Api
          
         public async Task<PageResponse<LastShout>> GetShoutsAsync(string username, int pagenumber, int count = LastFm.DefaultPageLength)
         {
-            var command = new GetUserShoutsCommand(Auth, username)
+            var command = new GetShoutsCommand(Auth, username)
                           {
                               Page = pagenumber,
                               Count = count
@@ -81,7 +81,7 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse<LastUser>> GetInfoAsync(string username)
         {
-            var command = new GetUserInfoCommand(Auth, username);
+            var command = new GetInfoCommand(Auth, username);
 
             return await command.ExecuteAsync();
         }
