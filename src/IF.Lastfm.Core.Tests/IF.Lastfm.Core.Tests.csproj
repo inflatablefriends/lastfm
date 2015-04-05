@@ -124,6 +124,7 @@
       <DependentUpon>UserApiResponses.resx</DependentUpon>
     </Compile>
     <Compile Include="Scrobblers\ScrobblerTests.cs" />
+    <Compile Include="Scrobblers\ScrobblerTestsBase.cs" />
     <Compile Include="TestHelper.cs" />
     <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
@@ -183,24 +184,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\AlbumApiResponses.resx">
       <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ArtistApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ArtistApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

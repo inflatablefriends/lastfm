@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Scrobblers;
 using SQLite;
@@ -18,9 +20,19 @@ namespace IF.Lastfm.SQLite
             DatabasePath = databasePath;
         }
 
-        public override Task CacheAsync(Scrobble scrobble)
+        protected override Task<IEnumerable<Scrobble>> GetCachedAsync()
         {
-            return Task.Run(() => Cache(scrobble));
+            throw new NotImplementedException();
+        }
+
+        protected override Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus)
+        {
+            // TODO cache originalResponse - reason to cache
+            return Task.Run(() =>
+            {
+                Cache(scrobble);
+                return LastResponseStatus.Cached;
+            });
         }
 
         private void Cache(Scrobble scrobble)
