@@ -9,12 +9,12 @@ using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    [TestClass]
+    
     public class UserGetTopAlbumsCommandTests : CommandTestsBase
     {
         private const string USER = "test";
@@ -23,7 +23,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         private GetTopAlbumsCommand _command;
         private Mock<ILastAuth> _mockAuth;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialise()
         {
             _mockAuth = new Mock<ILastAuth>();
@@ -36,7 +36,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             _command.SetParameters();
         }
 
-        [TestMethod]
+        [Test]
         public void CorrectParameters()
         {
             var expected = new Dictionary<string, string>
@@ -53,7 +53,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             TestHelper.AssertSerialiseEqual(expected, _command.Parameters);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
@@ -62,7 +62,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.IsFalse(response.Success);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseEmpty()
         {
             var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsEmpty));
@@ -74,7 +74,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(1, response.TotalPages);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var expectedAlbum = new LastAlbum
@@ -106,7 +106,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             TestHelper.AssertSerialiseEqual(expectedAlbum, actualAlbum);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseMultiple()
         {
 

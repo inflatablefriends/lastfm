@@ -1,14 +1,13 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Album;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
-    [TestClass]
     public class GetAlbumTopTagsCommandTest : CommandTestsBase
     {
         private GetTopTagsCommand _command;
@@ -24,7 +23,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             _command.SetParameters();
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor()
         {
             Assert.AreEqual(_command.Method, "album.getTopTags");
@@ -32,7 +31,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.AreEqual(_command.Parameters["artist"], "Cher");
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTags));
@@ -43,7 +42,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsNotNull(parsed.Content);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsEmpty));
@@ -55,7 +54,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(!parsed.Content.Any());
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsError));

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using IF.Lastfm.Core.Api.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -185,10 +185,10 @@ namespace IF.Lastfm.Core.Tests
         }
     }
 
-    [TestClass]
+    
     public class TestHelperTests
     {
-        [TestMethod]
+        [Test]
         public void RoundsToNearestSecond()
         {
             var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);

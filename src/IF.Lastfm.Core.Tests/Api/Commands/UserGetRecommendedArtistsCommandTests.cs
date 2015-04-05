@@ -5,22 +5,22 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.User;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    [TestClass]
+    
     public class UserGetRecommendedArtistsCommandTests : CommandTestsBase
     {
         private GetRecommendedArtistsCommand _commmand;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             _commmand = new GetRecommendedArtistsCommand(MAuth.Object);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var expectedArtist = new LastArtist
@@ -46,7 +46,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseMultiple()
         {
             var expectedArtists = new List<LastArtist>

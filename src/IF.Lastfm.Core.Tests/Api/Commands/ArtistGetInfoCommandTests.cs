@@ -1,7 +1,7 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,12 +10,12 @@ using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    [TestClass]
+    
     public class ArtistGetInfoCommandTests : CommandTestsBase
     {
         private GetInfoCommand _command;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             _command = new GetInfoCommand(MAuth.Object)
@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             };
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var expectedArtist = new LastArtist()
@@ -120,7 +120,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoMissing));

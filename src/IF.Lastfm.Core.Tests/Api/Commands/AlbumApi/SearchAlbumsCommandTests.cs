@@ -1,14 +1,13 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Album;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
-    [TestClass]
     public class SearchAlbumsCommandTests : CommandTestsBase
     {
         private SearchCommand _command;
@@ -24,7 +23,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             _command.SetParameters();
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor()
         {
             Assert.AreEqual(_command.Method, "album.search");
@@ -34,7 +33,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.AreEqual(_command.Parameters["limit"], "3");
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearch));
@@ -47,7 +46,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(parsed.Content.Count() == 3);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchSingle));
@@ -59,7 +58,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(parsed.Content.Count() == 1);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchEmpty));
@@ -71,7 +70,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(!parsed.Content.Any());
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchError));

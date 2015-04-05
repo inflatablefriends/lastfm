@@ -1,6 +1,6 @@
 ﻿using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Tests.Api.Commands;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
@@ -11,7 +11,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
         protected LastAuth Auth { get; private set; }
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             Auth = new LastAuth(LastFm.TEST_APIKEY, LastFm.TEST_APISECRET);
