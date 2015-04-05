@@ -7,12 +7,11 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Scrobblers;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Scrobblers
 {
-    [TestClass]
     public abstract class ScrobblerTestsBase
     {
         protected IScrobbler Scrobbler { get; private set; }
@@ -21,7 +20,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
 
         protected QueueFakeResponseHandler FakeResponseHandler { get; private set; }
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             MockAuth = new Mock<ILastAuth>();
@@ -45,7 +44,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         protected abstract IScrobbler GetScrobbler();
 
 
-        [TestMethod]
+        [Test]
         public async Task CorrectResponseWithBadAuth()
         {
             MockAuth.SetupGet(m => m.Authenticated).Returns(false);
@@ -56,7 +55,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse.Status);
         }
 
-        [TestMethod]
+        [Test]
         public async Task CorrectResponseWhenRequestSuccessful()
         {
             MockAuth.SetupGet(m => m.Authenticated).Returns(true);
@@ -67,7 +66,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             Assert.AreEqual(LastResponseStatus.Successful, scrobbleResponse.Status);
         }
 
-        [TestMethod]
+        [Test]
         public async Task CorrectResponseWhenRequestFailed()
         {
             MockAuth.SetupGet(m => m.Authenticated).Returns(true);

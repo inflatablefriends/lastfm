@@ -1,12 +1,11 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests
 {
-    [TestClass]
     public class TestHelperTests
     {
-        [TestMethod]
+        [Test]
         public void RoundsToNearestSecond()
         {
             var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);
