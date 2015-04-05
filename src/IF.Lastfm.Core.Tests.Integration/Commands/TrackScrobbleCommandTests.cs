@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
-    
     public class TrackScrobbleCommandTests : CommandIntegrationTestsBase
     {
         private const string ARTIST_NAME = "Hot Chip";

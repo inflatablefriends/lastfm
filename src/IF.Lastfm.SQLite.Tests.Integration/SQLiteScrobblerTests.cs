@@ -3,7 +3,7 @@ using IF.Lastfm.Core.Tests.Scrobblers;
 
 namespace IF.Lastfm.SQLite.Tests.Integration
 {
-    public class SQLiteeScrobblerTests : ScrobblerTestsBase
+    public class SQLiteScrobblerTests : ScrobblerTestsBase
     {
         protected override IScrobbler GetScrobbler()
         {

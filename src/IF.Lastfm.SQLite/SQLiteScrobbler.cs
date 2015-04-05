@@ -22,7 +22,7 @@ namespace IF.Lastfm.SQLite
 
         protected override Task<IEnumerable<Scrobble>> GetCachedAsync()
         {
-            throw new NotImplementedException();
+            return Task.FromResult(Enumerable.Empty<Scrobble>());
         }
 
         protected override Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus)
