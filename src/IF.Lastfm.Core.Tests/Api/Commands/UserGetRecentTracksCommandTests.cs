@@ -1,7 +1,7 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,12 +11,12 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    [TestClass]
+    
     public class UserGetRecentTracksCommandTests : CommandTestsBase
     {
         private GetRecentTracksCommand _command;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             _command = new GetRecentTracksCommand(MAuth.Object, "rj")
@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             };
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseMultiple()
         {
             var expectedTrack = new LastTrack
@@ -47,7 +47,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             await CompareResultsMultiple(_command, expectedTrack, UserApiResponses.UserGetRecentTracksMultiple, 2);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var expectedTrack = new LastTrack
@@ -72,7 +72,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             await CompareResultsSingle(_command, expected, UserApiResponses.UserGetRecentTracksSingle);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));

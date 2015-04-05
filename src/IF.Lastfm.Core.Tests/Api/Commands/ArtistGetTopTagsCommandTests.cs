@@ -1,7 +1,7 @@
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +10,18 @@ using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    [TestClass]
+    
     public class ArtistGetTopTagsCommandTests : CommandTestsBase
     {
         private GetTopTagsCommand _command;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             _command = new GetTopTagsCommand(MAuth.Object, "");
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var expectedTags = new List<LastTag>
@@ -39,7 +39,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseMultiple()
         {
             var expectedTags = new List<LastTag>
@@ -61,7 +61,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseEmpty()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsEmpty));
@@ -71,7 +71,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.IsTrue(!parsed.Content.Any());
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseError()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsError));

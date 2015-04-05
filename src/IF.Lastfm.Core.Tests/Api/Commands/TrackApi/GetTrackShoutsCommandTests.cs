@@ -1,6 +1,6 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ using IF.Lastfm.Core.Api.Commands.Track;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
 {
-    [TestClass]
+    
     public class GetTrackShoutsCommandTests : CommandTestsBase
     {
         private GetShoutsCommand _command;
@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             _command.SetParameters();
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor()
         {
             Assert.AreEqual(_command.Method, "track.getShouts");
@@ -38,7 +38,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             //Assert.AreEqual(_command.Parameters["disablecachetoken"], "1");
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShouts));
@@ -51,7 +51,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             Assert.IsTrue(parsed.Content.Count() == 7);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsSingle));
@@ -63,7 +63,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             Assert.IsTrue(parsed.Content.Count() == 1);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
@@ -75,7 +75,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
             Assert.IsTrue(!parsed.Content.Any());
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsError));

@@ -3,7 +3,7 @@ using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using System.Net;

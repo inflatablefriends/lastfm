@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using IF.Lastfm.Core.Api.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -185,9 +185,10 @@ namespace IF.Lastfm.Core.Tests
             Assert.IsNotNull(pageResponse.Content, "page content is null");
             Assert.IsTrue(pageResponse.Content.Count == totalItems, testMessage("content length", totalItems));
         }
-
+        
         public static HttpResponseMessage CreateResponseMessage(HttpStatusCode status, byte[] resource)
         {
+            var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);
             var responseJson = Encoding.UTF8.GetString(resource);
             var stringContent = new StringContent(responseJson, Encoding.UTF8, "application/json");
 

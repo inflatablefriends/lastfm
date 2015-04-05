@@ -1,5 +1,5 @@
 ﻿using IF.Lastfm.Core.Api.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Helpers
 {
@@ -14,10 +14,10 @@ namespace IF.Lastfm.Core.Tests.Api.Helpers
         Cats
     }
 
-    [TestClass]
+    
     public class ApiHelperTests
     {
-        [TestMethod]
+        [Test]
         public void GetApiNameReturnsAttribute()
         {
             var enumValue = TestApiEnum.Dogs;
@@ -28,7 +28,7 @@ namespace IF.Lastfm.Core.Tests.Api.Helpers
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetApiNameReturnsValueIfNoAttribute()
         {
             var enumValue = TestApiEnum.Unknown;

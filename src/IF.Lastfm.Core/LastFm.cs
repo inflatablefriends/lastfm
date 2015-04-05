@@ -115,51 +115,7 @@ namespace IF.Lastfm.Core
             int code;
             if (Int32.TryParse(codeString, out code))
             {
-                switch (code)
-                {
-                    case 2:
-                        status = LastResponseStatus.BadService;
-                        break;
-                    case 3:
-                        status = LastResponseStatus.BadMethod;
-                        break;
-                    case 4:
-                        status = LastResponseStatus.BadAuth;
-                        break;
-                    case 5:
-                        status = LastResponseStatus.BadFormat;
-                        break;
-                    case 6:
-                        status = LastResponseStatus.MissingParameters;
-                        break;
-                    case 7:
-                        status = LastResponseStatus.BadResource;
-                        break;
-                    case 8:
-                        status = LastResponseStatus.Failure;
-                        break;
-                    case 9:
-                        status = LastResponseStatus.SessionExpired;
-                        break;
-                    case 10:
-                        status = LastResponseStatus.BadApiKey;
-                        break;
-                    case 11:
-                        status = LastResponseStatus.ServiceDown;
-                        break;
-                    case 13:
-                        status = LastResponseStatus.BadMethodSignature;
-                        break;
-                    case 16:
-                        status = LastResponseStatus.TemporaryFailure;
-                        break;
-                    case 26:
-                        status = LastResponseStatus.KeySuspended;
-                        break;
-                    case 29:
-                        status = LastResponseStatus.RateLimited;
-                        break;
-                }
+                status = (LastResponseStatus) code;
             }
 
             return false;

@@ -1,20 +1,20 @@
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
-    [TestClass]
+    
     public class TrackUpdateNowPlayingCommandTests : CommandIntegrationTestsBase
     {
         private const string ARTIST_NAME = "Crystal Castles";
         private const string ALBUM_NAME = "Crystal Castles ( II )";
         private const string TRACK_NAME = "Not in Love";
 
-        [TestMethod]
+        [Test]
         public async Task UpdatesNowPlaying()
         {
             var trackPlayed = DateTime.UtcNow.AddMinutes(-1);

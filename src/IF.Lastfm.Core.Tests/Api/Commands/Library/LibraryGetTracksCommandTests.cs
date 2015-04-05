@@ -1,7 +1,7 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ using IF.Lastfm.Core.Api.Commands.Library;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
-    [TestClass]
+    
     public class LibraryGetTracksCommandTests : CommandTestsBase
     {
         private readonly GetTracksCommand _command;
@@ -23,7 +23,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
             };            
         }
         
-        [TestMethod]
+        [Test]
         public async Task HandleResponseMultiple()
         {
             //Testing the second track returned
@@ -48,7 +48,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
             await CompareResultsMultiple(_command, expectedTrack, LibraryApiResponses.LibraryGetTracksMultiple, 1);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var expectedTrack = new LastTrack
@@ -73,7 +73,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
             await CompareResultsSingle(_command, expected, LibraryApiResponses.LibraryGetTracksSingle);
         }
         
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));

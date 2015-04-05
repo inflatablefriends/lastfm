@@ -101,9 +101,9 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse> AddShoutAsync(string artistname, string messaage)
+        public async Task<LastResponse> AddShoutAsync(string artistname, string message)
         {
-            var command = new AddShoutCommand(Auth, artistname, messaage);
+            var command = new AddShoutCommand(Auth, artistname, message);
 
             return await command.ExecuteAsync();
         }

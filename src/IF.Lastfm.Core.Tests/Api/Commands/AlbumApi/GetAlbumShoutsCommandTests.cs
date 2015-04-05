@@ -6,12 +6,11 @@ using IF.Lastfm.Core.Api.Commands.Album;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
-    [TestClass]
     public class GetAlbumShoutsCommandTests : CommandTestsBase
     {
         private GetShoutsCommand _command;
@@ -21,7 +20,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             _command = new GetShoutsCommand(MAuth.Object, "Visions", "Grimes");
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsMultiple));
@@ -45,7 +44,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleResponseSingle()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsSingle));
@@ -57,7 +56,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(parsed.Content.Count() == 1);
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleEmptyResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsEmpty));
@@ -69,7 +68,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.IsTrue(!parsed.Content.Any());
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsAlbumMissing));

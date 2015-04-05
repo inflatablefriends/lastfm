@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace IF.Lastfm.Core.Tests
 {
-    [TestClass]
+    
     public class LastFmTests
     {
-        [TestMethod]
+        [Test]
         public void ApiUrlFormatReturnsCorrectly()
         {
             const string expected = "https://ws.audioscrobbler.com/2.0/?method=tobias.funke&api_key=suddenvalley&blue=performance&format=json&uncle=t-bag";
@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void IsResponseValid()
         {
             LastResponseStatus status;

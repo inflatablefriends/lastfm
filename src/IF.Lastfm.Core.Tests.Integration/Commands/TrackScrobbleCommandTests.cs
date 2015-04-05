@@ -1,20 +1,20 @@
 ﻿using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
-    [TestClass]
+    
     public class TrackScrobbleCommandTests : CommandIntegrationTestsBase
     {
         private const string ARTIST_NAME = "Hot Chip";
         private const string ALBUM_NAME = "The Warning";
         private const string TRACK_NAME = "Over and Over";
 
-        [TestMethod]
+        [Test]
         public async Task ScrobblesSingle()
         {
             var trackPlayed = DateTimeOffset.UtcNow.AddMinutes(-1).RoundToNearestSecond();

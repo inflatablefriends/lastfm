@@ -1,21 +1,21 @@
 ﻿using IF.Lastfm.Core.Api;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace IF.Lastfm.Core.Tests.Api
 {
-    [TestClass]
+    
     public class LastAuthTests
     {
         private ILastAuth _auth;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialise()
         {
             _auth = new LastAuth("user", "pass");
         }
 
-        [TestMethod]
+        [Test]
         public void GeneratesCorrectMethodSignature()
         {
             const string method = "test.method";

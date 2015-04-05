@@ -16,6 +16,11 @@ namespace IF.Lastfm.Core.Api
             DateTimeOffset since,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
+        Task<LastResponse> RemoveScrobble( 
+            string artist,
+            string track,
+            DateTimeOffset timestamp );
 
+        Task<LastResponse> RemoveTrack( string artist, string track );
     }
 }

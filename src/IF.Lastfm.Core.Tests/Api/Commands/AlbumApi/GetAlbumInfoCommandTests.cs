@@ -4,15 +4,14 @@ using System.Linq;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Tests.Resources;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Album;
 using Newtonsoft.Json;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 {
-    [TestClass]
     public class GetAlbumInfoCommandTests : CommandTestsBase
     {
         private GetInfoCommand _command;
@@ -27,9 +26,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
 
             _command.SetParameters();
         }
-        
 
-        [TestMethod]
+
+        [Test]
         public async Task HandleSuccessResponse()
         {
             var expectedAlbum = new LastAlbum
@@ -73,7 +72,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
 
-        [TestMethod]
+        [Test]
         public async Task HandleErrorResponse()
         {
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
