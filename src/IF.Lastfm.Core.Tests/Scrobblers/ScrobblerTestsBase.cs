@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -20,29 +23,42 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
 
         protected QueueFakeResponseHandler FakeResponseHandler { get; private set; }
 
-        [SetUp]
-        public void Initialise()
+        protected IList<Scrobble> TestScrobbles { get; private set; }
+        
+        protected ScrobblerTestsBase()
         {
-            MockAuth = new Mock<ILastAuth>();
-            FakeResponseHandler = new QueueFakeResponseHandler();
-            Scrobbler = GetScrobbler();
-        }
-
-        protected async Task<ScrobbleResponse> ExecuteTestInternal(HttpResponseMessage responseMessage)
-        {
-            var testScrobble = new Scrobble("65daysofstatic", "The Fall of Math", "Hole", ApiExtensions.FromUnixTime(1428175531))
-            {
-                ChosenByUser = true
-            };
-
-            FakeResponseHandler.Enqueue(responseMessage);
-
-            var scrobbleResponse = await Scrobbler.ScrobbleAsync(testScrobble);
-            return scrobbleResponse;
+            TestScrobbles = new List<Scrobble>();
         }
 
         protected abstract IScrobbler GetScrobbler();
 
+        [SetUp]
+        public virtual void Initialise()
+        {
+            MockAuth = new Mock<ILastAuth>();
+            FakeResponseHandler = new QueueFakeResponseHandler();
+            Scrobbler = GetScrobbler();
+
+            var testScrobble = new Scrobble("65daysofstatic", "The Fall of Math", "Hole", ApiExtensions.FromUnixTime(1428175531))
+            {
+                ChosenByUser = true
+            };
+            TestScrobbles.Add(testScrobble);
+        }
+
+        [TearDown]
+        public virtual void Cleanup()
+        {
+            
+        }
+
+        protected async Task<ScrobbleResponse> ExecuteTestInternal(HttpResponseMessage responseMessage)
+        {
+            FakeResponseHandler.Enqueue(responseMessage);
+
+            var scrobbleResponse = await Scrobbler.ScrobbleAsync(TestScrobbles);
+            return scrobbleResponse;
+        }
 
         [Test]
         public async Task CorrectResponseWithBadAuth()
@@ -52,7 +68,18 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
             var scrobbleResponse = await ExecuteTestInternal(responseMessage);
 
-            Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse.Status);
+            if (Scrobbler.CacheEnabled)
+            {
+                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+
+                // check actually cached
+                var cached = await Scrobbler.GetCachedAsync();
+                TestHelper.AssertSerialiseEqual(TestScrobbles.FirstOrDefault(), cached.FirstOrDefault());
+            }
+            else
+            {
+                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse.Status);
+            }
         }
 
         [Test]
@@ -63,7 +90,18 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
             var scrobbleResponse = await ExecuteTestInternal(responseMessage);
 
-            Assert.AreEqual(LastResponseStatus.Successful, scrobbleResponse.Status);
+            if (Scrobbler.CacheEnabled)
+            {
+                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+
+                // check actually cached
+                var cached = await Scrobbler.GetCachedAsync();
+                TestHelper.AssertSerialiseEqual(TestScrobbles.FirstOrDefault(), cached.FirstOrDefault());
+            }
+            else
+            {
+                Assert.AreEqual(LastResponseStatus.Successful, scrobbleResponse.Status);
+            }
         }
 
         [Test]
@@ -74,7 +112,18 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.RequestTimeout, new byte[0]);
             var scrobbleResponse = await ExecuteTestInternal(responseMessage);
 
-            Assert.AreEqual(LastResponseStatus.RequestFailed, scrobbleResponse.Status);
+            if (Scrobbler.CacheEnabled)
+            {
+                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+
+                // check actually cached
+                var cached = await Scrobbler.GetCachedAsync();
+                TestHelper.AssertSerialiseEqual(TestScrobbles.FirstOrDefault(), cached.FirstOrDefault());
+            }
+            else
+            {
+                Assert.AreEqual(LastResponseStatus.RequestFailed, scrobbleResponse.Status);
+            }
         }
     }
 }

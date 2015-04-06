@@ -45,6 +45,11 @@ namespace IF.Lastfm.Core.Tests
 
         public static string TestSerialise<T>(this T poco)
         {
+            if (poco == null)
+            {
+                return "";
+            }
+
             var serialiser = GetTestSerialiser();
             var jt = JToken.FromObject(poco, serialiser);
 

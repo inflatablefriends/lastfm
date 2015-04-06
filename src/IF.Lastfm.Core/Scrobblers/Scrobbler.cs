@@ -11,14 +11,15 @@ namespace IF.Lastfm.Core.Scrobblers
     {
         public Scrobbler(ILastAuth auth, HttpClient httpClient = null) : base(auth, httpClient)
         {
+            CacheEnabled = false;
         }
 
-        protected override Task<IEnumerable<Scrobble>> GetCachedAsync()
+        public override Task<IEnumerable<Scrobble>> GetCachedAsync()
         {
             return Task.FromResult(Enumerable.Empty<Scrobble>());
         }
 
-        protected override Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus)
+        protected override Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobble, LastResponseStatus originalResponseStatus)
         {
             return Task.FromResult(originalResponseStatus);
         }

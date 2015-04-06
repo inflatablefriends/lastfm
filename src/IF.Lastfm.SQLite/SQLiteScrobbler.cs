@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Scrobblers;
 using SQLite;
 
@@ -18,33 +15,56 @@ namespace IF.Lastfm.SQLite
         public SQLiteScrobbler(ILastAuth auth, string databasePath) : base(auth)
         {
             DatabasePath = databasePath;
+
+            CacheEnabled = true;
         }
 
-        protected override Task<IEnumerable<Scrobble>> GetCachedAsync()
+        public override Task<IEnumerable<Scrobble>> GetCachedAsync()
         {
-            return Task.FromResult(Enumerable.Empty<Scrobble>());
+            using (var db = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadOnly))
+            {
+                var tableInfo = db.GetTableInfo(typeof (Scrobble).Name);
+                if (!tableInfo.Any())
+                {
+                    return Task.FromResult(Enumerable.Empty<Scrobble>());
+                }
+
+                var cached = db.Query<Scrobble>("SELECT * FROM Scrobble");
+                db.Close();
+
+                return Task.FromResult(cached.AsEnumerable());
+            }
         }
 
-        protected override Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus)
+        protected override Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobbles, LastResponseStatus originalResponseStatus)
         {
             // TODO cache originalResponse - reason to cache
             return Task.Run(() =>
             {
-                Cache(scrobble);
+                Cache(scrobbles);
                 return LastResponseStatus.Cached;
             });
         }
 
-        private void Cache(Scrobble scrobble)
+        private void Cache(IEnumerable<Scrobble> scrobbles)
         {
-            var connection = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadWrite);
-
-            if (connection.TableMappings.All(table => table.TableName != typeof(Scrobble).Name))
+            using (var db = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadWrite))
             {
-                connection.CreateTable<Scrobble>();
-            }
+                var tableInfo = db.GetTableInfo(typeof (Scrobble).Name);
+                if (!tableInfo.Any())
+                {
+                    db.CreateTable<Scrobble>();
+                }
 
-            connection.Insert(scrobble);
+                db.BeginTransaction();
+                foreach (var scrobble in scrobbles)
+                {
+                    db.Insert(scrobble);
+                }
+                db.Commit();
+
+                db.Close();
+            }
         }
     }
 }

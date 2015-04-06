@@ -15,21 +15,30 @@ namespace IF.Lastfm.Core.Scrobblers
     {
         private ILastAuth _auth;
 
+        public bool CacheEnabled { get; protected set; }
+
         protected ScrobblerBase(ILastAuth auth, HttpClient httpClient = null) : base(httpClient)
         {
             _auth = auth;
         }
 
-        public async Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble)
+        public Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble)
+        {
+            return ScrobbleAsync(new[] {scrobble});
+        }
+
+        public async Task<ScrobbleResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobbles)
         {
             var cached = await GetCachedAsync();
+            var pending = cached.Concat(scrobbles).OrderBy(s => s.TimePlayed);
 
-            var pending = new List<Scrobble>(cached.OrderBy(p => p.TimePlayed))
+            if (!pending.Any())
             {
-                scrobble
-            };
+                var response = new ScrobbleResponse(LastResponseStatus.Successful);
+                return response;
+            }
 
-            var command = new ScrobbleCommand(_auth, scrobble)
+            var command = new ScrobbleCommand(_auth, pending.FirstOrDefault())
             {
                 HttpClient = HttpClient
             };
@@ -48,8 +57,7 @@ namespace IF.Lastfm.Core.Scrobblers
             {
                 exception = httpEx;
             }
-
-
+            
             ScrobbleResponse cacheResponse;
             try
             {
@@ -57,7 +65,7 @@ namespace IF.Lastfm.Core.Scrobblers
                     ? originalResponse.Status
                     : LastResponseStatus.RequestFailed; // TODO check httpEx
 
-                var cacheStatus = await CacheAsync(scrobble, originalResponseStatus);
+                var cacheStatus = await CacheAsync(scrobbles, originalResponseStatus);
 
                 cacheResponse = new ScrobbleResponse(cacheStatus);
             }
@@ -72,8 +80,8 @@ namespace IF.Lastfm.Core.Scrobblers
             return cacheResponse;
         }
 
-        protected abstract Task<IEnumerable<Scrobble>> GetCachedAsync();
+        public abstract Task<IEnumerable<Scrobble>> GetCachedAsync();
 
-        protected abstract Task<LastResponseStatus> CacheAsync(Scrobble scrobble, LastResponseStatus originalResponseStatus);
+        protected abstract Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobble, LastResponseStatus originalResponseStatus);
     }
 }
