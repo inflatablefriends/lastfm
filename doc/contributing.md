@@ -48,6 +48,29 @@ So if I wanted to work on the method ```track.getSimilar``` I would:
 
 Once all your tests pass and the project builds, commit your work to your repo, then send a pull request.
 
+### Tests
+
+Every command should have a corresponding unit test file when it makes sense; you can use the type of command as an indicator for which tests are necessary. In addition to the below, any edge cases (such as the timestamps for an album being represented in ms or s depending on which endpoint is called) should be covered.
+
+#### LastResponse
+
+- ParametersCorrect() - test that command.SetParameters() generates the expected output. If the command has multiple constructors or optional parameters these should all be covered in the test.
+
+#### LastResponse<T>
+
+As LastResponse, plus
+
+- HandleSuccess() - test that command.ExecuteAsync() deserialises a typical successful response for this API response into the correct type.
+- HandleError() - test that command.ExecuteAsync() deserialises a typical error response for this API correctly, including method code and message.
+
+#### PageResponse<T>
+
+As LastResponse, plus
+
+- HandleSuccessSingle() - test that command.ExecuteAsync() deserialises a typical successful response with a single item for this API response correctly: the API doesn't use JSON array notation for single items.
+- HandleSuccessMultiple() - test that command.ExecuteAsync() deserialises a typical successful response with multiple items for this API response correctly. Set the limit parameter to 2 for easier test writing.
+- HandleError() - test that command.ExecuteAsync() deserialises a typical error response for this API correctly, including method code and message.
+
 ### Syro
 
 IF.Lastfm.Syro is a tool to make building requests to the Last.fm JSON API easier. The main benefit is that it generates method signatures for authenticated commands, meaning you can get responses from an API call without having to build up the command first.
