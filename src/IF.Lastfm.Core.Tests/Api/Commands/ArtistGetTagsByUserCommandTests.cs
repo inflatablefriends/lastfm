@@ -10,7 +10,6 @@ using IF.Lastfm.Core.Api.Commands.Artist;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    
     public class ArtistGetTagsByUserCommandTests : CommandTestsBase
     {
         private GetTagsByUserCommand _command;
