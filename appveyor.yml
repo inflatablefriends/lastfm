@@ -40,7 +40,7 @@
       - release
 
   # don't forget to update this!
-  version: 0.1.4.{build}
+  version: 0.1.5.{build}
 
   assembly_info:
     patch: true
