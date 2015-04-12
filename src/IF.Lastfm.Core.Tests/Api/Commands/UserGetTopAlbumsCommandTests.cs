@@ -14,7 +14,6 @@ using Moq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    
     public class UserGetTopAlbumsCommandTests : CommandTestsBase
     {
         private const string USER = "test";
