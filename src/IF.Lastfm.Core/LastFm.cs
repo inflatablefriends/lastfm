@@ -17,6 +17,7 @@ namespace IF.Lastfm.Core
 {
     public class LastFm
     {
+        internal const string SCROBBLING_HELP_URL = "https://github.com/inflatablefriends/lastfm/blob/scrobbler/doc/scrobbling.md";
         internal const string TEST_APIKEY = "a6ab4b9376e54cdb06912bfbd9c1f288";
         internal const string TEST_APISECRET = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 

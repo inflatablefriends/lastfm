@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net.Http;
 using IF.Lastfm.Core.Scrobblers;
 using IF.Lastfm.Core.Tests.Scrobblers;
 
@@ -33,7 +34,8 @@ namespace IF.Lastfm.SQLite.Tests.Integration
 
         protected override IScrobbler GetScrobbler()
         {
-            return new SQLiteScrobbler(MockAuth.Object, _dbPath);
+            var httpClient = new HttpClient(FakeResponseHandler);
+            return new SQLiteScrobbler(MockAuth.Object, _dbPath, httpClient);
         }
     }
 }

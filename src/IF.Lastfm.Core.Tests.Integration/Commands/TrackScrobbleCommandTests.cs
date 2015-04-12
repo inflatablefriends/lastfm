@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
+    /// <summary>
+    /// ScrobblerTestsBase is the main place for all things scrobbler testing
+    /// But it's useful to have a test actually hitting the API
+    /// </summary>
     public class TrackScrobbleCommandTests : CommandIntegrationTestsBase
     {
         private const string ARTIST_NAME = "Hot Chip";

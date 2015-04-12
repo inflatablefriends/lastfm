@@ -1,6 +1,7 @@
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -31,6 +32,12 @@ namespace IF.Lastfm.Core.Api.Commands
         protected async Task<T> ExecuteAsyncInternal()
         {
             SetParameters();
+
+            var toRemove = Parameters.Where(p => String.IsNullOrEmpty(p.Value)).ToList();
+            foreach (var parameter in toRemove)
+            {
+                Parameters.Remove(parameter.Key);
+            }
 
             Url = BuildRequestUrl();
 

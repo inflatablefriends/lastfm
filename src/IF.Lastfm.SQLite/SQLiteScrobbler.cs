@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
@@ -12,7 +13,7 @@ namespace IF.Lastfm.SQLite
     {
         public string DatabasePath { get; private set; }
 
-        public SQLiteScrobbler(ILastAuth auth, string databasePath) : base(auth)
+        public SQLiteScrobbler(ILastAuth auth, string databasePath, HttpClient client = null) : base(auth, client)
         {
             DatabasePath = databasePath;
 

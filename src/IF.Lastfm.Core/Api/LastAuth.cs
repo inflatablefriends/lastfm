@@ -49,6 +49,10 @@ namespace IF.Lastfm.Core.Api
             }
         }
 
+        /// <summary>
+        /// Adds the api_key, method and session key to the provided params dictionary, then generates an MD5 hash.
+        /// Parameters contained in the hash must also be exactly the parameters sent to the API.
+        /// </summary>
         public string GenerateMethodSignature(string method, Dictionary<string, string> parameters = null)
         {
             if (parameters == null)

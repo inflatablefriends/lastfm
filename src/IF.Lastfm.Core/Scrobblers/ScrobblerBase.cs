@@ -30,8 +30,9 @@ namespace IF.Lastfm.Core.Scrobblers
         public async Task<ScrobbleResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobbles)
         {
             var cached = await GetCachedAsync();
-            var pending = cached.Concat(scrobbles).OrderBy(s => s.TimePlayed);
 
+            var scrobblesList = scrobbles.ToList();
+            var pending = cached.Concat(scrobblesList).OrderBy(s => s.TimePlayed);
             if (!pending.Any())
             {
                 var response = new ScrobbleResponse(LastResponseStatus.Successful);
@@ -65,7 +66,7 @@ namespace IF.Lastfm.Core.Scrobblers
                     ? originalResponse.Status
                     : LastResponseStatus.RequestFailed; // TODO check httpEx
 
-                var cacheStatus = await CacheAsync(scrobbles, originalResponseStatus);
+                var cacheStatus = await CacheAsync(scrobblesList, originalResponseStatus);
 
                 cacheResponse = new ScrobbleResponse(cacheStatus);
             }
