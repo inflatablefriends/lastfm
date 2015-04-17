@@ -32,14 +32,14 @@ namespace IF.Lastfm.Core.Scrobblers
             var cached = await GetCachedAsync();
 
             var scrobblesList = scrobbles.ToList();
-            var pending = cached.Concat(scrobblesList).OrderBy(s => s.TimePlayed);
+            var pending = cached.Concat(scrobblesList).OrderBy(s => s.TimePlayed).ToList();
             if (!pending.Any())
             {
                 var response = new ScrobbleResponse(LastResponseStatus.Successful);
                 return response;
             }
 
-            var command = new ScrobbleCommand(_auth, pending.FirstOrDefault())
+            var command = new ScrobbleCommand(_auth, pending)
             {
                 HttpClient = HttpClient
             };

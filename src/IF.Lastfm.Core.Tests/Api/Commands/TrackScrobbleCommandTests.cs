@@ -29,12 +29,12 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         {
             var expected = new Dictionary<string, string>
             {
-                {"artist", "Kate Nash"},
-                {"albumArtist", "Kate Nash"},
-                {"album", "Made of Bricks"},
-                {"track", "Foundations"},
-                {"chosenByUser", "0"},
-                {"timestamp", _scrobblePlayed.AsUnixTime().ToString()}
+                {"artist[0]", "Kate Nash"},
+                {"albumArtist[0]", "Kate Nash"},
+                {"album[0]", "Made of Bricks"},
+                {"track[0]", "Foundations"},
+                {"chosenByUser[0]", "0"},
+                {"timestamp[0]", _scrobblePlayed.AsUnixTime().ToString()}
             };
 
             _command.SetParameters();

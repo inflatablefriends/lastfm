@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,10 +50,6 @@ namespace IF.Lastfm.Core.Api
             }
         }
 
-        /// <summary>
-        /// Adds the api_key, method and session key to the provided params dictionary, then generates an MD5 hash.
-        /// Parameters contained in the hash must also be exactly the parameters sent to the API.
-        /// </summary>
         public string GenerateMethodSignature(string method, Dictionary<string, string> parameters = null)
         {
             if (parameters == null)
@@ -69,7 +66,7 @@ namespace IF.Lastfm.Core.Api
 
             var builder = new StringBuilder();
 
-            foreach (var kv in parameters.OrderBy(kv => kv.Key))
+            foreach (var kv in parameters.OrderBy(kv => kv.Key, StringComparer.Ordinal))
             {
                 builder.Append(kv.Key);
                 builder.Append(kv.Value);

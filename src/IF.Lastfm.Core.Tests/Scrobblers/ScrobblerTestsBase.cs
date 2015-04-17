@@ -22,9 +22,6 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
 
     public abstract class ScrobblerTestsBase
     {
-        private const string REQUEST_BODY_SINGLE = "method=track.scrobble&api_key=59dd1140db864fd4a68ca820709eaf98&api_sig=A968DABA253F4540AC6E6B4256983607&format=json&artist=65daysofstatic&album=The+Fall+of+Math&track=Hole&api_key=59dd1140db864fd4a68ca820709eaf98&chosenByUser=1&timestamp=1330526403&method=track.scrobble&sk=071a119a9aac4942b1b05328a5591f55";
-        private const string REQUEST_BODY_MULTIPLE = "";
-
         protected IScrobbler Scrobbler { get; private set; }
 
         protected Mock<ILastAuth> MockAuth { get; private set; }
@@ -36,7 +33,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         private List<Scrobble> GetTestScrobbles()
         {
             var counter = 0;
-            var now = new DateTimeOffset(2012, 02, 29, 15, 40, 03, new TimeSpan(1,0,0));
+            var now = new DateTimeOffset(2012, 02, 29, 15, 40, 03, TimeSpan.Zero);
             Func<DateTimeOffset> getTimePlayed = () => now.AddSeconds(-360 * counter++);
 
             var testScrobbles = new List<Scrobble>
@@ -136,7 +133,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [Test]
         public async Task ScrobbleSingleSuccessful()
         {
-            var requestMessage = GenerateExpectedRequestMessage(REQUEST_BODY_SINGLE);
+            var requestMessage = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleSingleRequestBody);
 
             var testScrobbles = GetTestScrobbles().Take(1);
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
@@ -148,11 +145,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [Test]
         public async Task ScrobbleMultipleSuccessful()
         {
-            MockAuth.SetupGet(m => m.Authenticated).Returns(true);
+            var requestMessage = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleMultipleRequestBody);
 
             var testScrobbles = GetTestScrobbles();
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
-            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, null);
+            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
             Assert.AreEqual(LastResponseStatus.Successful, scrobbleResponse.Status);
         }
@@ -160,11 +157,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [Test]
         public async Task CorrectResponseWithBadAuth()
         {
-            MockAuth.SetupGet(m => m.Authenticated).Returns(false);
+            var requestMessage = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleMultipleRequestBody);
 
             var testScrobbles = GetTestScrobbles();
-            var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
-            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, null);
+            var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.Forbidden, TrackApiResponses.TrackScrobbleBadAuthError);
+            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
             if (Scrobbler.CacheEnabled)
             {
@@ -183,11 +180,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [Test]
         public async Task CorrectResponseWhenRequestFailed()
         {
-            MockAuth.SetupGet(m => m.Authenticated).Returns(true);
+            var requestMessage = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleMultipleRequestBody);
 
             var testScrobbles = GetTestScrobbles();
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.RequestTimeout, new byte[0]);
-            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, null);
+            var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
             if (Scrobbler.CacheEnabled)
             {

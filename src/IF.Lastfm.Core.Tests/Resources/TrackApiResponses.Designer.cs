@@ -103,6 +103,34 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] TrackScrobbleBadAuthError {
+            get {
+                object obj = ResourceManager.GetObject("TrackScrobbleBadAuthError", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=722818CCD472F3EB0CF079F7AC543077&amp;format=json&amp;artist%5B0%5D=Rubies&amp;album%5B0%5D=Stand+in+a+Line&amp;track%5B0%5D=Teppan-Yaki+%28A+Collection+of+Remixes%29&amp;albumArtist%5B0%5D=Schinichi+Osawa&amp;chosenByUser%5B0%5D=0&amp;timestamp%5B0%5D=1330528563&amp;artist%5B1%5D=Broken+Social+Scene&amp;album%5B1%5D=Sentimental+X%27s&amp;track%5B1%5D=Forgiveness+Rock+Record&amp;albumArtist%5B1%5D=Broken+Social+Scene&amp;chosenByUser%5B1%5D=0&amp;timestamp%5B1%5D=1330528923&amp;artist%5B2%5D=B [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string TrackScrobbleMultipleRequestBody {
+            get {
+                return ResourceManager.GetString("TrackScrobbleMultipleRequestBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=9162EC581974F03444D2C1C9C808013B&amp;format=json&amp;artist%5B0%5D=65daysofstatic&amp;album%5B0%5D=The+Fall+of+Math&amp;track%5B0%5D=Hole&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;chosenByUser%5B0%5D=1&amp;timestamp%5B0%5D=1330530003&amp;method=track.scrobble&amp;sk=071a119a9aac4942b1b05328a5591f55.
+        /// </summary>
+        public static string TrackScrobbleSingleRequestBody {
+            get {
+                return ResourceManager.GetString("TrackScrobbleSingleRequestBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] TrackScrobbleSuccess {
             get {
                 object obj = ResourceManager.GetObject("TrackScrobbleSuccess", resourceCulture);

@@ -2,8 +2,12 @@
 using IF.Lastfm.Core.Objects;
 using NUnit.Framework;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
@@ -66,6 +70,37 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var actualJson = actual.TestSerialise();
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
+        }
+
+        [Test]
+        public async Task ScrobblesMultiple()
+        {
+            var scrobbles = GenerateScrobbles(50);
+
+            var scrobbler = new Scrobbler(Auth);
+            var response = await scrobbler.ScrobbleAsync(scrobbles);
+
+            Assert.IsTrue(response.Status == LastResponseStatus.Successful);
+            Assert.IsTrue(response.Success);
+        }
+
+        private string[] testScrobbles = new[]
+        {
+            "Hot Chip|Playboy|Coming on Strong",
+            "Broken Social Scene|Our Faces Split the Coast in Half|Broken Social Scene",
+            "The Knife|Heartbeats|Deep Cuts",
+            "The Knife|Pass this on|Deep Cuts",
+            "The Knife|Silent Shout|Silent Shout"
+        };
+
+        private IList<Scrobble> GenerateScrobbles(int amount)
+        {
+            var now = DateTimeOffset.UtcNow.AddHours(-5);
+            return Enumerable.Range(0, amount).Select(i =>
+            {
+                var metadata = testScrobbles[i%5].Split('|');
+                return new Scrobble(metadata[0], metadata[2], metadata[1], now.AddMinutes(-6));
+            }).ToList();
         }
     }
 }
