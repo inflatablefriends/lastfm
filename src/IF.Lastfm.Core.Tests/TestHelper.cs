@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Helpers;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests
@@ -17,13 +19,21 @@ namespace IF.Lastfm.Core.Tests
     {
         private static JsonSerializer GetTestSerialiser()
         {
-            return new JsonSerializer
+            var serialiser = new JsonSerializer
             {
                 DateParseHandling = DateParseHandling.DateTimeOffset,
                 DateFormatString = "yyyy-MM-dd HH:mm:ss.ffff",
                 NullValueHandling = NullValueHandling.Include,
                 ContractResolver = new OrderedContractResolver()
             };
+
+            serialiser.Converters.Add(new IsoDateTimeConverter()
+            {
+                DateTimeFormat = "yyyy-MM-dd HH:mm:ss.ffff",
+                DateTimeStyles = DateTimeStyles.AdjustToUniversal
+            });
+
+            return serialiser;
         }
 
         private static JObject WithSortedProperties(this JObject jo)
