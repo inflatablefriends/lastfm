@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -123,7 +124,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             TestHelper.AssertSerialiseEqual(expectedRequestMessage.Headers, actualRequestMessage.Item1.Headers);
             TestHelper.AssertSerialiseEqual(expectedRequestMessage.RequestUri, actualRequestMessage.Item1.RequestUri);
 
-            var expectedRequestBody = Uri.UnescapeDataString(await expectedRequestMessage.Content.ReadAsStringAsync());
+            var expectedRequestBody = await expectedRequestMessage.Content.ReadAsStringAsync();
             var actualRequestBody = actualRequestMessage.Item2;
             TestHelper.AssertSerialiseEqual(expectedRequestBody, actualRequestBody);
 

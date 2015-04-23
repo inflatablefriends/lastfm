@@ -22,14 +22,14 @@ namespace IF.Lastfm.Core.Tests
             var serialiser = new JsonSerializer
             {
                 DateParseHandling = DateParseHandling.DateTimeOffset,
-                DateFormatString = "yyyy-MM-dd HH:mm:ss.ffff",
+                DateFormatString = "yyyy-MM-dd HH:mm:ss.ff",
                 NullValueHandling = NullValueHandling.Include,
                 ContractResolver = new OrderedContractResolver()
             };
 
             serialiser.Converters.Add(new IsoDateTimeConverter()
             {
-                DateTimeFormat = "yyyy-MM-dd HH:mm:ss.ffff",
+                DateTimeFormat = "yyyy-MM-dd HH:mm:ss.ff",
                 DateTimeStyles = DateTimeStyles.AdjustToUniversal
             });
 
