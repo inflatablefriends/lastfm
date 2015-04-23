@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
@@ -75,12 +77,18 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         [Test]
         public async Task ScrobblesMultiple()
         {
-            var scrobbles = GenerateScrobbles(50);
+            var scrobbles = GenerateScrobbles(4);
 
-            var scrobbler = new Scrobbler(Auth);
+            var countingHandler = new CountingHttpClientHandler();
+            var httpClient = new HttpClient(countingHandler);
+            var scrobbler = new Scrobbler(Auth, httpClient)
+            {
+                MaxBatchSize = 2
+            };
             var response = await scrobbler.ScrobbleAsync(scrobbles);
-
-            Assert.AreEqual(response.Status, LastResponseStatus.Successful);
+            
+            Assert.AreEqual(2, countingHandler.Count);
+            Assert.AreEqual(LastResponseStatus.Successful, response.Status);
             Assert.IsTrue(response.Success);
         }
 

@@ -115,6 +115,8 @@
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Helpers\ApiBase.cs" />
+    <Compile Include="Helpers\CountingHttpClientHandler.cs" />
+    <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\FakeResponseHandler.cs" />
     <Compile Include="Helpers\QueueFakeResponseHandler.cs" />
     <Compile Include="Json\LastFmBooleanConverter.cs" />
