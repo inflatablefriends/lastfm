@@ -20,6 +20,9 @@
   build:
     project: IF.Lastfm.sln
 
+  test_script:
+    - ps: .\run-tests.ps1
+
   after_test:
     - ps: .nuget\pack.ps1 -versionSuffix prerelease
 
@@ -56,6 +59,9 @@
 
   build:
     project: IF.Lastfm.sln
+
+  test_script:
+    - ps: .\run-tests.ps1
 
   after_test:
     - ps: .nuget\pack.ps1
