@@ -10,7 +10,6 @@ using IF.Lastfm.Core.Api.Commands.Library;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
-    
     public class LibraryGetTracksCommandTests : CommandTestsBase
     {
         private readonly GetTracksCommand _command;

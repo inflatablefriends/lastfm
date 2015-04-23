@@ -89,6 +89,8 @@
     <Compile Include="Api\Commands\ArtistGetTopTagsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
+    <Compile Include="Api\Commands\Library\RemoveScrobbleCommandTests.cs" />
+    <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
