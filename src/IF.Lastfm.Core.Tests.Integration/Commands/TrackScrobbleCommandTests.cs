@@ -80,7 +80,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var scrobbler = new Scrobbler(Auth);
             var response = await scrobbler.ScrobbleAsync(scrobbles);
 
-            Assert.IsTrue(response.Status == LastResponseStatus.Successful);
+            Assert.AreEqual(response.Status, LastResponseStatus.Successful);
             Assert.IsTrue(response.Success);
         }
 
