@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
-            Assert.IsTrue(parsed.Error == LastResponseStatus.MissingParameters);
+            Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);
             Assert.IsNotNull(parsed.Content);
             Assert.IsTrue(!parsed.Content.Any());
         }

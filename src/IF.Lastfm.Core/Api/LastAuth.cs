@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace IF.Lastfm.Core.Api
 
             var builder = new StringBuilder();
 
-            foreach (var kv in parameters.OrderBy(kv => kv.Key))
+            foreach (var kv in parameters.OrderBy(kv => kv.Key, StringComparer.Ordinal))
             {
                 builder.Append(kv.Key);
                 builder.Append(kv.Value);

@@ -8,9 +8,9 @@
 		<licenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</licenseUrl>
 		<projectUrl>https://github.com/inflatablefriends/lastfm</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>Simple, portable Last.fm SDK for modern .NET platforms</description>
+		<description>Portable Last.fm SDK for modern .NET platforms.</description>
 		<copyright>Copyright 2014 Inflatable Friends</copyright>
-		<tags>lastfm last.fm inflatable friends sdk api</tags>
+		<tags>lastfm last.fm inflatable friends sdk api music metadata scrobble scrobbling portable</tags>
 		<dependencies>
 			<dependency id="Newtonsoft.Json" version="6.0.5"/>
 			<dependency id="Microsoft.Net.Http" version="2.2.28"/>

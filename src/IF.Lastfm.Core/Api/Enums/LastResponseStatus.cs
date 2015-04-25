@@ -7,23 +7,23 @@
         /// <summary>
         /// The request was successful!
         /// </summary>
-        Successful = 40,
+        Successful = 20,
 
         /// <summary>
         /// The request has been cached, it will be sent later
         /// </summary>
-        Cached = 41,
+        Cached = 21,
 
         /// <summary>
         /// The request could not be sent, and could not be cached.
         /// Check the Exception property of the response for details.
         /// </summary>
-        CacheFailed = 42,
+        CacheFailed = 22,
 
         /// <summary>
         /// The request failed, check for network connectivity
         /// </summary>
-        RequestFailed = 43,
+        RequestFailed = 23,
 
         /// <summary>
         /// The service requested does not exist (2)

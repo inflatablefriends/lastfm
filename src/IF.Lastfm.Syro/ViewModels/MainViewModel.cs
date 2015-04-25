@@ -239,7 +239,7 @@ namespace IF.Lastfm.Syro.ViewModels
             }
 
             ExecutingCommand = true;
-            
+
             try
             {
                 // build up the command<response<lastobject>>
@@ -247,7 +247,7 @@ namespace IF.Lastfm.Syro.ViewModels
                 var genericType = _state.SelectedBaseCommandType.MakeGenericType(responseType);
 
                 if ((_lastAuth.UserSession == null || _lastAuth.UserSession.Username != _state.LastUsername)
-                    && _state.SelectedBaseCommandType == typeof(DummyPostAsyncCommand<>))
+                    && _state.SelectedBaseCommandType == typeof (DummyPostAsyncCommand<>))
                 {
                     await _lastAuth.GetSessionTokenAsync(_state.LastUsername, _state.LastPassword);
                 }
@@ -261,7 +261,7 @@ namespace IF.Lastfm.Syro.ViewModels
                 var methodProperty = genericType.GetProperty("Method", BindingFlags.Public | BindingFlags.Instance);
                 methodProperty.SetValue(instance, _state.CommandMethodName);
 
-                if (_state.SelectedResponseType == typeof(PageResponse<>)
+                if (_state.SelectedResponseType == typeof (PageResponse<>)
                     || _state.CommandMethodName.EndsWith("s")) // yolo
                 {
                     var pageProperty = genericType.GetProperty("Page", BindingFlags.Public | BindingFlags.Instance);
@@ -274,11 +274,11 @@ namespace IF.Lastfm.Syro.ViewModels
                 var parametersProperty = genericType.GetProperty("Parameters",
                     BindingFlags.Public | BindingFlags.Instance);
                 parametersProperty.SetValue(instance, parameters);
-                
+
                 // execute
                 var executeMethod = genericType.GetMethods().First(m => m.Name == "ExecuteAsync");
                 await (dynamic) executeMethod.Invoke(instance, null);
-                
+
                 // cast so we can get the Json response
                 var dummyCommand = (IDummyCommand) instance;
                 var jo = dummyCommand.Response;
@@ -286,31 +286,43 @@ namespace IF.Lastfm.Syro.ViewModels
                 var formattedJson = jo.ToString(Formatting.Indented);
 
                 // writeout to file
-                var filename = string.Format("syro-{0}-{1}.json", _state.CommandMethodName.Replace(".", "-"), DateTime.Now.ToString("yyMMdd-HHmmss"));
-                var tempDirPath = Path.GetFullPath(SolutionDir + "tmp/");
+                var filename = string.Format("syro-{0}-{1}.json", _state.CommandMethodName.Replace(".", "-"),
+                    DateTime.Now.ToString("yyMMdd-HHmmss"));
 
-                if (!Directory.Exists(tempDirPath))
-                {
-                    Directory.CreateDirectory(tempDirPath);
-                }
-                var path = Path.GetFullPath(tempDirPath + filename);
-
-                // write to output directory and launch
-                using (var fs = new FileStream(path, FileMode.Create))
-                {
-                    using (var sw = new StreamWriter(fs))
-                    {
-                        sw.Write(formattedJson);
-                    }
-                }
-                Process.Start(path);
+                SaveToTempAndLoad(filename, formattedJson);
 
                 CommandResult = formattedJson;
+            }
+            catch (Exception e)
+            {
+                var filename = String.Format("syro-exception-{0}.txt", DateTime.Now.ToString("yyMMdd-HHmmss"));
+                SaveToTempAndLoad(filename, e.ToString());
             }
             finally
             {
                 ExecutingCommand = false;
             }
+        }
+
+        private void SaveToTempAndLoad(string filename, string content)
+        {
+            var tempDirPath = Path.GetFullPath(SolutionDir + "tmp/");
+
+            if (!Directory.Exists(tempDirPath))
+            {
+                Directory.CreateDirectory(tempDirPath);
+            }
+            var path = Path.GetFullPath(tempDirPath + filename);
+
+            // write to output directory and launch
+            using (var fs = new FileStream(path, FileMode.Create))
+            {
+                using (var sw = new StreamWriter(fs))
+                {
+                    sw.Write(content);
+                }
+            }
+            Process.Start(path);
         }
 
         #region Progress report

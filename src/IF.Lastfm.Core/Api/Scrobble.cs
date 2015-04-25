@@ -17,7 +17,11 @@ namespace IF.Lastfm.Core.Api
         public bool ChosenByUser { get; set; }
 
         public TimeSpan? Duration { get; set; }
-        
+
+        public Scrobble()
+        {
+        }
+
         public Scrobble(string artist, string album, string track, DateTimeOffset timeplayed)
         {
             Artist = artist;

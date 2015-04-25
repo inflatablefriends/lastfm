@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Helpers;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests
@@ -15,13 +19,21 @@ namespace IF.Lastfm.Core.Tests
     {
         private static JsonSerializer GetTestSerialiser()
         {
-            return new JsonSerializer
+            var serialiser = new JsonSerializer
             {
                 DateParseHandling = DateParseHandling.DateTimeOffset,
-                DateFormatString = "yyyy-MM-dd HH:mm:ss.ffff",
+                DateFormatString = "yyyy-MM-dd HH:mm:ss.ff",
                 NullValueHandling = NullValueHandling.Include,
                 ContractResolver = new OrderedContractResolver()
             };
+
+            serialiser.Converters.Add(new IsoDateTimeConverter()
+            {
+                DateTimeFormat = "yyyy-MM-dd HH:mm:ss.ff",
+                DateTimeStyles = DateTimeStyles.AdjustToUniversal
+            });
+
+            return serialiser;
         }
 
         private static JObject WithSortedProperties(this JObject jo)
@@ -44,6 +56,11 @@ namespace IF.Lastfm.Core.Tests
 
         public static string TestSerialise<T>(this T poco)
         {
+            if (poco == null)
+            {
+                return "";
+            }
+
             var serialiser = GetTestSerialiser();
             var jt = JToken.FromObject(poco, serialiser);
 
@@ -183,28 +200,19 @@ namespace IF.Lastfm.Core.Tests
             Assert.IsNotNull(pageResponse.Content, "page content is null");
             Assert.IsTrue(pageResponse.Content.Count == totalItems, testMessage("content length", totalItems));
         }
-    }
-
-    
-    public class TestHelperTests
-    {
-        [Test]
-        public void RoundsToNearestSecond()
+        
+        public static HttpResponseMessage CreateResponseMessage(HttpStatusCode status, byte[] resource)
         {
             var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);
+            var responseJson = Encoding.UTF8.GetString(resource);
+            var stringContent = new StringContent(responseJson, Encoding.UTF8, "application/json");
 
-            var testDto1 = now.AddMilliseconds(450);
-            var actualDto1 = testDto1.RoundToNearestSecond();
+            var testResponseMessage = new HttpResponseMessage(status)
+            {
+                Content = stringContent
+            };
 
-            Assert.AreEqual(now, actualDto1);
-            TestHelper.AssertSerialiseEqual(now, actualDto1);
-
-            var expectedDto2 = now.AddSeconds(1);
-            var testDto2 = now.AddMilliseconds(550);
-            var actualDto2 = testDto2.RoundToNearestSecond();
-
-            Assert.AreEqual(expectedDto2, actualDto2);
-            TestHelper.AssertSerialiseEqual(expectedDto2, actualDto2);
+            return testResponseMessage;
         }
     }
 }

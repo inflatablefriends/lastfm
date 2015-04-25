@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>Inflatable.Lastfm.SQLite</id>
+		<title>Inflatable Last.fm SDK - SQLite components</title>
+		<version>$version</version>
+		<authors>Rikki Tooley (@rikkilt)</authors>
+		<licenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</licenseUrl>
+		<projectUrl>https://github.com/inflatablefriends/lastfm</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Portable SQLite components of the Inflatable Last.fm SDK.</description>
+		<copyright>Copyright 2015 Inflatable Friends</copyright>
+		<tags>lastfm last.fm inflatable friends sdk api music sqlite scrobble scrobbling portable</tags>
+		<dependencies>
+			<dependency id="Inflatable.Lastfm" version="[0.2,)"/>
+			<dependency id="sqlite-net-pcl" version="1.0.11"/>
+			<dependency id="Newtonsoft.Json" version="6.0.5"/>
+			<dependency id="Microsoft.Net.Http" version="2.2.28"/>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="..\src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll" target="lib\portable-win8+net45+wp8+wpa81"/>
+	</files>
+</package>

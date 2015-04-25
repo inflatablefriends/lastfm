@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using IF.Lastfm.Core.Api.Enums;
+﻿using System;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
@@ -17,6 +15,7 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
+        [Obsolete("This method has been moved to the Scrobbler class. More information can be found at " + LastFm.SCROBBLING_HELP_URL)]
         public Task<LastResponse> ScrobbleAsync(Scrobble scrobble)
         {
             var command = new ScrobbleCommand(Auth, scrobble);

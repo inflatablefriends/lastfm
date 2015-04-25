@@ -69,6 +69,7 @@
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -92,6 +93,7 @@
     <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
+    <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecommendedArtistsCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetTopAlbumsCommandTests.cs" />
@@ -127,9 +129,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UserApiResponses.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scrobblers\ScrobblerTests.cs" />
+    <Compile Include="Scrobblers\ScrobblerTestsBase.cs" />
     <Compile Include="TestHelper.cs" />
+    <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\TrackApi\TrackScrobbleTwoRequestBody.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -163,6 +169,10 @@
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsSingle.json" />
+    <Content Include="Resources\TrackApi\TrackScrobbleSingleRequestBody.txt" />
+    <Content Include="Resources\TrackApi\TrackScrobbleMultipleRequestBody.txt" />
+    <None Include="Resources\TrackApi\TrackScrobbleBadAuthError.json" />
+    <None Include="Resources\TrackApi\TrackScrobbleSuccess.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksEmpty.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksError.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksMissing.json" />
@@ -184,24 +194,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\AlbumApiResponses.resx">
       <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AlbumApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ArtistApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ArtistApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\LibraryApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TrackApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserApiResponses.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

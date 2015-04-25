@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -8,47 +10,37 @@ namespace IF.Lastfm.Core.Api.Commands.Track
 {
     internal class ScrobbleCommand : PostAsyncCommandBase<LastResponse>
     {
-        public string Artist { get; set; }
+        public IList<Scrobble> Scrobbles { get; private set; }
 
-        public string Album { get; set; }
-
-        public string Track { get; set; }
-
-        public string AlbumArtist { get; set; }
-
-        public DateTimeOffset? TimePlayed { get; set; }
-
-        public bool ChosenByUser { get; set; }
-
-        public ScrobbleCommand(ILastAuth auth, string artist, string album, string track, string albumArtist, DateTimeOffset? timeplayed)
+        public ScrobbleCommand(ILastAuth auth, IList<Scrobble> scrobbles)
             : base(auth)
         {
-            Method = "track.scrobble";
+            if (scrobbles.Count > 50)
+            {
+                throw new ArgumentOutOfRangeException("scrobbles", "Only 50 scrobbles can be sent at a time");
+            }
 
-            Artist = artist;
-            Album = album;
-            Track = track;
-            AlbumArtist = albumArtist;
-            TimePlayed = timeplayed;
+            Method = "track.scrobble";
+            Scrobbles = scrobbles;
         }
 
         public ScrobbleCommand(ILastAuth auth, Scrobble scrobble)
-            : this(auth, scrobble.Artist, scrobble.Album, scrobble.Track, scrobble.AlbumArtist, scrobble.TimePlayed)
+            : this(auth, new []{scrobble})
         {
-            ChosenByUser = scrobble.ChosenByUser;
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", Artist);
-            Parameters.Add("album", Album);
-            Parameters.Add("track", Track);
-            Parameters.Add("albumArtist", AlbumArtist);
-            Parameters.Add("chosenByUser", Convert.ToInt32(ChosenByUser).ToString());
-            
-            if (TimePlayed.HasValue)
+            for(int i = 0; i < Scrobbles.Count; i++)
             {
-                Parameters.Add("timestamp", TimePlayed.Value.AsUnixTime().ToString());
+                var scrobble = Scrobbles[i];
+
+                Parameters.Add(String.Format("artist[{0}]", i), scrobble.Artist);
+                Parameters.Add(String.Format("album[{0}]", i), scrobble.Album);
+                Parameters.Add(String.Format("track[{0}]", i), scrobble.Track);
+                Parameters.Add(String.Format("albumArtist[{0}]", i), scrobble.AlbumArtist);
+                Parameters.Add(String.Format("chosenByUser[{0}]", i), Convert.ToInt32(scrobble.ChosenByUser).ToString());
+                Parameters.Add(String.Format("timestamp[{0}]", i), scrobble.TimePlayed.AsUnixTime().ToString());
             }
         }
 

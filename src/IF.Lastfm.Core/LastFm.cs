@@ -7,14 +7,17 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
+using IF.Lastfm.Core.Api.Commands;
 
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests.Integration")]
+[assembly: InternalsVisibleTo("IF.Lastfm.SQLite")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Syro")]
 namespace IF.Lastfm.Core
 {
     public class LastFm
     {
+        internal const string SCROBBLING_HELP_URL = "https://github.com/inflatablefriends/lastfm/blob/scrobbler/doc/scrobbling.md";
         internal const string TEST_APIKEY = "a6ab4b9376e54cdb06912bfbd9c1f288";
         internal const string TEST_APISECRET = "3aa7202fd1bc6d5a7ac733246cbccc4b";
 
@@ -61,7 +64,6 @@ namespace IF.Lastfm.Core
 
             return new FormUrlEncodedContent(requestParameters);
         }
-
 
         public static string FormatQueryParameters(IEnumerable<KeyValuePair<string, string>> parameters)
         {
