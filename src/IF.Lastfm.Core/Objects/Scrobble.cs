@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IF.Lastfm.Core.Api
+namespace IF.Lastfm.Core.Objects
 {
     public class Scrobble
     {

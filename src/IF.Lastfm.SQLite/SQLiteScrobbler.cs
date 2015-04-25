@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Scrobblers;
 using SQLite;
 

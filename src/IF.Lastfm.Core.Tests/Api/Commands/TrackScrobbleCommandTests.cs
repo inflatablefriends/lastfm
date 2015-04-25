@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands.Track;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Objects;
 using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands

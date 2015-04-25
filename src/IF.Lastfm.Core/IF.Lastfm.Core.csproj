@@ -111,7 +111,7 @@
     <Compile Include="Api\ITrackApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\LibraryApi.cs" />
-    <Compile Include="Api\Scrobble.cs" />
+    <Compile Include="Objects\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />
     <Compile Include="Helpers\ApiBase.cs" />
