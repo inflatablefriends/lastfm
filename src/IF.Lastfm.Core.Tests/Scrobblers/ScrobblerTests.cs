@@ -6,7 +6,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
 {
     public class ScrobblerTests : ScrobblerTestsBase
     {
-        protected override IScrobbler GetScrobbler()
+        protected override ScrobblerBase GetScrobbler()
         {
             var httpClient = new HttpClient(FakeResponseHandler);
             return new Scrobbler(MockAuth.Object, httpClient);

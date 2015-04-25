@@ -32,7 +32,7 @@ namespace IF.Lastfm.SQLite.Tests.Integration
             base.Cleanup();
         }
 
-        protected override IScrobbler GetScrobbler()
+        protected override ScrobblerBase GetScrobbler()
         {
             var httpClient = new HttpClient(FakeResponseHandler);
             return new SQLiteScrobbler(MockAuth.Object, _dbPath, httpClient);

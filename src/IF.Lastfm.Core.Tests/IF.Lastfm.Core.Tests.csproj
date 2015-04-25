@@ -135,6 +135,7 @@
     <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\TrackApi\TrackScrobbleTwoRequestBody.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>

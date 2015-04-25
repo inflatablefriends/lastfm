@@ -111,7 +111,7 @@ namespace IF.Lastfm.Core.Tests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=722818CCD472F3EB0CF079F7AC543077&amp;format=json&amp;artist%5B0%5D=Rubies&amp;album%5B0%5D=Stand+in+a+Line&amp;track%5B0%5D=Teppan-Yaki+%28A+Collection+of+Remixes%29&amp;albumArtist%5B0%5D=Schinichi+Osawa&amp;chosenByUser%5B0%5D=0&amp;timestamp%5B0%5D=1330528563&amp;artist%5B1%5D=Broken+Social+Scene&amp;album%5B1%5D=Sentimental+X%27s&amp;track%5B1%5D=Forgiveness+Rock+Record&amp;albumArtist%5B1%5D=Broken+Social+Scene&amp;chosenByUser%5B1%5D=0&amp;timestamp%5B1%5D=1330528923&amp;artist%5B2%5D=B [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=722818CCD472F3EB0CF079F7AC543077&amp;format=json&amp;artist[0]=Rubies&amp;album[0]=Stand in a Line&amp;track[0]=Teppan-Yaki (A Collection of Remixes)&amp;albumArtist[0]=Schinichi Osawa&amp;chosenByUser[0]=0&amp;timestamp[0]=1330528563&amp;artist[1]=Broken Social Scene&amp;album[1]=Sentimental X&apos;s&amp;track[1]=Forgiveness Rock Record&amp;albumArtist[1]=Broken Social Scene&amp;chosenByUser[1]=0&amp;timestamp[1]=1330528923&amp;artist[2]=Björk&amp;album[2]=Hyperballad&amp;track[2]=Post&amp;albumArtist[2]=Bjö [rest of string was truncated]&quot;;.
         /// </summary>
         public static string TrackScrobbleMultipleRequestBody {
             get {
@@ -120,7 +120,7 @@ namespace IF.Lastfm.Core.Tests.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=9162EC581974F03444D2C1C9C808013B&amp;format=json&amp;artist%5B0%5D=65daysofstatic&amp;album%5B0%5D=The+Fall+of+Math&amp;track%5B0%5D=Hole&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;chosenByUser%5B0%5D=1&amp;timestamp%5B0%5D=1330530003&amp;method=track.scrobble&amp;sk=071a119a9aac4942b1b05328a5591f55.
+        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=9162EC581974F03444D2C1C9C808013B&amp;format=json&amp;artist[0]=65daysofstatic&amp;album[0]=The Fall of Math&amp;track[0]=Hole&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;chosenByUser[0]=1&amp;timestamp[0]=1330530003&amp;method=track.scrobble&amp;sk=071a119a9aac4942b1b05328a5591f55.
         /// </summary>
         public static string TrackScrobbleSingleRequestBody {
             get {
@@ -135,6 +135,15 @@ namespace IF.Lastfm.Core.Tests.Resources {
             get {
                 object obj = ResourceManager.GetObject("TrackScrobbleSuccess", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=785ACDF92D29CF6953845E271DF9597C&amp;format=json&amp;artist[0]=やくしまるえつこ&amp;album[0]=X次元へようこそ&amp;track[0]=X次元へようこそ&amp;albumArtist[0]=やくしまるえつこ&amp;chosenByUser[0]=0&amp;timestamp[0]=1330529643&amp;artist[1]=65daysofstatic&amp;album[1]=The Fall of Math&amp;track[1]=Hole&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;chosenByUser[1]=1&amp;timestamp[1]=1330530003&amp;method=track.scrobble&amp;sk=071a119a9aac4942b1b05328a5591f55.
+        /// </summary>
+        public static string TrackScrobbleTwoRequestBody {
+            get {
+                return ResourceManager.GetString("TrackScrobbleTwoRequestBody", resourceCulture);
             }
         }
     }

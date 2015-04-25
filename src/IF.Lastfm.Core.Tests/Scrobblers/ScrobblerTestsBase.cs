@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,20 +15,15 @@ using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Scrobblers
 {
-    public sealed class CachedScrobble : Scrobble
-    {
-        public LastResponseStatus CacheReason { get; set; }
-    }
-
     public abstract class ScrobblerTestsBase
     {
-        protected IScrobbler Scrobbler { get; private set; }
+        protected ScrobblerBase Scrobbler { get; private set; }
 
         protected Mock<ILastAuth> MockAuth { get; private set; }
 
         protected QueueFakeResponseHandler FakeResponseHandler { get; private set; }
         
-        protected abstract IScrobbler GetScrobbler();
+        protected abstract ScrobblerBase GetScrobbler();
 
         private List<Scrobble> GetTestScrobbles()
         {
@@ -109,24 +103,26 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [TearDown]
         public virtual void Cleanup()
         {
-            
         }
 
-        protected async Task<ScrobbleResponse> ExecuteTestInternal(IEnumerable<Scrobble> testScrobbles, HttpResponseMessage responseMessage, HttpRequestMessage expectedRequestMessage)
+        protected async Task<ScrobbleResponse> ExecuteTestInternal(IEnumerable<Scrobble> testScrobbles, HttpResponseMessage responseMessage, HttpRequestMessage expectedRequestMessage = null)
         {
             FakeResponseHandler.Enqueue(responseMessage);
 
             var scrobbleResponse = await Scrobbler.ScrobbleAsync(testScrobbles);
 
-            Assert.AreEqual(1, FakeResponseHandler.Sent.Count);
+            if (expectedRequestMessage != null)
+            {
+                var actualRequestMessage = FakeResponseHandler.Sent.First();
+                TestHelper.AssertSerialiseEqual(expectedRequestMessage.Headers, actualRequestMessage.Item1.Headers);
+                TestHelper.AssertSerialiseEqual(expectedRequestMessage.RequestUri, actualRequestMessage.Item1.RequestUri);
 
-            var actualRequestMessage = FakeResponseHandler.Sent.First();
-            TestHelper.AssertSerialiseEqual(expectedRequestMessage.Headers, actualRequestMessage.Item1.Headers);
-            TestHelper.AssertSerialiseEqual(expectedRequestMessage.RequestUri, actualRequestMessage.Item1.RequestUri);
+                var expectedRequestBody = await expectedRequestMessage.Content.ReadAsStringAsync();
+                var actualRequestBody = actualRequestMessage.Item2;
+                TestHelper.AssertSerialiseEqual(expectedRequestBody, actualRequestBody);
+            }
 
-            var expectedRequestBody = await expectedRequestMessage.Content.ReadAsStringAsync();
-            var actualRequestBody = actualRequestMessage.Item2;
-            TestHelper.AssertSerialiseEqual(expectedRequestBody, actualRequestBody);
+            FakeResponseHandler.Sent.Clear();
 
             return scrobbleResponse;
         }
@@ -153,6 +149,34 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
             Assert.AreEqual(LastResponseStatus.Successful, scrobbleResponse.Status);
+        }
+
+        [Test]
+        public async Task ScrobblesExistingCachedTracks()
+        {
+            var testScrobbles = GetTestScrobbles();
+
+            // first request fails so something goes into the cache
+            var responseMessage1 = TestHelper.CreateResponseMessage(HttpStatusCode.Forbidden, TrackApiResponses.TrackScrobbleBadAuthError);
+            var scrobblesToCache = testScrobbles.Take(1);
+
+            var scrobbleResponse1 = await ExecuteTestInternal(scrobblesToCache, responseMessage1);
+
+            if (!Scrobbler.CacheEnabled)
+            {
+                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse1.Status);
+                return;
+            }
+
+            Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse1.Status);
+
+            var scrobblesToSend = testScrobbles.Skip(1).Take(1);
+
+            var requestMessage2 = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleTwoRequestBody);
+            var responseMessage2 = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
+            var scrobbleResponse2 = await ExecuteTestInternal(scrobblesToSend, responseMessage2, requestMessage2);
+
+            Assert.IsTrue(scrobbleResponse2.Success);
         }
 
         [Test]
