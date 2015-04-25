@@ -50,7 +50,7 @@ namespace IF.Lastfm.Core.Api.Commands
 
             try
             {
-                var httpClient = GetHttpClient();
+                var httpClient = HttpClient;
                 using (var response = await httpClient.PostAsync(Url, postContent))
                 {
                     return await HandleResponse(response);

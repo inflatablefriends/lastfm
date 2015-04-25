@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Chart;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class ChartApi : IChartApi
+    public class ChartApi : ApiBase, IChartApi
     {
         public ILastAuth Auth { get; private set; }
 
-        public ChartApi(ILastAuth auth)
+        public ChartApi(ILastAuth auth, HttpClient httpClient = null)
+            : base(httpClient)
         {
             Auth = auth;
         }
@@ -23,7 +22,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetTopArtistsCommand(Auth)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
@@ -33,7 +33,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetTopTracksCommand(Auth)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }

@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Api.Commands
         public Dictionary<string, string> Parameters { get; set; }
 
         /// <summary>
-        /// The HttpClient used for the request. If not set before ExecuteAsync
+        /// The HttpClient used for the request. 
         /// </summary>
         public HttpClient HttpClient { get; set; }
     }
@@ -58,20 +58,5 @@ namespace IF.Lastfm.Core.Api.Commands
         public abstract Task<T> ExecuteAsync();
 
         public abstract Task<T> HandleResponse(HttpResponseMessage response);
-
-        protected HttpClient GetHttpClient()
-        {
-            if (HttpClient == null)
-            {
-                var client = new HttpClient();
-
-                // See http://stackoverflow.com/questions/14595021/how-to-disable-the-expect-100-continue-header-in-winrts-httpwebrequest
-                client.DefaultRequestHeaders.ExpectContinue = false;
-
-                HttpClient = client;
-            }
-
-            return HttpClient;
-        }
     }
 }

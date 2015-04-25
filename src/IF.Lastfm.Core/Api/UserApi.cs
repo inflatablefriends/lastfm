@@ -2,16 +2,19 @@
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.User;
+using IF.Lastfm.Core.Helpers;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class UserApi : IUserApi
+    public class UserApi : ApiBase, IUserApi
     {
         public ILastAuth Auth { get; private set; }
 
-        public UserApi(ILastAuth auth)
+        public UserApi(ILastAuth auth, HttpClient httpClient = null)
+            : base(httpClient)
         {
             Auth = auth;
         }
@@ -21,7 +24,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetRecommendedArtistsCommand(Auth)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
@@ -29,10 +33,11 @@ namespace IF.Lastfm.Core.Api
         public async Task<PageResponse<LastAlbum>> GetTopAlbums(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTopAlbumsCommand(Auth, username, span)
-                          {
-                              Page = pagenumber,
-                              Count = count
-                          };
+            {
+                Page = pagenumber,
+                Count = count,
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
@@ -48,11 +53,12 @@ namespace IF.Lastfm.Core.Api
         public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTimeOffset? since = null, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentTracksCommand(Auth, username)
-                          {
-                              Page = pagenumber,
-                              Count = count,
-                              From = since
-                          };
+            {
+                Page = pagenumber,
+                Count = count,
+                From = since,
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
@@ -60,35 +66,43 @@ namespace IF.Lastfm.Core.Api
         public async Task<PageResponse<LastStation>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentStationsCommand(Auth, username)
-                          {
-                              Page = pagenumber,
-                              Count = count
-                          };
+            {
+                Page = pagenumber,
+                Count = count,
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
-         
+
         public async Task<PageResponse<LastShout>> GetShoutsAsync(string username, int pagenumber, int count = LastFm.DefaultPageLength)
         {
             var command = new GetShoutsCommand(Auth, username)
-                          {
-                              Page = pagenumber,
-                              Count = count
-                          };
+            {
+                Page = pagenumber,
+                Count = count,
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
 
         public async Task<LastResponse<LastUser>> GetInfoAsync(string username)
         {
-            var command = new GetInfoCommand(Auth, username);
+            var command = new GetInfoCommand(Auth, username)
+            {
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
 
         public async Task<LastResponse> AddShoutAsync(string recipient, string message)
         {
-            var command = new AddShoutCommand(Auth, recipient, message);
+            var command = new AddShoutCommand(Auth, recipient, message)
+            {
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }

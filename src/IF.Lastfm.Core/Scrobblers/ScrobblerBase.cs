@@ -14,7 +14,7 @@ namespace IF.Lastfm.Core.Scrobblers
 {
     public abstract class ScrobblerBase : ApiBase, IScrobbler
     {
-        private ILastAuth _auth;
+        private readonly ILastAuth _auth;
 
         public bool CacheEnabled { get; protected set; }
 

@@ -1,15 +1,18 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Album;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class AlbumApi : IAlbumApi
+    public class AlbumApi : ApiBase, IAlbumApi
     {
         public ILastAuth Auth { get; private set; }
 
-        public AlbumApi(ILastAuth auth)
+        public AlbumApi(ILastAuth auth, HttpClient httpClient = null)
+            : base(httpClient)
         {
             Auth = auth;
         }
@@ -18,7 +21,8 @@ namespace IF.Lastfm.Core.Api
         {
             var command = new GetInfoCommand(Auth, albumname, artistname)
                           {
-                              Autocorrect = autocorrect
+                              Autocorrect = autocorrect,
+                              HttpClient = HttpClient
                           };
 
             return await command.ExecuteAsync();
@@ -29,7 +33,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetInfoCommand(Auth)
             {
                 AlbumMbid = albumMbid,
-                Autocorrect = autocorrect
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();
@@ -44,7 +49,8 @@ namespace IF.Lastfm.Core.Api
         {
             var command = new GetTagsByUserCommand(Auth, artist, album, username)
             {
-                Autocorrect = autocorrect
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
             };
 
             return command.ExecuteAsync();
@@ -55,7 +61,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetTopTagsCommand(Auth)
             {
                 ArtistName = artist,
-                AlbumName = album
+                AlbumName = album,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();
@@ -66,7 +73,8 @@ namespace IF.Lastfm.Core.Api
             var command = new SearchCommand(Auth, albumname)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();
@@ -75,11 +83,12 @@ namespace IF.Lastfm.Core.Api
         public async Task<PageResponse<LastShout>> GetShoutsAsync(string albumname, string artistname, bool autocorrect = false, int page = 1, int count = LastFm.DefaultPageLength)
         {
             var command = new GetShoutsCommand(Auth, albumname, artistname)
-                          {
-                              Page = page,
-                              Autocorrect = autocorrect,
-                              Count = count
-                          };
+            {
+                Page = page,
+                Autocorrect = autocorrect,
+                Count = count,
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }

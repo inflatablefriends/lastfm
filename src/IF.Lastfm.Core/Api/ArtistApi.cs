@@ -1,13 +1,16 @@
-﻿using IF.Lastfm.Core.Api.Helpers;
+﻿using System.Net.Http;
+using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Artist;
+using IF.Lastfm.Core.Helpers;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class ArtistApi : IArtistApi
+    public class ArtistApi : ApiBase, IArtistApi
     {
-        public ArtistApi(ILastAuth auth)
+        public ArtistApi(ILastAuth auth, HttpClient httpClient = null)
+            : base(httpClient)
         {
             Auth = auth;
         }
@@ -20,7 +23,8 @@ namespace IF.Lastfm.Core.Api
             {
                 ArtistName = artist,
                 BioLanguage = bioLang,
-                Autocorrect = autocorrect
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();
@@ -32,7 +36,8 @@ namespace IF.Lastfm.Core.Api
             {
                 ArtistMbid = mbid,
                 BioLanguage = bioLang,
-                Autocorrect = autocorrect
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();
@@ -43,7 +48,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetTopAlbumsCommand(Auth, artist)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
@@ -53,7 +59,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetTopTracksCommand(Auth, artist)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
@@ -63,7 +70,8 @@ namespace IF.Lastfm.Core.Api
             var command = new GetSimilarCommand(Auth, artistname)
             {
                 Autocorrect = autocorrect,
-                Limit = limit
+                Limit = limit,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
@@ -74,7 +82,8 @@ namespace IF.Lastfm.Core.Api
             {
                 Autocorrect = autocorrect,
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
 
             return command.ExecuteAsync();
@@ -84,7 +93,8 @@ namespace IF.Lastfm.Core.Api
         {
             var command = new GetTopTagsCommand(Auth, artist)
             {
-                Autocorrect = autocorrect
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
             };
 
             return command.ExecuteAsync();
@@ -96,14 +106,18 @@ namespace IF.Lastfm.Core.Api
             {
                 Autocorrect = autocorrect,
                 Page = page,
-                Count = count
+                Count = count,
+                HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
         }
 
         public async Task<LastResponse> AddShoutAsync(string artistname, string message)
         {
-            var command = new AddShoutCommand(Auth, artistname, message);
+            var command = new AddShoutCommand(Auth, artistname, message)
+            {
+                HttpClient = HttpClient
+            };
 
             return await command.ExecuteAsync();
         }
@@ -113,7 +127,8 @@ namespace IF.Lastfm.Core.Api
             var command = new SearchCommand(Auth, artistname)
             {
                 Page = page,
-                Count = itemsPerPage
+                Count = itemsPerPage,
+                HttpClient = HttpClient
             };
 
             return await command.ExecuteAsync();

@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Auth;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api
 {
-    public class LastAuth : ILastAuth
+    public class LastAuth : ApiBase, ILastAuth
     {
         private readonly string _apiSecret;
 
@@ -17,7 +19,8 @@ namespace IF.Lastfm.Core.Api
         public string ApiKey { get; private set; }
         public LastUserSession UserSession { get; private set; }
 
-        public LastAuth(string apikey, string secret)
+        public LastAuth(string apikey, string secret, HttpClient httpClient = null)
+            : base(httpClient)
         {
             ApiKey = apikey;
             _apiSecret = secret;
@@ -36,7 +39,10 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<LastResponse> GetSessionTokenAsync(string username, string password)
         {
-            var command = new GetMobileSessionCommand(this, username, password);
+            var command = new GetMobileSessionCommand(this, username, password)
+            {
+                HttpClient = HttpClient
+            };
             var response = await command.ExecuteAsync();
 
             if (response.Success)

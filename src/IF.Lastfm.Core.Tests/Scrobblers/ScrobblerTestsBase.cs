@@ -103,6 +103,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         [TearDown]
         public virtual void Cleanup()
         {
+            Scrobbler.Dispose();
         }
 
         protected async Task<ScrobbleResponse> ExecuteTestInternal(IEnumerable<Scrobble> testScrobbles, HttpResponseMessage responseMessage, HttpRequestMessage expectedRequestMessage = null)
