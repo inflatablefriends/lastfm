@@ -15,5 +15,7 @@ namespace IF.Lastfm.Core.Scrobblers
         Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble);
 
         Task<ScrobbleResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobbles);
+
+        Task<ScrobbleResponse> SendCachedScrobblesAsync();
     }
 }

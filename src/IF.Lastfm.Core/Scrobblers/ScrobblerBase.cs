@@ -1,7 +1,6 @@
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands.Track;
 using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Helpers;
 using System;
 using System.Collections.Generic;
@@ -26,13 +25,23 @@ namespace IF.Lastfm.Core.Scrobblers
 
             MaxBatchSize = 50;
         }
-
+        
         public Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble)
         {
             return ScrobbleAsync(new[] {scrobble});
         }
 
-        public async Task<ScrobbleResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobbles)
+        public Task<ScrobbleResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobbles)
+        {
+            return ScrobbleAsyncInternal(scrobbles);
+        }
+
+        public Task<ScrobbleResponse> SendCachedScrobblesAsync()
+        {
+            return ScrobbleAsyncInternal(Enumerable.Empty<Scrobble>());
+        }
+
+        public async Task<ScrobbleResponse> ScrobbleAsyncInternal(IEnumerable<Scrobble> scrobbles)
         {
             var scrobblesList = scrobbles.ToList();
             var cached = await GetCachedAsync();
@@ -43,7 +52,7 @@ namespace IF.Lastfm.Core.Scrobblers
             }
 
             var batches = pending.Batch(MaxBatchSize);
-            var responses = new List<ScrobbleResponse>(pending.Count / MaxBatchSize);
+            var responses = new List<ScrobbleResponse>(pending.Count % MaxBatchSize);
             var responseExceptions = new List<Exception>();
             foreach(var batch in batches)
             {
@@ -65,7 +74,7 @@ namespace IF.Lastfm.Core.Scrobblers
             }
 
             ScrobbleResponse scrobblerResponse;
-            if (responses.All(r => r.Success))
+            if (!responses.Any() || responses.All(r => r.Success))
             {
                 scrobblerResponse = new ScrobbleResponse(LastResponseStatus.Successful);
             }
