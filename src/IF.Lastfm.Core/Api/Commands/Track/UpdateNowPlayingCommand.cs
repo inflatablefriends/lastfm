@@ -52,19 +52,9 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             }
         }
 
-        public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
+        public override Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
-            var json = await response.Content.ReadAsStringAsync();
-
-            LastResponseStatus status;
-            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
-            {
-                return LastResponse.CreateSuccessResponse();
-            }
-            else
-            {
-                return LastResponse.CreateErrorResponse<LastResponse>(status);
-            }
+            return LastResponse.HandleResponse(response);
         }
     }
 }

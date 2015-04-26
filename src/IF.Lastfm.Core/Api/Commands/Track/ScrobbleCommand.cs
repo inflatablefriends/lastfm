@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
@@ -57,11 +58,11 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             LastResponseStatus status;
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
-                return LastResponse.CreateSuccessResponse();
+                return await ScrobbleResponse.CreateSuccessResponse(json);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<LastResponse>(status);
+                return LastResponse.CreateErrorResponse<ScrobbleResponse>(status);
             }
         }
     }

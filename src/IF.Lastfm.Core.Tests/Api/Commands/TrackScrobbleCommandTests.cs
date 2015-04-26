@@ -1,10 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands.Track;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using NUnit.Framework;
+using System.Threading.Tasks;
+using System.Text;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Scrobblers;
+using IF.Lastfm.Core.Tests.Resources;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
@@ -41,6 +47,17 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             _command.SetParameters();
 
             TestHelper.AssertSerialiseEqual(expected, _command.Parameters);
+        }
+
+        [Test]
+        public async Task HandlesErrorResponse()
+        {
+            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleRejected));
+            var response = await _command.HandleResponse(responseMessage) as ScrobbleResponse;
+            
+            Assert.IsTrue(response.Success);
+            Assert.AreEqual(1, response.Ignored.Count());
+            Assert.AreEqual("Artist name failed filter: Various", response.Ignored.First().IgnoredReason);
         }
     }
 }

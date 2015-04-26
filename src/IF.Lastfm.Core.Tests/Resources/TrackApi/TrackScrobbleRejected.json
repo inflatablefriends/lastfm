@@ -1,0 +1,31 @@
+{
+    "scrobbles": {
+        "scrobble": {
+            "track": {
+                "#text": "Again",
+                "corrected": "0"
+            },
+            "artist": {
+                "#text": "Various",
+                "corrected": "0"
+            },
+            "album": {
+                "#text": "",
+                "corrected": "0"
+            },
+            "albumArtist": {
+                "#text": "",
+                "corrected": "0"
+            },
+            "timestamp": "1425152860",
+            "ignoredMessage": {
+                "#text": "Artist name failed filter: Various",
+                "code": "1"
+            }
+        },
+        "@attr": {
+            "accepted": "0",
+            "ignored": "1"
+        }
+    }
+}

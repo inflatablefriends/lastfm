@@ -120,6 +120,16 @@ namespace IF.Lastfm.Core.Tests.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] TrackScrobbleRejected {
+            get {
+                object obj = ResourceManager.GetObject("TrackScrobbleRejected", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to method=track.scrobble&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;api_sig=9162EC581974F03444D2C1C9C808013B&amp;format=json&amp;artist[0]=65daysofstatic&amp;album[0]=The Fall of Math&amp;track[0]=Hole&amp;api_key=59dd1140db864fd4a68ca820709eaf98&amp;chosenByUser[0]=1&amp;timestamp[0]=1330530003&amp;method=track.scrobble&amp;sk=071a119a9aac4942b1b05328a5591f55.
         /// </summary>
         public static string TrackScrobbleSingleRequestBody {

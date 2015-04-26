@@ -173,6 +173,7 @@
     <Content Include="Resources\TrackApi\TrackScrobbleSingleRequestBody.txt" />
     <Content Include="Resources\TrackApi\TrackScrobbleMultipleRequestBody.txt" />
     <None Include="Resources\TrackApi\TrackScrobbleBadAuthError.json" />
+    <None Include="Resources\TrackApi\TrackScrobbleRejected.json" />
     <None Include="Resources\TrackApi\TrackScrobbleSuccess.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksEmpty.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksError.json" />

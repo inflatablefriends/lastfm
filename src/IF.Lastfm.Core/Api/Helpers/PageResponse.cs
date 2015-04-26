@@ -117,28 +117,37 @@ namespace IF.Lastfm.Core.Api.Helpers
         {
             return CreateSuccessResponse(itemsToken, null, parseToken, LastPageResultsType.None);
         }
-        
-        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, LastPageResultsType pageResultsType)
+
+        public static IEnumerable<T> ParseItemsToken(JToken itemsToken, Func<JToken, T> parseToken)
         {
             IEnumerable<T> items;
             if (itemsToken != null && itemsToken.Children().Any())
             {
                 // array notation isn't used on the api when only one object is available
-                if (itemsToken.Type != JTokenType.Array)
+                if (itemsToken.Type == JTokenType.Object)
                 {
-                    var item = parseToken(itemsToken);
-                    items = new[] {item};
-
+                    items = new[] { parseToken(itemsToken) };
+                }
+                else if (itemsToken.Type == JTokenType.Array)
+                {
+                    items = itemsToken.Children().Select(parseToken);
                 }
                 else
                 {
-                    items = itemsToken.Children().Select(parseToken);
+                    throw new ArgumentException(String.Format("Couldn't parse items token\r\n\r\n{0}", itemsToken.ToString()));
                 }
             }
             else
             {
                 items = Enumerable.Empty<T>();
             }
+
+            return items;
+        }
+        
+        public static PageResponse<T> CreateSuccessResponse(JToken itemsToken, JToken pageInfoToken, Func<JToken, T> parseToken, LastPageResultsType pageResultsType)
+        {
+            var items = ParseItemsToken(itemsToken, parseToken);
 
             var pageresponse = new PageResponse<T>(items)
             {

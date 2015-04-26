@@ -41,8 +41,9 @@ namespace IF.Lastfm.Core.Scrobblers
             {
                 return new ScrobbleResponse(LastResponseStatus.Successful);
             }
+
             var batches = pending.Batch(MaxBatchSize);
-            var responses = new List<LastResponse>(pending.Count / MaxBatchSize);
+            var responses = new List<ScrobbleResponse>(pending.Count / MaxBatchSize);
             var responseExceptions = new List<Exception>();
             foreach(var batch in batches)
             {
@@ -53,7 +54,7 @@ namespace IF.Lastfm.Core.Scrobblers
 
                 try
                 {
-                    var response = await command.ExecuteAsync();
+                    var response = await command.ExecuteAsync() as ScrobbleResponse;
 
                     responses.Add(response);
                 }
@@ -63,32 +64,37 @@ namespace IF.Lastfm.Core.Scrobblers
                 }
             }
 
+            ScrobbleResponse scrobblerResponse;
             if (responses.All(r => r.Success))
             {
-                return new ScrobbleResponse(LastResponseStatus.Successful);
+                scrobblerResponse = new ScrobbleResponse(LastResponseStatus.Successful);
             }
-
-            ScrobbleResponse cacheResponse;
-            try
+            else
             {
-                var firstBadResponse = responses.FirstOrDefault(r => !r.Success && r.Status != LastResponseStatus.Unknown);
-                var originalResponseStatus = firstBadResponse != null
-                    ? firstBadResponse.Status
-                    : LastResponseStatus.RequestFailed; // TODO check httpEx
-
-                var cacheStatus = await CacheAsync(scrobblesList, originalResponseStatus);
-
-                cacheResponse = new ScrobbleResponse(cacheStatus);
-            }
-            catch (Exception e)
-            {
-                cacheResponse = new ScrobbleResponse(LastResponseStatus.CacheFailed)
+                try
                 {
-                    Exception = e
-                };
+                    var firstBadResponse = responses.FirstOrDefault(r => !r.Success && r.Status != LastResponseStatus.Unknown);
+                    var originalResponseStatus = firstBadResponse != null
+                        ? firstBadResponse.Status
+                        : LastResponseStatus.RequestFailed; // TODO check httpEx
+
+                    var cacheStatus = await CacheAsync(scrobblesList, originalResponseStatus);
+
+                    scrobblerResponse = new ScrobbleResponse(cacheStatus);
+                }
+                catch (Exception e)
+                {
+                    scrobblerResponse = new ScrobbleResponse(LastResponseStatus.CacheFailed)
+                    {
+                        Exception = e
+                    };
+                }
             }
 
-            return cacheResponse;
+            var ignoredScrobbles = responses.SelectMany(r => r.Ignored);
+            scrobblerResponse.Ignored = ignoredScrobbles;
+
+            return scrobblerResponse;
         }
 
         public abstract Task<IEnumerable<Scrobble>> GetCachedAsync();

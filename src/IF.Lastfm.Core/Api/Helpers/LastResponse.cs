@@ -14,12 +14,12 @@ namespace IF.Lastfm.Core.Api.Helpers
 
     public class LastResponse : ILastResponse
     {
-        public bool Success
+        public virtual bool Success
         {
             get { return Status == LastResponseStatus.Successful; }
         }
 
-        public LastResponseStatus Status { get; internal set; }
+        public virtual LastResponseStatus Status { get; internal set; }
 
         [Obsolete("This property has been renamed to Status and will be removed soon.")]
         public LastResponseStatus Error { get { return Status; } }
@@ -46,7 +46,7 @@ namespace IF.Lastfm.Core.Api.Helpers
 
         public async static Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
-            string json = await response.Content.ReadAsStringAsync();
+            var json = await response.Content.ReadAsStringAsync();
 
             LastResponseStatus status;
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
