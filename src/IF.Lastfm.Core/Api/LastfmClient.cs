@@ -6,60 +6,74 @@ namespace IF.Lastfm.Core.Api
 {
     public class LastfmClient : ApiBase
     {
-        private readonly ILastAuth _lastAuth;
-        private IAlbumApi _albumApi;
-        private IArtistApi _artistApi;
-        private IChartApi _chartApi;
-        private ILibraryApi _libraryApi;
-        private ITrackApi _trackApi;
-        private IUserApi _userApi;
-        private IScrobbler _scrobbler;
+        private readonly LastAuth _lastAuth;
+        private AlbumApi _albumApi;
+        private ArtistApi _artistApi;
+        private ChartApi _chartApi;
+        private LibraryApi _libraryApi;
+        private TrackApi _trackApi;
+        private UserApi _userApi;
+        private ScrobblerBase _scrobbler;
 
-        public ILastAuth Auth
+        public LastAuth Auth
         {
             get { return _lastAuth; }
         }
 
-        public IAlbumApi Album
+        public AlbumApi Album
         {
             get { return _albumApi ?? (_albumApi = new AlbumApi(_lastAuth, HttpClient)); }
         }
 
-        public IArtistApi Artist
+        public ArtistApi Artist
         {
             get { return _artistApi ?? (_artistApi = new ArtistApi(_lastAuth, HttpClient)); }
         }
 
-        public IChartApi Chart
+        public ChartApi Chart
         {
             get { return _chartApi ?? (_chartApi = new ChartApi(_lastAuth, HttpClient)); }
         }
 
-        public ILibraryApi Library
+        public LibraryApi Library
         {
             get { return _libraryApi ?? (_libraryApi = new LibraryApi(_lastAuth, HttpClient)); }
         }
 
-        public IScrobbler Scrobbler
+        public ScrobblerBase Scrobbler
         {
             get { return _scrobbler ?? (_scrobbler = new Scrobbler(_lastAuth, HttpClient)); }
         }
 
-        public ITrackApi Track
+        public TrackApi Track
         {
             get { return _trackApi ?? (_trackApi = new TrackApi(_lastAuth, HttpClient)); }
         }
 
-        public IUserApi User
+        public UserApi User
         {
             get { return _userApi ?? (_userApi = new UserApi(_lastAuth, HttpClient)); }
         }
 
-        public LastfmClient(string apiKey, string apiSecret, HttpClient httpClient = null, IScrobbler scrobbler = null)
+        public LastfmClient(string apiKey, string apiSecret, HttpClient httpClient = null, ScrobblerBase scrobbler = null)
             : base(httpClient)
         {
             _lastAuth = new LastAuth(apiKey, apiSecret, httpClient);
             _scrobbler = scrobbler;
+        }
+        public override void Dispose()
+        {
+            _lastAuth.Dispose();
+
+            if (_albumApi != null) _albumApi.Dispose();
+            if (_artistApi != null) _artistApi.Dispose();
+            if (_chartApi != null) _chartApi.Dispose();
+            if (_libraryApi != null) _libraryApi.Dispose();
+            if (_scrobbler != null) _scrobbler.Dispose();
+            if (_trackApi != null) _trackApi.Dispose();
+            if (_userApi != null) _userApi.Dispose();
+
+            base.Dispose();
         }
     }
 }

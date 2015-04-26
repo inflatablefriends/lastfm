@@ -67,7 +67,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var parameters = messageBody.Split('&')
                     .Select(pair => pair.Split('='))
                     .Select(arr => new KeyValuePair<string, string>(arr[0], arr[1]));
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, LastFm.ApiRoot)
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, LastFm.ApiRootSsl)
             {
                 Content = new FormUrlEncodedContent(parameters)
             };

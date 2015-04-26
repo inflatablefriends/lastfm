@@ -17,7 +17,9 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         {
             Lastfm = new LastfmClient(LastFm.TEST_APIKEY, LastFm.TEST_APISECRET);
 
-            Lastfm.Auth.GetSessionTokenAsync(INTEGRATION_TEST_USER, INTEGRATION_TEST_PASSWORD).Wait();
+            var authTask = Lastfm.Auth.GetSessionTokenAsync(INTEGRATION_TEST_USER, INTEGRATION_TEST_PASSWORD);
+            authTask.Wait();
+            Assert.IsTrue(authTask.Result.Success);
         }
     }
 }

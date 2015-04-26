@@ -31,7 +31,7 @@ namespace IF.Lastfm.Core.Helpers
             _httpClient = httpClient;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (_isHttpClientOwner)
             {

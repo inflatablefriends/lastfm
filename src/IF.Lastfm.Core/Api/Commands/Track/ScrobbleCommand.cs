@@ -25,6 +25,11 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             Scrobbles = scrobbles;
         }
 
+        protected override Uri BuildRequestUrl()
+        {
+            return new Uri(LastFm.ApiRootSsl, UriKind.Absolute);
+        }
+
         public ScrobbleCommand(ILastAuth auth, Scrobble scrobble)
             : this(auth, new []{scrobble})
         {
