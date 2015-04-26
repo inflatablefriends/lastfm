@@ -1,4 +1,5 @@
-﻿using IF.Lastfm.Core.Api;
+﻿using System.Threading.Tasks;
+using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Tests.Api.Commands;
 using NUnit.Framework;
 
@@ -9,14 +10,14 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
         public const string INTEGRATION_TEST_USER = "inflatabledemo";
         public const string INTEGRATION_TEST_PASSWORD = "inflatabledemo#";
 
-        protected LastAuth Auth { get; private set; }
+        protected LastfmClient Lastfm { get; private set; }
 
         [SetUp]
         public void Initialise()
         {
-            Auth = new LastAuth(LastFm.TEST_APIKEY, LastFm.TEST_APISECRET);
+            Lastfm = new LastfmClient(LastFm.TEST_APIKEY, LastFm.TEST_APISECRET);
 
-            Auth.GetSessionTokenAsync(INTEGRATION_TEST_USER, INTEGRATION_TEST_PASSWORD).Wait();
+            Lastfm.Auth.GetSessionTokenAsync(INTEGRATION_TEST_USER, INTEGRATION_TEST_PASSWORD).Wait();
         }
     }
 }

@@ -24,13 +24,11 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 AlbumArtist = ARTIST_NAME
             };
 
-            var trackApi = new TrackApi(Auth);
-            var response = await trackApi.UpdateNowPlayingAsync(testScrobble);
+            var response = await Lastfm.Track.UpdateNowPlayingAsync(testScrobble);
 
             Assert.IsTrue(response.Success);
 
-            var userApi = new UserApi(Auth);
-            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 1, 1);
+            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
 
             var expectedTrack = new LastTrack
             {

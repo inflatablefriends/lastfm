@@ -33,8 +33,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 ChosenByUser = false
             };
 
-            var trackApi = new TrackApi(Auth);
-            var response = await trackApi.ScrobbleAsync(testScrobble);
+            var response = await Lastfm.Scrobbler.ScrobbleAsync(testScrobble);
 
             Assert.IsTrue(response.Success);
             
@@ -54,8 +53,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             };
             var expectedJson = expectedTrack.TestSerialise();
 
-            var userApi = new UserApi(Auth);
-            var tracks = await userApi.GetRecentScrobbles(Auth.UserSession.Username, null, 0, 1);
+            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 0, 1);
             Assert.IsTrue(tracks.Any());
 
             var actual = tracks.Content.First();
@@ -81,7 +79,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             var countingHandler = new CountingHttpClientHandler();
             var httpClient = new HttpClient(countingHandler);
-            var scrobbler = new Scrobbler(Auth, httpClient)
+            var scrobbler = new Scrobbler(Lastfm.Auth, httpClient)
             {
                 MaxBatchSize = 2
             };
