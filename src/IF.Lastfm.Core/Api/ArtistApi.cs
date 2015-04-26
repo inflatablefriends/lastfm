@@ -17,7 +17,7 @@ namespace IF.Lastfm.Core.Api
 
         public ILastAuth Auth { get; private set; }
 
-        public async Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
+        public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
             var command = new GetInfoCommand(Auth)
             {
@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
+        public async Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
             var command = new GetInfoCommand(Auth)
             {
@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string artist, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopAlbumsCommand(Auth, artist)
             {
@@ -54,7 +54,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTrack>> GetTopTracksForArtistAsync(string artist, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastTrack>> GetTopTracksAsync(string artist, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopTracksCommand(Auth, artist)
             {
@@ -65,7 +65,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastArtist>> GetSimilarAsync(string artistname, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
         {
             var command = new GetSimilarCommand(Auth, artistname)
             {
@@ -76,7 +76,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist, string username, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public Task<PageResponse<LastTag>> GetTagsByUserAsync(string artist, string username, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTagsByUserCommand(Auth, artist, username)
             {
@@ -89,7 +89,7 @@ namespace IF.Lastfm.Core.Api
             return command.ExecuteAsync();
         }
 
-        public Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false)
+        public Task<PageResponse<LastTag>> GetTopTagsAsync(string artist, bool autocorrect = false)
         {
             var command = new GetTopTagsCommand(Auth, artist)
             {
@@ -100,7 +100,7 @@ namespace IF.Lastfm.Core.Api
             return command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
+        public async Task<PageResponse<LastShout>> GetShoutsAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
         {
             var command = new GetShoutsCommand(Auth, artist)
             {
@@ -122,7 +122,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastArtist>> SearchAsync(string artistname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new SearchCommand(Auth, artistname)
             {

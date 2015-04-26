@@ -73,7 +73,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTrack>> GetSimilarTracksAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
+        public async Task<PageResponse<LastTrack>> GetSimilarAsync(string trackname, string artistname, bool autocorrect = false, int limit = 100)
         {
             var command = new GetSimilarCommand(Auth, trackname, artistname)
             {
@@ -85,7 +85,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse> LoveTrackAsync(string trackname, string artistname)
+        public async Task<LastResponse> LoveAsync(string trackname, string artistname)
         {
             var command = new LoveCommand(Auth, trackname, artistname)
             {
@@ -94,7 +94,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse> UnloveTrackAsync(string trackname, string artistname)
+        public async Task<LastResponse> UnloveAsync(string trackname, string artistname)
         {
             var command = new UnloveCommand(Auth, trackname, artistname)
             {
@@ -103,7 +103,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync(); 
         }
 
-        public async Task<PageResponse<LastTrack>> SearchForTrackAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastTrack>> SearchAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new SearchCommand(Auth, trackname)
             {

@@ -12,40 +12,40 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
-        Task<LastResponse<LastArtist>> GetArtistInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
+        Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
-        Task<LastResponse<LastArtist>> GetArtistInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode,
+        Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
-        Task<PageResponse<LastArtist>> GetSimilarArtistsAsync(string artistname, bool autocorrect = false, int limit = 100);
+        Task<PageResponse<LastArtist>> GetSimilarAsync(string artistname, bool autocorrect = false, int limit = 100);
 
-        Task<PageResponse<LastAlbum>> GetTopAlbumsForArtistAsync(string artist,
+        Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<LastTrack>> GetTopTracksForArtistAsync(string artist,
+        Task<PageResponse<LastTrack>> GetTopTracksAsync(string artist,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<LastTag>> GetUserTagsForArtistAsync(string artist,
+        Task<PageResponse<LastTag>> GetTagsByUserAsync(string artist,
             string username,
             bool autocorrect = false,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
-        Task<PageResponse<LastTag>> GetTopTagsForArtistAsync(string artist, bool autocorrect = false);
+        Task<PageResponse<LastTag>> GetTopTagsAsync(string artist, bool autocorrect = false);
 
-        Task<PageResponse<LastShout>> GetShoutsForArtistAsync(string artistname,
+        Task<PageResponse<LastShout>> GetShoutsAsync(string artistname,
             int page = 0,
             int count = LastFm.DefaultPageLength,
             bool autocorrect = false);
 
         Task<LastResponse> AddShoutAsync(string artistname, string message);
 
-        Task<PageResponse<LastArtist>> SearchForArtistAsync(string artistname,
+        Task<PageResponse<LastArtist>> SearchAsync(string artistname,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 

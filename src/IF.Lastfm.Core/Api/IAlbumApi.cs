@@ -8,9 +8,9 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
-        Task<LastResponse<LastAlbum>> GetAlbumInfoAsync(string artist, string album, bool autocorrect = false);
+        Task<LastResponse<LastAlbum>> GetInfoAsync(string artist, string album, bool autocorrect = false);
 
-        Task<LastResponse<LastAlbum>> GetAlbumInfoByMbidAsync(string albumMbid, bool autocorrect = false);
+        Task<LastResponse<LastAlbum>> GetInfoByMbidAsync(string albumMbid, bool autocorrect = false);
         
         //Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist,
         //    string album,
@@ -22,11 +22,11 @@ namespace IF.Lastfm.Core.Api
             string username,
             bool autocorrect = false);
 
-        Task<PageResponse<LastTag>> GetTopTagsForAlbumAsync(string artist,
+        Task<PageResponse<LastTag>> GetTopTagsAsync(string artist,
             string album,
             bool autocorrect = false);
 
-        Task<PageResponse<LastAlbum>> SearchForAlbumAsync(string album,
+        Task<PageResponse<LastAlbum>> SearchAsync(string album,
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
