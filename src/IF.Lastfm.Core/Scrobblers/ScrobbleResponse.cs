@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,9 +14,7 @@ namespace IF.Lastfm.Core.Scrobblers
         public int AcceptedCount { get; internal set; }
 
         public IEnumerable<Scrobble> Ignored { get; internal set; }
-
-        public override LastResponseStatus Status { get; internal set; }
-
+        
         public override bool Success
         {
             get

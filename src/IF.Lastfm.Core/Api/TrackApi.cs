@@ -5,6 +5,7 @@ using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Track;
 using IF.Lastfm.Core.Helpers;
+using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -19,7 +20,7 @@ namespace IF.Lastfm.Core.Api
         }
 
         [Obsolete("This method has been moved to the Scrobbler class. More information can be found at " + LastFm.SCROBBLING_HELP_URL)]
-        public Task<LastResponse> ScrobbleAsync(Scrobble scrobble)
+        public Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble)
         {
             var command = new ScrobbleCommand(Auth, scrobble)
             {

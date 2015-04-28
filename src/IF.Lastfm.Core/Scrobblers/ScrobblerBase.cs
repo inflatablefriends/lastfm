@@ -63,7 +63,7 @@ namespace IF.Lastfm.Core.Scrobblers
 
                 try
                 {
-                    var response = await command.ExecuteAsync() as ScrobbleResponse;
+                    var response = await command.ExecuteAsync();
 
                     responses.Add(response);
                 }

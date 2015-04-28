@@ -19,7 +19,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             get { return Status == LastResponseStatus.Successful; }
         }
 
-        public virtual LastResponseStatus Status { get; internal set; }
+        public LastResponseStatus Status { get; internal set; }
 
         [Obsolete("This property has been renamed to Status and will be removed soon.")]
         public LastResponseStatus Error { get { return Status; } }

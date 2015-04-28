@@ -10,7 +10,7 @@ using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
-    internal class ScrobbleCommand : PostAsyncCommandBase<LastResponse>
+    internal class ScrobbleCommand : PostAsyncCommandBase<ScrobbleResponse>
     {
         public IList<Scrobble> Scrobbles { get; private set; }
 
@@ -51,7 +51,7 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             }
         }
 
-        public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
+        public async override Task<ScrobbleResponse> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

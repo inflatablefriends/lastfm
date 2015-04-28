@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Api
 {
@@ -10,7 +11,7 @@ namespace IF.Lastfm.Core.Api
         ILastAuth Auth { get; }
 
         [Obsolete("This method has been moved to the Scrobbler class. More information can be found at " + LastFm.SCROBBLING_HELP_URL)]
-        Task<LastResponse> ScrobbleAsync(Scrobble scrobble);
+        Task<ScrobbleResponse> ScrobbleAsync(Scrobble scrobble);
         //Task<LastResponse> ScrobbleAsync(IEnumerable<Scrobble> scrobble);
 
         Task<LastResponse> UpdateNowPlayingAsync(Scrobble scrobble);
