@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using IF.Lastfm.Core;
 using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Commands;
 using IF.Lastfm.Core.Api.Helpers;
@@ -14,6 +16,11 @@ namespace IF.Lastfm.Syro.Helpers
         public JObject Response { get; private set; }
         public DummyPostAsyncCommand(ILastAuth auth) : base(auth)
         {
+        }
+
+        protected override Uri BuildRequestUrl()
+        {
+            return new Uri(LastFm.ApiRootSsl, UriKind.Absolute);
         }
 
         public override void SetParameters()

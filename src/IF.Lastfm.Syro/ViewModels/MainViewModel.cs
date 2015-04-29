@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -270,6 +271,9 @@ namespace IF.Lastfm.Syro.ViewModels
                     var countProperty = genericType.GetProperty("Count", BindingFlags.Public | BindingFlags.Instance);
                     countProperty.SetValue(instance, int.Parse(_state.CommandItemCount));
                 }
+
+                var httpClientProperty = genericType.GetProperty("HttpClient", BindingFlags.Public | BindingFlags.Instance);
+                httpClientProperty.SetValue(instance, new HttpClient());
 
                 var parametersProperty = genericType.GetProperty("Parameters",
                     BindingFlags.Public | BindingFlags.Instance);
