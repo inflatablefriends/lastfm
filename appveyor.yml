@@ -3,7 +3,7 @@
     only:
       - master
 
-  version: 0.2.0.{build}
+  version: 0.2.999.{build}
 
   assembly_info:
     patch: true
@@ -29,11 +29,13 @@
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
       name: IF.Lastfm.Core.dll
+    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
+      name: IF.Lastfm.SQLite.dll
     - path: '\*-prerelease.nupkg'
 
   notifications:
     - provider: Webhook # ping Gitter ticker 
-      url: https://webhooks.gitter.im/e/8184d0f9a61041aee927
+      url: https://webhooks.gitter.im/e/aa615fb57d382a430815
 
 #---------------------------------------------------------------
 
@@ -43,7 +45,7 @@
       - release
 
   # don't forget to update this!
-  version: 0.1.5.{build}
+  version: 0.2.0.{build}
 
   assembly_info:
     patch: true
@@ -69,6 +71,8 @@
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
       name: IF.Lastfm.Core.dll
+    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
+      name: IF.Lastfm.SQLite.dll
     - path: '\*.nupkg'
 
   deploy:
@@ -79,4 +83,4 @@
 
   notifications:
     - provider: Webhook # ping Gitter ticker 
-      url: https://webhooks.gitter.im/e/8184d0f9a61041aee927
+      url: https://webhooks.gitter.im/e/aa615fb57d382a430815
