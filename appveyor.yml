@@ -83,7 +83,7 @@
     provider: NuGet
     api_key:
       secure: b4Q8KLmOfeQHZNGbTf4OYud3pvi3aR4rKE35dcLHYBTBaQwc9QeoIkDoG13Jpbxs
-    artifact: /.*\.nupkg/
+    artifact: /\.nuget\\.*\.nupkg/
 
   notifications:
     - provider: Webhook # ping Gitter ticker 
