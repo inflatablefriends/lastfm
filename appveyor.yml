@@ -69,7 +69,7 @@
 
   after_test:
     - ps: pushd .nuget
-    - ps: .nuget\pack.ps1
+    - ps: .\pack.ps1
     - ps: popd
 
   artifacts:
