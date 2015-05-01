@@ -24,7 +24,9 @@
     - ps: .\run-tests.ps1
 
   after_test:
-    - ps: .nuget\pack.ps1 -versionSuffix prerelease
+    - ps: pushd .nuget
+    - ps: .\pack.ps1 -versionSuffix prerelease
+    - ps: popd
 
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
@@ -66,7 +68,9 @@
     - ps: .\run-tests.ps1
 
   after_test:
+    - ps: pushd .nuget
     - ps: .nuget\pack.ps1
+    - ps: popd
 
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll

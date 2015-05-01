@@ -2,18 +2,6 @@ param(
     [string] $versionSuffix
 )
 
-. ".\Package-Versions.ps1"
-
-$root = (split-path -parent $MyInvocation.MyCommand.Definition) + '\..'
-$version = [System.Reflection.AssemblyName]::GetAssemblyName($dllPath).Version
-
-if ($versionSuffix) {
-	$versionStr = "{0}.{1}.{2}-{3}" -f ($version.Major, $version.Minor, $version.Build, $versionSuffix)
-}
-else {
-	$versionStr = $version.ToString()
-}
-
 function CompileNuspec([string]$dllPath, [string]$nuspecname)
 {
 	Write-Host "Setting $nuspecname .nuspec version tag to $versionStr" -Foreground green
@@ -26,7 +14,21 @@ function CompileNuspec([string]$dllPath, [string]$nuspecname)
 	& $root\.nuget\NuGet.exe pack "$root\.nuget\$nuspecname.$versionStr.compiled.nuspec"
 }
 
-CompileNuspec "$root\src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll" "Inflatable.Lastfm"
+. ".\Package-Versions.ps1"
+
+$root = (split-path -parent $MyInvocation.MyCommand.Definition) + '\..'
+
+$dllPath = "$root\src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll"
+$version = [System.Reflection.AssemblyName]::GetAssemblyName($dllPath).Version
+
+if ($versionSuffix) {
+	$versionStr = "{0}.{1}.{2}-{3}" -f ($version.Major, $version.Minor, $version.Build, $versionSuffix)
+}
+else {
+	$versionStr = $version.ToString()
+}
+
+CompileNuspec $dllPath "Inflatable.Lastfm"
 
 if ([string]::IsNullOrEmpty($sqliteVersion)){
 	Write-Host "Couldn't read version to use for SQLite package" -Foreground red
