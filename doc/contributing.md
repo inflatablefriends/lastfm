@@ -40,10 +40,10 @@ Once you have chosen an API method to work on, you need to do five things before
 
 So if I wanted to work on the method ```track.getSimilar``` I would:
 
-1. Create the [GetSimilarTracksCommand](https://github.com/inflatablefriends/lastfm/blob/master/src/IF.Lastfm.Core/Api/Commands/TrackApi/GetSimilarTracksCommand.cs) class in /src/IF.Lastfm.Core/Api/Commands/TrackApi
+1. Create the [GetSimilarCommand](/src/IF.Lastfm.Core/Api/Commands/Track/GetSimilarCommand.cs) class in /src/IF.Lastfm.Core/Api/Commands/Track
 2. Subclass GetAsyncCommandBase<T> because the documentation says the method does not need authentication. T will be a PageResponse<LastTrack> because the method returns a list of tracks.
-3. Add a GetSimilarTracks method on the TrackApi class
-4. Use the Syro dev tool to collect responses for: (page 0, limit 1), (page 0, limit 20) and a track which doesn't have similar responses
+3. Add a GetSimilar method on the TrackApi class
+4. Use the Syro dev tool to collect responses for: (page 0, limit 1), (page 0, limit 20) and a failure case, i.e. when a track which doesn't have similar responses. The failure case might be hard to find for some methods, when this is the case the test doesn't matter too much so you may skip it.
 5. Create a class in the unit test project, and test the command execution with each of the sample responses.
 
 Once all your tests pass and the project builds, commit your work to your repo, then send a pull request.
@@ -73,12 +73,12 @@ As LastResponse, plus
 
 ### Syro
 
-IF.Lastfm.Syro is a tool to make building requests to the Last.fm JSON API easier. The main benefit is that it generates method signatures for authenticated commands, meaning you can get responses from an API call without having to build up the command first.
+IF.Lastfm.Syro is a tool to make building requests to the Last.fm JSON API easier, using the mechanisms in the core library for stuff like generating method signatures and authenticating.
 
-Using it is simple - build the solution and then run the IF.Lastfm.Syro.exe in src/IF.Lastfm.Syro/bin/Debug.
+Build the solution and then run the IF.Lastfm.Syro.exe in src/IF.Lastfm.Syro/bin/Debug.
 
 [![Syro app](https://github.com/inflatablefriends/lastfm/blob/master/res/syro.png)](https://github.com/inflatablefriends/lastfm/blob/master/res/syro.png)
 
-The three dropdown menus correspond to the type of the command you want to build - so track.getSimilar corresponds to DummyGetAsyncCommand, PageResponse and LastTrack. The rest of the page corresponds to parameters on the request - check the documentation for what needs to be sent and fill in the data grid.
+The three dropdown menus correspond to the type of the command you want to build - so track.getSimilar corresponds to DummyGetAsyncCommand, PageResponse and LastTrack. The rest of the page corresponds to parameters for that method - check the Last.fm API documentation for what needs to be sent and fill in the data grid.
 
-Clicking the execute button will build and execute the command and then save the JSON response to a file in the /tmp directory of the solution. 
+Clicking the execute button will build and execute the command, and then save the JSON response to a file in the /tmp directory of the solution. 
