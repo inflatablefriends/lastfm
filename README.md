@@ -1,16 +1,17 @@
-# Inflatable Last.fm .NET SDK [![Build status](https://ci.appveyor.com/api/projects/status/c8gg2cw4jibbsg3u)](https://ci.appveyor.com/project/rikkit/lastfm)
-
-MIT licensed. 
-
-Feature request? Bug? Looking to help? Check out [the issues on GitHub](https://github.com/inflatablefriends/lastfm/issues).
-
-If you have comments or need some help, post to our chat room on [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge).
+# Inflatable Last.fm .NET SDK
+[![Code licence](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat)](LICENCE.md) [![Build status](https://ci.appveyor.com/api/projects/status/c8gg2cw4jibbsg3u)](https://ci.appveyor.com/project/rikkit/lastfm) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Project Goals
 
-- Provide complete .NET bindings for the Last.fm REST API
-- Provide components useful in any Last.fm app
+- To provide complete .NET bindings for the Last.fm REST API
+- To build useful components for Last.fm applications
 - To be the very best, like no-one ever was
+
+## Contributing
+
+Input is always welcome! [Raise an issue on GitHub](https://github.com/inflatablefriends/lastfm/issues), or send a message to [the Gitter chatroom](https://gitter.im/inflatablefriends/lastfm) if you need help with the library. 
+
+If you're interested in contributing code or documentation, [this short introduction to the library](doc/contributing.md) will help you get started.
 
 ## Quickstart
 
@@ -19,7 +20,7 @@ If you have comments or need some help, post to our chat room on [![Gitter](http
 #### NuGet - production code
 
 Install [the NuGet package](
-https://www.nuget.org/packages/Inflatable.Lastfm/). Search for ```Inflatable.Lastfm``` in the NuGet package browser.____
+https://www.nuget.org/packages/Inflatable.Lastfm/). Search for ```Inflatable.Lastfm``` in the NuGet package browser.
 
 #### NuGet - prerelease code
 
@@ -47,7 +48,7 @@ var response = client.Album.GetInfoAsync("Grimes", "Visions");
 LastAlbum visions = response.Content;
 ```
 
-For methods that return several items, you can simply iterate over the response
+For methods that return several items, you can iterate over the response:
 
 ```c#
 var pageResponse = await client.Artist.GetTopTracksAsync("Ben Frost", page: 5, itemsPerPage: 100);
@@ -76,20 +77,22 @@ if (client.Auth.HasAuthenticated) {
 ## Documentation
 
 - [Api method progress report](PROGRESS.md)
-- [Example Windows Phone app](https://github.com/inflatablefriends/lastfm-samples)
+- [Contributing](doc/contributing.md)
 - [Scrobbling](doc/scrobbling.md)
 - [Dependency Injection](doc/dependency-injection.md)
+- [Example Windows Phone app](https://github.com/inflatablefriends/lastfm-samples)
 
 ## Platform Compatibility
 
-The current PCL profile is
+The library is compatible with:
 
-- .NET Framework 4.5
+- .NET 4.5 (including Mono)
 - Windows 8.0
 - Windows Phone 8.1
 - Windows Phone Silverlight 8
+- Xamarin.Android and Xamarin.iOS
 
-If you need support for Mono, Windows Phone 7, or another .NET platform, please ask: the current profile was chosen to reduce dependencies for the most common use cases. The SDK should be trivial to port to any platform which supports Async, HttpClient and Json.Net.
+If you need support for Windows Phone 7, or another .NET platform, it's probably easy enough. Raise an issue or send a PR.
 
 ## Credits
 

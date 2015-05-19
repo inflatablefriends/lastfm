@@ -16,7 +16,7 @@ Once you have those installed, you can fork [the repo](https://github.com/inflat
 
 ## Choosing something to work on
 
-Right now we want to get all the API commands finished! So choose one [from this list](https://github.com/inflatablefriends/lastfm/blob/master/PROGRESS.md).
+Choose one of [the issues marked "up for grabs"](https://github.com/inflatablefriends/lastfm/labels/up%20for%20grabs), or one of the missing API methods [listed in the progress report](https://github.com/inflatablefriends/lastfm/blob/master/PROGRESS.md).
 
 ## Branching
 
