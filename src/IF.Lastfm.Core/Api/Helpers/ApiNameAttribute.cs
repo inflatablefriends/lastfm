@@ -12,6 +12,7 @@ namespace IF.Lastfm.Core.Api.Helpers
         }
     }
 
+    [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
     public class ApiMethodNameAttribute : ApiNameAttribute
     {
         public ApiMethodNameAttribute(string name) : base(name) { }
