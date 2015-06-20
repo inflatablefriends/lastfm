@@ -4,16 +4,12 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
-    [ApiMethodName(LastMethodsNames.track_updateNowPlaying)]
+    [ApiMethodName("track.updateNowPlaying")]
     internal class UpdateNowPlayingCommand : PostAsyncCommandBase<LastResponse>
     {
-        public override string Method
-        { get { return LastMethodsNames.track_updateNowPlaying; } }
-
         public string Artist { get; set; }
 
         public string Album { get; set; }

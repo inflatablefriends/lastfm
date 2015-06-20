@@ -5,16 +5,12 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
-    [ApiMethodName(LastMethodsNames.user_getRecommendedArtists)]
+    [ApiMethodName("user.getRecommendedArtists")]
     internal class GetRecommendedArtistsCommand : PostAsyncCommandBase<PageResponse<LastArtist>>
     {
-        public override string Method
-        { get { return LastMethodsNames.user_getRecommendedArtists; } }
-
         public GetRecommendedArtistsCommand(ILastAuth auth) : base(auth) { }
 
         public override void SetParameters()

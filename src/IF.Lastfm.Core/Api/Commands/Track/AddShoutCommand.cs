@@ -1,16 +1,12 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
-    [ApiMethodName(LastMethodsNames.track_shout)]
+    [ApiMethodName("track.shout")]
     internal class AddShoutCommand : PostAsyncCommandBase<LastResponse>
     {
-        public override string Method
-        { get { return LastMethodsNames.track_shout; } }
-
         public string Track { get; set; }
 
         public string Artist { get; set; }

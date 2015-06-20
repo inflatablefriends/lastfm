@@ -5,16 +5,12 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
-    [ApiMethodName(LastMethodsNames.user_getInfo)]
+    [ApiMethodName("user.getInfo")]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastUser>>
     {
-        public override string Method
-        { get { return LastMethodsNames.user_getInfo; } }
-
         public string Username { get; set; }
 
         public GetInfoCommand(ILastAuth auth, string username) : base(auth)

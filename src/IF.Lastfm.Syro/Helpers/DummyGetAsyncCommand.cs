@@ -10,11 +10,6 @@ namespace IF.Lastfm.Syro.Helpers
 {
     public class DummyGetAsyncCommand<T> : GetAsyncCommandBase<T>, IDummyCommand where T : LastResponse, new()
     {
-        public override string Method
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         public JObject Response { get; set; }
 
         public DummyGetAsyncCommand(ILastAuth auth)

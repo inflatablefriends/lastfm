@@ -6,16 +6,12 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
-    [ApiMethodName(LastMethodsNames.artist_getTopTags)]
+    [ApiMethodName("artist.getTopTags")]
     internal class GetTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
-        public override string Method
-        { get { return LastMethodsNames.artist_getTopTags; } }
-
         public string ArtistName { get; set; }
 
         public bool Autocorrect { get; set; }

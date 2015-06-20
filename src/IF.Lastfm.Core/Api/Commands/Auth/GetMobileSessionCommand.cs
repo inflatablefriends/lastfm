@@ -6,16 +6,12 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Auth
 {
-    [ApiMethodName(LastMethodsNames.auth_getMobileSession)]
+    [ApiMethodName("auth.getMobileSession")]
     internal class GetMobileSessionCommand : UnauthenticatedPostAsyncCommandBase<LastResponse<LastUserSession>>
     {
-        public override string Method
-        { get { return LastMethodsNames.auth_getMobileSession; } }
-
         public string Username { get; set; }
 
         public string Password { get; set; }

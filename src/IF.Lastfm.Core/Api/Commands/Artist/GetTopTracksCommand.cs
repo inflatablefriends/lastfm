@@ -5,16 +5,12 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
-    [ApiMethodName(LastMethodsNames.artist_getTopTracks)]
+    [ApiMethodName("artist.getTopTracks")]
     internal class GetTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
-        public override string Method
-        { get { return LastMethodsNames.artist_getTopTracks; } }
-
         public string ArtistName { get; set; }
 
         public GetTopTracksCommand(ILastAuth auth, string artistname)

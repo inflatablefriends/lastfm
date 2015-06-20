@@ -1,14 +1,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
-using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Library {
-    [ApiMethodName(LastMethodsNames.library_removeTrack)]
+    [ApiMethodName("library.removeTrack")]
     internal class RemoveTrackCommand : PostAsyncCommandBase<LastResponse> {
-        public override string Method
-        { get { return LastMethodsNames.library_removeTrack; } }
-
         public string Artist { get; set; }
 
         public string Track { get; set; }
