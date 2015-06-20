@@ -33,7 +33,7 @@ The API is structured according to [the command pattern](http://en.wikipedia.org
 Once you have chosen an API method to work on, you need to do five things before submitting it for inclusion in the API:
 
 1. Create the command in the right folder
-2. Implement the command, deriving from `GetAsyncCommandBase<T>` or `PostAsyncCommandBase<T>` (depending on what [the documentation](http://www.last.fm/api) says), and add an ApiMethodNameAttribute on the class, corresponding to the API method you are implementing. (for example, `[ApiMethodName("album.shout")]`)
+2. Implement the command, deriving from `GetAsyncCommandBase<T>` or `PostAsyncCommandBase<T>` (depending on what [the documentation](http://www.last.fm/api) says), and add an `ApiMethodNameAttribute` on the class, corresponding to the API method you are implementing. (for example, `[ApiMethodName("album.shout")]`)
 3. Create a method on the relevant *Api class
 4. Collect sample responses from the API for this method
 5. Create a unit test class for the command using the sample responses
