@@ -31,19 +31,5 @@ namespace IF.Lastfm.Syro.Tools
 
             return types;
         }
-
-        public static LastAsyncCommandBase CreateCommand(Type type)
-        {
-            var typeInfo = type.GetTypeInfo();
-
-            // assuming there is only one constructor
-            var constructor = typeInfo.DeclaredConstructors.First();
-            var parameters = constructor.GetParameters();
-            var arguments = new object[parameters.Count()]; // to keep reflection happy
-
-            var instance = (LastAsyncCommandBase)Activator.CreateInstance(type, arguments);
-
-            return instance;
-        }
     }
 }
