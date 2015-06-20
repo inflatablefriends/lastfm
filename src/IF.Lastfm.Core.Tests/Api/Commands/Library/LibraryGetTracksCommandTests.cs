@@ -16,7 +16,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 
         public LibraryGetTracksCommandTests()
         {
-            _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTime.MinValue)
+            _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTimeOffset.MinValue)
             {
                 Count = 1
             };            
