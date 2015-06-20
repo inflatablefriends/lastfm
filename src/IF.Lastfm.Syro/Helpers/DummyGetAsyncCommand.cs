@@ -4,11 +4,17 @@ using IF.Lastfm.Core.Api.Helpers;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System;
 
 namespace IF.Lastfm.Syro.Helpers
 {
     public class DummyGetAsyncCommand<T> : GetAsyncCommandBase<T>, IDummyCommand where T : LastResponse, new()
     {
+        public override string Method
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public JObject Response { get; set; }
 
         public DummyGetAsyncCommand(ILastAuth auth)

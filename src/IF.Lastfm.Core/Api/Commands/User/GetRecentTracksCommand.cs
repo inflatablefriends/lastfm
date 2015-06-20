@@ -6,19 +6,22 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName(LastMethodsNames.user_getRecentTracks)]
     internal class GetRecentTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
+        public override string Method
+        { get { return LastMethodsNames.user_getRecentTracks; } }
+
         public string Username { get; private set; }
 
         public DateTimeOffset? From { get; set; }
 
         public GetRecentTracksCommand(ILastAuth auth, string username) : base(auth)
         {
-            Method = "user.getRecentTracks";
-
             Username = username;
         }
 

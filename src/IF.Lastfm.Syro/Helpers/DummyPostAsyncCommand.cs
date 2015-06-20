@@ -13,6 +13,11 @@ namespace IF.Lastfm.Syro.Helpers
 {
     public class DummyPostAsyncCommand<T> : PostAsyncCommandBase<T>, IDummyCommand where T : LastResponse, new()
     {
+        public override string Method
+        {
+            get { throw new NotImplementedException(); }
+        }
+
         public JObject Response { get; private set; }
         public DummyPostAsyncCommand(ILastAuth auth) : base(auth)
         {

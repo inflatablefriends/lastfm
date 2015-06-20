@@ -7,11 +7,16 @@ using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Scrobblers;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName(LastMethodsNames.track_scrobble)]
     internal class ScrobbleCommand : PostAsyncCommandBase<ScrobbleResponse>
     {
+        public override string Method
+        { get { return LastMethodsNames.track_scrobble; } }
+
         public IList<Scrobble> Scrobbles { get; private set; }
 
         public ScrobbleCommand(ILastAuth auth, IList<Scrobble> scrobbles)
@@ -22,7 +27,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
                 throw new ArgumentOutOfRangeException("scrobbles", "Only 50 scrobbles can be sent at a time");
             }
 
-            Method = "track.scrobble";
             Scrobbles = scrobbles;
         }
 

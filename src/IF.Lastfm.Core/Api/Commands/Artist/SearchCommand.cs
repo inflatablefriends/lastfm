@@ -5,17 +5,21 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
+    [ApiMethodName(LastMethodsNames.artist_search)]
     internal class SearchCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
     {
+        public override string Method
+        { get { return LastMethodsNames.artist_search; } }
+
         public string ArtistName { get; set; }
 
         public SearchCommand(ILastAuth auth, string artistName)
             : base(auth)
         {
-            Method = "artist.search";
             ArtistName = artistName;
         }
 

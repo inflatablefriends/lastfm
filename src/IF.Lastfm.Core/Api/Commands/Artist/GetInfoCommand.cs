@@ -6,11 +6,16 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
+    [ApiMethodName(LastMethodsNames.artist_getInfo)]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastArtist>>
     {
+        public override string Method
+        { get { return LastMethodsNames.artist_getInfo; } }
+
         public string ArtistMbid { get; set; }
 
         public string ArtistName { get; set; }
@@ -19,11 +24,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
 
         public bool Autocorrect { get; set; }
 
-        public GetInfoCommand(ILastAuth auth)
-            : base(auth)
-        {
-            Method = "artist.getInfo";
-        }
+        public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         /// <summary>
         /// TODO Bio language

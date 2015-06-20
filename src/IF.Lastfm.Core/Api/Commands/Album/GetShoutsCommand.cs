@@ -6,11 +6,16 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
+    [ApiMethodName(LastMethodsNames.album_getShouts)]
     internal class GetShoutsCommand : GetAsyncCommandBase<PageResponse<LastShout>>
     {
+        public override string Method
+        { get { return LastMethodsNames.album_getShouts; } }
+
         public string AlbumName { get; set; }
 
         public string ArtistName { get; set; }
@@ -20,8 +25,6 @@ namespace IF.Lastfm.Core.Api.Commands.Album
         public GetShoutsCommand(ILastAuth auth, string albumname, string artistname)
             : base(auth)
         {
-            Method = "album.getShouts";
-
             AlbumName = albumname;
             ArtistName = artistname;
         }

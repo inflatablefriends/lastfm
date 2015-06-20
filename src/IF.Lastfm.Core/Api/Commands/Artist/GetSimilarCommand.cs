@@ -6,11 +6,16 @@ using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
+    [ApiMethodName(LastMethodsNames.artist_getSimilar)]
     internal class GetSimilarCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
     {
+        public override string Method
+        { get { return LastMethodsNames.artist_getSimilar; } }
+
         public bool Autocorrect { get; set; }
 
         public string ArtistName { get; set; }
@@ -20,8 +25,6 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
         public GetSimilarCommand(ILastAuth auth, string artistName)
             : base(auth)
         {
-            Method = "artist.getSimilar";
-
             ArtistName = artistName;
         }
 

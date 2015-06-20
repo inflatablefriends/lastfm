@@ -11,7 +11,7 @@ namespace IF.Lastfm.Core.Api.Commands
     /// </summary>
     public abstract class LastAsyncCommandBase
     {
-        public string Method { get; protected set; }
+        public abstract string Method { get; }
 
         public Dictionary<string, string> Parameters { get; set; }
 

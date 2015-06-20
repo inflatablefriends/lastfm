@@ -1,11 +1,17 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
+using IF.Lastfm.Core.Enums;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
+    [ApiMethodName(LastMethodsNames.album_shout)]
     internal class AddShoutCommand : PostAsyncCommandBase<LastResponse>
     {
+        public override string Method
+        { get { return LastMethodsNames.album_shout; } }
+
         public string Album { get; set; }
 
         public string Artist { get; set; }
@@ -15,8 +21,6 @@ namespace IF.Lastfm.Core.Api.Commands.Album
         public AddShoutCommand(ILastAuth auth, string album, string artist, string message)
             : base(auth)
         {
-            Method = "album.shout";
-
             Album = album;
             Artist = artist;
             Message = message;

@@ -18,6 +18,10 @@ namespace IF.Lastfm.Core.Enums
     /// </remarks>
     internal static class LastMethodsNames
     {
+        // Warning: not listed on the Api documentation page!
+        internal const string album_shout = "album.shout";
+        internal const string track_shout = "track.shout";
+
         internal const string album_addTags = "album.addTags";
         internal const string album_getBuylinks = "album.getBuylinks";
         internal const string album_getInfo = "album.getInfo";
