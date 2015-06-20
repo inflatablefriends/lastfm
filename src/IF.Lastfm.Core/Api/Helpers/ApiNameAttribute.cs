@@ -11,4 +11,9 @@ namespace IF.Lastfm.Core.Api.Helpers
             Text = name;
         }
     }
+
+    public class ApiMethodNameAttribute : ApiNameAttribute
+    {
+        public ApiMethodNameAttribute(string name) : base(name) { }
+    }
 }
