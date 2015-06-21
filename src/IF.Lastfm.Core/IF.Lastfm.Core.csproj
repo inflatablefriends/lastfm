@@ -69,6 +69,7 @@
     <Compile Include="Api\Commands\UnauthenticatedPostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\User\GetRecommendedArtistsCommand.cs" />
     <Compile Include="Api\ILibraryApi.cs" />
+    <Compile Include="Api\ITagApi.cs" />
     <Compile Include="Api\LastfmClient.cs" />
     <Compile Include="Api\LastAuth.cs" />
     <Compile Include="Api\ChartApi.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Api\ITrackApi.cs" />
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\LibraryApi.cs" />
+    <Compile Include="Api\TagApi.cs" />
     <Compile Include="Objects\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />

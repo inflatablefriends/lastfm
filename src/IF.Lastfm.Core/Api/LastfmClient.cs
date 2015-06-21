@@ -11,9 +11,10 @@ namespace IF.Lastfm.Core.Api
         private ArtistApi _artistApi;
         private ChartApi _chartApi;
         private LibraryApi _libraryApi;
+        private ScrobblerBase _scrobbler;
+        private TagApi _tagApi;
         private TrackApi _trackApi;
         private UserApi _userApi;
-        private ScrobblerBase _scrobbler;
 
         public LastAuth Auth
         {
@@ -45,6 +46,11 @@ namespace IF.Lastfm.Core.Api
             get { return _scrobbler ?? (_scrobbler = new Scrobbler(_lastAuth, HttpClient)); }
         }
 
+        public TagApi Tag
+        {
+            get { return _tagApi ?? (_tagApi = new TagApi(_lastAuth, HttpClient)); }
+        }
+
         public TrackApi Track
         {
             get { return _trackApi ?? (_trackApi = new TrackApi(_lastAuth, HttpClient)); }
@@ -70,6 +76,7 @@ namespace IF.Lastfm.Core.Api
             if (_chartApi != null) _chartApi.Dispose();
             if (_libraryApi != null) _libraryApi.Dispose();
             if (_scrobbler != null) _scrobbler.Dispose();
+            if (_tagApi != null) _tagApi.Dispose();
             if (_trackApi != null) _trackApi.Dispose();
             if (_userApi != null) _userApi.Dispose();
 
