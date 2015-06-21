@@ -12,10 +12,17 @@ namespace IF.Lastfm.Core.Api.Commands
     /// </summary>
     public abstract class LastAsyncCommandBase
     {
+        private string _methodName;
+
         public string Method
         {
             get
             {
+                if (!String.IsNullOrEmpty(_methodName))
+                {
+                    return _methodName;
+                }
+
                 var methodNameAttribute = this.GetType().GetTypeInfo().GetCustomAttribute<ApiMethodNameAttribute>();
                 if (methodNameAttribute == null)
                 {
@@ -24,6 +31,7 @@ This custom attribute must be present on all Commands. For more information, see
                 }
                 return methodNameAttribute.Text;
             }
+            internal set { _methodName = value; }
         }
 
         public Dictionary<string, string> Parameters { get; set; }
