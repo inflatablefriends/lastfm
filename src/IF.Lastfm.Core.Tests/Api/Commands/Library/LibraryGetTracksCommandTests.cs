@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Tests.Resources;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Library;
@@ -12,20 +13,14 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
     public class LibraryGetTracksCommandTests : CommandTestsBase
     {
-        private readonly GetTracksCommand _command;
-
-        public LibraryGetTracksCommandTests()
-        {
-            _command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTimeOffset.MinValue)
-            {
-                Count = 1
-            };            
-        }
-        
         [Test]
         public async Task HandleResponseMultiple()
         {
-            //Testing the second track returned
+            var command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTimeOffset.MinValue)
+            {
+                Count = 1
+            }; 
+
             var expectedTrack = new LastTrack
             {
                 ArtistName = "Stevie Wonder",
@@ -44,12 +39,21 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 
             };
 
-            await CompareResultsMultiple(_command, expectedTrack, LibraryApiResponses.LibraryGetTracksMultiple, 1);
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksMultiple));
+            var actual = await command.HandleResponse(response);
+
+            Assert.IsTrue(actual.Success);
+            TestHelper.AssertSerialiseEqual(expectedTrack, actual.Content[1]); // Testing the second track returned
         }
 
         [Test]
         public async Task HandleResponseSingle()
         {
+            var command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTimeOffset.MinValue)
+            {
+                Count = 1
+            };
+
             var expectedTrack = new LastTrack
             {
                 ArtistName = "Dire Straits",
@@ -66,18 +70,25 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                     "http://userserve-ak.last.fm/serve/126/56827829.jpg",
                     "http://userserve-ak.last.fm/serve/300x300/56827829.jpg")
             };
+            
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksSingle));
+            var actual = await command.HandleResponse(response);
 
-            var expected = new List<LastTrack> { expectedTrack };
-
-            await CompareResultsSingle(_command, expected, LibraryApiResponses.LibraryGetTracksSingle);
+            Assert.IsTrue(actual.Success);
+            TestHelper.AssertSerialiseEqual(expectedTrack, actual.Single());
         }
         
         [Test]
         public async Task HandleErrorResponse()
         {
+            var command = new GetTracksCommand(MAuth.Object, "rj", "", "", DateTimeOffset.MinValue)
+            {
+                Count = 1
+            }; 
+
             var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
 
-            var parsed = await _command.HandleResponse(response);
+            var parsed = await command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
             Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);

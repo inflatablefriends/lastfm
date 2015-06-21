@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Tests.Resources;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.User;
@@ -11,23 +12,16 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    
     public class UserGetRecentTracksCommandTests : CommandTestsBase
     {
-        private GetRecentTracksCommand _command;
-
-        [SetUp]
-        public void Initialise()
-        {
-            _command = new GetRecentTracksCommand(MAuth.Object, "rj")
-            {
-                Count = 1
-            };
-        }
-
         [Test]
         public async Task HandleResponseMultiple()
         {
+            var command = new GetRecentTracksCommand(MAuth.Object, "rj")
+            {
+                Count = 1
+            };
+
             var expectedTrack = new LastTrack
             {
                 ArtistName = "The Who",
@@ -44,12 +38,21 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "http://userserve-ak.last.fm/serve/300x300/35234991.jpg")
             };
 
-            await CompareResultsMultiple(_command, expectedTrack, UserApiResponses.UserGetRecentTracksMultiple, 2);
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksMultiple));
+            var actual = await command.HandleResponse(response);
+
+            Assert.IsTrue(actual.Success);
+            TestHelper.AssertSerialiseEqual(expectedTrack, actual.Content[2]);
         }
 
         [Test]
         public async Task HandleResponseSingle()
         {
+            var command = new GetRecentTracksCommand(MAuth.Object, "rj")
+            {
+                Count = 1
+            };
+
             var expectedTrack = new LastTrack
             {
                 ArtistName = "Rick James",
@@ -66,18 +69,25 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "http://userserve-ak.last.fm/serve/126/90462319.jpg",
                     "http://userserve-ak.last.fm/serve/300x300/90462319.jpg")
             };
+            
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksSingle));
+            var actual = await command.HandleResponse(response);
 
-            var expected = new List<LastTrack> { expectedTrack };
-
-            await CompareResultsSingle(_command, expected, UserApiResponses.UserGetRecentTracksSingle);
+            Assert.IsTrue(actual.Success);
+            TestHelper.AssertSerialiseEqual(expectedTrack, actual.Single());
         }
 
         [Test]
         public async Task HandleErrorResponse()
         {
+            var command = new GetRecentTracksCommand(MAuth.Object, "rj")
+            {
+                Count = 1
+            };
+
             var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));
 
-            var parsed = await _command.HandleResponse(response);
+            var parsed = await command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
             Assert.IsTrue(parsed.Status == LastResponseStatus.MissingParameters);

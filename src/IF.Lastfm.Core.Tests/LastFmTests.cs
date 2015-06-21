@@ -8,7 +8,6 @@ using Moq;
 
 namespace IF.Lastfm.Core.Tests
 {
-    
     public class LastFmTests
     {
         [Test]

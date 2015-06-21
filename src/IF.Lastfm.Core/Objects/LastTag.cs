@@ -13,6 +13,10 @@ namespace IF.Lastfm.Core.Objects
 
         public int? Count { get; set; }
 
+        public string RelatedTo { get; set; }
+
+        public bool? Streamable { get; set; }
+
         #endregion
 
         public LastTag()
@@ -26,7 +30,7 @@ namespace IF.Lastfm.Core.Objects
             Count = count;
         }
 
-        internal static LastTag ParseJToken(JToken token)
+        internal static LastTag ParseJToken(JToken token, string relatedTag = null)
         {
             var name = token.Value<string>("name");
             var url = token.Value<string>("url");
@@ -38,7 +42,18 @@ namespace IF.Lastfm.Core.Objects
                 count = countToken.ToObject<int?>();
             }
 
-            return new LastTag(name, url, count);
+            bool? streamable = null;
+            var streamableToken = token.SelectToken("streamable");
+            if (streamableToken != null)
+            {
+                streamable = Convert.ToBoolean(streamableToken.Value<int>());
+            }
+
+            return new LastTag(name, url, count)
+            {
+                Streamable = streamable,
+                RelatedTo = relatedTag
+            };
         }
     }
 }

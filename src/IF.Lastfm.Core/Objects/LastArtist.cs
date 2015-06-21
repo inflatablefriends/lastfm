@@ -104,7 +104,7 @@ namespace IF.Lastfm.Core.Objects
                 {
                     a.Tags =
                         tagToken.Type == JTokenType.Array
-                        ? tagToken.Children().Select(LastTag.ParseJToken)
+                        ? tagToken.Children().Select(token1 => LastTag.ParseJToken(token1))
                         : new List<LastTag> { LastTag.ParseJToken(tagToken) };
                 }
             }

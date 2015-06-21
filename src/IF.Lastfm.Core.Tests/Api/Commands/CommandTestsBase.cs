@@ -1,11 +1,5 @@
-﻿using System.Threading.Tasks;
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Api.Commands;
-using IF.Lastfm.Core.Api.Helpers;
-using IF.Lastfm.Core.Objects;
-using NUnit.Framework;
+﻿using IF.Lastfm.Core.Api;
 using Moq;
-using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -29,36 +23,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                            };
 
             return response;
-        }
-
-        private static void JsonCompare(object expected, object actual)
-        {
-            var expectedJson = JsonConvert.SerializeObject(expected, Formatting.Indented);
-            var actualJson = JsonConvert.SerializeObject(actual, Formatting.Indented);
-
-            Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
-        }
-
-        protected async Task CompareResultsSingle(GetAsyncCommandBase<PageResponse<LastTrack>> command, object expected, byte[] resource) 
-        {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(resource));
-
-            var parsed = await command.HandleResponse(response);
-
-            Assert.IsTrue(parsed.Success);
-            var actual = parsed.Content;
-            JsonCompare(expected, actual);
-        }
-
-        protected async Task CompareResultsMultiple(GetAsyncCommandBase<PageResponse<LastTrack>> command, object expected, byte[] resource, int itemIndex) 
-        {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(resource));
-
-            var parsed = await command.HandleResponse(response);
-
-            Assert.IsTrue(parsed.Success);
-            var actual = parsed.Content[itemIndex];
-            JsonCompare(expected, actual);
         }
     }
 }

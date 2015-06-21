@@ -92,6 +92,7 @@
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveScrobbleCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
+    <Compile Include="Api\Commands\Tag\GetSimilarCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
@@ -120,6 +121,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryApiResponses.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\TagApiResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagApiResponses.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\TrackApiResponses.Designer.cs">
       <DependentUpon>TrackApiResponses.resx</DependentUpon>
@@ -167,6 +173,8 @@
     <None Include="Resources\ArtistApi\ArtistGetTopTagsSingle.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
+    <None Include="Resources\Tag\GetSimilarError.json" />
+    <None Include="Resources\Tag\GetSimilarSuccess.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsEmpty.json" />
     <None Include="Resources\TrackApi\TrackGetShoutsError.json" />
@@ -208,6 +216,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LibraryApiResponses.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TagApiResponses.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TagApiResponses.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrackApiResponses.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

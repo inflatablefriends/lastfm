@@ -1,0 +1,58 @@
+{
+  "similartags": {
+    "tag": [
+      {
+        "name": "road trip",
+        "url": "http://www.last.fm/tag/road%20trip",
+        "streamable": "0"
+      },
+      {
+        "name": "longing",
+        "url": "http://www.last.fm/tag/longing"
+      },
+      {
+        "name": "old school rap",
+        "url": "http://www.last.fm/tag/old%20school%20rap",
+        "streamable": "1"
+      },
+      {
+        "name": "pj harvey",
+        "url": "http://www.last.fm/tag/pj%20harvey",
+        "streamable": "1"
+      },
+      {
+        "name": "girl band",
+        "url": "http://www.last.fm/tag/girl%20band",
+        "streamable": "1"
+      },
+      {
+        "name": "alt rock",
+        "url": "http://www.last.fm/tag/alt%20rock",
+        "streamable": "1"
+      },
+      {
+        "name": "female rock",
+        "url": "http://www.last.fm/tag/female%20rock",
+        "streamable": "1"
+      },
+      {
+        "name": "90s",
+        "url": "http://www.last.fm/tag/90s",
+        "streamable": "1"
+      },
+      {
+        "name": "post-grunge",
+        "url": "http://www.last.fm/tag/post-grunge",
+        "streamable": "1"
+      },
+      {
+        "name": "acid jazz",
+        "url": "http://www.last.fm/tag/acid%20jazz",
+        "streamable": "1"
+      }
+    ],
+    "@attr": {
+      "tag": "daria"
+    }
+  }
+}
