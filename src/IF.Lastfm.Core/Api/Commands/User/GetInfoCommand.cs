@@ -8,13 +8,13 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName("user.getInfo")]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastUser>>
     {
         public string Username { get; set; }
 
         public GetInfoCommand(ILastAuth auth, string username) : base(auth)
         {
-            Method = "user.getInfo";
             Username = username;
         }
 

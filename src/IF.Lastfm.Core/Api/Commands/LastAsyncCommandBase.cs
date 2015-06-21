@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace IF.Lastfm.Core.Api.Commands
 {
@@ -11,7 +12,19 @@ namespace IF.Lastfm.Core.Api.Commands
     /// </summary>
     public abstract class LastAsyncCommandBase
     {
-        public string Method { get; protected set; }
+        public string Method
+        {
+            get
+            {
+                var methodNameAttribute = this.GetType().GetTypeInfo().GetCustomAttribute<ApiMethodNameAttribute>();
+                if (methodNameAttribute == null)
+                {
+                    throw new NotImplementedException(@"Could not find an ApiMethodNameAttribute on the current Command implementation.
+This custom attribute must be present on all Commands. For more information, see the ApiMethodNameAttribute documentation.");
+                }
+                return methodNameAttribute.Text;
+            }
+        }
 
         public Dictionary<string, string> Parameters { get; set; }
 

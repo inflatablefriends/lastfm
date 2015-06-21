@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Auth
 {
+    [ApiMethodName("auth.getMobileSession")]
     internal class GetMobileSessionCommand : UnauthenticatedPostAsyncCommandBase<LastResponse<LastUserSession>>
     {
         public string Username { get; set; }
@@ -17,7 +18,6 @@ namespace IF.Lastfm.Core.Api.Commands.Auth
 
         public GetMobileSessionCommand(ILastAuth auth, string username, string password) : base(auth)
         {
-            Method = "auth.getMobileSession";
             Username = username;
             Password = password;
         }

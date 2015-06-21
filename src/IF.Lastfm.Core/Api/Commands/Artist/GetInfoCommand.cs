@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Artist
 {
+    [ApiMethodName("artist.getInfo")]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastArtist>>
     {
         public string ArtistMbid { get; set; }
@@ -19,11 +20,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
 
         public bool Autocorrect { get; set; }
 
-        public GetInfoCommand(ILastAuth auth)
-            : base(auth)
-        {
-            Method = "artist.getInfo";
-        }
+        public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         /// <summary>
         /// TODO Bio language

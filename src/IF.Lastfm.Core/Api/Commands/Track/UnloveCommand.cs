@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.unlove")]
     internal class UnloveCommand : PostAsyncCommandBase<LastResponse>
     {
         public string TrackName { get; set; }
@@ -13,8 +14,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
         public UnloveCommand(ILastAuth auth, string trackname, string artistname)
             : base(auth)
         {
-            Method = "track.unlove";
-
             TrackName = trackname;
             ArtistName = artistname;
         }

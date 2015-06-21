@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName("user.getTopAlbums")]
     internal class GetTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
         public string Username { get; set; }
@@ -14,7 +15,6 @@ namespace IF.Lastfm.Core.Api.Commands.User
 
         public GetTopAlbumsCommand(ILastAuth auth, string username, LastStatsTimeSpan span) : base(auth)
         {
-            Method = "user.getTopAlbums";
             Username = username;
             TimeSpan = span;
         }

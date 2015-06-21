@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.getShouts")]
     internal class GetShoutsCommand : GetAsyncCommandBase<PageResponse<LastShout>>
     {
         public string TrackName { get; set; }
@@ -20,8 +21,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
         public GetShoutsCommand(ILastAuth auth, string trackname, string artistname)
             : base(auth)
         {
-            Method = "track.getShouts";
-
             TrackName = trackname;
             ArtistName = artistname;
         }

@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.getSimilar")]
     internal class GetSimilarCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string ArtistName { get; set; }
@@ -22,8 +23,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
         public GetSimilarCommand(ILastAuth auth, string trackName, string artistName)
             : base(auth)
         {
-            Method = "track.getSimilar";
-
             ArtistName = artistName;
             TrackName = trackName;
         }

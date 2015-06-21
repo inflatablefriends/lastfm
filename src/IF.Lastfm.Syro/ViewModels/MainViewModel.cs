@@ -350,7 +350,7 @@ namespace IF.Lastfm.Syro.ViewModels
                 }
 
                 // reflect on Last.fm assembly to find all implemented commands
-                var allImplemented = Reflektor.GetImplementedCommands().Select(Reflektor.CreateCommand).Select(c => c.Method).ToList();
+                var allImplemented = Reflektor.GetImplementedCommands().Select(x => x.GetCustomAttribute<ApiNameAttribute>().Text).ToList();
 
                 // generate the markdown
                 _reportPath = Path.GetFullPath(SolutionDir + ReportFilename);

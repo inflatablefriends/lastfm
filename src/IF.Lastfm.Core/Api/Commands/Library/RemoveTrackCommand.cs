@@ -3,14 +3,13 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands.Library {
+    [ApiMethodName("library.removeTrack")]
     internal class RemoveTrackCommand : PostAsyncCommandBase<LastResponse> {
         public string Artist { get; set; }
 
         public string Track { get; set; }
 
         public RemoveTrackCommand( ILastAuth auth, string artist, string track) : base( auth ) {
-            Method = "library.removeTrack";
-
             Artist = artist;
             Track = track;
         }

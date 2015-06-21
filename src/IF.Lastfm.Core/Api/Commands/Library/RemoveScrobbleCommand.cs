@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Api.Commands.Library {
+    [ApiMethodName("library.removeScrobble")]
     internal class RemoveScrobbleCommand : PostAsyncCommandBase<LastResponse> {
         public string Artist { get; set; }
 
@@ -15,8 +16,6 @@ namespace IF.Lastfm.Core.Api.Commands.Library {
         public DateTimeOffset Timestamp { get; set; }
 
         public RemoveScrobbleCommand( ILastAuth auth, string artist, string track, DateTimeOffset timestamp ) : base( auth ) {
-            Method = "library.removeScrobble";
-
             Artist = artist;
             Track = track;
             Timestamp = timestamp;

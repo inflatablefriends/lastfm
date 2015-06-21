@@ -8,12 +8,10 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName("user.getRecommendedArtists")]
     internal class GetRecommendedArtistsCommand : PostAsyncCommandBase<PageResponse<LastArtist>>
     {
-        public GetRecommendedArtistsCommand(ILastAuth auth) : base(auth)
-        {
-            Method = "user.getRecommendedArtists";
-        }
+        public GetRecommendedArtistsCommand(ILastAuth auth) : base(auth) { }
 
         public override void SetParameters()
         {

@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.love")]
     internal class LoveCommand : PostAsyncCommandBase<LastResponse>
     {
         public string TrackName { get; set; }
@@ -13,8 +14,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
         public LoveCommand(ILastAuth auth, string trackname, string artistname)
             : base(auth)
         {
-            Method = "track.love";
-
             TrackName = trackname;
             ArtistName = artistname;
         }

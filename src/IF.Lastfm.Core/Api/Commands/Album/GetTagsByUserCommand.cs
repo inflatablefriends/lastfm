@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
+    [ApiMethodName("album.getTags")]
     internal class GetTagsByUserCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
         public string ArtistName { get; set; }
@@ -22,8 +23,6 @@ namespace IF.Lastfm.Core.Api.Commands.Album
         public GetTagsByUserCommand(ILastAuth auth, string artist, string album, string username)
             : base(auth)
         {
-            Method = "album.getTags";
-
             ArtistName = artist;
             AlbumName = album;
             Username = username;

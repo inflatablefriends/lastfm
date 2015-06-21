@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Api.Helpers;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName("user.shout")]
     internal class AddShoutCommand : PostAsyncCommandBase<LastResponse>
     {
         public string Recipient { get; set; }
@@ -13,8 +14,6 @@ namespace IF.Lastfm.Core.Api.Commands.User
         public AddShoutCommand(ILastAuth auth, string recipient, string message)
             : base(auth)
         {
-            Method = "user.shout";
-
             Recipient = recipient;
             Message = message;
         }

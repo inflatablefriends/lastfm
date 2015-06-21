@@ -8,13 +8,10 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Chart
 {
+    [ApiMethodName("chart.getTopTracks")]
     internal class GetTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
-        public GetTopTracksCommand(ILastAuth auth)
-            : base(auth)
-        {
-            Method = "chart.getTopTracks";
-        }
+        public GetTopTracksCommand(ILastAuth auth) : base(auth) { }
 
         public override void SetParameters()
         {

@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.getInfo")]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastTrack>>
     {
         public string TrackMbid { get; set; }
@@ -21,11 +22,7 @@ namespace IF.Lastfm.Core.Api.Commands.Track
 
         public bool Autocorrect { get; set; }
 
-        public GetInfoCommand(ILastAuth auth)
-            : base(auth)
-        {
-            Method = "track.getInfo";
-        }
+        public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         public override void SetParameters()
         {

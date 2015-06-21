@@ -9,13 +9,13 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.User
 {
+    [ApiMethodName("user.getRecentStations")]
     internal class GetRecentStationsCommand : PostAsyncCommandBase<PageResponse<LastStation>>
     {
         public string Username { get; private set; }
 
         public GetRecentStationsCommand(ILastAuth auth, string username) : base(auth)
         {
-            Method = "user.getRecentStations";
             Username = username;
         }
 

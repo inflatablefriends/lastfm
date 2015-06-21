@@ -9,6 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
+    [ApiMethodName("album.getInfo")]
     internal class GetInfoCommand : GetAsyncCommandBase<LastResponse<LastAlbum>>
     {
         public string AlbumMbid { get; set; }
@@ -19,11 +20,7 @@ namespace IF.Lastfm.Core.Api.Commands.Album
 
         public bool Autocorrect { get; set; }
 
-        public GetInfoCommand(ILastAuth auth)
-            : base(auth)
-        {
-            Method = "album.getInfo";
-        }
+        public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         public GetInfoCommand(ILastAuth auth, string album, string artist)
             : this(auth)

@@ -99,6 +99,7 @@
     <Compile Include="Api\Commands\UserGetRecommendedArtistsCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetTopAlbumsCommandTests.cs" />
     <Compile Include="Api\Helpers\ApiHelperTests.cs" />
+    <Compile Include="Api\LastMethodsNamesTests.cs" />
     <Compile Include="Api\LastAuthTests.cs" />
     <Compile Include="Api\MockAlbumApi.cs" />
     <Compile Include="MockLastFm.cs" />

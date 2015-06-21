@@ -10,6 +10,7 @@ using IF.Lastfm.Core.Scrobblers;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.scrobble")]
     internal class ScrobbleCommand : PostAsyncCommandBase<ScrobbleResponse>
     {
         public IList<Scrobble> Scrobbles { get; private set; }
@@ -22,7 +23,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
                 throw new ArgumentOutOfRangeException("scrobbles", "Only 50 scrobbles can be sent at a time");
             }
 
-            Method = "track.scrobble";
             Scrobbles = scrobbles;
         }
 

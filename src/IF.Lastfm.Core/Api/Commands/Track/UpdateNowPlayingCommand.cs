@@ -7,6 +7,7 @@ using IF.Lastfm.Core.Objects;
 
 namespace IF.Lastfm.Core.Api.Commands.Track
 {
+    [ApiMethodName("track.updateNowPlaying")]
     internal class UpdateNowPlayingCommand : PostAsyncCommandBase<LastResponse>
     {
         public string Artist { get; set; }
@@ -24,8 +25,6 @@ namespace IF.Lastfm.Core.Api.Commands.Track
         public UpdateNowPlayingCommand(ILastAuth auth, string artist, string album, string track)
             : base(auth)
         {
-            Method = "track.updateNowPlaying";
-
             Artist = artist;
             Album = album;
             Track = track;

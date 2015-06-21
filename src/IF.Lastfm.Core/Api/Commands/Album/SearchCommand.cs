@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Album
 {
+    [ApiMethodName("album.search")]
     internal class SearchCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
         public string AlbumName { get; set; }
@@ -15,8 +16,6 @@ namespace IF.Lastfm.Core.Api.Commands.Album
         public SearchCommand(ILastAuth auth, string albumName)
             : base(auth)
         {
-            Method = "album.search";
-
             AlbumName = albumName;
         }
 
