@@ -1,0 +1,78 @@
+﻿{
+  "topartists": {
+    "artist": [
+      {
+        "name": "Anathema",
+        "playcount": "5216",
+        "mbid": "20aa23e3-3532-42ca-acf6-e8c2e9df2688",
+        "url": "http://www.last.fm/music/Anathema",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://userserve-ak.last.fm/serve/34/12571597.jpg",
+            "size": "small"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/64/12571597.jpg",
+            "size": "medium"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/126/12571597.jpg",
+            "size": "large"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/252/12571597.jpg",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/_/12571597/Anathema+Judgement+promo.jpg",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "1"
+        }
+      },
+      {
+        "name": "Insomnium",
+        "playcount": "4670",
+        "mbid": "c1f8e226-75ea-4fe6-83ce-59c122bcbca4",
+        "url": "http://www.last.fm/music/Insomnium",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://userserve-ak.last.fm/serve/34/70409268.jpg",
+            "size": "small"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/64/70409268.jpg",
+            "size": "medium"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/126/70409268.jpg",
+            "size": "large"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/252/70409268.jpg",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://userserve-ak.last.fm/serve/500/70409268/Insomnium.jpg",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "2"
+        }
+      }
+    ],
+    "@attr": {
+      "user": "Aurvandil",
+      "type": "overall",
+      "page": "1",
+      "perPage": "2",
+      "totalPages": "562",
+      "total": "1124"
+    }
+  }
+}

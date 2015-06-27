@@ -68,6 +68,7 @@
     <Compile Include="Api\Commands\Track\UpdateNowPlayingCommand.cs" />
     <Compile Include="Api\Commands\UnauthenticatedPostAsyncCommandBase.cs" />
     <Compile Include="Api\Commands\User\GetRecommendedArtistsCommand.cs" />
+    <Compile Include="Api\Commands\User\GetTopArtistsCommand.cs" />
     <Compile Include="Api\ILibraryApi.cs" />
     <Compile Include="Api\ITagApi.cs" />
     <Compile Include="Api\LastfmClient.cs" />
