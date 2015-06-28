@@ -151,4 +151,16 @@
   <data name="UserGetTopAlbumsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>userapi\usergettopalbumssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UserGetTopArtistsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetTopArtistsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopArtistsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetTopArtistsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopArtistsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetTopArtistsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UserGetTopArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetTopArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

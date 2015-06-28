@@ -42,6 +42,18 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
+        public async Task<PageResponse<LastArtist>> GetTopArtists(string username, LastStatsTimeSpan span, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        {
+            var command = new GetTopArtistsCommand(Auth, username, span)
+            {
+                Page = pagenumber,
+                Count = count,
+                HttpClient = HttpClient
+            };
+
+            return await command.ExecuteAsync();
+        }
+
         /// <summary>
         /// Gets a list of recent scrobbled tracks for this user in reverse date order.
         /// </summary>
