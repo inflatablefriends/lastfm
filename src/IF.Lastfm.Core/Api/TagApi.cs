@@ -26,5 +26,12 @@ namespace IF.Lastfm.Core.Api
 
             return command.ExecuteAsync();
         }
+
+        public async Task<LastResponse<LastTag>> GetInfoAsync(string tagName)
+        {
+            var command=new GetInfoCommand(Auth,tagName);
+
+            return await command.ExecuteAsync();
+        }
     }
 }
