@@ -24,6 +24,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             var expectedTag=new LastTag(tagName,tagUri)
             {
                 Reach = 34671,
+                Count = 172224,
                 Streamable = true
             };
 
@@ -37,6 +38,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             Assert.IsTrue(lastResponse.Success);
             Assert.AreEqual(expectedTag.Reach,tag.Reach);
             Assert.AreEqual(expectedTag.Name, tag.Name);
+            Assert.AreEqual(expectedTag.Count, tag.Count);
             Assert.AreEqual(expectedTag.Streamable, tag.Streamable);
         }
 
