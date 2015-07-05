@@ -41,7 +41,7 @@ namespace IF.Lastfm.Core.Objects
             var url = token.Value<string>("url");
 
             int? count = null;
-            var countToken = token.SelectToken("count");
+            var countToken = token.SelectToken("count") ?? token.SelectToken("taggings");
             if (countToken != null)
             {
                 count = countToken.ToObject<int?>();
