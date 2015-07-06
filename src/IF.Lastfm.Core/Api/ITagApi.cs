@@ -7,5 +7,6 @@ namespace IF.Lastfm.Core.Api
     public interface ITagApi
     {
         Task<PageResponse<LastTag>> GetSimilarAsync(string tagName);
+        Task<LastResponse<LastTag>> GetInfoAsync(string tagName);
     }
 }

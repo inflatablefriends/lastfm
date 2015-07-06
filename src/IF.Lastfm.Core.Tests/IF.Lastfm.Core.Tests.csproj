@@ -92,6 +92,7 @@
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveScrobbleCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
+    <Compile Include="Api\Commands\Tag\GetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\Tag\GetSimilarCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
@@ -174,6 +175,8 @@
     <None Include="Resources\ArtistApi\ArtistGetTopTagsSingle.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
+    <None Include="Resources\Tag\GetInfoError.json" />
+    <None Include="Resources\Tag\GetInfoSuccess.json" />
     <None Include="Resources\Tag\GetSimilarError.json" />
     <None Include="Resources\Tag\GetSimilarSuccess.json" />
     <None Include="Resources\TrackApi\TrackGetShouts.json" />

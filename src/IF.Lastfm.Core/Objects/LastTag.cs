@@ -17,6 +17,11 @@ namespace IF.Lastfm.Core.Objects
 
         public bool? Streamable { get; set; }
 
+        /// <summary>
+        /// The number of users that have used this tag
+        /// </summary>
+        public int? Reach { get; set; }
+        
         #endregion
 
         public LastTag()
@@ -36,7 +41,7 @@ namespace IF.Lastfm.Core.Objects
             var url = token.Value<string>("url");
 
             int? count = null;
-            var countToken = token.SelectToken("count");
+            var countToken = token.SelectToken("count") ?? token.SelectToken("taggings");
             if (countToken != null)
             {
                 count = countToken.ToObject<int?>();
@@ -49,10 +54,18 @@ namespace IF.Lastfm.Core.Objects
                 streamable = Convert.ToBoolean(streamableToken.Value<int>());
             }
 
+            int? reach = null;
+            var reachToken = token.SelectToken("reach");
+            if (reachToken != null)
+            {
+                reach = reachToken.ToObject<int?>();
+            }
+
             return new LastTag(name, url, count)
             {
                 Streamable = streamable,
-                RelatedTo = relatedTag
+                RelatedTo = relatedTag,
+                Reach = reach
             };
         }
     }
