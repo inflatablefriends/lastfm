@@ -22,16 +22,38 @@ namespace IF.Lastfm.Core.Api
         /// </summary>
         public Task<PageResponse<LastTag>> GetSimilarAsync(string tagName)
         {
-            var command = new GetSimilarCommand(Auth, tagName);
+            var command = new GetSimilarCommand(Auth, tagName)
+            {
+                HttpClient = HttpClient
+            };
 
             return command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<LastTag>> GetInfoAsync(string tagName)
+        /// <summary>
+        /// Get the metadata for a tag.
+        /// </summary>
+        public Task<LastResponse<LastTag>> GetInfoAsync(string tagName)
         {
-            var command=new GetInfoCommand(Auth,tagName);
+            var command = new GetInfoCommand(Auth, tagName)
+            {
+                HttpClient = HttpClient
+            };
 
-            return await command.ExecuteAsync();
+            return command.ExecuteAsync();
+        }
+
+        /// <summary>
+        /// Fetches the top global tags on Last.fm, sorted by popularity (number of times used).
+        /// </summary>
+        public Task<PageResponse<LastTag>> GetTopTagsAsync()
+        {
+            var command = new GetTopTagsCommand(Auth)
+            {
+                HttpClient = HttpClient
+            };
+
+            return command.ExecuteAsync();
         }
     }
 }

@@ -42,7 +42,6 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             {
                 return LastResponse.CreateErrorResponse<LastResponse<LastTag>>(status);
             }
-
         }
     }
 }

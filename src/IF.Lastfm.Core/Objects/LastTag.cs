@@ -35,7 +35,12 @@ namespace IF.Lastfm.Core.Objects
             Count = count;
         }
 
-        internal static LastTag ParseJToken(JToken token, string relatedTag = null)
+        internal static LastTag ParseJToken(JToken token)
+        {
+            return ParseJToken(token, null);
+        }
+
+        internal static LastTag ParseJToken(JToken token, string relatedTag)
         {
             var name = token.Value<string>("name");
             var url = token.Value<string>("url");
