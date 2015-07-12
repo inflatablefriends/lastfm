@@ -44,6 +44,20 @@ namespace IF.Lastfm.Core.Api
         }
 
         /// <summary>
+        /// Get the top albums tagged by this tag, ordered by tag count.
+        /// </summary>
+        public Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string tagName, int page=1, int itemsPerPage= LastFm.DefaultPageLength)
+        {
+            var command = new GetTopAlbumsCommand(Auth, tagName)
+            {
+                Page = page,
+                Count = itemsPerPage
+            };
+
+            return command.ExecuteAsync();
+        }
+
+        /// <summary>
         /// Fetches the top global tags on Last.fm, sorted by popularity (number of times used).
         /// </summary>
         public Task<PageResponse<LastTag>> GetTopTagsAsync()
