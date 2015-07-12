@@ -24,7 +24,7 @@ https://www.nuget.org/packages/Inflatable.Lastfm/). Search for ```Inflatable.Las
 
 #### NuGet - prerelease code
 
-There is a NuGet package built for every commit to master. Add ```https://ci.appveyor.com/nuget/lastfm-ql51ic53xoqw``` to your NuGet package sources, and install the ```IF.Lastfm.Core``` prerelease package.
+There is a NuGet package built for every commit to master. Add ```https://ci.appveyor.com/nuget/lastfm``` to your NuGet package sources, and install the ```IF.Lastfm.Core``` prerelease package.
 
 #### From source
 
