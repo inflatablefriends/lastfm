@@ -94,6 +94,7 @@
     <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
     <Compile Include="Api\Commands\Tag\GetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\Tag\GetSimilarCommandTests.cs" />
+    <Compile Include="Api\Commands\Tag\GetTopAlbumsCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
@@ -173,6 +174,9 @@
     <None Include="Resources\ArtistApi\ArtistGetTopTagsError.json" />
     <None Include="Resources\ArtistApi\ArtistGetTopTagsMultiple.json" />
     <None Include="Resources\ArtistApi\ArtistGetTopTagsSingle.json" />
+    <None Include="Resources\GetTopAlbumsError.json" />
+    <None Include="Resources\GetTopAlbumsSingle.json" />
+    <None Include="Resources\GetTopAlbumsSuccess.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\Tag\GetInfoError.json" />
