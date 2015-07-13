@@ -50,6 +50,7 @@ namespace IF.Lastfm.Core.Api
         {
             var command = new GetTopAlbumsCommand(Auth, tagName)
             {
+                HttpClient = HttpClient,
                 Page = page,
                 Count = itemsPerPage
             };
