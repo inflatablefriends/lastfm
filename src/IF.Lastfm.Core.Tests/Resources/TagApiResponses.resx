@@ -130,4 +130,13 @@
   <data name="GetSimilarSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>tag\getsimilarsuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GetTopAlbumsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopAlbumsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GetTopAlbumsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopAlbumsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GetTopAlbumsSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopAlbumsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
