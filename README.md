@@ -27,7 +27,7 @@ There is a NuGet package built for every commit to master. Add ```https://ci.app
 
 #### From source
 
-Clone this repo and reference ```IF.Lastfm.Core``` in your application. Your IDE needs to support building portable libraries - Visual Studio 2013 Community or better.
+Clone this repo and reference ```IF.Lastfm.Core``` in your application. Your IDE needs to support C# 6 and portable libraries - Visual Studio 2015 Community or better.
 
 ### Using the SDK
 
