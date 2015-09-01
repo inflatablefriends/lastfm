@@ -1,0 +1,27 @@
+{
+  "scrobbles": {
+    "scrobble": {
+      "track": {
+        "#text": "Hole",
+        "corrected": "0"
+      },
+      "artist": {
+        "#text": "65daysofstatic",
+        "corrected": "0"
+      },
+      "albumArtist": {
+        "#text": "",
+        "corrected": "0"
+      },
+      "timestamp": "1428175531",
+      "ignoredMessage": {
+        "#text": "",
+        "code": "0"
+      }
+    },
+    "@attr": {
+      "accepted": "1",
+      "ignored": "0"
+    }
+  }
+}

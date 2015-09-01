@@ -36,18 +36,12 @@ namespace IF.Lastfm.Core.Objects
 
         internal static Scrobble ParseJToken(JToken token)
         {
-            var album = token["album"]["#text"].Value<string>();
-            var artist = token["artist"]["#text"].Value<string>();
-            var track = token["track"]["#text"].Value<string>();
-            var albumArtist = token["albumArtist"]["#text"].Value<string>();
-            var timestamp = token["timestamp"].Value<double>();
-
-            var ignoredMessage = String.Empty;
-            var ignoredToken = token["ignoredMessage"];
-            if (ignoredToken != null)
-            {
-                ignoredMessage = ignoredToken["#text"].Value<string>();
-            }
+            var album = token.SelectToken("album.#text")?.Value<string>();
+            var artist = token.SelectToken("artist.#text")?.Value<string>();
+            var track = token.SelectToken("track.#text")?.Value<string>();
+            var albumArtist = token.SelectToken("albumArtist.#text")?.Value<string>();
+            var timestamp = token.SelectToken("timestamp").Value<double>();
+            var ignoredMessage = token.SelectToken("ignoredMessage.#text")?.Value<string>();
 
             return new Scrobble(artist, album, track, timestamp.FromUnixTime())
             {
