@@ -2,6 +2,7 @@
   branches:
     only:
       - master
+      - /v.*/
 
   version: 0.2.999.{build}
 
@@ -47,7 +48,7 @@
       - release
 
   # don't forget to update this!
-  version: 0.2.0.{build}
+  version: 0.2.1.{build}
 
   assembly_info:
     patch: true
