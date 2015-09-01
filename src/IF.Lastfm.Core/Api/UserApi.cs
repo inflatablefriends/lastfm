@@ -62,7 +62,7 @@ namespace IF.Lastfm.Core.Api
         /// <param name="pagenumber">Page numbering starts from 1. If set to 0, will not include the "now playing" track</param>
         /// <param name="count">Amount of scrobbles to return for this page.</param>
         /// <returns>Enumerable of LastTrack</returns>
-        public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTimeOffset? since = null, int pagenumber = 0, int count = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTimeOffset? since = null, int pagenumber = 1, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentTracksCommand(Auth, username)
             {

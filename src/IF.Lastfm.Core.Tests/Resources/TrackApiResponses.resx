@@ -145,6 +145,9 @@
   <data name="TrackScrobbleSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TrackApi\TrackScrobbleSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TrackScrobbleSuccessNoAlbumProperty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>trackapi\trackscrobblesuccessnoalbumproperty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="TrackScrobbleTwoRequestBody" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>trackapi\trackscrobbletworequestbody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Objects
@@ -34,28 +35,9 @@ namespace IF.Lastfm.Core.Objects
 
         public Uri Mega { get; set; }
 
-        public Uri Largest
-        {
-            get
-            {
-                return Mega ?? ExtraLarge ?? Large ?? Medium ?? Small;
-            }
-        }
+        public Uri Largest => Mega ?? ExtraLarge ?? Large ?? Medium ?? Small;
 
-        private IEnumerable<Uri> Images
-        {
-            get
-            {
-                return new List<Uri>()
-                       {
-                           Small,
-                           Medium,
-                           Large,
-                           ExtraLarge,
-                           Mega
-                       };
-            }
-        }
+        private IEnumerable<Uri> Images => new [] {Small, Medium, Large, ExtraLarge, Mega}.Where(uri => uri != null);
 
         public static LastImageSet ParseJToken(JToken images)
         {

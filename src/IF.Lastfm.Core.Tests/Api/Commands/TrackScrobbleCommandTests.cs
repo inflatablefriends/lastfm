@@ -50,7 +50,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         }
 
         [Test]
-        public async Task HandlesErrorResponse()
+        public async Task HandlesRejectedResponse()
         {
             var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleRejected));
             var response = await _command.HandleResponse(responseMessage) as ScrobbleResponse;
@@ -58,6 +58,26 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.IsTrue(response.Success);
             Assert.AreEqual(1, response.Ignored.Count());
             Assert.AreEqual("Artist name failed filter: Various", response.Ignored.First().IgnoredReason);
+        }
+
+        [Test]
+        public async Task HandlesSuccessResponse()
+        {
+            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccess));
+            var response = await _command.HandleResponse(responseMessage);
+            
+            Assert.IsTrue(response.Success);
+            Assert.AreEqual(1, response.AcceptedCount);
+        }
+
+        [Test]
+        public async Task HandlesSuccessResponseWhenMissingAlbumProperty()
+        {
+            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccessNoAlbumProperty));
+            var response = await _command.HandleResponse(responseMessage);
+            
+            Assert.IsTrue(response.Success);
+            Assert.AreEqual(1, response.AcceptedCount);
         }
     }
 }
