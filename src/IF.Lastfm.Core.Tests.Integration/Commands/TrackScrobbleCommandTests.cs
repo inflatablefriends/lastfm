@@ -37,23 +37,15 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             Assert.IsTrue(response.Success);
             
-            var testGuid = Guid.Empty;
             var expectedTrack = new LastTrack
             {
                 Name = TRACK_NAME,
                 ArtistName = ARTIST_NAME,
-                AlbumName = ALBUM_NAME,
-                Mbid = testGuid.ToString("D"),
-                ArtistMbid = testGuid.ToString("D"),
-                Url = new Uri("http://www.last.fm/music/Hot+Chip/_/Over+and+Over"),
-                Images = new LastImageSet("http://userserve-ak.last.fm/serve/34s/50921593.png",
-                    "http://userserve-ak.last.fm/serve/64s/50921593.png",
-                    "http://userserve-ak.last.fm/serve/126/50921593.png",
-                    "http://userserve-ak.last.fm/serve/300x300/50921593.png")
+                AlbumName = ALBUM_NAME
             };
             var expectedJson = expectedTrack.TestSerialise();
 
-            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 0, 1);
+            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
             Assert.IsTrue(tracks.Any());
 
             var actual = tracks.Content.First();
@@ -61,11 +53,11 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             TestHelper.AssertSerialiseEqual(trackPlayed, actual.TimePlayed);
             actual.TimePlayed = null;
 
-            // MBIDs returned by last.fm change from time to time, so let's just test that they're there.
-            Assert.IsTrue(Guid.Parse(actual.Mbid) != Guid.Empty);
-            Assert.IsTrue(Guid.Parse(actual.ArtistMbid) != Guid.Empty);
-            actual.Mbid = testGuid.ToString("D");
-            actual.ArtistMbid = testGuid.ToString("D");
+            // Some properties change from time to time; parsing is covered in unit tests
+            actual.Mbid = null;
+            actual.ArtistMbid = null;
+            actual.Images = null;
+            actual.Url = null;
 
             var actualJson = actual.TestSerialise();
 
