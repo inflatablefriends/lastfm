@@ -119,6 +119,7 @@
     <Compile Include="Api\IUserApi.cs" />
     <Compile Include="Api\LibraryApi.cs" />
     <Compile Include="Api\TagApi.cs" />
+    <Compile Include="Objects\LastStats.cs" />
     <Compile Include="Objects\Scrobble.cs" />
     <Compile Include="Api\TrackApi.cs" />
     <Compile Include="Api\UserApi.cs" />

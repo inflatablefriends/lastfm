@@ -57,6 +57,7 @@ namespace IF.Lastfm.Core.Objects
         public List<LastArtist> Similar { get; set; }
         public LastImageSet MainImage { get; set; }
         public int PlayCount { get; set; }
+        public LastStats Stats { get; set; }
 
         #endregion
 
@@ -89,6 +90,12 @@ namespace IF.Lastfm.Core.Objects
             a.Url = new Uri(url, UriKind.Absolute);
 
             a.OnTour = Convert.ToBoolean(token.Value<int>("ontour"));
+
+            var statsToken = token.SelectToken("stats");
+            if (statsToken != null)
+            {
+                a.Stats = LastStats.ParseJToken(statsToken);
+            }
 
             var bioToken = token.SelectToken("bio");
             if (bioToken != null)
