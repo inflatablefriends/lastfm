@@ -6,12 +6,6 @@ using Newtonsoft.Json.Linq;
 namespace IF.Lastfm.Core.Objects
 {
     /// <summary>
-    /// Todo stats
-    /// "stats": {
-    ///   "listeners": "513447",
-    ///   "playcount": "16319896"
-    /// }
-    /// 
     /// TODO streamable
     /// "streamable": "0"
     /// 

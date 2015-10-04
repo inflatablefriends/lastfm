@@ -1,16 +1,16 @@
-﻿using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Objects;
-using IF.Lastfm.Core.Tests.Resources;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.Artist;
+using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Objects;
+using IF.Lastfm.Core.Tests.Resources;
+using NUnit.Framework;
 
-namespace IF.Lastfm.Core.Tests.Api.Commands
+namespace IF.Lastfm.Core.Tests.Api.Commands.Artist
 {
-    public class ArtistGetInfoCommandTests : CommandTestsBase
+    public class GetInfoCommandTests : CommandTestsBase
     {
         private GetInfoCommand _command;
 
