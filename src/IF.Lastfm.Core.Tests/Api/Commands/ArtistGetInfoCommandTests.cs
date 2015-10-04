@@ -105,6 +105,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     Summary = "Frightened Rabbit are an <a href=\"http://www.last.fm/tag/indie%20rock\" class=\"bbcode_tag\" rel=\"tag\">indie rock</a> band which formed in 2003 in Glasgow, Scotland. The band currently consists of Scott Hutchison (vocals, guitar), Billy Kennedy (guitar, keyboards), Grant Hutchison (drums, vocals), Andy Monaghan (guitar, keyboards) and Gordon Skene (guitar, keyboards). The band has released four albums: &quot;Sing the Greys&quot; (2006), &quot;The Midnight Organ Fight&quot; (2008), &quot;The Winter of Mixed Drinks&quot; (2010) and &quot;Pedestrian Verse&quot; (2013).  \n\n        <a href=\"http://www.last.fm/music/Frightened+Rabbit\">Read more about Frightened Rabbit on Last.fm</a>.",
                     Published = new DateTimeOffset(2013, 2, 6, 0, 4, 40, TimeSpan.Zero),
                     YearFormed = 2003
+                },
+                Stats = new LastStats
+                {
+                    Listeners = 513447,
+                    Plays = 0
                 }
             };
 
