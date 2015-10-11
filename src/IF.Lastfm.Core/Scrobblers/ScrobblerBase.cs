@@ -15,6 +15,8 @@ namespace IF.Lastfm.Core.Scrobblers
     {
         private readonly ILastAuth _auth;
 
+        public event EventHandler<ScrobbleResponse> AfterSend;
+
         public bool CacheEnabled { get; protected set; }
 
         internal int MaxBatchSize { get; set; }
@@ -102,6 +104,8 @@ namespace IF.Lastfm.Core.Scrobblers
 
             var ignoredScrobbles = responses.SelectMany(r => r.Ignored);
             scrobblerResponse.Ignored = ignoredScrobbles;
+
+            AfterSend?.Invoke(this, scrobblerResponse);
 
             return scrobblerResponse;
         }
