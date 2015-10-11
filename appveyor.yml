@@ -28,6 +28,7 @@
     - ps: pushd .nuget
     - ps: .\pack.ps1 -versionSuffix prerelease
     - ps: popd
+    - ps: cp .\.nuget\*.nupkg . 
 
   artifacts:
     - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
