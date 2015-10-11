@@ -34,7 +34,7 @@ if ([string]::IsNullOrEmpty($sqliteVersion)){
 	Write-Host "Couldn't read version to use for SQLite package" -Foreground red
 }
 else {
-	if ($versionStr.startswith($sqliteVersion)) {
+	if ($versionStr.endswith("prerelease") -or $versionStr.startswith($sqliteVersion)) {
 		CompileNuspec "$root\src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll" "Inflatable.Lastfm.SQLite"
 	}
 	else {
