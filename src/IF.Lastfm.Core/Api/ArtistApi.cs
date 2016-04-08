@@ -67,8 +67,21 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastArtist>> GetSimilarAsync(string artistname, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
         {
-            var command = new GetSimilarCommand(Auth, artistname)
+            var command = new GetSimilarCommand(Auth)
             {
+                ArtistName = artistname,
+                Autocorrect = autocorrect,
+                Limit = limit,
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastArtist>> GetSimilarAsyncMbidAsync(string mbid, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
+        {
+            var command = new GetSimilarCommand(Auth)
+            {
+                ArtistMbid = mbid,
                 Autocorrect = autocorrect,
                 Limit = limit,
                 HttpClient = HttpClient
