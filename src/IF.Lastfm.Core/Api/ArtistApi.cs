@@ -77,7 +77,7 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastArtist>> GetSimilarAsyncMbidAsync(string mbid, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastArtist>> GetSimilarByMbidAsync(string mbid, bool autocorrect = false, int limit = LastFm.DefaultPageLength)
         {
             var command = new GetSimilarCommand(Auth)
             {

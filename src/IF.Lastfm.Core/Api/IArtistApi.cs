@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Api
 
         Task<PageResponse<LastArtist>> GetSimilarAsync(string artistname, bool autocorrect = false, int limit = 100);
 
-        Task<PageResponse<LastArtist>> GetSimilarAsyncMbidAsync(string mbid, bool autocorrect = false, int limit = 100);
+        Task<PageResponse<LastArtist>> GetSimilarByMbidAsync(string mbid, bool autocorrect = false, int limit = 100);
 
         Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string artist,
             bool autocorrect = false,
