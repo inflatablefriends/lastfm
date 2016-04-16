@@ -14,19 +14,28 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
     {
         public bool Autocorrect { get; set; }
 
+        public string ArtistMbid { get; set; }
+
         public string ArtistName { get; set; }
 
         public int? Limit { get; set; }
 
-        public GetSimilarCommand(ILastAuth auth, string artistName)
-            : base(auth)
-        {
-            ArtistName = artistName;
-        }
+        public GetSimilarCommand(ILastAuth auth)
+            : base(auth){}
+
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
+
+            if (ArtistMbid != null)
+            {
+                Parameters.Add("mbid", ArtistMbid);
+            }
+            else
+            {
+                Parameters.Add("artist", ArtistName);
+            }
+
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             if (Limit != null)
@@ -37,7 +46,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
