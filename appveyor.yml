@@ -49,7 +49,7 @@
       - release
 
   # don't forget to update this!
-  version: 0.2.2.{build}
+  version: 0.2.3.{build}
 
   assembly_info:
     patch: true
