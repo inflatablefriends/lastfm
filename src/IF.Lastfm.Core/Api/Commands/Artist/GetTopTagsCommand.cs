@@ -12,18 +12,27 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
     [ApiMethodName("artist.getTopTags")]
     internal class GetTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
+        public string ArtistMbid { get; set; }
+
         public string ArtistName { get; set; }
 
         public bool Autocorrect { get; set; }
 
-        public GetTopTagsCommand(ILastAuth auth, string artistName) : base(auth)
+        public GetTopTagsCommand(ILastAuth auth) : base(auth)
         {
-            ArtistName = artistName;
+     
         }
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
+            if (ArtistMbid != null)
+            {
+                Parameters.Add("mbid", ArtistMbid);
+            }
+            else
+            {
+                Parameters.Add("artist", ArtistName);
+            }
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
         }
 

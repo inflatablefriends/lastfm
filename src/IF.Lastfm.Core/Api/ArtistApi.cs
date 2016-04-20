@@ -104,14 +104,28 @@ namespace IF.Lastfm.Core.Api
 
         public Task<PageResponse<LastTag>> GetTopTagsAsync(string artist, bool autocorrect = false)
         {
-            var command = new GetTopTagsCommand(Auth, artist)
+            var command = new GetTopTagsCommand(Auth)
             {
+                ArtistName = artist,
                 Autocorrect = autocorrect,
                 HttpClient = HttpClient
             };
 
             return command.ExecuteAsync();
         }
+
+        public Task<PageResponse<LastTag>> GetTopTagsByMbidAsync(string mbid, bool autocorrect = false)
+        {
+            var command = new GetTopTagsCommand(Auth)
+            {
+                ArtistMbid = mbid,
+                Autocorrect = autocorrect,
+                HttpClient = HttpClient
+            };
+
+            return command.ExecuteAsync();
+        }
+
 
         public async Task<PageResponse<LastShout>> GetShoutsAsync(string artist, int page = 0, int count = LastFm.DefaultPageLength, bool autocorrect = false)
         {
