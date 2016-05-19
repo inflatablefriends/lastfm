@@ -74,6 +74,21 @@ namespace IF.Lastfm.Core.Api
 		}
 
 		/// <summary>
+		/// Get the top artists tagged by this tag, ordered by tag count.
+		/// </summary>
+		public Task<PageResponse<LastTrack>> GetTopTracksAsync(string tagName, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+		{
+			var command = new GetTopTracksCommand(Auth, tagName)
+			{
+				HttpClient = HttpClient,
+				Page = page,
+				Count = itemsPerPage
+			};
+
+			return command.ExecuteAsync();
+		}
+
+		/// <summary>
 		/// Fetches the top global tags on Last.fm, sorted by popularity (number of times used).
 		/// </summary>
 		public Task<PageResponse<LastTag>> GetTopTagsAsync()

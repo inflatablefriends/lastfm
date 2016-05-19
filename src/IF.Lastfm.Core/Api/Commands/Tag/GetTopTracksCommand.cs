@@ -12,12 +12,12 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Tag
 {
-    [ApiMethodName("tag.getTopTracks")]
-    internal class GetTopTracksCommand: GetAsyncCommandBase<PageResponse<LastTrack>>
+    [ApiMethodName("tag.getTopArtists")]
+    internal class GetTopArtistsCommand: GetAsyncCommandBase<PageResponse<LastArtist>>
     {
         public string TagName { get; set; }
 
-        public GetTopTracksCommand(ILastAuth auth, string tagName) : base(auth)
+        public GetTopArtistsCommand(ILastAuth auth, string tagName) : base(auth)
         {
             TagName = tagName;
         }
@@ -29,7 +29,7 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
+        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -37,14 +37,14 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("toptracks");
-                var itemsToken = resultsToken.SelectToken("track");
+                var resultsToken = jtoken.SelectToken("topartists");
+                var itemsToken = resultsToken.SelectToken("artist");
 
-                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, resultsToken, LastTrack.ParseJToken, LastPageResultsType.Attr);
+                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(status);
+                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(status);
             }
         }
     }
