@@ -66,6 +66,7 @@
     <Compile Include="Api\Commands\Tag\GetInfoCommand.cs" />
     <Compile Include="Api\Commands\Tag\GetSimilarCommand.cs" />
     <Compile Include="Api\Commands\Tag\GetTopAlbumsCommand.cs" />
+    <Compile Include="Api\Commands\Tag\GetTopArtistsCommand.cs" />
     <Compile Include="Api\Commands\Tag\GetTopTagsCommand.cs" />
     <Compile Include="Api\Commands\Track\ScrobbleCommand.cs" />
     <Compile Include="Api\Commands\Track\UpdateNowPlayingCommand.cs" />

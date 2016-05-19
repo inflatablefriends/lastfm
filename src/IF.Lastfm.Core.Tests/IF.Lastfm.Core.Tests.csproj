@@ -95,6 +95,7 @@
     <Compile Include="Api\Commands\Tag\GetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\Tag\GetSimilarCommandTests.cs" />
     <Compile Include="Api\Commands\Tag\GetTopAlbumsCommandTests.cs" />
+    <Compile Include="Api\Commands\Tag\GetTopArtistsCommandTests.cs" />
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\Artist\GetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
@@ -146,6 +147,10 @@
     <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\GetTopArtistsError.json" />
+    <None Include="Resources\GetTopArtistsSingle.json" />
+    <None Include="Resources\GetTopArtistsSuccess.json" />
+    <None Include="Resources\GetTopArtistsSuccess.txt" />
     <Content Include="Resources\TrackApi\TrackScrobbleTwoRequestBody.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>

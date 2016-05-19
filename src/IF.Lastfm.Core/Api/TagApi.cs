@@ -58,10 +58,25 @@ namespace IF.Lastfm.Core.Api
             return command.ExecuteAsync();
         }
 
-        /// <summary>
-        /// Fetches the top global tags on Last.fm, sorted by popularity (number of times used).
-        /// </summary>
-        public Task<PageResponse<LastTag>> GetTopTagsAsync()
+		/// <summary>
+		/// Get the top artists tagged by this tag, ordered by tag count.
+		/// </summary>
+		public Task<PageResponse<LastArtist>> GetTopArtistsAsync(string tagName, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+		{
+			var command = new GetTopArtistsCommand(Auth, tagName)
+			{
+				HttpClient = HttpClient,
+				Page = page,
+				Count = itemsPerPage
+			};
+
+			return command.ExecuteAsync();
+		}
+
+		/// <summary>
+		/// Fetches the top global tags on Last.fm, sorted by popularity (number of times used).
+		/// </summary>
+		public Task<PageResponse<LastTag>> GetTopTagsAsync()
         {
             var command = new GetTopTagsCommand(Auth)
             {

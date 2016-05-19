@@ -1,0 +1,633 @@
+{
+  "topartists": {
+    "artist": [
+      {
+        "name": "Bee Gees",
+        "mbid": "bf0f7e29-dfe1-416c-b5c6-f9ebc19ea810",
+        "url": "http://www.last.fm/music/Bee+Gees",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/f578a22860c84a6bb0d253489b901487.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/f578a22860c84a6bb0d253489b901487.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/f578a22860c84a6bb0d253489b901487.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/f578a22860c84a6bb0d253489b901487.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/f578a22860c84a6bb0d253489b901487.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "1"
+        }
+      },
+      {
+        "name": "Boney M.",
+        "mbid": "5403bf6e-bc1d-4e62-b31f-926a2bf66a14",
+        "url": "http://www.last.fm/music/Boney+M.",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/de3d471c7aef48678a55d574ed9951cf.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/de3d471c7aef48678a55d574ed9951cf.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/de3d471c7aef48678a55d574ed9951cf.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/de3d471c7aef48678a55d574ed9951cf.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/de3d471c7aef48678a55d574ed9951cf.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "2"
+        }
+      },
+      {
+        "name": "Donna Summer",
+        "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14",
+        "url": "http://www.last.fm/music/Donna+Summer",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/7509c48ae4b7431aad25b440afdab948.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/7509c48ae4b7431aad25b440afdab948.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/7509c48ae4b7431aad25b440afdab948.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/7509c48ae4b7431aad25b440afdab948.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/7509c48ae4b7431aad25b440afdab948.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "3"
+        }
+      },
+      {
+        "name": "Grace Jones",
+        "mbid": "b1c124b3-cf60-41a6-8699-92728c8a3fe0",
+        "url": "http://www.last.fm/music/Grace+Jones",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/e6ed01b476bd456a9f77c2a427978eb7.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/e6ed01b476bd456a9f77c2a427978eb7.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/e6ed01b476bd456a9f77c2a427978eb7.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/e6ed01b476bd456a9f77c2a427978eb7.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/e6ed01b476bd456a9f77c2a427978eb7.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "4"
+        }
+      },
+      {
+        "name": "KC and The Sunshine Band",
+        "mbid": "76a5a114-ed6a-4eb6-8a81-ad5768d4b41c",
+        "url": "http://www.last.fm/music/KC+and+The+Sunshine+Band",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/b594797fb7a84332c3b5b61bc9b337dd.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/b594797fb7a84332c3b5b61bc9b337dd.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/b594797fb7a84332c3b5b61bc9b337dd.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/b594797fb7a84332c3b5b61bc9b337dd.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/b594797fb7a84332c3b5b61bc9b337dd.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "5"
+        }
+      },
+      {
+        "name": "Giorgio Moroder",
+        "mbid": "38dd6337-19ae-4793-ab4b-313eff523457",
+        "url": "http://www.last.fm/music/Giorgio+Moroder",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/c8b9259e354ed2574317cfc01cf5789c.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/c8b9259e354ed2574317cfc01cf5789c.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/c8b9259e354ed2574317cfc01cf5789c.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/c8b9259e354ed2574317cfc01cf5789c.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/c8b9259e354ed2574317cfc01cf5789c.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "6"
+        }
+      },
+      {
+        "name": "Chic",
+        "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255",
+        "url": "http://www.last.fm/music/Chic",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/f8500e970464411893b153fbe43d369a.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/f8500e970464411893b153fbe43d369a.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/f8500e970464411893b153fbe43d369a.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/f8500e970464411893b153fbe43d369a.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/f8500e970464411893b153fbe43d369a.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "7"
+        }
+      },
+      {
+        "name": "The Pointer Sisters",
+        "mbid": "81bac815-97c5-4723-8f0b-4d8edfad1010",
+        "url": "http://www.last.fm/music/The+Pointer+Sisters",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/2ba2c14bae894091922851833ab69d16.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/2ba2c14bae894091922851833ab69d16.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/2ba2c14bae894091922851833ab69d16.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/2ba2c14bae894091922851833ab69d16.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/2ba2c14bae894091922851833ab69d16.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "8"
+        }
+      },
+      {
+        "name": "Gloria Gaynor",
+        "mbid": "d5c51c36-ac67-4727-91ed-ee9f0df81a2d",
+        "url": "http://www.last.fm/music/Gloria+Gaynor",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/31da00e6d84848fcc897eeae8dcbb7b5.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/31da00e6d84848fcc897eeae8dcbb7b5.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/31da00e6d84848fcc897eeae8dcbb7b5.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/31da00e6d84848fcc897eeae8dcbb7b5.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/31da00e6d84848fcc897eeae8dcbb7b5.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "9"
+        }
+      },
+      {
+        "name": "Hot Chocolate",
+        "mbid": "a749130e-c2d8-4a7c-b740-908ea4574961",
+        "url": "http://www.last.fm/music/Hot+Chocolate",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/d356df071f5e45c59c59591bee990baf.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/d356df071f5e45c59c59591bee990baf.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/d356df071f5e45c59c59591bee990baf.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/d356df071f5e45c59c59591bee990baf.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/d356df071f5e45c59c59591bee990baf.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "10"
+        }
+      },
+      {
+        "name": "Village People",
+        "mbid": "f19d3d49-be22-4ca6-9903-64d86984fbf2",
+        "url": "http://www.last.fm/music/Village+People",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/e299e0d3630f468f9fed9fa0b73595a1.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/e299e0d3630f468f9fed9fa0b73595a1.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/e299e0d3630f468f9fed9fa0b73595a1.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/e299e0d3630f468f9fed9fa0b73595a1.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/e299e0d3630f468f9fed9fa0b73595a1.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "11"
+        }
+      },
+      {
+        "name": "Sister Sledge",
+        "mbid": "1ed00158-c6a3-45cd-819c-2f91997fc480",
+        "url": "http://www.last.fm/music/Sister+Sledge",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/ec67c493a44a4bd38b1340a8ca1422d3.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/ec67c493a44a4bd38b1340a8ca1422d3.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/ec67c493a44a4bd38b1340a8ca1422d3.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/ec67c493a44a4bd38b1340a8ca1422d3.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/ec67c493a44a4bd38b1340a8ca1422d3.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "12"
+        }
+      },
+      {
+        "name": "Lipps, Inc.",
+        "mbid": "9f47e427-c31c-49fe-90d6-92ab6029d405",
+        "url": "http://www.last.fm/music/Lipps,+Inc.",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/ceb986e3184989759ec0b8e2331fa8c3.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/ceb986e3184989759ec0b8e2331fa8c3.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/ceb986e3184989759ec0b8e2331fa8c3.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/ceb986e3184989759ec0b8e2331fa8c3.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/ceb986e3184989759ec0b8e2331fa8c3.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "13"
+        }
+      },
+      {
+        "name": "Santa Esmeralda",
+        "mbid": "b233a9a9-2538-4c5b-986a-5843650e2611",
+        "url": "http://www.last.fm/music/Santa+Esmeralda",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/7da928d4c68144958765c8f288430fe9.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/7da928d4c68144958765c8f288430fe9.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/7da928d4c68144958765c8f288430fe9.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/7da928d4c68144958765c8f288430fe9.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/7da928d4c68144958765c8f288430fe9.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "14"
+        }
+      },
+      {
+        "name": "Shalamar",
+        "mbid": "8e57b7d5-4548-4e2b-b32d-af4b4a51cb80",
+        "url": "http://www.last.fm/music/Shalamar",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/d3e255993db84229a442c6a64eb357bf.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/d3e255993db84229a442c6a64eb357bf.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/d3e255993db84229a442c6a64eb357bf.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/d3e255993db84229a442c6a64eb357bf.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/d3e255993db84229a442c6a64eb357bf.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "15"
+        }
+      },
+      {
+        "name": "Baccara",
+        "mbid": "d17a5888-7775-4541-85d6-f6344f9e93b7",
+        "url": "http://www.last.fm/music/Baccara",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/1fb5f7e9213447f681faa2c5bf8efa1a.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/1fb5f7e9213447f681faa2c5bf8efa1a.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/1fb5f7e9213447f681faa2c5bf8efa1a.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/1fb5f7e9213447f681faa2c5bf8efa1a.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/1fb5f7e9213447f681faa2c5bf8efa1a.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "16"
+        }
+      },
+      {
+        "name": "The Trammps",
+        "mbid": "8799413d-7df8-4eb9-8542-af8cea6b0feb",
+        "url": "http://www.last.fm/music/The+Trammps",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/7f5e23562f1542d8afdb88ea65396f8e.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/7f5e23562f1542d8afdb88ea65396f8e.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/7f5e23562f1542d8afdb88ea65396f8e.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/7f5e23562f1542d8afdb88ea65396f8e.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/7f5e23562f1542d8afdb88ea65396f8e.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "17"
+        }
+      },
+      {
+        "name": "Carl Douglas",
+        "mbid": "2100ca6c-5a1d-463e-b50b-7e649debc454",
+        "url": "http://www.last.fm/music/Carl+Douglas",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/d5aaab08b6f7406a9256a799907e60a5.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/d5aaab08b6f7406a9256a799907e60a5.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/d5aaab08b6f7406a9256a799907e60a5.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/d5aaab08b6f7406a9256a799907e60a5.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/d5aaab08b6f7406a9256a799907e60a5.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "18"
+        }
+      },
+      {
+        "name": "Tavares",
+        "mbid": "f1bb3057-05ab-4cce-b5cc-921bb1b6e1b7",
+        "url": "http://www.last.fm/music/Tavares",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/b395bd2946f849a695b09d7873cd8c91.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/b395bd2946f849a695b09d7873cd8c91.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/b395bd2946f849a695b09d7873cd8c91.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/b395bd2946f849a695b09d7873cd8c91.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/b395bd2946f849a695b09d7873cd8c91.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "19"
+        }
+      },
+      {
+        "name": "Dschinghis Khan",
+        "mbid": "5898a370-5c9e-4924-97b1-c72b7e0452ca",
+        "url": "http://www.last.fm/music/Dschinghis+Khan",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/34s/fbca141c5b0747ad99b2926c642478d0.png",
+            "size": "small"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/64s/fbca141c5b0747ad99b2926c642478d0.png",
+            "size": "medium"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/174s/fbca141c5b0747ad99b2926c642478d0.png",
+            "size": "large"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/300x300/fbca141c5b0747ad99b2926c642478d0.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "http://img2-ak.lst.fm/i/u/fbca141c5b0747ad99b2926c642478d0.png",
+            "size": "mega"
+          }
+        ],
+        "@attr": {
+          "rank": "20"
+        }
+      }
+    ],
+    "@attr": {
+      "tag": "disco",
+      "page": "1",
+      "perPage": "20",
+      "totalPages": "274",
+      "total": "5474"
+    }
+  }
+}

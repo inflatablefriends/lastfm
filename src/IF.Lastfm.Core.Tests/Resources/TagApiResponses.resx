@@ -139,4 +139,13 @@
   <data name="GetTopAlbumsSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>GetTopAlbumsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GetTopArtistsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopArtistsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GetTopArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GetTopArtistsSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>GetTopArtistsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
