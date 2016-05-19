@@ -4,7 +4,7 @@
       - master
       - /v.*/
 
-  version: 0.3.{build}.{patch}
+  version: 0.3.{build}.0
 
   assembly_info:
     patch: true
