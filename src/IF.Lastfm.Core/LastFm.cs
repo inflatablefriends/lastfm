@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
-using IF.Lastfm.Core.Api.Commands;
 
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests")]
 [assembly: InternalsVisibleTo("IF.Lastfm.Core.Tests.Integration")]

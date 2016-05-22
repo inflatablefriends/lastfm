@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
         }
 
-        public async override Task<PageResponse<LastTag>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastTag>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 

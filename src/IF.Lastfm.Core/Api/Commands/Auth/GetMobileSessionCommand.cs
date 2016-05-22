@@ -33,7 +33,7 @@ namespace IF.Lastfm.Core.Api.Commands.Auth
             Parameters.Add("password", Password);
         }
 
-        public async override Task<LastResponse<LastUserSession>> HandleResponse(HttpResponseMessage response)
+        public override async Task<LastResponse<LastUserSession>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

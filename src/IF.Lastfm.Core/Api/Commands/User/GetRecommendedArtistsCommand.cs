@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Api.Commands.User
             AddPagingParameters();
         }
 
-        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

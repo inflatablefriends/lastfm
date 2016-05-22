@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -12,12 +8,12 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Api.Commands.Tag
 {
-    [ApiMethodName("tag.getTopArtists")]
-    internal class GetTopArtistsCommand: GetAsyncCommandBase<PageResponse<LastArtist>>
+    [ApiMethodName("tag.getTopTracks")]
+    internal class GetTopTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
         public string TagName { get; set; }
 
-        public GetTopArtistsCommand(ILastAuth auth, string tagName) : base(auth)
+        public GetTopTracksCommand(ILastAuth auth, string tagName) : base(auth)
         {
             TagName = tagName;
         }
@@ -29,7 +25,7 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
@@ -37,14 +33,14 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("topartists");
-                var itemsToken = resultsToken.SelectToken("artist");
+                var resultsToken = jtoken.SelectToken("toptracks");
+                var itemsToken = resultsToken.SelectToken("track");
 
-                return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, LastPageResultsType.Attr);
+                return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, resultsToken, LastTrack.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(status);
+                return LastResponse.CreateErrorResponse<PageResponse<LastTrack>>(status);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
 
@@ -29,7 +28,7 @@ namespace IF.Lastfm.Core.Api.Commands.Album
             Parameters.Add("message", Message);
         }
 
-        public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
+        public override async Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
             return await LastResponse.HandleResponse(response);
         }

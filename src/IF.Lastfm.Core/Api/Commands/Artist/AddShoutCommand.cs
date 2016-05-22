@@ -23,7 +23,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             Parameters.Add("message", Message);
         }
 
-        public async override Task<LastResponse> HandleResponse(HttpResponseMessage response)
+        public override async Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
             return await LastResponse.HandleResponse(response);
         }

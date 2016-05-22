@@ -44,7 +44,7 @@ namespace IF.Lastfm.Core.Api.Helpers
             return r;
         }
 
-        public async static Task<LastResponse> HandleResponse(HttpResponseMessage response)
+        public static async Task<LastResponse> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

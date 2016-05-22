@@ -44,7 +44,7 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             }
         }
 
-        public async override Task<LastResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
+        public override async Task<LastResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

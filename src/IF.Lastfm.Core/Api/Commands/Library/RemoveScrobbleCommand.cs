@@ -2,10 +2,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
-using IF.Lastfm.Core.Api.Enums;
-using IF.Lastfm.Core.Objects;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 
 namespace IF.Lastfm.Core.Api.Commands.Library {
     [ApiMethodName("library.removeScrobble")]
@@ -28,7 +24,7 @@ namespace IF.Lastfm.Core.Api.Commands.Library {
             Parameters.Add( "timestamp", Timestamp.AsUnixTime().ToString() );
         }
 
-        public async override Task<LastResponse> HandleResponse( HttpResponseMessage response ) {
+        public override async Task<LastResponse> HandleResponse( HttpResponseMessage response ) {
             return await LastResponse.HandleResponse( response );
         }
     }

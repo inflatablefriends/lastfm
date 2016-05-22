@@ -42,7 +42,7 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastTrack>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

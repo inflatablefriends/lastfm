@@ -24,7 +24,7 @@ namespace IF.Lastfm.Core.Helpers
             _queuedResponses.Enqueue(message);
         }
 
-        protected async override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Sent.Add(Tuple.Create(request, await request.Content.ReadAsStringAsync()));
             var response = _queuedResponses.Dequeue()

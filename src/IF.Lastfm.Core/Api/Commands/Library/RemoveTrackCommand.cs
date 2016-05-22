@@ -20,7 +20,7 @@ namespace IF.Lastfm.Core.Api.Commands.Library {
             Parameters.Add( "track", Track );
         }
 
-        public async override Task<LastResponse> HandleResponse( HttpResponseMessage response ) {
+        public override async Task<LastResponse> HandleResponse( HttpResponseMessage response ) {
             return await LastResponse.HandleResponse( response );
         }
     }

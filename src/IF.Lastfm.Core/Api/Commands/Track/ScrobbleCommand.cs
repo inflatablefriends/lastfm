@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -51,7 +50,7 @@ namespace IF.Lastfm.Core.Api.Commands.Track
             }
         }
 
-        public async override Task<ScrobbleResponse> HandleResponse(HttpResponseMessage response)
+        public override async Task<ScrobbleResponse> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

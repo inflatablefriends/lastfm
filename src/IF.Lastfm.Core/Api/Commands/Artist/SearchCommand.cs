@@ -27,7 +27,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             DisableCaching();
         }
 
-        public async override Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
+        public override async Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 

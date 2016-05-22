@@ -26,7 +26,7 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             DisableCaching();
         }
 
-        public async override Task<LastResponse<LastTag>> HandleResponse(HttpResponseMessage response)
+        public override async Task<LastResponse<LastTag>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
 
