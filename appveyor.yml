@@ -4,7 +4,7 @@
       - master
       - /v.*/
 
-  version: 0.2.999.{build}
+  version: 0.3.{build}.0
 
   assembly_info:
     patch: true
@@ -49,7 +49,7 @@
       - release
 
   # don't forget to update this!
-  version: 0.2.3.{build}
+  version: 0.3.0.{build}
 
   assembly_info:
     patch: true
