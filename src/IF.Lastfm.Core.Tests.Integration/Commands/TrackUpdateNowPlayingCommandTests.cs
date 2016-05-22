@@ -35,18 +35,19 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 Name = TRACK_NAME,
                 ArtistName = ARTIST_NAME,
                 AlbumName = ALBUM_NAME,
-                Mbid = "1b9ee1d8-c5a7-44d9-813e-85beb0d59f1b",
-                ArtistMbid = "b1570544-93ab-4b2b-8398-131735394202",
-                Url = new Uri("http://www.last.fm/music/Crystal+Castles/_/Not+in+Love"),
-                Images = new LastImageSet("http://userserve-ak.last.fm/serve/34s/61473043.png",
-                    "http://userserve-ak.last.fm/serve/64s/61473043.png",
-                    "http://userserve-ak.last.fm/serve/126/61473043.png",
-                    "http://userserve-ak.last.fm/serve/300x300/61473043.png"),
                 IsNowPlaying = true
             };
 
+            var actual = tracks.Content.First();
+
+            // Some properties change from time to time
+            actual.Mbid = null;
+            actual.ArtistMbid = null;
+            actual.Images = null;
+            actual.Url = null;
+
             var expectedJson = expectedTrack.TestSerialise();
-            var actualJson = tracks.Content.FirstOrDefault().TestSerialise();
+            var actualJson = actual.TestSerialise();
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
