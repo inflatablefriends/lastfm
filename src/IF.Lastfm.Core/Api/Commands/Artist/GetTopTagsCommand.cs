@@ -12,18 +12,40 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
     [ApiMethodName("artist.getTopTags")]
     internal class GetTopTagsCommand : GetAsyncCommandBase<PageResponse<LastTag>>
     {
+        public string ArtistMbid { get; set; }
+
         public string ArtistName { get; set; }
 
         public bool Autocorrect { get; set; }
 
-        public GetTopTagsCommand(ILastAuth auth, string artistName) : base(auth)
+        public GetTopTagsCommand(ILastAuth auth) : base(auth)
         {
-            ArtistName = artistName;
         }
-
+        
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
+            var hasMbid = !string.IsNullOrEmpty(ArtistMbid);
+            var hasName = !string.IsNullOrEmpty(ArtistName);
+
+            if (!hasMbid && !hasName)
+            {
+                throw new InvalidOperationException($"Either {nameof(ArtistMbid)} or {nameof(ArtistName)} must be set");
+            }
+
+            if (hasMbid && hasName)
+            {
+                throw new InvalidOperationException($"");
+            }
+
+            if (hasMbid)
+            {
+                Parameters.Add("mbid", ArtistMbid);
+            }
+            else
+            {
+                Parameters.Add("artist", ArtistName);
+            }
+
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
         }
 
@@ -38,7 +60,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
                 var resultsToken = jtoken.SelectToken("toptags");
                 var itemsToken = resultsToken.SelectToken("tag");
 
-                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, token => LastTag.ParseJToken(token));
+                return PageResponse<LastTag>.CreateSuccessResponse(itemsToken, LastTag.ParseJToken);
             }
             else
             {
