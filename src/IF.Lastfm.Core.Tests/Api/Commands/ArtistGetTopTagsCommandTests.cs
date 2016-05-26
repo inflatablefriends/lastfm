@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [SetUp]
         public void Initialise()
         {
-            _command = new GetTopTagsCommand(MAuth.Object, "");
+            _command = new GetTopTagsCommand(MAuth.Object);
         }
 
         [Test]
