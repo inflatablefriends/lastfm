@@ -41,12 +41,12 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             Assert.IsTrue(parsed.Success);
             Assert.IsNotNull(parsed.Content);
         }
-
+        
         [Test]
-        public async Task HandleErrorResponse()
+        public async Task ErrorIfTagIsEmpty()
         {
             var command = new GetTopArtistsCommand(MAuth.Object, "errorTag");
-
+            
             var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopArtistsError));
 
             var parsed = await command.HandleResponse(response);

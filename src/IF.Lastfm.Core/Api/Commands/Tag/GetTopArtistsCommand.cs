@@ -28,19 +28,25 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
         public override async Task<PageResponse<LastArtist>> HandleResponse(HttpResponseMessage response)
         {
             var json = await response.Content.ReadAsStringAsync();
+            var jtoken = JsonConvert.DeserializeObject<JToken>(json);
+            var resultsToken = jtoken.SelectToken("topartists");
 
             LastResponseStatus status;
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
-                var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("topartists");
+                if (string.IsNullOrEmpty(resultsToken.SelectToken("@attr.tag").Value<string>()))
+                {
+                    return PageResponse<LastArtist>.CreateErrorResponse(LastResponseStatus.MissingParameters);
+                }
+
                 var itemsToken = resultsToken.SelectToken("artist");
 
                 return PageResponse<LastArtist>.CreateSuccessResponse(itemsToken, resultsToken, LastArtist.ParseJToken, LastPageResultsType.Attr);
             }
             else
             {
-                return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(status);
+                // The tag api always returns a "valid" response, so 
+                return PageResponse<LastArtist>.CreateErrorResponse(status);
             }
         }
     }

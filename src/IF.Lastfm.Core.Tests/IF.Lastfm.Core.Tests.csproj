@@ -150,7 +150,6 @@
     <None Include="Resources\GetTopArtistsError.json" />
     <None Include="Resources\GetTopArtistsSingle.json" />
     <None Include="Resources\GetTopArtistsSuccess.json" />
-    <None Include="Resources\GetTopArtistsSuccess.txt" />
     <Content Include="Resources\TrackApi\TrackScrobbleTwoRequestBody.txt" />
     <None Include="app.config">
       <SubType>Designer</SubType>
