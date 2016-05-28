@@ -36,8 +36,6 @@ namespace IF.Lastfm.Core.Api.Commands.Chart
             {
                 return LastResponse.CreateErrorResponse<PageResponse<LastArtist>>(status);
             }
-
-
         }
     }
 }

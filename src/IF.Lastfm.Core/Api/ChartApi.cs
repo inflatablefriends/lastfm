@@ -9,7 +9,7 @@ namespace IF.Lastfm.Core.Api
 {
     public class ChartApi : ApiBase, IChartApi
     {
-        public ILastAuth Auth { get; private set; }
+        public ILastAuth Auth { get; }
 
         public ChartApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)
@@ -17,7 +17,13 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public async Task<PageResponse<LastArtist>> GetTopArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        /// <summary>
+        /// Get a list of the most-scrobbled artists on Last.fm.
+        /// </summary>
+        /// <remarks>
+        /// Bug 28/05/16 - itemsPerPage parameter doesn't seem to work all the time; certain values cause more or fewer items to be returned
+        /// </remarks>
+        public Task<PageResponse<LastArtist>> GetTopArtistsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopArtistsCommand(Auth)
             {
@@ -25,10 +31,16 @@ namespace IF.Lastfm.Core.Api
                 Count = itemsPerPage,
                 HttpClient = HttpClient
             };
-            return await command.ExecuteAsync();
+            return command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTrack>> GetTopTracksAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        /// <summary>
+        /// Get a list of the most-scrobbled tracks on Last.fm.
+        /// </summary>
+        /// <remarks>
+        /// Bug 28/05/16 - itemsPerPage parameter doesn't seem to work all the time; certain values cause more or fewer items to be returned
+        /// </remarks>
+        public Task<PageResponse<LastTrack>> GetTopTracksAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
             var command = new GetTopTracksCommand(Auth)
             {
@@ -36,7 +48,24 @@ namespace IF.Lastfm.Core.Api
                 Count = itemsPerPage,
                 HttpClient = HttpClient
             };
-            return await command.ExecuteAsync();
+            return command.ExecuteAsync();
+        }
+        
+        /// <summary>
+        /// Get a list of the most frequently used tags by Last.fm users
+        /// </summary>
+        /// <remarks>
+        /// Bug 28/05/16 - page and itemsPerPage parameters do not actually affect the number of or selection of tags returned
+        /// </remarks>
+        public Task<PageResponse<LastTag>> GetTopTagsAsync(int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetTopTagsCommand(Auth)
+            {
+                Page = page,
+                Count = itemsPerPage,
+                HttpClient = HttpClient
+            };
+            return command.ExecuteAsync();
         }
     }
 }

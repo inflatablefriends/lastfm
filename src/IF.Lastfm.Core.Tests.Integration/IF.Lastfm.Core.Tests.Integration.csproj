@@ -69,6 +69,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Commands\ChartGetTopTagsTests.cs" />
     <Compile Include="Commands\CommandIntegrationTestsBase.cs" />
     <Compile Include="Commands\TrackScrobbleCommandTests.cs" />
     <Compile Include="Commands\TrackUpdateNowPlayingCommandTests.cs" />
