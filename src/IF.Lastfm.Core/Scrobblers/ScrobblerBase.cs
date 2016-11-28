@@ -13,8 +13,6 @@ namespace IF.Lastfm.Core.Scrobblers
 {
     public abstract class ScrobblerBase : ApiBase, IScrobbler
     {
-        private readonly ILastAuth _auth;
-
         public event EventHandler<ScrobbleResponse> AfterSend;
 
         public bool CacheEnabled { get; protected set; }
@@ -23,7 +21,7 @@ namespace IF.Lastfm.Core.Scrobblers
 
         protected ScrobblerBase(ILastAuth auth, HttpClient httpClient = null) : base(httpClient)
         {
-            _auth = auth;
+            Auth = auth;
 
             MaxBatchSize = 50;
         }
@@ -58,7 +56,7 @@ namespace IF.Lastfm.Core.Scrobblers
             var responseExceptions = new List<Exception>();
             foreach(var batch in batches)
             {
-                var command = new ScrobbleCommand(_auth, batch)
+                var command = new ScrobbleCommand(Auth, batch)
                 {
                     HttpClient = HttpClient
                 };

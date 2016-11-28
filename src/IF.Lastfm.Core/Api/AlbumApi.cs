@@ -9,8 +9,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class AlbumApi : ApiBase, IAlbumApi
     {
-        public ILastAuth Auth { get; private set; }
-
         public AlbumApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)
         {

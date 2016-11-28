@@ -15,7 +15,7 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-        public ILastAuth Auth { get; private set; }
+
 
         public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
