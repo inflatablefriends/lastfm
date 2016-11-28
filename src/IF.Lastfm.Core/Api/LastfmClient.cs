@@ -6,7 +6,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class LastfmClient : ApiBase
     {
-        private readonly LastAuth _lastAuth;
         private AlbumApi _albumApi;
         private ArtistApi _artistApi;
         private ChartApi _chartApi;
@@ -16,37 +15,35 @@ namespace IF.Lastfm.Core.Api
         private TrackApi _trackApi;
         private UserApi _userApi;
 
-        public LastAuth Auth => _lastAuth;
-        public AlbumApi Album => _albumApi ?? (_albumApi = new AlbumApi(_lastAuth, HttpClient));
-        public ArtistApi Artist => _artistApi ?? (_artistApi = new ArtistApi(_lastAuth, HttpClient));
-        public ChartApi Chart => _chartApi ?? (_chartApi = new ChartApi(_lastAuth, HttpClient));
-        public LibraryApi Library => _libraryApi ?? (_libraryApi = new LibraryApi(_lastAuth, HttpClient));
-        public TagApi Tag => _tagApi ?? (_tagApi = new TagApi(_lastAuth, HttpClient));
-        public TrackApi Track => _trackApi ?? (_trackApi = new TrackApi(_lastAuth, HttpClient));
-        public UserApi User => _userApi ?? (_userApi = new UserApi(_lastAuth, HttpClient));
+        public AlbumApi Album => _albumApi ?? (_albumApi = new AlbumApi(Auth, HttpClient));
+        public ArtistApi Artist => _artistApi ?? (_artistApi = new ArtistApi(Auth, HttpClient));
+        public ChartApi Chart => _chartApi ?? (_chartApi = new ChartApi(Auth, HttpClient));
+        public LibraryApi Library => _libraryApi ?? (_libraryApi = new LibraryApi(Auth, HttpClient));
+        public TagApi Tag => _tagApi ?? (_tagApi = new TagApi(Auth, HttpClient));
+        public TrackApi Track => _trackApi ?? (_trackApi = new TrackApi(Auth, HttpClient));
+        public UserApi User => _userApi ?? (_userApi = new UserApi(Auth, HttpClient));
 
         public ScrobblerBase Scrobbler
         {
-            get { return _scrobbler ?? (_scrobbler = new Scrobbler(_lastAuth, HttpClient)); }
+            get { return _scrobbler ?? (_scrobbler = new Scrobbler(Auth, HttpClient)); }
             set { _scrobbler = value; }
         }
 
         public LastfmClient(LastAuth auth, HttpClient httpClient = null, ScrobblerBase scrobbler = null)
             : base(httpClient)
         {
-            _lastAuth = auth;
+            Auth = auth;
             _scrobbler = scrobbler;
         }
 
         public LastfmClient(string apiKey, string apiSecret, HttpClient httpClient = null)
             : base(httpClient)
         {
-            _lastAuth = new LastAuth(apiKey, apiSecret, httpClient);
+            Auth = new LastAuth(apiKey, apiSecret, httpClient);
         }
 
         public override void Dispose()
         {
-            _lastAuth.Dispose();
             _albumApi?.Dispose();
             _artistApi?.Dispose();
             _chartApi?.Dispose();

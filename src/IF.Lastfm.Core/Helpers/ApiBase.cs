@@ -1,3 +1,4 @@
+using IF.Lastfm.Core.Api;
 using System;
 using System.Net.Http;
 
@@ -5,6 +6,7 @@ namespace IF.Lastfm.Core.Helpers
 {
     public abstract class ApiBase : IDisposable
     {
+        public ILastAuth Auth { get; protected set; }
         private readonly bool _isHttpClientOwner;
         private readonly HttpClient _httpClient;
 
