@@ -9,7 +9,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class ChartApi : ApiBase, IChartApi
     {
-        public ILastAuth Auth { get; }
 
         public ChartApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)
