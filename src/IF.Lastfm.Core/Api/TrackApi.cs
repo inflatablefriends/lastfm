@@ -11,7 +11,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class TrackApi : ApiBase, ITrackApi
     {
-        public ILastAuth Auth { get; private set; }
 
         public TrackApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)

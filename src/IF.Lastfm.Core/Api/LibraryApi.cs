@@ -10,7 +10,7 @@ namespace IF.Lastfm.Core.Api
 {
     public class LibraryApi : ApiBase, ILibraryApi
     {
-        public ILastAuth Auth { get; private set; }
+        
 
         public LibraryApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)

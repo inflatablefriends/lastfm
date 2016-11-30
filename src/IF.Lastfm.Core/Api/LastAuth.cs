@@ -24,6 +24,7 @@ namespace IF.Lastfm.Core.Api
         {
             ApiKey = apikey;
             _apiSecret = secret;
+            Auth = this;
         }
 
         /// <summary>

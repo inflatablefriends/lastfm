@@ -9,7 +9,6 @@ namespace IF.Lastfm.Core.Api
 {
     public class TagApi : ApiBase, ITagApi
     {
-        public ILastAuth Auth { get; private set; }
 
         public TagApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)

@@ -11,7 +11,7 @@ namespace IF.Lastfm.Core.Api
 {
     public class UserApi : ApiBase, IUserApi
     {
-        public ILastAuth Auth { get; private set; }
+
 
         public UserApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)
