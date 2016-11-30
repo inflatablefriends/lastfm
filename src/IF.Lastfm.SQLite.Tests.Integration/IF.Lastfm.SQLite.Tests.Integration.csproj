@@ -91,10 +91,6 @@
       <Project>{3cf4b78f-8b48-49cb-942f-83db13474a4f}</Project>
       <Name>IF.Lastfm.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj">
-      <Project>{09d7d389-7d67-45b7-90ec-b1d20693dbc5}</Project>
-      <Name>IF.Lastfm.SQLite</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
