@@ -12,21 +12,22 @@ namespace IF.Lastfm.Core.Api.Commands.Library
     [ApiMethodName("library.getTracks")]
     internal class GetTracksCommand : GetAsyncCommandBase<PageResponse<LastTrack>>
     {
-        public string Username { get; private set; }
+        public string Username { get; }
 
-        public string Artist { get; private set; }
+        public string Artist { get; }
 
-        public string Album { get; private set; }
+        public string Album { get; }
 
-        public DateTimeOffset From { get; private set; }
+        public DateTimeOffset Since { get; }
 
-        public GetTracksCommand(ILastAuth auth, string username, string artist, string album, DateTimeOffset from)
+        public GetTracksCommand(ILastAuth auth, string username, string artist, string album, DateTimeOffset since)
             : base(auth)
         {
             Username = username;
             Artist = artist;
             Album = album;
-            From = from;
+            Since = since;
+            Page = 1;
         }
 
         public override void SetParameters()
@@ -34,7 +35,7 @@ namespace IF.Lastfm.Core.Api.Commands.Library
             Parameters.Add("user", Username);
             Parameters.Add("artist", Artist);
             Parameters.Add("album", Album);
-            Parameters.Add("from", From.AsUnixTime().ToString());
+            Parameters.Add("from", Since.AsUnixTime().ToString());
 
             AddPagingParameters();
             DisableCaching();

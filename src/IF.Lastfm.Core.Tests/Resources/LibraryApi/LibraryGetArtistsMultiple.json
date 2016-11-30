@@ -1,0 +1,613 @@
+{
+  "artists": {
+    "artist": [
+      {
+        "name": "Solar Fields",
+        "playcount": "5346",
+        "tagcount": "0",
+        "mbid": "a8b39181-6939-451e-9641-2db231b73706",
+        "url": "https://www.last.fm/music/Solar+Fields",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/ad665aeba8a94e32a4df4b590f024f30.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/ad665aeba8a94e32a4df4b590f024f30.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/ad665aeba8a94e32a4df4b590f024f30.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/ad665aeba8a94e32a4df4b590f024f30.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/ad665aeba8a94e32a4df4b590f024f30.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Crystal Castles",
+        "playcount": "4219",
+        "tagcount": "0",
+        "mbid": "b1570544-93ab-4b2b-8398-131735394202",
+        "url": "https://www.last.fm/music/Crystal+Castles",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "The Knife",
+        "playcount": "3709",
+        "tagcount": "0",
+        "mbid": "cf16d0a3-9d9c-44d4-b610-f0baccc27912",
+        "url": "https://www.last.fm/music/The+Knife",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/7bb894b4901b4493a1d6bb987cc22a05.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/7bb894b4901b4493a1d6bb987cc22a05.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/7bb894b4901b4493a1d6bb987cc22a05.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/7bb894b4901b4493a1d6bb987cc22a05.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/7bb894b4901b4493a1d6bb987cc22a05.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Cut Copy",
+        "playcount": "3063",
+        "tagcount": "0",
+        "mbid": "caaba574-dfbc-4681-8e56-19b5150897d2",
+        "url": "https://www.last.fm/music/Cut+Copy",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/1a1e3b63a54c491cb01605f09b1e179b.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/1a1e3b63a54c491cb01605f09b1e179b.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/1a1e3b63a54c491cb01605f09b1e179b.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/1a1e3b63a54c491cb01605f09b1e179b.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/1a1e3b63a54c491cb01605f09b1e179b.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Hot Chip",
+        "playcount": "2985",
+        "tagcount": "0",
+        "mbid": "d8915e13-d67a-4aa0-9c0b-1f126af951af",
+        "url": "https://www.last.fm/music/Hot+Chip",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/b45da8e2c7764cb2cc13a83862494fa0.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/b45da8e2c7764cb2cc13a83862494fa0.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/b45da8e2c7764cb2cc13a83862494fa0.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/b45da8e2c7764cb2cc13a83862494fa0.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/b45da8e2c7764cb2cc13a83862494fa0.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Feist",
+        "playcount": "2941",
+        "tagcount": "0",
+        "mbid": "f463a056-ae06-445b-bab2-449b11482bf2",
+        "url": "https://www.last.fm/music/Feist",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/f69cc769bb864da586175ee928751e81.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/f69cc769bb864da586175ee928751e81.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/f69cc769bb864da586175ee928751e81.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/f69cc769bb864da586175ee928751e81.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/f69cc769bb864da586175ee928751e81.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Carbon Based Lifeforms",
+        "playcount": "2558",
+        "tagcount": "0",
+        "mbid": "8229a8f1-b315-4fae-af57-b3eb71efdaf4",
+        "url": "https://www.last.fm/music/Carbon+Based+Lifeforms",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/ebb99f2912c84bf38e02b33a845be87e.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/ebb99f2912c84bf38e02b33a845be87e.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/ebb99f2912c84bf38e02b33a845be87e.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/ebb99f2912c84bf38e02b33a845be87e.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/ebb99f2912c84bf38e02b33a845be87e.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Björk",
+        "playcount": "2424",
+        "tagcount": "0",
+        "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb",
+        "url": "https://www.last.fm/music/Bj%C3%B6rk",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/4997929a3d1b04b09b3c46674a7cc19b.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/4997929a3d1b04b09b3c46674a7cc19b.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/4997929a3d1b04b09b3c46674a7cc19b.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/4997929a3d1b04b09b3c46674a7cc19b.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/4997929a3d1b04b09b3c46674a7cc19b.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "M83",
+        "playcount": "2408",
+        "tagcount": "0",
+        "mbid": "6d7b7cd4-254b-4c25-83f6-dd20f98ceacd",
+        "url": "https://www.last.fm/music/M83",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/f1ac608faf0841d3c1fd37c74c7c8750.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/f1ac608faf0841d3c1fd37c74c7c8750.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/f1ac608faf0841d3c1fd37c74c7c8750.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/f1ac608faf0841d3c1fd37c74c7c8750.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/f1ac608faf0841d3c1fd37c74c7c8750.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Fuck Buttons",
+        "playcount": "2305",
+        "tagcount": "0",
+        "mbid": "f4640b20-b76b-40d3-9ffc-a38b6718b273",
+        "url": "https://www.last.fm/music/Fuck+Buttons",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/9b2362e651404de29c258bbaf61b6c08.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/9b2362e651404de29c258bbaf61b6c08.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/9b2362e651404de29c258bbaf61b6c08.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/9b2362e651404de29c258bbaf61b6c08.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/9b2362e651404de29c258bbaf61b6c08.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Broken Social Scene",
+        "playcount": "1931",
+        "tagcount": "0",
+        "mbid": "2eada8f8-056a-4093-bbc2-004909ce743b",
+        "url": "https://www.last.fm/music/Broken+Social+Scene",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/fbb8f6f3174f4df5a170afb170129b8a.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/fbb8f6f3174f4df5a170afb170129b8a.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/fbb8f6f3174f4df5a170afb170129b8a.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/fbb8f6f3174f4df5a170afb170129b8a.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/fbb8f6f3174f4df5a170afb170129b8a.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Röyksopp",
+        "playcount": "1803",
+        "tagcount": "0",
+        "mbid": "1c70a3fc-fa3c-4be1-8b55-c3192db8a884",
+        "url": "https://www.last.fm/music/R%C3%B6yksopp",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/e58b1bd565b94e8d8dfd2d34e54571fe.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/e58b1bd565b94e8d8dfd2d34e54571fe.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/e58b1bd565b94e8d8dfd2d34e54571fe.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/e58b1bd565b94e8d8dfd2d34e54571fe.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/e58b1bd565b94e8d8dfd2d34e54571fe.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Yeah Yeah Yeahs",
+        "playcount": "1662",
+        "tagcount": "0",
+        "mbid": "584c04d2-4acc-491b-8a0a-e63133f4bfc4",
+        "url": "https://www.last.fm/music/Yeah+Yeah+Yeahs",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/884f2faa565b4cf5a3f7bb758bfbc99d.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/884f2faa565b4cf5a3f7bb758bfbc99d.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/884f2faa565b4cf5a3f7bb758bfbc99d.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/884f2faa565b4cf5a3f7bb758bfbc99d.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/884f2faa565b4cf5a3f7bb758bfbc99d.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "65daysofstatic",
+        "playcount": "1551",
+        "tagcount": "0",
+        "mbid": "0cd12ab3-9628-45ef-a97b-ff18624f14a0",
+        "url": "https://www.last.fm/music/65daysofstatic",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/5415bcccc22c4d399d9936ef4df1f32b.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/5415bcccc22c4d399d9936ef4df1f32b.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/5415bcccc22c4d399d9936ef4df1f32b.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/5415bcccc22c4d399d9936ef4df1f32b.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/5415bcccc22c4d399d9936ef4df1f32b.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Boards of Canada",
+        "playcount": "1540",
+        "tagcount": "0",
+        "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e",
+        "url": "https://www.last.fm/music/Boards+of+Canada",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/6c40c81945324658b1cc2d1ee9b138e6.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/6c40c81945324658b1cc2d1ee9b138e6.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/6c40c81945324658b1cc2d1ee9b138e6.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/6c40c81945324658b1cc2d1ee9b138e6.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/6c40c81945324658b1cc2d1ee9b138e6.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Bonobo",
+        "playcount": "1534",
+        "tagcount": "0",
+        "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be",
+        "url": "https://www.last.fm/music/Bonobo",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/c6ef7926ef994113a0561ad23a5588a4.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/c6ef7926ef994113a0561ad23a5588a4.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/c6ef7926ef994113a0561ad23a5588a4.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/c6ef7926ef994113a0561ad23a5588a4.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/c6ef7926ef994113a0561ad23a5588a4.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Fever Ray",
+        "playcount": "1198",
+        "tagcount": "0",
+        "mbid": "f7df5df4-4dfa-459d-972b-1ba051c15ddc",
+        "url": "https://www.last.fm/music/Fever+Ray",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/4b63cc373d604d0ea0f43154041ece8c.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/4b63cc373d604d0ea0f43154041ece8c.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/4b63cc373d604d0ea0f43154041ece8c.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/4b63cc373d604d0ea0f43154041ece8c.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/4b63cc373d604d0ea0f43154041ece8c.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Grimes",
+        "playcount": "1159",
+        "tagcount": "0",
+        "mbid": "7e5a2a59-6d9f-4a17-b7c2-e1eedb7bd222",
+        "url": "https://www.last.fm/music/Grimes",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/a0d0fbda61844af5ca816bd42ec942b5.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/a0d0fbda61844af5ca816bd42ec942b5.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/a0d0fbda61844af5ca816bd42ec942b5.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/a0d0fbda61844af5ca816bd42ec942b5.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/a0d0fbda61844af5ca816bd42ec942b5.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "God Is An Astronaut",
+        "playcount": "1134",
+        "tagcount": "0",
+        "mbid": "e9dfc148-d5f6-425e-b80b-f99ed2bd7c09",
+        "url": "https://www.last.fm/music/God+Is+An+Astronaut",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/137d3ac511544cad9490a208fb5b279d.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/137d3ac511544cad9490a208fb5b279d.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/137d3ac511544cad9490a208fb5b279d.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/137d3ac511544cad9490a208fb5b279d.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/137d3ac511544cad9490a208fb5b279d.png",
+            "size": "mega"
+          }
+        ]
+      },
+      {
+        "name": "Cristobal Tapia de Veer",
+        "playcount": "1060",
+        "tagcount": "0",
+        "mbid": "17c75aa5-5e1a-4ad3-b9b3-6c4adb8f7817",
+        "url": "https://www.last.fm/music/Cristobal+Tapia+de+Veer",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/6ce77abdc5c145178e1426fb7e3eeb98.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/6ce77abdc5c145178e1426fb7e3eeb98.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/6ce77abdc5c145178e1426fb7e3eeb98.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/6ce77abdc5c145178e1426fb7e3eeb98.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/6ce77abdc5c145178e1426fb7e3eeb98.png",
+            "size": "mega"
+          }
+        ]
+      }
+    ],
+    "@attr": {
+      "user": "tehrikkit",
+      "page": "1",
+      "perPage": "20",
+      "totalPages": "129",
+      "total": "2567"
+    }
+  }
+}

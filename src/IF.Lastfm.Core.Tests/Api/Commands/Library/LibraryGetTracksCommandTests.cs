@@ -11,7 +11,7 @@ using IF.Lastfm.Core.Api.Commands.Library;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 {
-    public class LibraryGetTracksCommandTests : CommandTestsBase
+    public class GetTracksCommandTests : CommandTestsBase
     {
         [Test]
         public async Task HandleResponseMultiple()

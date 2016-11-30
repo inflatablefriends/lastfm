@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LibraryGetArtistsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>LibraryApi\LibraryGetArtistsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LibraryGetArtistsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>LibraryApi\LibraryGetArtistsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LibraryGetArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>LibraryApi\LibraryGetArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="LibraryGetTracksMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>libraryapi\librarygettracksmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

@@ -9,18 +9,27 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
-        Task<PageResponse<LastTrack>> GetTracks(string username,
+        Task<PageResponse<LastArtist>> GetArtists(
+            string username, 
+            DateTimeOffset since,
+            int startIndex = 0,
+            int endIndex = LastFm.DefaultPageLength);
+
+        Task<PageResponse<LastTrack>> GetTracks(
+            string username,
             string artist,
             string album,
             DateTimeOffset since,
             int startIndex = 0,
             int endIndex = LastFm.DefaultPageLength);
 
-        Task<LastResponse> RemoveScrobble( 
+        Task<LastResponse> RemoveScrobble(
             string artist,
             string track,
-            DateTimeOffset timestamp );
+            DateTimeOffset timestamp);
 
-        Task<LastResponse> RemoveTrack( string artist, string track );
+        Task<LastResponse> RemoveTrack(
+            string artist,
+            string track);
     }
 }

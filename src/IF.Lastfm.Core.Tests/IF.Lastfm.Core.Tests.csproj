@@ -89,6 +89,7 @@
     <Compile Include="Api\Commands\ArtistGetTagsByUserCommandTests.cs" />
     <Compile Include="Api\Commands\ArtistGetTopTagsCommandTests.cs" />
     <Compile Include="Api\Commands\CommandTestsBase.cs" />
+    <Compile Include="Api\Commands\Library\GetArtistsCommandTests.cs" />
     <Compile Include="Api\Commands\Library\LibraryGetTracksCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveScrobbleCommandTests.cs" />
     <Compile Include="Api\Commands\Library\RemoveTrackCommandTests.cs" />
@@ -181,6 +182,9 @@
     <None Include="Resources\GetTopAlbumsError.json" />
     <None Include="Resources\GetTopAlbumsSingle.json" />
     <None Include="Resources\GetTopAlbumsSuccess.json" />
+    <None Include="Resources\LibraryApi\LibraryGetArtistsError.json" />
+    <None Include="Resources\LibraryApi\LibraryGetArtistsMultiple.json" />
+    <None Include="Resources\LibraryApi\LibraryGetArtistsSingle.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksMultiple.json" />
     <None Include="Resources\LibraryApi\LibraryGetTracksSingle.json" />
     <None Include="Resources\Tag\GetInfoError.json" />

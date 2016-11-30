@@ -10,12 +10,15 @@ namespace IF.Lastfm.Core.Api
 {
     public class LibraryApi : ApiBase, ILibraryApi
     {
-        
-
         public LibraryApi(ILastAuth auth, HttpClient httpClient = null)
             : base(httpClient)
         {
             Auth = auth;
+        }
+
+        public Task<PageResponse<LastArtist>> GetArtists(string username, DateTimeOffset since, int startIndex = 0, int endIndex = LastFm.DefaultPageLength)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<PageResponse<LastTrack>> GetTracks(string username, string artist, string album, DateTimeOffset since, int pagenumber = 0, int count = LastFm.DefaultPageLength)

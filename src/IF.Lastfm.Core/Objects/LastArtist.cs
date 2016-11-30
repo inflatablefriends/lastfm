@@ -50,7 +50,7 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<LastTag> Tags { get; set; }
         public List<LastArtist> Similar { get; set; }
         public LastImageSet MainImage { get; set; }
-        public int PlayCount { get; set; }
+        public int? PlayCount { get; set; }
         public LastStats Stats { get; set; }
 
         #endregion

@@ -61,6 +61,7 @@
     <Compile Include="Api\Commands\Artist\GetTagsByUserCommand.cs" />
     <Compile Include="Api\Commands\Artist\GetTopTagsCommand.cs" />
     <Compile Include="Api\Commands\Chart\GetTopTagsCommand.cs" />
+    <Compile Include="Api\Commands\Library\GetArtistsCommand.cs" />
     <Compile Include="Api\Commands\Library\GetTracksCommand.cs" />
     <Compile Include="Api\Commands\Library\RemoveScrobbleCommand.cs" />
     <Compile Include="Api\Commands\Library\RemoveTrackCommand.cs" />
