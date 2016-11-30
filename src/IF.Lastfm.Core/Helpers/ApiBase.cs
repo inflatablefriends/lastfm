@@ -6,17 +6,14 @@ namespace IF.Lastfm.Core.Helpers
 {
     public abstract class ApiBase : IDisposable
     {
-        public ILastAuth Auth { get; protected set; }
         private readonly bool _isHttpClientOwner;
-        private readonly HttpClient _httpClient;
+
+        public ILastAuth Auth { get; protected set; }
 
         /// <summary>
         /// The HttpClient that will be used by this API. If it is provided through the ApiBase constructor then it should be disposed explicitly.
         /// </summary>
-        public HttpClient HttpClient
-        {
-            get { return _httpClient; }
-        }
+        public HttpClient HttpClient { get; }
 
         protected ApiBase(HttpClient httpClient = null)
         {
@@ -30,7 +27,7 @@ namespace IF.Lastfm.Core.Helpers
                 _isHttpClientOwner = true;
             }
 
-            _httpClient = httpClient;
+            HttpClient = httpClient;
         }
 
         public virtual void Dispose()
