@@ -46,7 +46,52 @@
 -
   branches:
     only:
+      - profile259
+
+  version: 0.3.999.{build}
+
+  assembly_info:
+    patch: true
+    file: AssemblyInfo.*
+    assembly_version: "{version}"
+    assembly_file_version: "{version}"
+    assembly_informational_version: "{version}"
+
+  configuration: Release
+
+  before_build:
+    - ps: nuget restore IF.Lastfm.sln
+
+  build:
+    project: IF.Lastfm.sln
+
+  test_script:
+    - ps: .\run-tests.ps1
+
+  after_test:
+    - ps: pushd .nuget
+    - ps: .\pack.ps1 -versionSuffix prerelease
+    - ps: popd
+    - ps: cp .\.nuget\*.nupkg . 
+
+  artifacts:
+    - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
+      name: IF.Lastfm.Core.dll
+    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
+      name: IF.Lastfm.SQLite.dll
+    - path: '\*-prerelease.nupkg'
+
+  notifications:
+    - provider: Webhook # ping Gitter ticker 
+      url: https://webhooks.gitter.im/e/aa615fb57d382a430815
+
+#---------------------------------------------------------------
+
+-
+  branches:
+    only:
       - release
+      - release-profile259
 
   # don't forget to update this!
   version: 0.3.0.{build}
