@@ -110,3 +110,4 @@ Desktop.ini
 # ReportGenerator and Syro dump stuff in this folder
 /tmp
 /IF.Lastfm.sln.ide
+project.lock.json
