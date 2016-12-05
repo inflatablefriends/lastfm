@@ -1,5 +1,9 @@
 # Inflatable Last.fm .NET SDK
+
+![Project logo](./res/if-lastfm-logo-300.png)
+
 [![Code licence](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat)](LICENCE.md) [![Build status](https://ci.appveyor.com/api/projects/status/c8gg2cw4jibbsg3u)](https://ci.appveyor.com/project/rikkit/lastfm) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 
 ## Project Goals
 
