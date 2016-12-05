@@ -14,7 +14,7 @@ using System.Text;
 [assembly: InternalsVisibleTo("IF.Lastfm.Syro")]
 namespace IF.Lastfm.Core
 {
-    public class LastFm
+    public static class LastFm
     {
         internal const string SCROBBLING_HELP_URL = "https://github.com/inflatablefriends/lastfm/blob/scrobbler/doc/scrobbling.md";
         internal const string TEST_APIKEY = "a6ab4b9376e54cdb06912bfbd9c1f288";
