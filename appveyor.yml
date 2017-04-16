@@ -62,6 +62,9 @@
 
   configuration: Release
 
+  install:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.5.0/nuget.exe
+
   before_build:
     - ps: nuget restore IF.Lastfm.sln
 
@@ -106,6 +109,9 @@
     assembly_informational_version: "{version}"
 
   configuration: Release
+
+  install:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.5.0/nuget.exe
 
   before_build:
     - ps: nuget restore IF.Lastfm.sln
@@ -155,6 +161,9 @@
     assembly_informational_version: "{version}"
 
   configuration: Release
+
+  install:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.5.0/nuget.exe
 
   before_build:
     - ps: nuget restore IF.Lastfm.sln
