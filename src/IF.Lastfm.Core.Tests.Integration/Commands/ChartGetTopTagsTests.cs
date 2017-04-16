@@ -22,8 +22,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             Assert.IsTrue(chartResponse.Success);
             Assert.AreEqual(PAGE, chartResponse.Page);
             Assert.AreEqual(LIMIT, chartResponse.PageSize);
-            // TODO chart.getTopTracks ignores the limit parameter
-            Assert.AreEqual(10, chartResponse.Content.Count);
+            Assert.AreEqual(LIMIT, chartResponse.Content.Count);
 
             Assert.IsTrue(chartResponse.All(track => !string.IsNullOrEmpty(track.Name)));
         }
@@ -36,8 +35,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             Assert.IsTrue(chartResponse.Success);
             Assert.AreEqual(PAGE, chartResponse.Page);
             Assert.AreEqual(LIMIT, chartResponse.PageSize);
-            // TODO chart.getTopArtists ignores the limit parameter
-            Assert.AreEqual(20, chartResponse.Content.Count);
+            Assert.AreEqual(LIMIT, chartResponse.Content.Count);
 
             Assert.IsTrue(chartResponse.All(artist => !string.IsNullOrEmpty(artist.Name)));
         }
@@ -48,10 +46,10 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var chartResponse = await Lastfm.Chart.GetTopTagsAsync(PAGE, LIMIT);
 
             Assert.IsTrue(chartResponse.Success);
-            // TODO chart.getTopTags ignores the page and limit parameters
-            Assert.AreEqual(1, chartResponse.Page);
-            Assert.AreEqual(50, chartResponse.TotalItems);
-            Assert.AreEqual(50, chartResponse.Content.Count);
+            Assert.AreEqual(LIMIT, chartResponse.TotalItems);
+            Assert.AreEqual(LIMIT, chartResponse.Content.Count);
+
+            Assert.AreNotEqual(PAGE, chartResponse.Page); // TODO chart.getTopTags ignores the page parameter
 
             Assert.IsTrue(chartResponse.All(tag => !string.IsNullOrEmpty(tag.Name)));
         }
