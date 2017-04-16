@@ -15,6 +15,9 @@
 
   configuration: Release
 
+  install:
+    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.5.0/nuget.exe
+
   before_build:
     - ps: nuget restore IF.Lastfm.sln
 
