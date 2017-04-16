@@ -93,7 +93,7 @@
       - release
 
   # don't forget to update this!
-  version: 1.0.0.{build}
+  version: 1.0.1.{build}
 
   assembly_info:
     patch: true
