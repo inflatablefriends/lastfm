@@ -7,8 +7,6 @@ namespace IF.Lastfm.Core.Objects
 {
     public class LastUser : ILastfmObject
     {
-        #region Properties
-
         public string Name { get; private set; }
         public string FullName { get; private set; }
         public LastImageSet Avatar { get; private set; }
@@ -23,8 +21,6 @@ namespace IF.Lastfm.Core.Objects
         public int Bootstrap { get; private set; }
         public string Type { get; private set; }
 
-        #endregion
-
         /// <summary>
         /// Parses the given <paramref name="token"/> to a
         /// <see cref="LastUser"/>.
@@ -33,7 +29,7 @@ namespace IF.Lastfm.Core.Objects
         /// <returns>Parsed LastUser.</returns>
         internal static LastUser ParseJToken(JToken token)
         {
-            var u = new LastUser()
+            var u = new LastUser
             {
                 Name = token.Value<string>("name"),
                 FullName = token.Value<string>("realname"),
@@ -43,7 +39,7 @@ namespace IF.Lastfm.Core.Objects
                 Playlists = token.Value<int>("playlists"),
                 Gender = ParseGender(token.Value<string>("gender")),
                 IsSubscriber = Convert.ToBoolean(token.Value<int>("subscriber")),
-                TimeRegistered = token.SelectToken("registered").Value<double>("unixtime").FromUnixTime().DateTime,
+                TimeRegistered = token.Value<double>("registered.unixtime").FromUnixTime().DateTime,
                 Bootstrap = token.Value<int>("bootstrap"),
                 Type = token.Value<string>("type")
             };

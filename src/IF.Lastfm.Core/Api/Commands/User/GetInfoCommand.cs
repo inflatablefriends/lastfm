@@ -29,8 +29,7 @@ namespace IF.Lastfm.Core.Api.Commands.User
         {
             var json = await response.Content.ReadAsStringAsync();
 
-            LastResponseStatus status;
-            if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
+            if (LastFm.IsResponseValid(json, out LastResponseStatus status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
                 var userToken = jtoken.SelectToken("user");
