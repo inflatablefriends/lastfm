@@ -6,6 +6,8 @@
 
   version: 1.0.999.{build}
 
+  image: Visual Studio 2017
+
   assembly_info:
     patch: true
     file: AssemblyInfo.*
@@ -52,6 +54,8 @@
       - profile259
 
   version: 0.3.999.{build}
+
+  image: Visual Studio 2015
 
   assembly_info:
     patch: true
@@ -100,6 +104,8 @@
 
   # don't forget to update this!
   version: 1.0.1.{build}
+
+  image: Visual Studio 2017
 
   assembly_info:
     patch: true
@@ -152,6 +158,8 @@
 
   # don't forget to update this!
   version: 0.3.0.{build}
+  
+  image: Visual Studio 2015
 
   assembly_info:
     patch: true
