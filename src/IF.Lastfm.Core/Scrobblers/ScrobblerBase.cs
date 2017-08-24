@@ -4,6 +4,7 @@ using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,8 +15,6 @@ namespace IF.Lastfm.Core.Scrobblers
     public abstract class ScrobblerBase : ApiBase, IScrobbler
     {
         public event EventHandler<ScrobbleResponse> AfterSend;
-
-        public bool CacheEnabled { get; protected set; }
 
         internal int MaxBatchSize { get; set; }
 
@@ -43,7 +42,7 @@ namespace IF.Lastfm.Core.Scrobblers
 
         public async Task<ScrobbleResponse> ScrobbleAsyncInternal(IEnumerable<Scrobble> scrobbles)
         {
-            var scrobblesList = scrobbles.ToList();
+            var scrobblesList = new ReadOnlyCollection<Scrobble>(scrobbles.ToList());
             var cached = await GetCachedAsync();
             var pending = scrobblesList.Concat(cached).OrderBy(s => s.TimePlayed).ToList();
             if (!pending.Any())
@@ -64,7 +63,15 @@ namespace IF.Lastfm.Core.Scrobblers
                 try
                 {
                     var response = await command.ExecuteAsync();
-
+                    
+                    var acceptedMap = new HashSet<Scrobble>(scrobblesList);
+                    foreach (var ignored in response.Ignored)
+                    {
+                        acceptedMap.Remove(ignored);
+                    }
+                    
+                    await RemoveFromCacheAsync(acceptedMap);
+                    
                     responses.Add(response);
                 }
                 catch (HttpRequestException httpEx)
@@ -80,28 +87,15 @@ namespace IF.Lastfm.Core.Scrobblers
             }
             else
             {
-                try
-                {
-                    var firstBadResponse = responses.FirstOrDefault(r => !r.Success && r.Status != LastResponseStatus.Unknown);
-                    var originalResponseStatus = firstBadResponse != null
-                        ? firstBadResponse.Status
-                        : LastResponseStatus.RequestFailed; // TODO check httpEx
+                var firstBadResponse = responses.FirstOrDefault(r => !r.Success && r.Status != LastResponseStatus.Unknown);
+                var originalResponseStatus = firstBadResponse?.Status ?? LastResponseStatus.RequestFailed; // TODO check httpEx
 
-                    var cacheStatus = await CacheAsync(scrobblesList, originalResponseStatus);
+                var cacheStatus = await CacheAsync(scrobblesList, originalResponseStatus);
 
-                    scrobblerResponse = new ScrobbleResponse(cacheStatus);
-                }
-                catch (Exception e)
-                {
-                    scrobblerResponse = new ScrobbleResponse(LastResponseStatus.CacheFailed)
-                    {
-                        Exception = e
-                    };
-                }
+                scrobblerResponse = new ScrobbleResponse(cacheStatus);
             }
-
-            var ignoredScrobbles = responses.SelectMany(r => r.Ignored);
-            scrobblerResponse.Ignored = ignoredScrobbles;
+            
+            scrobblerResponse.Ignored = responses.SelectMany(r => r.Ignored);
 
             AfterSend?.Invoke(this, scrobblerResponse);
 
@@ -110,6 +104,10 @@ namespace IF.Lastfm.Core.Scrobblers
 
         public abstract Task<IEnumerable<Scrobble>> GetCachedAsync();
 
-        protected abstract Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobble, LastResponseStatus originalResponseStatus);
+        public abstract Task RemoveFromCacheAsync(ICollection<Scrobble> scrobbles);
+
+        public abstract Task<int> GetCachedCountAsync();
+
+        protected abstract Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobble, LastResponseStatus reason);
     }
 }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using IF.Lastfm.Core.Scrobblers;
 using IF.Lastfm.Core.Tests.Scrobblers;
+using SQLite;
 
 namespace IF.Lastfm.SQLite.Tests.Integration
 {
@@ -12,7 +13,7 @@ namespace IF.Lastfm.SQLite.Tests.Integration
 
         public override void Initialise()
         {
-            var dbPath = Path.GetFullPath("test.db");
+            var dbPath = Path.GetFullPath($"test-{DateTime.UtcNow.ToFileTimeUtc()}.db");
             File.Delete(dbPath);
             using (File.Create(dbPath))
             {
@@ -25,6 +26,7 @@ namespace IF.Lastfm.SQLite.Tests.Integration
 
         public override void Cleanup()
         {
+            SQLiteAsyncConnection.ResetPool();
             GC.Collect();
             GC.WaitForPendingFinalizers();
             File.Delete(_dbPath);

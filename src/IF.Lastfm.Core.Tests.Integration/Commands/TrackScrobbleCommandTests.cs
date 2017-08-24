@@ -71,7 +71,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             var countingHandler = new CountingHttpClientHandler();
             var httpClient = new HttpClient(countingHandler);
-            var scrobbler = new Scrobbler(Lastfm.Auth, httpClient)
+            var scrobbler = new MemoryScrobbler(Lastfm.Auth, httpClient)
             {
                 MaxBatchSize = 2
             };

@@ -6,67 +6,63 @@ using IF.Lastfm.Core.Api;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
 using IF.Lastfm.Core.Scrobblers;
+using Newtonsoft.Json.Converters;
 using SQLite;
 
 namespace IF.Lastfm.SQLite
 {
     public class SQLiteScrobbler : ScrobblerBase
     {
-        public string DatabasePath { get; private set; }
+        public string DatabasePath { get; }
 
         public SQLiteScrobbler(ILastAuth auth, string databasePath, HttpClient client = null) : base(auth, client)
         {
             DatabasePath = databasePath;
-
-            CacheEnabled = true;
         }
 
-        public override Task<IEnumerable<Scrobble>> GetCachedAsync()
+        public override async Task<IEnumerable<Scrobble>> GetCachedAsync()
         {
-            using (var db = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadOnly))
-            {
-                var tableInfo = db.GetTableInfo(typeof (Scrobble).Name);
-                if (!tableInfo.Any())
-                {
-                    return Task.FromResult(Enumerable.Empty<Scrobble>());
-                }
-
-                var cached = db.Query<Scrobble>("SELECT * FROM Scrobble");
-                db.Close();
-
-                return Task.FromResult(cached.AsEnumerable());
-            }
+            var db = GetConnection();
+            var tableInfo = db.Table<Scrobble>();
+            var cached = await tableInfo.ToListAsync();
+            return cached;
         }
 
-        protected override Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobbles, LastResponseStatus originalResponseStatus)
+        public override async Task RemoveFromCacheAsync(ICollection<Scrobble> scrobbles)
         {
-            // TODO cache originalResponse - reason to cache
-            return Task.Run(() =>
+            var db = GetConnection();
+            await db.RunInTransactionAsync(connection =>
             {
-                Cache(scrobbles);
-                return LastResponseStatus.Cached;
-            });
-        }
-
-        private void Cache(IEnumerable<Scrobble> scrobbles)
-        {
-            using (var db = new SQLiteConnection(DatabasePath, SQLiteOpenFlags.ReadWrite))
-            {
-                var tableInfo = db.GetTableInfo(typeof (Scrobble).Name);
-                if (!tableInfo.Any())
-                {
-                    db.CreateTable<Scrobble>();
-                }
-
-                db.BeginTransaction();
                 foreach (var scrobble in scrobbles)
                 {
-                    db.Insert(scrobble);
+                    connection.Delete(scrobble);
                 }
-                db.Commit();
+            });
 
-                db.Close();
-            }
+            await Task.WhenAll(scrobbles.Select(s => db.DeleteAsync(s)).ToArray());
+        }
+
+        public override async Task<int> GetCachedCountAsync()
+        {
+            var db = GetConnection();
+            var tableInfo = db.Table<Scrobble>();
+            var count = await tableInfo.CountAsync();
+            return count;
+        }
+
+        protected override async Task<LastResponseStatus> CacheAsync(IEnumerable<Scrobble> scrobbles, LastResponseStatus reason)
+        {
+            // TODO cache reason
+            var db = GetConnection();
+            await db.InsertAllAsync(scrobbles);
+            return LastResponseStatus.Cached;
+        }
+        
+        private SQLiteAsyncConnection GetConnection()
+        {
+            var db = new SQLiteAsyncConnection(DatabasePath, SQLiteOpenFlags.ReadWrite);
+            db.GetConnection().CreateTable<Scrobble>(CreateFlags.AutoIncPK | CreateFlags.AllImplicit);
+            return db;
         }
     }
 }

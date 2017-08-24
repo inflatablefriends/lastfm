@@ -162,13 +162,7 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var scrobblesToCache = testScrobbles.Take(1);
 
             var scrobbleResponse1 = await ExecuteTestInternal(scrobblesToCache, responseMessage1);
-
-            if (!Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse1.Status);
-                return;
-            }
-
+            
             Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse1.Status);
 
             var scrobblesToSend = testScrobbles.Skip(1).Take(1);
@@ -189,18 +183,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.Forbidden, TrackApiResponses.TrackScrobbleBadAuthError);
             var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
-            if (Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+            Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
 
-                // check actually cached
-                var cached = await Scrobbler.GetCachedAsync();
-                TestHelper.AssertSerialiseEqual(testScrobbles, cached);
-            }
-            else
-            {
-                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse.Status);
-            }
+            // check actually cached
+            var cached = await Scrobbler.GetCachedAsync();
+            TestHelper.AssertSerialiseEqual(testScrobbles, cached);
         }
 
         [Test]
@@ -212,18 +199,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.RequestTimeout, new byte[0]);
             var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
-            if (Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+            Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
 
-                // check actually cached
-                var cached = await Scrobbler.GetCachedAsync();
-                TestHelper.AssertSerialiseEqual(testScrobbles, cached);
-            }
-            else
-            {
-                Assert.AreEqual(LastResponseStatus.RequestFailed, scrobbleResponse.Status);
-            }
+            // check actually cached
+            var cached = await Scrobbler.GetCachedAsync();
+            TestHelper.AssertSerialiseEqual(testScrobbles, cached);
         }
     }
 }
