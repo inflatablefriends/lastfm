@@ -64,7 +64,7 @@ namespace IF.Lastfm.Core.Scrobblers
                 {
                     var response = await command.ExecuteAsync();
                     
-                    var acceptedMap = new HashSet<Scrobble>(scrobblesList);
+                    var acceptedMap = new HashSet<Scrobble>(pending);
                     foreach (var ignored in response.Ignored)
                     {
                         acceptedMap.Remove(ignored);
@@ -96,6 +96,7 @@ namespace IF.Lastfm.Core.Scrobblers
             }
             
             scrobblerResponse.Ignored = responses.SelectMany(r => r.Ignored);
+            scrobblerResponse.AcceptedCount = responses.Sum(r => r.AcceptedCount);
 
             AfterSend?.Invoke(this, scrobblerResponse);
 
