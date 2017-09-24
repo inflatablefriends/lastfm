@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId>Inflatable.Lastfm.SQLite</PackageId>
+    <Version>1.1.0</Version>
+    <Authors>Rikki Tooley</Authors>
+    <Company>Inflatable Friends</Company>
+    <Product>Inflatable.Lastfm.SQLite</Product>
+    <Description>SQLite Last.fm scrobbler cache compatible with Inflatable.Lastfm</Description>
+    <PackageLicenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/inflatablefriends/lastfm</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/inflatablefriends/lastfm/master/res/if-lastfm-logo-300.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/inflatablefriends/lastfm</RepositoryUrl>
+    <PackageTags>inflatable friends, lastfm, c#, .net, .netstandard, portable, last.fm, last fm, sqlite</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
