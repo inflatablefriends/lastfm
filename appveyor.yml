@@ -2,9 +2,10 @@
   branches:
     only:
       - master
+      - feature//.*/
       - /v.*/
 
-  version: 1.0.999.{build}
+  version: 1.1.999.{build}
 
   image: Visual Studio 2017
 
@@ -17,11 +18,8 @@
 
   configuration: Release
 
-  install:
-    - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.5.0/nuget.exe
-
   before_build:
-    - ps: nuget restore IF.Lastfm.sln
+    - ps: dotnet restore IF.Lastfm.sln
 
   build:
     project: IF.Lastfm.sln
@@ -30,17 +28,14 @@
     - ps: .\run-tests.ps1
 
   after_test:
-    - ps: pushd .nuget
-    - ps: .\pack.ps1 -versionSuffix prerelease
-    - ps: popd
-    - ps: cp .\.nuget\*.nupkg . 
+    - ps: dotnet pack .\src\IF.Lastfm.Core\IF.Lastfm.Core.csproj --no-build  /p:Version={version}-prerelease
+    - ps: dotnet pack .\src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj --no-build  /p:Version={version}-prerelease
 
   artifacts:
-    - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
-      name: IF.Lastfm.Core.dll
-    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
-      name: IF.Lastfm.SQLite.dll
-    - path: '\*-prerelease.nupkg'
+    - path: src\IF.Lastfm.Core\bin\Release\Inflatable.Lastfm.{version}-prerelease.nuspec
+      name: Inflatable.Lastfm.{version}-prerelease.nuspec
+    - path: src\IF.Lastfm.SQLite\bin\Release\Inflatable.Lastfm.SQLite.{version}-prerelease.nuspec
+      name: Inflatable.Lastfm.SQLite.{version}-prerelease.nuspec
 
   notifications:
     - provider: Webhook # ping Gitter ticker 
@@ -85,11 +80,10 @@
     - ps: cp .\.nuget\*.nupkg . 
 
   artifacts:
-    - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
-      name: IF.Lastfm.Core.dll
-    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
-      name: IF.Lastfm.SQLite.dll
-    - path: '\*-prerelease.nupkg'
+    - path: src\IF.Lastfm.Core\bin\Release\Inflatable.Lastfm.nuspec
+      name: Inflatable.Lastfm.nuspec
+    - path: src\IF.Lastfm.SQLite\bin\Release\Inflatable.Lastfm.SQLite.nuspec
+      name: Inflatable.Lastfm.SQLite.nuspec
 
   notifications:
     - provider: Webhook # ping Gitter ticker 
@@ -103,7 +97,7 @@
       - release
 
   # don't forget to update this!
-  version: 1.0.1.{build}
+  version: 1.1.0.{build}
 
   image: Visual Studio 2017
 
@@ -135,11 +129,10 @@
     - ps: cp .\.nuget\*.nupkg . 
 
   artifacts:
-    - path: src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll
-      name: IF.Lastfm.Core.dll
-    - path: src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll
-      name: IF.Lastfm.SQLite.dll
-    - path: '\*.nupkg'
+    - path: src\IF.Lastfm.Core\bin\Release\Inflatable.Lastfm.nuspec
+      name: Inflatable.Lastfm.nuspec
+    - path: src\IF.Lastfm.SQLite\bin\Release\Inflatable.Lastfm.SQLite.nuspec
+      name: Inflatable.Lastfm.SQLite.nuspec
 
   deploy:
     provider: NuGet

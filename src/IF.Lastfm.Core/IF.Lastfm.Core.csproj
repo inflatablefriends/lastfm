@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <Authors>Rikki Tooley</Authors>
+    <Company>Inflatable Friends</Company>
+    <PackageId>Inflatable.Lastfm</PackageId>
+    <Product>Inflatable.Lastfm</Product>
+    <Description>Portable .Net library for the Last.fm API</Description>
+    <PackageProjectUrl>https://github.com/inflatablefriends/lastfm</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/inflatablefriends/lastfm/master/res/if-lastfm-logo-300.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/inflatablefriends/lastfm</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/inflatablefriends/lastfm/blob/master/LICENCE.md</PackageLicenseUrl>
+    <PackageTags>inflatable friends, lastfm, c#, .net, .netstandard, portable, last.fm, last fm</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
