@@ -106,6 +106,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         }
 
         [Test]
+        [Ignore]
         public async Task HandleResponseMultiple()
         {
 
