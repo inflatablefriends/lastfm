@@ -17,6 +17,6 @@
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="..\src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll" target="lib\netstandard1.1"/>
+		<file src="..\src\IF.Lastfm.Core\bin\Release\netstandard1.1\IF.Lastfm.Core.dll" target="lib\netstandard1.1"/>
 	</files>
 </package>
