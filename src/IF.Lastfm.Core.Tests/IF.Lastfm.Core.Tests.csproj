@@ -97,6 +97,7 @@
     <Compile Include="Api\Commands\TrackApi\GetTrackShoutsCommandTests.cs" />
     <Compile Include="Api\Commands\Artist\GetInfoCommandTests.cs" />
     <Compile Include="Api\Commands\TrackScrobbleCommandTests.cs" />
+    <Compile Include="Api\Commands\UserGetLovedTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecentTracksCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetRecommendedArtistsCommandTests.cs" />
     <Compile Include="Api\Commands\UserGetTopAlbumsCommandTests.cs" />
@@ -199,6 +200,9 @@
     <None Include="Resources\TrackApi\TrackScrobbleSuccess2.json" />
     <None Include="Resources\TrackApi\TrackScrobbleSuccessNoAlbumProperty.json" />
     <None Include="Resources\TrackApi\TrackScrobbleSuccess.json" />
+    <None Include="Resources\UserApi\UserGetLovedTracksError.json" />
+    <None Include="Resources\UserApi\UserGetLovedTracksMultiple.json" />
+    <None Include="Resources\UserApi\UserGetLovedTracksSingle.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksEmpty.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksError.json" />
     <None Include="Resources\UserApi\UserGetRecentTracksMissing.json" />

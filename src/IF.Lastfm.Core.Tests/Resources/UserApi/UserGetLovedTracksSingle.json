@@ -1,0 +1,47 @@
+﻿{
+  "lovedtracks": {
+    "track": {
+      "artist": {
+        "#text": "Rick James",
+        "mbid": "cba9cec2-be8d-41bd-91b4-a1cd7de39b0c"
+      },
+      "name": "Super Freak (Part 1) - 1981 Single Version",
+      "streamable": "0",
+      "mbid": "",
+      "album": {
+        "#text": "The Definitive Collection",
+        "mbid": "f22c19bf-1c88-4651-a0d3-8c50735f3c93"
+      },
+      "url": "http://www.last.fm/music/Rick+James/_/Super+Freak+(Part+1)+-+1981+Single+Version",
+      "image": [
+        {
+          "#text": "http://userserve-ak.last.fm/serve/34s/90462319.jpg",
+          "size": "small"
+        },
+        {
+          "#text": "http://userserve-ak.last.fm/serve/64s/90462319.jpg",
+          "size": "medium"
+        },
+        {
+          "#text": "http://userserve-ak.last.fm/serve/126/90462319.jpg",
+          "size": "large"
+        },
+        {
+          "#text": "http://userserve-ak.last.fm/serve/300x300/90462319.jpg",
+          "size": "extralarge"
+        }
+      ],
+      "date": {
+        "#text": "20 Dec 2014, 10:16",
+        "uts": "1419070612"
+      }
+    },
+    "@attr": {
+      "user": "RJ",
+      "page": "0",
+      "perPage": "1",
+      "totalPages": "76536",
+      "total": "76536"
+    }
+  }
+}
