@@ -18,7 +18,7 @@ function CompileNuspec([string]$dllPath, [string]$nuspecname)
 
 $root = (split-path -parent $MyInvocation.MyCommand.Definition) + '\..'
 
-$dllPath = "$root\src\IF.Lastfm.Core\bin\Release\IF.Lastfm.Core.dll"
+$dllPath = "$root\src\IF.Lastfm.Core\bin\Release\netstandard1.1\IF.Lastfm.Core.dll"
 $version = [System.Reflection.AssemblyName]::GetAssemblyName($dllPath).Version
 
 if ($versionSuffix) {
@@ -35,7 +35,7 @@ if ([string]::IsNullOrEmpty($sqliteVersion)){
 }
 else {
 	if ($versionStr.endswith("prerelease") -or $versionStr.startswith($sqliteVersion)) {
-		CompileNuspec "$root\src\IF.Lastfm.SQLite\bin\Release\IF.Lastfm.SQLite.dll" "Inflatable.Lastfm.SQLite"
+		CompileNuspec "$root\src\IF.Lastfm.SQLite\bin\Release\netstandard1.1\IF.Lastfm.SQLite.dll" "Inflatable.Lastfm.SQLite"
 	}
 	else {
 		Write-Host "Skipping SQLite package, build version is not $sqliteVersion" -Foreground yellow
