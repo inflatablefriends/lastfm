@@ -25,7 +25,7 @@ namespace IF.Lastfm.Core.Api
 
         public ScrobblerBase Scrobbler
         {
-            get { return _scrobbler ?? (_scrobbler = new Scrobbler(Auth, HttpClient)); }
+            get { return _scrobbler ?? (_scrobbler = new MemoryScrobbler(Auth, HttpClient)); }
             set { _scrobbler = value; }
         }
 

@@ -27,32 +27,28 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
 
         private List<Scrobble> GetTestScrobbles()
         {
-            var counter = 0;
-            var now = new DateTimeOffset(2012, 02, 29, 15, 40, 03, TimeSpan.Zero);
-            Func<DateTimeOffset> getTimePlayed = () => now.AddSeconds(-360 * counter++);
-
             var testScrobbles = new List<Scrobble>
             {
-                new Scrobble("65daysofstatic", "The Fall of Math", "Hole", getTimePlayed())
+                new Scrobble("65daysofstatic", "The Fall of Math", "Hole", new DateTimeOffset(2017, 09, 23, 12, 0, 0, TimeSpan.Zero)) // 1506168000
                 {
                     ChosenByUser = true
                 },
-                new Scrobble("やくしまるえつこ", "X次元へようこそ", "X次元へようこそ", getTimePlayed())
+                new Scrobble("やくしまるえつこ", "X次元へようこそ", "X次元へようこそ", new DateTimeOffset(2017, 09, 23, 13, 0, 0, TimeSpan.Zero)) // 1506171600
                 {
                     AlbumArtist = "やくしまるえつこ",
                     ChosenByUser = false
                 },
-                new Scrobble("Björk", "Hyperballad", "Post", getTimePlayed())
+                new Scrobble("Björk", "Hyperballad", "Post", new DateTimeOffset(2017, 09, 23, 14, 0, 0, TimeSpan.Zero)) // 1506175200
                 {
                     AlbumArtist = "Björk",
                     ChosenByUser = false
                 },
-                new Scrobble("Broken Social Scene", "Sentimental X's", "Forgiveness Rock Record", getTimePlayed())
+                new Scrobble("Broken Social Scene", "Sentimental X's", "Forgiveness Rock Record", new DateTimeOffset(2017, 09, 23, 15, 0, 0, TimeSpan.Zero)) // 1506178800
                 {
                     AlbumArtist = "Broken Social Scene",
                     ChosenByUser = false
                 },
-                new Scrobble("Rubies", "Stand in a Line", "Teppan-Yaki (A Collection of Remixes)", getTimePlayed())
+                new Scrobble("Rubies", "Stand in a Line", "Teppan-Yaki (A Collection of Remixes)", new DateTimeOffset(2017, 09, 23, 16, 0, 0, TimeSpan.Zero)) // 1506182400
                 {
                     AlbumArtist = "Schinichi Osawa",
                     ChosenByUser = false
@@ -65,8 +61,9 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
         private HttpRequestMessage GenerateExpectedRequestMessage(string messageBody)
         {
             var parameters = messageBody.Split('&')
-                    .Select(pair => pair.Split('='))
-                    .Select(arr => new KeyValuePair<string, string>(arr[0], arr[1]));
+                .Select(pair => pair.Split('='))
+                .Select(arr => new KeyValuePair<string, string>(arr[0], arr[1]));
+            
             var requestMessage = new HttpRequestMessage(HttpMethod.Post, LastFm.ApiRootSsl)
             {
                 Content = new FormUrlEncodedContent(parameters)
@@ -162,22 +159,26 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var scrobblesToCache = testScrobbles.Take(1);
 
             var scrobbleResponse1 = await ExecuteTestInternal(scrobblesToCache, responseMessage1);
-
-            if (!Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse1.Status);
-                return;
-            }
-
+            
             Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse1.Status);
+
+            var cachedTracks1 = await Scrobbler.GetCachedAsync();
+            TestHelper.AssertSerialiseEqual(testScrobbles.First(), cachedTracks1.FirstOrDefault());
+            Assert.AreEqual(1, await Scrobbler.GetCachedCountAsync());
 
             var scrobblesToSend = testScrobbles.Skip(1).Take(1);
 
             var requestMessage2 = GenerateExpectedRequestMessage(TrackApiResponses.TrackScrobbleTwoRequestBody);
-            var responseMessage2 = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess);
+            var responseMessage2 = TestHelper.CreateResponseMessage(HttpStatusCode.OK, TrackApiResponses.TrackScrobbleSuccess2);
             var scrobbleResponse2 = await ExecuteTestInternal(scrobblesToSend, responseMessage2, requestMessage2);
 
             Assert.IsTrue(scrobbleResponse2.Success);
+            Assert.AreEqual(2, scrobbleResponse2.AcceptedCount);
+
+            // Should be nothing left in the cache
+            var cachedTracks2 = await Scrobbler.GetCachedAsync();
+            Assert.AreEqual(0, cachedTracks2.Count());
+            Assert.AreEqual(0, await Scrobbler.GetCachedCountAsync());
         }
 
         [Test]
@@ -189,18 +190,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.Forbidden, TrackApiResponses.TrackScrobbleBadAuthError);
             var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
-            if (Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+            Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
 
-                // check actually cached
-                var cached = await Scrobbler.GetCachedAsync();
-                TestHelper.AssertSerialiseEqual(testScrobbles, cached);
-            }
-            else
-            {
-                Assert.AreEqual(LastResponseStatus.BadAuth, scrobbleResponse.Status);
-            }
+            // check actually cached
+            var cached = await Scrobbler.GetCachedAsync();
+            TestHelper.AssertSerialiseEqual(testScrobbles, cached);
         }
 
         [Test]
@@ -212,18 +206,11 @@ namespace IF.Lastfm.Core.Tests.Scrobblers
             var responseMessage = TestHelper.CreateResponseMessage(HttpStatusCode.RequestTimeout, new byte[0]);
             var scrobbleResponse = await ExecuteTestInternal(testScrobbles, responseMessage, requestMessage);
 
-            if (Scrobbler.CacheEnabled)
-            {
-                Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
+            Assert.AreEqual(LastResponseStatus.Cached, scrobbleResponse.Status);
 
-                // check actually cached
-                var cached = await Scrobbler.GetCachedAsync();
-                TestHelper.AssertSerialiseEqual(testScrobbles, cached);
-            }
-            else
-            {
-                Assert.AreEqual(LastResponseStatus.RequestFailed, scrobbleResponse.Status);
-            }
+            // check actually cached
+            var cached = await Scrobbler.GetCachedAsync();
+            TestHelper.AssertSerialiseEqual(testScrobbles, cached);
         }
     }
 }
