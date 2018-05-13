@@ -35,6 +35,8 @@ namespace IF.Lastfm.Core.Objects
 
         public int? PlayCount { get; set; }
 
+        public int? UserPlayCount { get; set; }
+
         public IEnumerable<LastTag> TopTags { get; set; }
 
         public DateTimeOffset? TimePlayed { get; set; }
@@ -67,6 +69,13 @@ namespace IF.Lastfm.Core.Objects
             if (int.TryParse(playCountStr, out playCount))
             {
                 t.PlayCount = playCount;
+            }
+
+            // same with userplaycount
+            int userPlayCount;
+            if(int.TryParse(token.Value<string>("userplaycount"), out userPlayCount))
+            {
+                t.UserPlayCount = userPlayCount;
             }
 
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
