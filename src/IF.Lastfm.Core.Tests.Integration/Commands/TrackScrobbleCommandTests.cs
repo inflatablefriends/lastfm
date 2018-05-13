@@ -46,20 +46,18 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var expectedJson = expectedTrack.TestSerialise();
 
             var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
-            Assert.IsTrue(tracks.Any());
-
-            var actual = tracks.Content.First();
+            var scrobbledTrack = tracks.Single(x => !x.IsNowPlaying.GetValueOrDefault(false));
             
-            TestHelper.AssertSerialiseEqual(trackPlayed, actual.TimePlayed);
-            actual.TimePlayed = null;
+            TestHelper.AssertSerialiseEqual(trackPlayed, scrobbledTrack.TimePlayed);
+            scrobbledTrack.TimePlayed = null;
 
             // Some properties change from time to time; parsing is covered in unit tests
-            actual.Mbid = null;
-            actual.ArtistMbid = null;
-            actual.Images = null;
-            actual.Url = null;
+            scrobbledTrack.Mbid = null;
+            scrobbledTrack.ArtistMbid = null;
+            scrobbledTrack.Images = null;
+            scrobbledTrack.Url = null;
 
-            var actualJson = actual.TestSerialise();
+            var actualJson = scrobbledTrack.TestSerialise();
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
@@ -71,7 +69,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             var countingHandler = new CountingHttpClientHandler();
             var httpClient = new HttpClient(countingHandler);
-            var scrobbler = new Scrobbler(Lastfm.Auth, httpClient)
+            var scrobbler = new MemoryScrobbler(Lastfm.Auth, httpClient)
             {
                 MaxBatchSize = 2
             };

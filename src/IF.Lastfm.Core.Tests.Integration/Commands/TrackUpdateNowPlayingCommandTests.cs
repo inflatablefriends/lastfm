@@ -28,6 +28,8 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             Assert.IsTrue(response.Success);
 
+            await Task.Delay(1000);
+
             var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
 
             var expectedTrack = new LastTrack
@@ -38,7 +40,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 IsNowPlaying = true
             };
 
-            var actual = tracks.Content.First();
+            var actual = tracks.Content.Single(x => x.IsNowPlaying.GetValueOrDefault(false));
 
             // Some properties change from time to time
             actual.Mbid = null;
