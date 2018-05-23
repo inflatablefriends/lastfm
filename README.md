@@ -47,7 +47,7 @@ var client = new LastfmClient("apikey", "apisecret");
 Get information about an album:
 
 ```c#
-var response = client.Album.GetInfoAsync("Grimes", "Visions");
+var response = await client.Album.GetInfoAsync("Grimes", "Visions");
 
 LastAlbum visions = response.Content;
 ```
