@@ -46,9 +46,19 @@ This custom attribute must be present on all Commands. For more information, see
     {
         public ILastAuth Auth { get; protected set; }
 
-        public int Page { get; set; }
+	    private int _page;
 
-        public int Count { get; set; }
+	    public int Page
+	    {
+		    get => _page == 0 ? 1 : _page;
+		    set
+		    {
+			    if (value < 1) throw new ArgumentOutOfRangeException(nameof(value), "Page property cannot be less than 1");
+			    _page = value;
+		    }
+	    }
+
+	    public int Count { get; set; }
 
         public Uri Url { get; protected set; }
 
