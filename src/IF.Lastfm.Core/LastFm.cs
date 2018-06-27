@@ -27,7 +27,9 @@ namespace IF.Lastfm.Core
         private const string ResponseFormat = "json";
 
         public const string DefaultLanguageCode = "en";
+
         public const int DefaultPageLength = 20;
+	    public const int DefaultPage = 1;
         
         public static string FormatApiUrl(string method, string apikey, Dictionary<string, string> parameters = null, bool secure = false)
         {

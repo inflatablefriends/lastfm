@@ -50,7 +50,7 @@ This custom attribute must be present on all Commands. For more information, see
 
 	    public int Page
 	    {
-		    get => _page == 0 ? 1 : _page;
+		    get => _page == 0 ? LastFm.DefaultPage : _page;
 		    set
 		    {
 			    if (value < 1) throw new ArgumentOutOfRangeException(nameof(value), "Page property cannot be less than 1");
