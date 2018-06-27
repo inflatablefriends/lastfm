@@ -133,6 +133,9 @@
   <data name="UserGetRecentTracksError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>userapi\usergetrecenttrackserror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="UserGetRecentTracksExtended" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>UserApi\UserGetRecentTracksExtended.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="UserGetRecentTracksMissing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>userapi\usergetrecenttracksmissing.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

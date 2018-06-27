@@ -25,6 +25,10 @@ namespace IF.Lastfm.Core.Objects
 
         public string ArtistMbid { get; set; }
 
+	    public LastImageSet ArtistImages { get; set; }
+
+		public Uri ArtistUrl { get; set; }
+
         public Uri Url { get; set; }
 
         public LastImageSet Images { get; set; }
@@ -85,6 +89,17 @@ namespace IF.Lastfm.Core.Objects
             {
                 t.ArtistName = LastArtist.GetNameFromJToken(artistToken);
                 t.ArtistMbid = artistToken.Value<string>("mbid");
+
+	            if (artistToken.Value<string>("url") != null)
+	            {
+					t.ArtistUrl = new Uri(artistToken.Value<string>("url"), UriKind.Absolute);
+	            }
+
+	            var artistImages = artistToken.SelectToken("image", false);
+	            if (artistImages != null)
+	            {
+					t.ArtistImages = LastImageSet.ParseJToken(artistImages);
+	            }
             }
             else
                 t.ArtistName = artistToken.ToObject<string>();
@@ -123,10 +138,16 @@ namespace IF.Lastfm.Core.Objects
             }
 
             var lovedToken = token.SelectToken("userloved");
-            if (lovedToken != null)
+	        var extendedLovedToken = token.SelectToken("loved");
+			if (lovedToken != null)
             {
                 t.IsLoved = Convert.ToBoolean(lovedToken.Value<int>());
             }
+			else if (extendedLovedToken != null)
+            {
+				t.IsLoved = Convert.ToBoolean(extendedLovedToken.Value<int>());
+			}
+
             var attrToken = token.SelectToken("@attr");
             if (attrToken != null && attrToken.HasValues)
             {

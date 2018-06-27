@@ -113,6 +113,16 @@ namespace IF.Lastfm.Core.Tests.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] UserGetRecentTracksExtended {
+            get {
+                object obj = ResourceManager.GetObject("UserGetRecentTracksExtended", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] UserGetRecentTracksMissing {
             get {
                 object obj = ResourceManager.GetObject("UserGetRecentTracksMissing", resourceCulture);
