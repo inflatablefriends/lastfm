@@ -59,7 +59,7 @@ for:
         - release
 
     # don't forget to update this!
-    version: 1.1.1.{build}
+    version: 1.1.0.{build}
     
     after_test:
       - ps: pushd .nuget
