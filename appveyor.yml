@@ -8,12 +8,14 @@
 
   image: Visual Studio 2017
 
-  assembly_info:
+  dotnet_csproj:
     patch: true
-    file: AssemblyInfo.*
-    assembly_version: "{version}"
-    assembly_file_version: "{version}"
-    assembly_informational_version: "{version}"
+    file: '**\*.csproj'
+    version: '{version}'
+    package_version: '{version}'
+    assembly_version: '{version}'
+    file_version: '{version}'
+    informational_version: '{version}'
 
   configuration: Release
 
@@ -58,12 +60,14 @@
 
   image: Visual Studio 2017
 
-  assembly_info:
+  dotnet_csproj:
     patch: true
-    file: AssemblyInfo.*
-    assembly_version: "{version}"
-    assembly_file_version: "{version}"
-    assembly_informational_version: "{version}"
+    file: '**\*.csproj'
+    version: '{version}'
+    package_version: '{version}'
+    assembly_version: '{version}'
+    file_version: '{version}'
+    informational_version: '{version}'
 
   configuration: Release
 
