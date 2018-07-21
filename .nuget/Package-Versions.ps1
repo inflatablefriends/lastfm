@@ -1,1 +1,1 @@
-$sqliteVersion = "0.2.2"
+$sqliteVersion = "1.1.0"
