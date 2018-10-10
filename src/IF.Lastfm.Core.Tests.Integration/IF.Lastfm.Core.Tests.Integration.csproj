@@ -73,6 +73,7 @@
     <Compile Include="Commands\CommandIntegrationTestsBase.cs" />
     <Compile Include="Commands\TrackScrobbleCommandTests.cs" />
     <Compile Include="Commands\TrackUpdateNowPlayingCommandTests.cs" />
+    <Compile Include="Commands\AlbumGetInfoTests.cs" />
     <Compile Include="Commands\UserGetInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

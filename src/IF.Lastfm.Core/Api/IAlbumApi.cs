@@ -8,9 +8,9 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
-        Task<LastResponse<LastAlbum>> GetInfoAsync(string artist, string album, bool autocorrect = false);
+        Task<LastResponse<LastAlbum>> GetInfoAsync(string artist, string album, bool autocorrect = false, string username = null);
 
-        Task<LastResponse<LastAlbum>> GetInfoByMbidAsync(string albumMbid, bool autocorrect = false);
+        Task<LastResponse<LastAlbum>> GetInfoByMbidAsync(string albumMbid, bool autocorrect = false, string username = null);
         
         //Task<PageResponse<BuyLink>> GetBuyLinksForAlbumAsync(string artist,
         //    string album,

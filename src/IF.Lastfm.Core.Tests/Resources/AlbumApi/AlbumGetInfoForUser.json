@@ -1,0 +1,302 @@
+{
+  "album": {
+    "name": "Ray of Light",
+    "artist": "Madonna",
+    "id": "1934",
+    "mbid": "ddb3168d-66a9-4b2d-af02-05278da8a23d",
+    "url": "http://www.last.fm/music/Madonna/Ray+of+Light",
+    "releasedate": "    13 Sep 2005, 00:00",
+    "image": [
+      {
+        "#text": "http://userserve-ak.last.fm/serve/34s/37498173.png",
+        "size": "small"
+      },
+      {
+        "#text": "http://userserve-ak.last.fm/serve/64s/37498173.png",
+        "size": "medium"
+      },
+      {
+        "#text": "http://userserve-ak.last.fm/serve/174s/37498173.png",
+        "size": "large"
+      },
+      {
+        "#text": "http://userserve-ak.last.fm/serve/300x300/37498173.png",
+        "size": "extralarge"
+      },
+      {
+        "#text": "http://userserve-ak.last.fm/serve/_/37498173/Ray+of+Light.png",
+        "size": "mega"
+      }
+    ],
+    "listeners": "509271",
+    "playcount": "7341494",
+    "userplaycount": "321",
+    "tracks": {
+      "track": [
+        {
+          "name": "Drowned World/Substitute for Love",
+          "duration": "308",
+          "mbid": "",
+          "url": "http://www.last.fm/music/Madonna/_/Drowned+World%2FSubstitute+for+Love",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "1"
+          }
+        },
+        {
+          "name": "Swim",
+          "duration": "300",
+          "mbid": "296cace4-5e5e-40cc-accc-74d9a31e5f8e",
+          "url": "http://www.last.fm/music/Madonna/_/Swim",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "2"
+          }
+        },
+        {
+          "name": "Ray of Light",
+          "duration": "321",
+          "mbid": "20bf8ce2-2e2c-48f4-ba81-4a1b24cf8fae",
+          "url": "http://www.last.fm/music/Madonna/_/Ray+of+Light",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "3"
+          }
+        },
+        {
+          "name": "Candy Perfume Girl",
+          "duration": "276",
+          "mbid": "9d9e6392-50c2-4e44-a560-c23ffd7833da",
+          "url": "http://www.last.fm/music/Madonna/_/Candy+Perfume+Girl",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "4"
+          }
+        },
+        {
+          "name": "Skin",
+          "duration": "381",
+          "mbid": "b42b3682-7964-4e2b-8f51-039656c32c2f",
+          "url": "http://www.last.fm/music/Madonna/_/Skin",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "5"
+          }
+        },
+        {
+          "name": "Nothing Really Matters",
+          "duration": "266",
+          "mbid": "3309c939-3b88-4e92-99b8-46dd1052ec09",
+          "url": "http://www.last.fm/music/Madonna/_/Nothing+Really+Matters",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "6"
+          }
+        },
+        {
+          "name": "Sky Fits Heaven",
+          "duration": "287",
+          "mbid": "2a5437aa-6ad5-4d71-b838-dc0ed928ead4",
+          "url": "http://www.last.fm/music/Madonna/_/Sky+Fits+Heaven",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "7"
+          }
+        },
+        {
+          "name": "Shanti/Ashtangi",
+          "duration": "268",
+          "mbid": "4e354e70-bd0e-461f-b63d-7887ff444edf",
+          "url": "http://www.last.fm/music/Madonna/_/Shanti%2FAshtangi",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "8"
+          }
+        },
+        {
+          "name": "Frozen",
+          "duration": "372",
+          "mbid": "646550f5-8242-4e6d-8ad9-533548a4af41",
+          "url": "http://www.last.fm/music/Madonna/_/Frozen",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "9"
+          }
+        },
+        {
+          "name": "The Power of Good-Bye",
+          "duration": "252",
+          "mbid": "912db777-e783-4856-b5e3-03548355d951",
+          "url": "http://www.last.fm/music/Madonna/_/The+Power+of+Good-Bye",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "10"
+          }
+        },
+        {
+          "name": "To Have and Not to Hold",
+          "duration": "322",
+          "mbid": "bc580d40-0283-47b0-9b7c-2580354f0875",
+          "url": "http://www.last.fm/music/Madonna/_/To+Have+and+Not+to+Hold",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "11"
+          }
+        },
+        {
+          "name": "Little Star",
+          "duration": "318",
+          "mbid": "19be8b9b-f265-448a-b120-939e4a6ba4c3",
+          "url": "http://www.last.fm/music/Madonna/_/Little+Star",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "12"
+          }
+        },
+        {
+          "name": "Mer Girl",
+          "duration": "331",
+          "mbid": "28bf1e1c-5f72-441a-abe7-8e3bef2554b8",
+          "url": "http://www.last.fm/music/Madonna/_/Mer+Girl",
+          "streamable": {
+            "#text": "0",
+            "fulltrack": "0"
+          },
+          "artist": {
+            "name": "Madonna",
+            "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+            "url": "http://www.last.fm/music/Madonna"
+          },
+          "@attr": {
+            "rank": "13"
+          }
+        }
+      ]
+    },
+    "toptags": {
+      "tag": [
+        {
+          "name": "albums i own",
+          "url": "http://www.last.fm/tag/albums%20i%20own"
+        },
+        {
+          "name": "pop",
+          "url": "http://www.last.fm/tag/pop"
+        },
+        {
+          "name": "electronic",
+          "url": "http://www.last.fm/tag/electronic"
+        },
+        {
+          "name": "dance",
+          "url": "http://www.last.fm/tag/dance"
+        },
+        {
+          "name": "madonna",
+          "url": "http://www.last.fm/tag/madonna"
+        }
+      ]
+    },
+    "wiki": {
+      "published": "Sat, 14 Jul 2012 12:33:01 +0000",
+      "summary": "Ray of Light is the seventh studio album by American singer-songwriter Madonna, released on March 3, 1998 by Maverick Records. The album is a pop and dance record, yet, it contains elements of electronic music within its composition, making it a departure from her previous work. Additionally, it incorporates several genres and subgenres, including techno and ambient. The album has several themes, including spirituality.   ",
+      "content": "Ray of Light is the seventh studio album by American singer-songwriter Madonna, released on March 3, 1998 by Maverick Records. The album is a pop and dance record, yet, it contains elements of electronic music within its composition, making it a departure from her previous work. Additionally, it incorporates several genres and subgenres, including techno and ambient. The album has several themes, including spirituality. \n \n After giving birth to her daughter Lourdes, Madonna collaborated with Patrick Leonard and William Orbit in developing the album. After failed sessions with other producers, Madonna pursued a new musical direction with Orbit and incorporated his extensive usage of trance and electronic music in her songs. The recording took place over four months, but experienced problems with the Pro Tools arrangement by Orbit as well as the absence of live bands.\n \n However, upon release, the album was lauded by contemporary critics as a music masterpiece of the decade. Reviewers complimented the album for its mature, restrained nature as well as commending Madonna's musical direction, calling it her &quot;most adventurous&quot; record. In such a way, the album has been included in many critic lists and polls, including Rolling Stone magazine's &quot;The 500 Greatest Albums of All Time&quot;.\n \n Commercially, the album was a success on the world charts, peaking at number one in countries like the United Kingdom, Canada, Australia, New Zealand and mainland Europe. On the U.S. Billboard 200, the album debuted and peaked at number two. The Recording Industry Association of America (RIAA) certified it Quadruple Platinum on March 16, 2000, recognizing four million shipments in the United States, making it her fifth best-selling recording there. Worldwide sales of the album have surpassed 20 million copies.\n \n Five singles were released from the album. The first single &quot;Frozen&quot; was an international success, as was the second one, &quot;Ray of Light&quot;, which won a number of awards for its music video. In 1999, the album received three Grammy Awards, including &quot;Best Pop Vocal Album&quot;, and &quot;Best Dance Recording.&quot; In 2003, the album was ranked #363 on Rolling Stone's 500 Greatest Albums of All Time. Madonna has performed songs from this album on a number of her world tours, most recently the Sticky &amp; Sweet Tour (2008-09).\n        \nUser-contributed text is available under the Creative Commons By-SA License and may also be available under the GNU FDL."
+    }
+  }
+}

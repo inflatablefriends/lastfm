@@ -146,6 +146,7 @@
     <Compile Include="TestHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AlbumApi\AlbumGetInfoForUser.json" />
     <None Include="Resources\GetTopArtistsError.json" />
     <None Include="Resources\GetTopArtistsSingle.json" />
     <None Include="Resources\GetTopArtistsSuccess.json" />
