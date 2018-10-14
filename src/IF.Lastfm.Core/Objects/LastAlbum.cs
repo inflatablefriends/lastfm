@@ -21,6 +21,8 @@ namespace IF.Lastfm.Core.Objects
 
         public int? PlayCount { get; set; }
 
+        public int? UserPlayCount { get; set; }
+
         public string Mbid { get; set; }
 
         public IEnumerable<LastTag> TopTags { get; set; }
@@ -85,6 +87,13 @@ namespace IF.Lastfm.Core.Objects
             if (int.TryParse(playCountStr, out playCount))
             {
                 a.PlayCount = playCount;
+            }
+
+            var userPlayCountStr = token.Value<string>("userplaycount");
+            int userPlayCount;
+            if (int.TryParse(userPlayCountStr, out userPlayCount))
+            {
+                a.UserPlayCount = userPlayCount;
             }
 
             var images = token.SelectToken("image");
