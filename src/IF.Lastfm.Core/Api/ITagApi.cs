@@ -9,5 +9,7 @@ namespace IF.Lastfm.Core.Api
         Task<PageResponse<LastTag>> GetSimilarAsync(string tagName);
         Task<LastResponse<LastTag>> GetInfoAsync(string tagName);
         Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string tagName,int page,int itemsPerPage);
+        Task<PageResponse<LastArtist>> GetTopArtistsAsync(string tagName, int page, int itemsPerPage);
+        Task<PageResponse<LastTag>> GetTopTagsAsync();
     }
 }
