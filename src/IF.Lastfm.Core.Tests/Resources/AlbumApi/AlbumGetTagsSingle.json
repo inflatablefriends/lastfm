@@ -1,0 +1,12 @@
+{
+  "tags": {
+    "tag": {
+      "name": "Test Tag",
+      "url": "http://www.last.fm/tag/test%20tag"
+    },
+    "@attr": {
+      "artist": "Hot Chip",
+      "album": "The Warning"
+    }
+  }
+}

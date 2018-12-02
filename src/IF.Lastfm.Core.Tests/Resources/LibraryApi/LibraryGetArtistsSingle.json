@@ -1,0 +1,43 @@
+{
+  "artists": {
+    "artist": [
+      {
+        "name": "Crystal Castles",
+        "playcount": "4219",
+        "tagcount": "0",
+        "mbid": "b1570544-93ab-4b2b-8398-131735394202",
+        "url": "https://www.last.fm/music/Crystal+Castles",
+        "streamable": "0",
+        "image": [
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/34s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "small"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/64s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "medium"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/174s/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "large"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/300x300/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "extralarge"
+          },
+          {
+            "#text": "https://lastfm-img2.akamaized.net/i/u/f36a92bfbd7f8b579c91942c6a428d69.png",
+            "size": "mega"
+          }
+        ]
+      }
+    ],
+    "@attr": {
+      "user": "tehrikkit",
+      "page": "2",
+      "perPage": "1",
+      "totalPages": "2567",
+      "total": "2567"
+    }
+  }
+}
