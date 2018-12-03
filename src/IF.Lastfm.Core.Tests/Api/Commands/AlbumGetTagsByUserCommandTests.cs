@@ -28,7 +28,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsSingle));
+            var file = GetFileContents("AlbumApi.AlbumGetTagsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsSingle));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -47,7 +49,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("Test Tag", "http://www.last.fm/tag/test%20tag")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsMultiple));
+            var file = GetFileContents("AlbumApi.AlbumGetTagsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsMultiple));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -60,7 +64,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseEmpty()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsEmpty));
+            var file = GetFileContents("AlbumApi.AlbumGetTagsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsEmpty));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(true, 0, 0, 1, 1);
@@ -70,7 +76,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseError()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsError));
+            var file = GetFileContents("AlbumApi.AlbumGetTagsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTagsError));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(false, 0, 0, 1, 1);

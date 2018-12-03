@@ -41,7 +41,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [Test]
         public async Task HandleSuccessResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShouts));
+            var file = GetFileContents("TrackApi.TrackGetShouts.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShouts));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -54,7 +56,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [Test]
         public async Task HandleResponseSingle()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsSingle));
+            var file = GetFileContents("TrackApi.TrackGetShoutsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsSingle));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -66,7 +70,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [Test]
         public async Task HandleEmptyResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
+            var file = GetFileContents("TrackApi.TrackGetEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -78,7 +84,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsError));
+            var file = GetFileContents("TrackApi.TrackGetShoutsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsError));
 
             var parsed = await _command.HandleResponse(response);
 
