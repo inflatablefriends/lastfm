@@ -34,7 +34,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleSuccessResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTags));
+            var file = GetFileContents("AlbumApi.AlbumGetTopTags.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTags));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -45,7 +47,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleEmptyResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsEmpty));
+            var file = GetFileContents("AlbumApi.AlbumGetTopTagsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsEmpty));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -57,7 +61,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsError));
+            var file = GetFileContents("AlbumApi.AlbumGetTopTagsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetTopTagsError));
 
             var parsed = await _command.HandleResponse(response);
 
