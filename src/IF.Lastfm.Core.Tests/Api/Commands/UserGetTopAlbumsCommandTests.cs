@@ -106,7 +106,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         }
 
         [Test]
-        //[Ignore]
+        [Ignore("Not implemented - ignore")]
         public async Task HandleResponseMultiple()
         {
 

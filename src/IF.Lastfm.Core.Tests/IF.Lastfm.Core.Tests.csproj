@@ -17,6 +17,14 @@
     <ProjectReference Include="..\IF.Lastfm.Core\IF.Lastfm.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="Resources\**\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\**\*.json" />
+  </ItemGroup>
+
 <!--
   <ItemGroup>
       <Reference Include="Moq, Version=4.2.1502.911, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">

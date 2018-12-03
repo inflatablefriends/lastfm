@@ -24,5 +24,20 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             return response;
         }
+
+        private string GetFileContents(string sampleFile)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+            var resource = string.Format("IF.Lastfm.Core.Tests.Resources.{0}", sampleFile);
+            using (var stream = asm.GetManifestResourceStream(resource))
+            {
+                if (stream != null)
+                {
+                    var reader = new StreamReader(stream);
+                    return reader.ReadToEnd();
+                }
+            }
+            return string.Empty;
+        }
     }
 }

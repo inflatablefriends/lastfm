@@ -113,7 +113,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Artist
                 }
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoSuccess));
+            var file = GetFileContents("ArtistApi.ArtistGetInfoSucess");
+            var response = CreateResponseMessage(Encoding.UTF8.GetString(file));
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoSucess));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -127,7 +129,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Artist
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoMissing));
+            var response = CreateResponseMessage(GetResource("ArtistApiResponses.ArtistGetInfoMissing"));
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoMissing));
 
             var parsed = await _command.HandleResponse(response);
 
