@@ -30,7 +30,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
 
 
             //Act
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetInfoSuccess));
+            var file = GetFileContents("Tag.GetInfoSuccess.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetInfoSuccess));
             var lastResponse = await command.HandleResponse(response);
             var tag = lastResponse.Content;
 
@@ -47,7 +49,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
         {
             var command = new GetInfoCommand(MAuth.Object, "errorTag");
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetInfoError));
+            var file = GetFileContents("Tag.GetInfoError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetInfoError));
 
             var parsed = await command.HandleResponse(response);
 
