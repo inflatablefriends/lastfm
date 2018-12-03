@@ -52,7 +52,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandlesRejectedResponse()
         {
-            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleRejected));
+            var file = GetFileContents("TrackApi.TrackScrobbleRejected.json");
+            var responseMessage = CreateResponseMessage(file);
+            //var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleRejected));
             var response = await _command.HandleResponse(responseMessage) as ScrobbleResponse;
             
             Assert.IsTrue(response.Success);
@@ -63,7 +65,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandlesSuccessResponse()
         {
-            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccess));
+            var file = GetFileContents("TrackApi.TrackScrobbleSuccess.json");
+            var responseMessage = CreateResponseMessage(file);
+            //var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccess));
             var response = await _command.HandleResponse(responseMessage);
             
             Assert.IsTrue(response.Success);
@@ -73,7 +77,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandlesSuccessResponseWhenMissingAlbumProperty()
         {
-            var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccessNoAlbumProperty));
+            var file = GetFileContents("TrackApi.TrackScrobbleSuccessNoAlbumProperty.json");
+            var responseMessage = CreateResponseMessage(file);
+            //var responseMessage = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackScrobbleSuccessNoAlbumProperty));
             var response = await _command.HandleResponse(responseMessage);
             
             Assert.IsTrue(response.Success);

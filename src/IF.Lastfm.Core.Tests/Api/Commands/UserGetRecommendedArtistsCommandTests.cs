@@ -35,7 +35,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "http://userserve-ak.last.fm/serve/_/2261874/Liars.jpg")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecommendedArtistsSingle));
+            var file = GetFileContents("UserApi.UserGetRecommendedArtistsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecommendedArtistsSingle));
             var parsed = await _commmand.HandleResponse(response);
             
             Assert.IsTrue(parsed.Success);
@@ -86,8 +88,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 },
             };
 
-
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecommendedArtistsMultiple));
+            var file = GetFileContents("UserApi.UserGetRecommendedArtistsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecommendedArtistsMultiple));
             var parsed = await _commmand.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);

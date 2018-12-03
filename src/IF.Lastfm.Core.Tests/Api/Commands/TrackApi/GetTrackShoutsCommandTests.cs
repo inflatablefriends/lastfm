@@ -70,7 +70,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.TrackApi
         [Test]
         public async Task HandleEmptyResponse()
         {
-            var file = GetFileContents("TrackApi.TrackGetEmpty.json");
+            var file = GetFileContents("TrackApi.TrackGetShoutsEmpty.json");
             var response = CreateResponseMessage(file);
             //var response = CreateResponseMessage(Encoding.UTF8.GetString(TrackApiResponses.TrackGetShoutsEmpty));
 

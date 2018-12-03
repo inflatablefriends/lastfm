@@ -38,7 +38,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "http://userserve-ak.last.fm/serve/300x300/35234991.jpg")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksMultiple));
+            var file = GetFileContents("UserApi.UserGetRecentTracksMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksMultiple));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -70,7 +72,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "http://userserve-ak.last.fm/serve/300x300/90462319.jpg")
             };
             
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksSingle));
+            var file = GetFileContents("UserApi.UserGetRecentTracksSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksSingle));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -85,7 +89,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 Count = 1
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));
+            var file = GetFileContents("UserApi.UserGetRecentTracksError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));
 
             var parsed = await command.HandleResponse(response);
 

@@ -65,7 +65,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                         "http://userserve-ak.last.fm/serve/_/12571597/Anathema+Judgement+promo.jpg")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsSingle));
+            var file = GetFileContents("UserApi.UserGetTopArtistsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsSingle));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -121,7 +123,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 },
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsMultiple));
+            var file = GetFileContents("UserApi.UserGetTopArtistsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsMultiple));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -148,7 +152,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             command.SetParameters();
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsEmpty));
+            var file = GetFileContents("UserApi.UserGetTopArtistsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsEmpty));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -170,7 +176,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             command.SetParameters();
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsError));
+            var file = GetFileContents("UserApi.UserGetTopArtistsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopArtistsError));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
