@@ -33,9 +33,9 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var chartResponse = await Lastfm.Chart.GetTopArtistsAsync(PAGE, LIMIT);
 
             Assert.IsTrue(chartResponse.Success);
-            Assert.AreEqual(PAGE, chartResponse.Page);
-            Assert.AreEqual(LIMIT, chartResponse.PageSize);
-            Assert.AreEqual(LIMIT, chartResponse.Content.Count);
+            Assert.AreEqual(PAGE, chartResponse.Page, "Error in Page");
+            Assert.AreEqual(LIMIT, chartResponse.PageSize, "Error in PageSize");
+            Assert.AreEqual(LIMIT, chartResponse.Content.Count, "Error in ContentCount");
 
             Assert.IsTrue(chartResponse.All(artist => !string.IsNullOrEmpty(artist.Name)));
         }
