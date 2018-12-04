@@ -9,6 +9,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
     /// TODO Last.fm doesn't return results consistently in this API
     /// If these tests break that might mean the API has started to work as expected wrt page and limit parameters
     /// </summary>
+    [TestFixture]
     public class ChartApiTests : CommandIntegrationTestsBase
     {
         private const int PAGE = 2;
