@@ -19,10 +19,12 @@
 
   <ItemGroup>
     <Content Remove="Resources\**\*.json" />
+    <Content Remove="Resources\TrackApi\*.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\**\*.json" />
+    <EmbeddedResource Include="Resources\TrackApi\*.txt" />
   </ItemGroup>
 
 <!--
