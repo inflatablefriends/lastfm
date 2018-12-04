@@ -128,24 +128,24 @@
     <value>tag\getsimilarerror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetSimilarSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\getsimilarsuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\getsimilarsuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopAlbumsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopAlbumsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopAlbumsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopAlbumsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopAlbumsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopAlbumsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopAlbumsSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopAlbumsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopAlbumsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopArtistsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopArtistsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopArtistsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopArtistsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopArtistsSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>GetTopArtistsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetTopArtistsSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
