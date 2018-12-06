@@ -1,3 +1,3 @@
 $testPaths = "src\IF.Lastfm.Core.Tests\bin\Release\IF.Lastfm.Core.Tests.dll src\IF.Lastfm.Core.Tests.Integration\bin\Release\IF.Lastfm.Core.Tests.Integration.dll src\IF.Lastfm.SQLite.Tests.Integration\bin\Release\IF.Lastfm.SQLite.Tests.Integration.dll"
 
-nunit-console /framework:net-4.5 src\IF.Lastfm.Core.Tests\bin\Release\IF.Lastfm.Core.Tests.dll src\IF.Lastfm.Core.Tests.Integration\bin\Release\IF.Lastfm.Core.Tests.Integration.dll src\IF.Lastfm.SQLite.Tests.Integration\bin\Release\IF.Lastfm.SQLite.Tests.Integration.dll
+nunit-console /framework:net-4.5 src\IF.Lastfm.Core.Tests\bin\Release\netcoreapp2.1\IF.Lastfm.Core.Tests.dll src\IF.Lastfm.Core.Tests.Integration\bin\Release\netcoreapp2.1\IF.Lastfm.Core.Tests.Integration.dll src\IF.Lastfm.SQLite.Tests.Integration\bin\Release\netcoreapp2.1\IF.Lastfm.SQLite.Tests.Integration.dll
