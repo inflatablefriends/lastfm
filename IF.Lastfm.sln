@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{81B53C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Core", "src\IF.Lastfm.Core\IF.Lastfm.Core.csproj", "{3CF4B78F-8B48-49CB-942F-83DB13474A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Syro", "src\IF.Lastfm.Syro\IF.Lastfm.Syro.csproj", "{2BDE74CF-AB11-441D-9641-5EAAD38DD01D}"
+#Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IF.Lastfm.Syro", "src\IF.Lastfm.Syro\IF.Lastfm.Syro.csproj", "{2BDE74CF-AB11-441D-9641-5EAAD38DD01D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5185BD96-FDB5-4DB2-A967-9152D6556150}"
 EndProject
