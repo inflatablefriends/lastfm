@@ -11,8 +11,8 @@ before_build:
 build:
   project: IF.Lastfm.sln
 
-test_script:
-  - ps: .\run-tests.ps1
+#test_script:
+#  - ps: .\run-tests.ps1
 
 image: Visual Studio 2017
 
