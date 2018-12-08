@@ -63,9 +63,9 @@ for:
       - ps: cp .\.nuget\*.nupkg . 
 
     artifacts:
-      - path: src\IF.Lastfm.Core\bin\Release\netstandard2.0\IF.Lastfm.Core.dll
+      - path: src\IF.Lastfm.Core\bin\Release\netstandard1.1\IF.Lastfm.Core.dll
         name: IF.Lastfm.Core.dll
-      - path: src\IF.Lastfm.SQLite\bin\Release\netstandard2.0\IF.Lastfm.SQLite.dll
+      - path: src\IF.Lastfm.SQLite\bin\Release\netstandard1.1\IF.Lastfm.SQLite.dll
         name: IF.Lastfm.SQLite.dll
       - path: '\*.nupkg'
 
