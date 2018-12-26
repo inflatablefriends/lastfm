@@ -1,3 +1,11 @@
-$testPaths = "src\IF.Lastfm.Core.Tests\bin\Release\IF.Lastfm.Core.Tests.dll src\IF.Lastfm.Core.Tests.Integration\bin\Release\IF.Lastfm.Core.Tests.Integration.dll src\IF.Lastfm.SQLite.Tests.Integration\bin\Release\IF.Lastfm.SQLite.Tests.Integration.dll"
+$ErrorActionPreference = 'Continue'
 
-nunit-console src\IF.Lastfm.Core.Tests\bin\Release\netcoreapp2.1\IF.Lastfm.Core.Tests.dll src\IF.Lastfm.Core.Tests.Integration\bin\Release\netcoreapp2.1\IF.Lastfm.Core.Tests.Integration.dll src\IF.Lastfm.SQLite.Tests.Integration\bin\Release\netcoreapp2.1\IF.Lastfm.SQLite.Tests.Integration.dll
+$testPaths = @(
+  "src\IF.Lastfm.Core.Tests\",
+  "src\IF.Lastfm.Core.Tests.Integration\",
+  "src\IF.Lastfm.SQLite.Tests.Integration\"
+)
+
+foreach ($path in $testPaths) {
+  dotnet test $path
+}
