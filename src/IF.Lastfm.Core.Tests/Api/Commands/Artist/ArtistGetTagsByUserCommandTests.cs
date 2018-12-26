@@ -28,7 +28,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("the fate of the world is safe in crystal castles", "http://www.last.fm/tag/the%20fate%20of%20the%20world%20is%20safe%20in%20crystal%20castles")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsSingle));
+            var file = GetFileContents("ArtistApi.ArtistGetTagsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsSingle));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -47,7 +49,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("if this were a pokemon i would catch it", "http://www.last.fm/tag/if%20this%20were%20a%20pokemon%20i%20would%20catch%20it")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsMultiple));
+            var file = GetFileContents("ArtistApi.ArtistGetTagsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsMultiple));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -60,7 +64,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseEmpty()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsEmpty));
+            var file = GetFileContents("ArtistApi.ArtistGetTagsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsEmpty));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(true, 0, 0, 1, 1);
@@ -70,7 +76,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseError()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsError));
+            var file = GetFileContents("ArtistApi.ArtistGetTagsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsError));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(false, 0, 0, 1, 1);

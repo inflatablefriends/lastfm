@@ -36,7 +36,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleSuccessResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearch));
+            var file = GetFileContents("AlbumApi.AlbumSearch.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearch));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -49,7 +51,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleResponseSingle()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchSingle));
+            var file = GetFileContents("AlbumApi.AlbumSearchSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchSingle));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -61,7 +65,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleEmptyResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchEmpty));
+            var file = GetFileContents("AlbumApi.AlbumSearchEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchEmpty));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -73,7 +79,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchError));
+            var file = GetFileContents("AlbumApi.AlbumSearchError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumSearchError));
 
             var parsed = await _command.HandleResponse(response);
 

@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
-    using System.Web.Configuration;
+    //using System.Web.Configuration;
 
     class UserGetLovedTracksCommandTests : CommandTestsBase
     {
@@ -39,7 +39,10 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                                             "http://userserve-ak.last.fm/serve/126/101739037.png",
                                             "http://userserve-ak.last.fm/serve/300x300/101739037.png")
                                     };
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetLovedTracksMultiple));
+            
+            var file = GetFileContents("UserApi.UserGetLovedTracksMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetLovedTracksMultiple));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -69,7 +72,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                                             "http://userserve-ak.last.fm/serve/126/90462319.jpg",
                                             "http://userserve-ak.last.fm/serve/300x300/90462319.jpg")
                                     };
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetLovedTracksSingle));
+            var file = GetFileContents("UserApi.UserGetLovedTracksSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetLovedTracksSingle));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -83,7 +88,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                               {
                                   Count = 1
                               };
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));
+            var file = GetFileContents("UserApi.UserGetLovedTracksError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksError));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);

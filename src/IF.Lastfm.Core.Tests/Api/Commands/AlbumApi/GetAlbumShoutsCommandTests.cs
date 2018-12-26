@@ -23,7 +23,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleSuccessResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsMultiple));
+            var file = GetFileContents("AlbumApi.AlbumGetShoutsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsMultiple));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -47,7 +49,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleResponseSingle()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsSingle));
+            var file = GetFileContents("AlbumApi.AlbumGetShoutsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsSingle));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -59,7 +63,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleEmptyResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsEmpty));
+            var file = GetFileContents("AlbumApi.AlbumGetShoutsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsEmpty));
 
             var parsed = await _command.HandleResponse(response);
 
@@ -71,7 +77,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsAlbumMissing));
+            var file = GetFileContents("AlbumApi.AlbumGetShoutsAlbumMissing.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetShoutsAlbumMissing));
 
             var parsed = await _command.HandleResponse(response);
 

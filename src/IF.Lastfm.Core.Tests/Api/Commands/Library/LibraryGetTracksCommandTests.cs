@@ -39,7 +39,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
 
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksMultiple));
+            var file = GetFileContents("LibraryApi.LibraryGetTracksMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksMultiple));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -71,7 +73,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                     "http://userserve-ak.last.fm/serve/300x300/56827829.jpg")
             };
             
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksSingle));
+            var file = GetFileContents("LibraryApi.LibraryGetTracksSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetTracksSingle));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -86,7 +90,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                 Count = 1
             }; 
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
+            var file = GetFileContents("AlbumApi.AlbumGetInfoMissing.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
 
             var parsed = await command.HandleResponse(response);
 

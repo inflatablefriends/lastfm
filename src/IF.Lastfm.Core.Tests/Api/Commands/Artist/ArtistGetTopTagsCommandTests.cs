@@ -29,7 +29,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("electronic", "http://www.last.fm/tag/electronic", 100)
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsSingle));
+            var file = GetFileContents("ArtistApi.ArtistGetTopTagsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsSingle));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -51,7 +53,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 new LastTag("psychedelic", "http://www.last.fm/tag/psychedelic", 50)
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsMultiple));
+            var file = GetFileContents("ArtistApi.ArtistGetTopTagsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsMultiple));
             var parsed = await _command.HandleResponse(response);
 
             var expectedJson = expectedTags.TestSerialise();
@@ -64,7 +68,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseEmpty()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsEmpty));
+            var file = GetFileContents("ArtistApi.ArtistGetTopTagsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsEmpty));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(true, 0, 0, 1, 1);
@@ -74,7 +80,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleResponseError()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsError));
+            var file = GetFileContents("ArtistApi.ArtistGetTopTagsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTopTagsError));
             var parsed = await _command.HandleResponse(response);
 
             parsed.AssertValues(false, 0, 0, 1, 1);

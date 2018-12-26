@@ -19,7 +19,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             GetTopAlbumsCommand command = new GetTopAlbumsCommand(MAuth.Object, "disco");
 
             //Act
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsSingle));
+            var file = GetFileContents("Tag.GetTopAlbumsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsSingle));
             var parsed = await command.HandleResponse(response);
 
             //Assert
@@ -34,7 +36,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             GetTopAlbumsCommand command = new GetTopAlbumsCommand(MAuth.Object, "disco");
 
             //Act
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsSuccess));
+            var file = GetFileContents("Tag.GetTopAlbumsSuccess.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsSuccess));
             var parsed = await command.HandleResponse(response);
 
             //Assert
@@ -47,7 +51,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
         {
             var command = new GetTopAlbumsCommand(MAuth.Object, "errorTag");
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsError));
+            var file = GetFileContents("Tag.GetTopAlbumsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetTopAlbumsError));
 
             var parsed = await command.HandleResponse(response);
 

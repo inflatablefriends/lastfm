@@ -42,7 +42,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
             expectedTags[0].Streamable = false;
             expectedTags[1].Streamable = null;
             
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetSimilarSuccess));
+            var file = GetFileContents("Tag.GetSimilarSuccess.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetSimilarSuccess));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Skip(2).All(t => t.Streamable.GetValueOrDefault()));
@@ -56,7 +58,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Tag
         {
             var command = new GetSimilarCommand(MAuth.Object, "arroooo");
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetSimilarError));
+            var file = GetFileContents("Tag.GetSimilarError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(TagApiResponses.GetSimilarError));
 
             var parsed = await command.HandleResponse(response);
 

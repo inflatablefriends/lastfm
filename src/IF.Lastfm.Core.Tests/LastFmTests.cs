@@ -5,6 +5,8 @@ using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Tests.Resources;
 using NUnit.Framework;
 using Moq;
+using System.Reflection;
+using System.IO;
 
 namespace IF.Lastfm.Core.Tests
 {
@@ -32,13 +34,30 @@ namespace IF.Lastfm.Core.Tests
             Assert.IsFalse(LastFm.IsResponseValid(null, out status));
             Assert.IsFalse(LastFm.IsResponseValid("{invalid json", out status));
 
-            var error6 = Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsError);
+            var error6 = GetFileContents("ArtistApi.ArtistGetTagsError.json");
+            //var error6 = Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetTagsError);
             Assert.IsFalse(LastFm.IsResponseValid(error6, out status));
             Assert.AreEqual(LastResponseStatus.MissingParameters, status);
 
-            var goodResponse = Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoSuccess);
+            var goodResponse = GetFileContents("ArtistApi.ArtistGetInfoSuccess.json");
+            //var goodResponse = Encoding.UTF8.GetString(ArtistApiResponses.ArtistGetInfoSuccess);
             Assert.IsTrue(LastFm.IsResponseValid(goodResponse, out status));
             Assert.AreEqual(LastResponseStatus.Successful, status);
+        }
+
+        protected string GetFileContents(string sampleFile)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+            var resource = string.Format("IF.Lastfm.Core.Tests.Resources.{0}", sampleFile);
+            using (var stream = asm.GetManifestResourceStream(resource))
+            {
+                if (stream != null)
+                {
+                    var reader = new StreamReader(stream);
+                    return reader.ReadToEnd();
+                }
+            }
+            return string.Empty;
         }
     }
 }

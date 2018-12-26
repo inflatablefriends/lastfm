@@ -12,6 +12,7 @@ using NUnit.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 
 namespace IF.Lastfm.Core.Tests
 {
@@ -201,10 +202,12 @@ namespace IF.Lastfm.Core.Tests
             Assert.IsTrue(pageResponse.Content.Count == totalItems, testMessage("content length", totalItems));
         }
         
-        public static HttpResponseMessage CreateResponseMessage(HttpStatusCode status, byte[] resource)
+        public static HttpResponseMessage CreateResponseMessage(HttpStatusCode status, string resource)
         {
             var now = new DateTimeOffset(2015, 03, 04, 20, 07, 21, TimeSpan.Zero);
-            var responseJson = Encoding.UTF8.GetString(resource);
+            
+            var responseJson = GetFileContents(resource);
+            //var responseJson = Encoding.UTF8.GetString(resource);
             var stringContent = new StringContent(responseJson, Encoding.UTF8, "application/json");
 
             var testResponseMessage = new HttpResponseMessage(status)
@@ -214,5 +217,20 @@ namespace IF.Lastfm.Core.Tests
 
             return testResponseMessage;
         }
+        private static string GetFileContents(string sampleFile)
+        {
+            var asm = Assembly.GetExecutingAssembly();
+            var resource = string.Format("IF.Lastfm.Core.Tests.Resources.{0}", sampleFile);
+            using (var stream = asm.GetManifestResourceStream(resource))
+            {
+                if (stream != null)
+                {
+                    var reader = new StreamReader(stream);
+                    return reader.ReadToEnd();
+                }
+            }
+            return string.Empty;
+        }
+
     }
 }

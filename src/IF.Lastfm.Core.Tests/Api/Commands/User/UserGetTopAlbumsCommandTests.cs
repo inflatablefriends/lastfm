@@ -55,22 +55,26 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleErrorResponse()
         {
-            var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
-            var response = await _command.HandleResponse(http);
+            var file = GetFileContents("UserApi.UserGetTopAlbumsError.json");
+            var response = CreateResponseMessage(file);
+            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
+            var parsed = await _command.HandleResponse(response);
 
-            Assert.IsFalse(response.Success);
+            Assert.IsFalse(parsed.Success);
         }
 
         [Test]
         public async Task HandleResponseEmpty()
         {
-            var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsEmpty));
-            var response = await _command.HandleResponse(http);
+            var file = GetFileContents("UserApi.UserGetTopAlbumsEmpty.json");
+            var response = CreateResponseMessage(file);
+            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsEmpty));
+            var parsed = await _command.HandleResponse(response);
 
-            Assert.IsTrue(response.Success);
-            Assert.IsTrue(!response.Content.Any());
-            Assert.AreEqual(0, response.TotalItems);
-            Assert.AreEqual(1, response.TotalPages);
+            Assert.IsTrue(parsed.Success);
+            Assert.IsTrue(!parsed.Content.Any());
+            Assert.AreEqual(0, parsed.TotalItems);
+            Assert.AreEqual(1, parsed.TotalPages);
         }
 
         [Test]
@@ -94,19 +98,21 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                 TopTags = Enumerable.Empty<LastTag>()
             };
 
-            var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsSingle));
-            var response = await _command.HandleResponse(http);
+            var file = GetFileContents("UserApi.UserGetTopAlbumsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsSingle));
+            var parsed = await _command.HandleResponse(response);
             
-            Assert.IsTrue(response.Success);
-            Assert.AreEqual(1, response.Content.Count);
+            Assert.IsTrue(parsed.Success);
+            Assert.AreEqual(1, parsed.Content.Count);
 
-            var actualAlbum = response.Content.First();
+            var actualAlbum = parsed.Content.First();
             
             TestHelper.AssertSerialiseEqual(expectedAlbum, actualAlbum);
         }
 
         [Test]
-        [Ignore]
+        [Ignore("Not implemented - ignore")]
         public async Task HandleResponseMultiple()
         {
 

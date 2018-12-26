@@ -31,7 +31,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                     "https://lastfm-img2.akamaized.net/i/u/f36a92bfbd7f8b579c91942c6a428d69.png")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsMultiple));
+            var file = GetFileContents("LibraryApi.LibraryGetArtistsMultiple.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsMultiple));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -61,7 +63,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                     "https://lastfm-img2.akamaized.net/i/u/f36a92bfbd7f8b579c91942c6a428d69.png")
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsSingle));
+            var file = GetFileContents("LibraryApi.LibraryGetArtistsSingle.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsSingle));
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);
@@ -76,7 +80,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                 Count = 1
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsError));
+            var file = GetFileContents("LibraryApi.LibraryGetArtistsError.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(LibraryApiResponses.LibraryGetArtistsError));
             var parsed = await command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);

@@ -57,7 +57,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
                 }
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoSuccess));
+            var file = GetFileContents("AlbumApi.AlbumGetInfoSuccess.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoSuccess));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -109,7 +111,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
                 }
             };
 
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoForUser));
+            var file = GetFileContents("AlbumApi.AlbumGetInfoForUser.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoForUser));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -127,7 +131,9 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.AlbumApi
         [Test]
         public async Task HandleErrorResponse()
         {
-            var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
+            var file = GetFileContents("AlbumApi.AlbumGetInfoMissing.json");
+            var response = CreateResponseMessage(file);
+            //var response = CreateResponseMessage(Encoding.UTF8.GetString(AlbumApiResponses.AlbumGetInfoMissing));
 
             var parsed = await _command.HandleResponse(response);
 
