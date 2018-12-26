@@ -26,7 +26,7 @@ In order to keep [the commit history](https://github.com/inflatablefriends/lastf
 2. Squash your own commits before the PR is merged in.
   1. Multiple commits per PR is totally fine, as long as each single commit explains what it does. "Adds tests" is not as good a commit message as "Adds tests and JSON responses for GetAlbumShoutsCommand", for example.
 
-### Writing a command
+## Writing a command
 
 The API is structured according to [the command pattern](http://en.wikipedia.org/wiki/Command_pattern). This is to reduce duplication of code and make testing easier.
 
@@ -48,7 +48,17 @@ So if I wanted to work on the method `track.getSimilar` I would:
 
 Once all your tests pass and the project builds, commit your work to your repo, then send a pull request.
 
-### Tests
+## Tests
+
+### Running tests
+
+You will need the [.NET Core SDK](https://dotnet.microsoft.com/download) installed.
+
+Visual Studio 201* should automatically discover the tests in the solution. For Visual Studio Code, you'll need to find a plugin compatible with NUnit tests.
+
+You can also run tests from the command line. In the root folder, run `./run-tests.ps1`. This runs `dotnet test` in each test project folder (e.g. `/src/IF.Tests.Lastfm.Tests/`).
+
+### Writing tests
 
 Every command should have a corresponding unit test file when it makes sense; you can use the type of command as an indicator for which tests are necessary. In addition to the below, any edge cases (such as the timestamps for an album being represented in ms or s depending on which endpoint is called) should be covered.
 
@@ -71,7 +81,7 @@ As `LastResponse`, plus
 - `HandleSuccessMultiple()` - test that `command.ExecuteAsync()` deserialises a typical successful response with multiple items for this API response correctly. Set the limit parameter to 2 for easier test writing.
 - `HandleError()` - test that `command.ExecuteAsync()` deserialises a typical error response for this API correctly, including method code and message.
 
-### Syro
+## Syro
 
 `IF.Lastfm.Syro` is a tool to make building requests to the Last.fm JSON API easier, using the mechanisms in the core library for stuff like generating method signatures and authenticating.
 
