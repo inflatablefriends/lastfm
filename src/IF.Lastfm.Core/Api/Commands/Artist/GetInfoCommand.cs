@@ -35,7 +35,12 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             {
                 Parameters.Add("artist", ArtistName);
             }
-
+            
+            if (BioLanguage != null)
+            {
+                Parameters.Add("lang", BioLanguage);
+            }
+            
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             DisableCaching();

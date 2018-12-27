@@ -125,6 +125,23 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Artist
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
         }
+        
+        [Test]
+        public void ArtistGetInfo_SetLangParam_Success()
+        {
+            GetInfoCommand _command2 = new GetInfoCommand(MAuth.Object)
+            {
+                ArtistName = "Frightened Rabbit",
+                BioLanguage = "fr"
+            };
+            
+            //call the commands SetParameter method - this is ususally done in Command.ExecuteAsync
+            _command2.SetParameters();
+            
+            string langValue; 
+            Assert.IsTrue(_command2.Parameters.TryGetValue("lang", out langValue));
+            Assert.AreEqual("fr", langValue);
+        }
 
         [Test]
         public async Task HandleErrorResponse()
