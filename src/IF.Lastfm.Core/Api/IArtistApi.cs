@@ -23,6 +23,12 @@ namespace IF.Lastfm.Core.Api
             int page = 1,
             int itemsPerPage = LastFm.DefaultPageLength);
 
+        Task<PageResponse<LastAlbum>> GetTopAlbumsByMbidAsync(string mbid,
+            bool autocorrect = false,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
+
         Task<PageResponse<LastTrack>> GetTopTracksAsync(string artist,
             bool autocorrect = false,
             int page = 1,
