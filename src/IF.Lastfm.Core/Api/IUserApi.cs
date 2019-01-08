@@ -39,5 +39,7 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse> AddShoutAsync(string recipient, string message);
 
         Task<PageResponse<LastTrack>> GetLovedTracks(string username, int pagenumber, int count);
+        
+        Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartList(string username);
     }
 }

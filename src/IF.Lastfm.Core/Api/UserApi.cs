@@ -132,5 +132,13 @@ namespace IF.Lastfm.Core.Api
                               };
             return await command.ExecuteAsync();
         }
+        public async Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartList(string username)
+        {
+            var command = new GetWeeklyChartsCommand(auth: Auth, username: username)
+            {
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }        
     }
 }
