@@ -40,6 +40,6 @@ namespace IF.Lastfm.Core.Api
 
         Task<PageResponse<LastTrack>> GetLovedTracks(string username, int pagenumber, int count);
         
-        Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartList(string username);
+        Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartListAsync(string username);
     }
 }
