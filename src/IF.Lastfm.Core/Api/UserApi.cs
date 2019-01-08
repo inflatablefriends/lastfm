@@ -134,11 +134,19 @@ namespace IF.Lastfm.Core.Api
         }
         public async Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartListAsync(string username)
         {
-            var command = new GetWeeklyChartsCommand(auth: Auth, username: username)
+            var command = new GetWeeklyChartListCommand(auth: Auth, username: username)
             {
                 HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
-        }        
+        }
+         public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, string from = null, string to = null)
+        {
+            var command = new GetWeeklyArtistChartCommand(auth: Auth, username: username, from: from, to: to)
+            {
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }         
     }
 }

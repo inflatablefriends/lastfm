@@ -9,11 +9,11 @@ using Newtonsoft.Json.Linq;
 namespace IF.Lastfm.Core.Api.Commands.User
 {
     [ApiMethodName("user.getWeeklyChartList")]
-    internal class GetWeeklyChartsCommand : GetAsyncCommandBase<PageResponse<LastWeeklyChartList>>
+    internal class GetWeeklyChartListCommand : GetAsyncCommandBase<PageResponse<LastWeeklyChartList>>
     {
         public string Username { get; set; }
 
-        public GetWeeklyChartsCommand(ILastAuth auth, string username)
+        public GetWeeklyChartListCommand(ILastAuth auth, string username)
             : base(auth)
         {
             Username = username;
