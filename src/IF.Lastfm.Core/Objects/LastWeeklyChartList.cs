@@ -8,8 +8,10 @@ namespace IF.Lastfm.Core.Objects
     public class LastWeeklyChartList : ILastfmObject
     {
         public string Text { get; private set; }
-        public DateTime From { get; private set; }
-        public DateTime To { get; private set; }
+        public DateTime FromDate { get; private set; }
+        public double From { get; private set; }
+        public DateTime ToDate { get; private set; }
+        public double To { get; private set; }
 
 
        /// <summary>
@@ -23,8 +25,10 @@ namespace IF.Lastfm.Core.Objects
             var c = new LastWeeklyChartList
             {
                 Text = token.Value<string>("#name"),
-                From = token.Value<double>("from").FromUnixTime().DateTime,
-                To = token.Value<double>("to").FromUnixTime().DateTime
+                FromDate = token.Value<double>("from").FromUnixTime().DateTime,
+                From = token.Value<double>("from"),
+                ToDate = token.Value<double>("to").FromUnixTime().DateTime,
+                To =  token.Value<double>("to")
             };
 
             return c;

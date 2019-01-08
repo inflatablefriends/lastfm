@@ -72,11 +72,11 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             //convert dates back to unix time
             var lastPeriod = parsed.Content.Last();
-            var dto_from = new DateTimeOffset(lastPeriod.From, TimeSpan.Zero);
-            var dto_to = new DateTimeOffset(lastPeriod.To, TimeSpan.Zero);
 
-            Assert.AreEqual("1546171200", dto_from.ToUnixTimeSeconds().ToString());
-            Assert.AreEqual("1546776000", dto_to.ToUnixTimeSeconds().ToString());
+            Assert.AreEqual("1546171200", lastPeriod.From.ToString());
+            Assert.AreEqual("1546776000", lastPeriod.To.ToString());
+            Assert.AreEqual(new DateTime(2018,12,30,12,0,0), lastPeriod.FromDate);
+            Assert.AreEqual(new DateTime(2019,1,6,12,0,0), lastPeriod.ToDate);
         }
 
     }
