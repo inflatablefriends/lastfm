@@ -42,6 +42,6 @@ namespace IF.Lastfm.Core.Api
         
         Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartListAsync(string username);
         
-        Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, string to = null, string from = null);
+        Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? to = null, double? from = null);
     }
 }

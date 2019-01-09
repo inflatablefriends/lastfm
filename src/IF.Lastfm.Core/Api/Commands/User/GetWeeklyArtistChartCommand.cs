@@ -12,29 +12,26 @@ namespace IF.Lastfm.Core.Api.Commands.User
     internal class GetWeeklyArtistChartCommand : GetAsyncCommandBase<PageResponse<LastArtist>>
     {
         public string Username { get; set; }
-        public string To { get; set; }
-        public string From { get; set; }
+        public double? From { get; set; }
+        public double? To { get; set; }
 
-        public GetWeeklyArtistChartCommand(ILastAuth auth, string username, string from, string to)
+        public GetWeeklyArtistChartCommand(ILastAuth auth, string username)
             : base(auth)
         {
             Username = username;
-            From = from;
-            To = to; 
         }
 
         public override void SetParameters()
         {
+            Parameters.Add("user", Username);
             if(!From.Equals(null)) 
             {
-                Parameters.Add("from", From);
+                Parameters.Add("from", From.ToString());
             }
             if(!To.Equals(null)) 
             {
-                Parameters.Add("to", To);
+                Parameters.Add("to", To.ToString());
             }
-            
-            Parameters.Add("user", Username);
             DisableCaching();
         }
 

@@ -140,10 +140,12 @@ namespace IF.Lastfm.Core.Api
             };
             return await command.ExecuteAsync();
         }
-         public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, string from = null, string to = null)
+         public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? from = null, double? to = null)
         {
-            var command = new GetWeeklyArtistChartCommand(auth: Auth, username: username, from: from, to: to)
+            var command = new GetWeeklyArtistChartCommand(auth: Auth, username: username)
             {
+                From = from,
+                To = to,
                 HttpClient = HttpClient
             };
             return await command.ExecuteAsync();

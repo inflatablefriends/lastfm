@@ -18,14 +18,14 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
     {
         private const string user = "test";
 
-        private GetWeeklyChartsCommand _command;
+        private GetWeeklyChartListCommand _command;
         private Mock<ILastAuth> _mockAuth;
 
         [SetUp]
         public void TestInitialise()
         {
             _mockAuth = new Mock<ILastAuth>();
-            _command = new GetWeeklyChartsCommand(_mockAuth.Object, user)
+            _command = new GetWeeklyChartListCommand(_mockAuth.Object, user)
             {
                 //no parameters
              };
