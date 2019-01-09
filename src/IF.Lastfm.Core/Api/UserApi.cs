@@ -149,6 +149,16 @@ namespace IF.Lastfm.Core.Api
                 HttpClient = HttpClient
             };
             return await command.ExecuteAsync();
-        }         
+        } 
+        public async Task<PageResponse<LastTrack>> GetWeeklyTrackChartAsync(string username, double? from = null, double? to = null)
+        {
+            var command = new GetWeeklyTrackChartCommand(auth: Auth, username: username)
+            {
+                From = from,
+                To = to,
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }
     }
 }
