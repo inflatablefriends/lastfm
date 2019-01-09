@@ -98,9 +98,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             //Assert.AreEqual(1, first.Weeklyrank);
             
             //Tests on attribute values
-            //TODO Add implementation of these
-            //Assert.AreEqual("1545566400", parsed.From);
-            //Assert.AreEqual("1546171200", parsed.To);
+            Assert.AreEqual((double)1545566400, parsed.From);
+            Assert.AreEqual((double)1546171200, parsed.To);
         }
 
     }
