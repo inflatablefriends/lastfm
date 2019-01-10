@@ -140,9 +140,10 @@ namespace IF.Lastfm.Core.Api
             };
             return await command.ExecuteAsync();
         }
-         public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? from = null, double? to = null)
+        
+        public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? from = null, double? to = null)
         {
-            var command = new GetWeeklyArtistChartCommand(auth: Auth, username: username)
+            var command = new GetWeeklyAlbumChartCommand(auth: Auth, username: username)
             {
                 From = from,
                 To = to,
@@ -150,9 +151,21 @@ namespace IF.Lastfm.Core.Api
             };
             return await command.ExecuteAsync();
         } 
+
         public async Task<PageResponse<LastTrack>> GetWeeklyTrackChartAsync(string username, double? from = null, double? to = null)
         {
             var command = new GetWeeklyTrackChartCommand(auth: Auth, username: username)
+            {
+                From = from,
+                To = to,
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastAlbum>> GetWeeklyAlbumChartAsync(string username, double? from = null, double? to = null)
+        {
+            var command = new GetWeeklyAlbumChartCommand(auth: Auth, username: username)
             {
                 From = from,
                 To = to,
