@@ -89,6 +89,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
 
             var expectedFirst = new LastAlbum() {
                 ArtistName =  "Bing Crosby",
+                ArtistMbid = "2437980f-513a-44fc-80f1-b90d9d7fcf8f",
                 Name = "Bing Crosby - Christmas Classics",
                 Mbid = "2e427dea-3565-4ba6-963b-2b2e271b0d53",
                 Tracks = new List<LastTrack>{},
