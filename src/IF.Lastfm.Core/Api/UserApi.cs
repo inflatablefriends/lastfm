@@ -143,7 +143,7 @@ namespace IF.Lastfm.Core.Api
         
         public async Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? from = null, double? to = null)
         {
-            var command = new GetWeeklyAlbumChartCommand(auth: Auth, username: username)
+            var command = new GetWeeklyArtistChartCommand(auth: Auth, username: username)
             {
                 From = from,
                 To = to,
