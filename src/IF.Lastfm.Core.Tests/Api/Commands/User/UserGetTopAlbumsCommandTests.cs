@@ -83,6 +83,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             var expectedAlbum = new LastAlbum
             {
                 ArtistName = "Crystal Castles",
+                ArtistMbid = "b1570544-93ab-4b2b-8398-131735394202",
                 Name = "Crystal Castles",
                 PlayCount = 2206,
                 Mbid = "a432a420-f374-4556-8421-b4ea097c7fe9",
@@ -112,10 +113,13 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         }
 
         [Test]
-        [Ignore("Not implemented - ignore")]
         public async Task HandleResponseMultiple()
         {
-
+            var file = GetFileContents("UserApi.UserGetTopAlbumsMultiple.json");
+            var response = CreateResponseMessage(file);
+            var parsed = await _command.HandleResponse(response);
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.AreEqual(3, parsed.Content.Count);
         }
     }
 }
