@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using IF.Lastfm.Core.Scrobblers;
 using IF.Lastfm.Core.Tests.Scrobblers;
+using NUnit.Framework;
 using SQLite;
 
 namespace IF.Lastfm.SQLite.Tests.Integration
@@ -33,11 +34,19 @@ namespace IF.Lastfm.SQLite.Tests.Integration
 
             base.Cleanup();
         }
-
+        
         protected override ScrobblerBase GetScrobbler()
         {
             var httpClient = new HttpClient(FakeResponseHandler);
             return new SQLiteScrobbler(MockAuth.Object, _dbPath, httpClient);
+        }
+
+        [Test]
+        public void TestScrobbler()
+        {
+            var scrobbler = GetScrobbler();
+            Assert.IsTrue(scrobbler.Auth.Authenticated);
+            
         }
     }
 }
