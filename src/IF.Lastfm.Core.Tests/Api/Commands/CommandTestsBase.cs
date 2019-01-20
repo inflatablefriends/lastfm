@@ -34,8 +34,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             {
                 if (stream != null)
                 {
-                    var reader = new StreamReader(stream);
-                    return reader.ReadToEnd();
+                    using (var reader = new StreamReader(stream, Encoding.UTF8))
+                        return reader.ReadToEnd();
                 }
             }
             return string.Empty;
