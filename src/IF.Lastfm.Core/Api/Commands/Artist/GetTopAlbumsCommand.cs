@@ -12,17 +12,21 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
     internal class GetTopAlbumsCommand : GetAsyncCommandBase<PageResponse<LastAlbum>>
     {
         public string ArtistName { get; set; }
+        public string ArtistMbid { get; set; }
 
-        public GetTopAlbumsCommand(ILastAuth auth, string artistname)
-            : base(auth)
-        {
-            ArtistName = artistname;
-        }
+        public GetTopAlbumsCommand(ILastAuth auth )
+            : base(auth)  { }
 
         public override void SetParameters()
         {
-            Parameters.Add("artist", ArtistName);
-
+            if (ArtistMbid != null)
+            {
+                Parameters.Add("mbid", ArtistMbid);
+            }
+            else
+            {
+                Parameters.Add("artist", ArtistName);
+            }
             AddPagingParameters();
             DisableCaching();
         }

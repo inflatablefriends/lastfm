@@ -45,8 +45,21 @@ namespace IF.Lastfm.Core.Api
 
         public async Task<PageResponse<LastAlbum>> GetTopAlbumsAsync(string artist, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new GetTopAlbumsCommand(Auth, artist)
+            var command = new GetTopAlbumsCommand(Auth)
             {
+                ArtistName = artist,
+                Page = page,
+                Count = itemsPerPage,
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastAlbum>> GetTopAlbumsByMbidAsync(string mbid, bool autocorrect = false, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        {
+            var command = new GetTopAlbumsCommand(Auth)
+            {
+                ArtistMbid = mbid,
                 Page = page,
                 Count = itemsPerPage,
                 HttpClient = HttpClient
