@@ -67,10 +67,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleErrorResponse()
         {
-            //reusing the error message file
             var file = GetFileContents("UserApi.UserGetTopAlbumsError.json");
             var response = CreateResponseMessage(file);
-            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);
@@ -87,7 +85,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             //General tests
             Assert.IsTrue(parsed.Success);
             Assert.AreEqual(20, parsed.Content.Count);
-            Assert.AreEqual(typeof(IF.Lastfm.Core.Objects.LastArtist), first.GetType());
 
             //Tests on values being properly set
             Assert.AreEqual("Bing Crosby", first.Name);

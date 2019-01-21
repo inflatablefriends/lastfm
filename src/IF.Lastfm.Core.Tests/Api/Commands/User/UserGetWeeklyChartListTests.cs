@@ -50,10 +50,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task HandleErrorResponse()
         {
-            //reusing the error message file
             var file = GetFileContents("UserApi.UserGetTopAlbumsError.json");
             var response = CreateResponseMessage(file);
-            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsFalse(parsed.Success);

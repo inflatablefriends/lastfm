@@ -69,10 +69,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
         [Test]
         public async Task GetWeeklyAlbumChart_Empty_Success()
         {
-            //reusing the error message file
             var file = GetFileContents("UserApi.UserGetWeeklyAlbumChartEmpty.json");
             var response = CreateResponseMessage(file);
-            //var http = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetTopAlbumsError));
             var parsed = await _command.HandleResponse(response);
 
             Assert.IsTrue(parsed.Success);
@@ -101,7 +99,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             //General tests
             Assert.IsTrue(parsed.Success);
             Assert.AreEqual(175, parsed.Content.Count);
-            Assert.AreEqual(typeof(LastAlbum), first.GetType());
 
             //Test values of first album
             var expectedJson = JsonConvert.SerializeObject(expectedFirst, Formatting.Indented);

@@ -24,11 +24,11 @@ namespace IF.Lastfm.Core.Api.Commands.User
         public override void SetParameters()
         {
             Parameters.Add("user", Username);
-            if(!From.Equals(null)) 
+            if(From != null) 
             {
                 Parameters.Add("from", From.ToString());
             }
-            if(!To.Equals(null)) 
+            if(To != null) 
             {
                 Parameters.Add("to", To.ToString());
             }

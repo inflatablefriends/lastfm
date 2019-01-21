@@ -17,10 +17,6 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             
             Assert.IsTrue(response.Success);
             Assert.IsNotEmpty(chartlist);
-            Assert.AreEqual(typeof(double), chartlist.First().To.GetType());
-            Assert.AreEqual(typeof(double), chartlist.First().From.GetType());
-            Assert.AreEqual(typeof(DateTime), chartlist.First().ToDate.GetType());
-            Assert.AreEqual(typeof(DateTime), chartlist.First().FromDate.GetType());
             Assert.That(chartlist.Last().ToDate, Is.EqualTo(DateTime.Now).Within(8).Days);
             Assert.That(chartlist.Last().FromDate, Is.EqualTo(DateTime.Now).Within(15).Days);
         }
