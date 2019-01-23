@@ -27,10 +27,10 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var responsePrev = await Lastfm.User.GetWeeklyTrackChartAsync(INTEGRATION_TEST_USER, fromPrevWeek, toPrevWeek);
             var trackChartPrev = responsePrev.Content;
             
-            Assert.IsTrue(response.Success);
+            Assert.IsTrue(response.Success, "User.GetWeeklyChartListAsync - response.Success was not true");
             
             //Values will vary from week to week so just checking that we got some values back
-            Assert.IsNotEmpty(trackChart);
+            Assert.IsNotEmpty(trackChart, "User.GetWeeklyChartListAsync - response.Content was empty");
             Assert.IsNotEmpty(trackChart.First().Name);
             Assert.IsNotEmpty(trackChart.First().ArtistName);
             Assert.IsNotNull(response.From);
