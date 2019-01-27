@@ -18,7 +18,7 @@ namespace IF.Lastfm.Core.Api.Commands.User
 
         public DateTimeOffset? To { get; set; }
 
-        public bool Extended { get; set; }
+        public bool? Extended { get; set; }
 
         public GetRecentTracksCommand(ILastAuth auth, string username) : base(auth)
         {
@@ -37,6 +37,11 @@ namespace IF.Lastfm.Core.Api.Commands.User
             if (To.HasValue)
             {
                 Parameters.Add("to", To.Value.AsUnixTime().ToString());
+            }
+            
+            if (Extended.HasValue)
+            {
+                Parameters.Add("extended", Extended.ToString());
             }
 
             AddPagingParameters();

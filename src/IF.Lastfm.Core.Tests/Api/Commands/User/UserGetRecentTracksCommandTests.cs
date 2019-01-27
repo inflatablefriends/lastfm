@@ -98,8 +98,8 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
                     "https://lastfm-img2.akamaized.net/i/u/300x300/e45f11a32d134ed4aeb1ce7b25445fb2.png"),
                 TimePlayed = new DateTime(2018, 06, 27, 16, 32, 16, DateTimeKind.Utc),
                 Mbid = string.Empty,
-                Name = "Tak Długo Czekam (Ciało) (live)",
-                AlbumName = "Koncerty w Trójce - Republika",
+                Name = "Tak Dlugo Czekam (Cialo) (live)",
+                AlbumName = "Koncerty w Trojce - Republika",
                 Url = new Uri("https://www.last.fm/music/Republika/_/Tak+D%C5%82ugo+Czekam+(Cia%C5%82o)+(live)", UriKind.Absolute),
                 Images = new LastImageSet(
                     "https://lastfm-img2.akamaized.net/i/u/34s/1756f85e7332d469dd17b2e1e0a4d16c.png",
