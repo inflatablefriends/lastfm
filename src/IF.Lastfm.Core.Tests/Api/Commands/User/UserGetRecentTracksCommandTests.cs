@@ -1,14 +1,10 @@
 ﻿using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Objects;
-using IF.Lastfm.Core.Tests.Resources;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Commands.User;
-using Newtonsoft.Json.Linq;
 
 namespace IF.Lastfm.Core.Tests.Api.Commands
 {
@@ -75,6 +71,48 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             var file = GetFileContents("UserApi.UserGetRecentTracksSingle.json");
             var response = CreateResponseMessage(file);
             //var response = CreateResponseMessage(Encoding.UTF8.GetString(UserApiResponses.UserGetRecentTracksSingle));
+            var actual = await command.HandleResponse(response);
+
+            Assert.IsTrue(actual.Success);
+            TestHelper.AssertSerialiseEqual(expectedTrack, actual.Single());
+        }
+
+        [Test]
+        public async Task HandleExtendedResponse()
+        {
+            var command = new GetRecentTracksCommand(MAuth.Object, "rj")
+            {
+                Count = 1,
+                Extended = true
+            };
+
+            var expectedTrack = new LastTrack
+            {
+                ArtistName = "Republika",
+                ArtistMbid = "116a9ec8-148e-4b3d-8fb9-3d995cc4159e",
+                ArtistUrl = new Uri("https://www.last.fm/music/Republika", UriKind.Absolute),
+                ArtistImages = new LastImageSet(
+                    "https://lastfm-img2.akamaized.net/i/u/34s/e45f11a32d134ed4aeb1ce7b25445fb2.png",
+                    "https://lastfm-img2.akamaized.net/i/u/64s/e45f11a32d134ed4aeb1ce7b25445fb2.png",
+                    "https://lastfm-img2.akamaized.net/i/u/174s/e45f11a32d134ed4aeb1ce7b25445fb2.png",
+                    "https://lastfm-img2.akamaized.net/i/u/300x300/e45f11a32d134ed4aeb1ce7b25445fb2.png"),
+                TimePlayed = new DateTime(2018, 06, 27, 16, 32, 16, DateTimeKind.Utc),
+                Mbid = string.Empty,
+                Name = "Tak Dlugo Czekam (Cialo) (live)",
+                AlbumName = "Koncerty w Trojce - Republika",
+                Url = new Uri("https://www.last.fm/music/Republika/_/Tak+D%C5%82ugo+Czekam+(Cia%C5%82o)+(live)", UriKind.Absolute),
+                Images = new LastImageSet(
+                    "https://lastfm-img2.akamaized.net/i/u/34s/1756f85e7332d469dd17b2e1e0a4d16c.png",
+                    "https://lastfm-img2.akamaized.net/i/u/64s/1756f85e7332d469dd17b2e1e0a4d16c.png",
+                    "https://lastfm-img2.akamaized.net/i/u/174s/1756f85e7332d469dd17b2e1e0a4d16c.png",
+                    "https://lastfm-img2.akamaized.net/i/u/300x300/1756f85e7332d469dd17b2e1e0a4d16c.png"),
+                IsLoved = true
+
+            };
+
+            var file = GetFileContents("UserApi.UserGetRecentTracksExtended.json");
+            var response = CreateResponseMessage(file);
+
             var actual = await command.HandleResponse(response);
 
             Assert.IsTrue(actual.Success);

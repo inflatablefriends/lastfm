@@ -30,6 +30,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                 Name = "Superstition",
                 ArtistMbid = "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e",
                 AlbumName = "Number Ones",
+                ArtistUrl = new Uri("http://www.last.fm/music/Stevie+Wonder", UriKind.Absolute),
                 Url = new Uri("http://www.last.fm/music/Stevie+Wonder/_/Superstition", UriKind.Absolute),
                 Images = new LastImageSet(
                     "http://userserve-ak.last.fm/serve/34s/99695819.jpg",
@@ -65,6 +66,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands.Library
                 Name = "Sultans of Swing",
                 ArtistMbid = "614e3804-7d34-41ba-857f-811bad7c2b7a",
                 AlbumName = "Dire Straits (Remastered)",
+                ArtistUrl = new Uri("http://www.last.fm/music/Dire+Straits", UriKind.Absolute),
                 Url = new Uri("http://www.last.fm/music/Dire+Straits/_/Sultans+of+Swing", UriKind.Absolute),
                 Images = new LastImageSet(
                     "http://userserve-ak.last.fm/serve/34s/56827829.jpg",

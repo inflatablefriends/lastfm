@@ -30,7 +30,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
 
             await Task.Delay(1000);
 
-            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
+            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, null, false, 1, 1);
 
             var expectedTrack = new LastTrack
             {

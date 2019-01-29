@@ -45,7 +45,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             };
             var expectedJson = expectedTrack.TestSerialise();
 
-            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, 1, 1);
+            var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, null, false, 1, 1);
             var scrobbledTrack = tracks.Single(x => !x.IsNowPlaying.GetValueOrDefault(false));
             
             TestHelper.AssertSerialiseEqual(trackPlayed, scrobbledTrack.TimePlayed);
