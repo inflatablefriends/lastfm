@@ -105,10 +105,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             var actualJson = JsonConvert.SerializeObject(first, Formatting.Indented);
 
             Assert.AreEqual(expectedJson, actualJson, expectedJson.DifferencesTo(actualJson));
-            
-            //Tests on attribute values
-            Assert.AreEqual((double)1545566400, parsed.From);
-            Assert.AreEqual((double)1546171200, parsed.To);
         }
 
     }

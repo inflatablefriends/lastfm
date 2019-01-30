@@ -26,8 +26,6 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             Assert.IsNotEmpty(artistChart);
             Assert.IsNotEmpty(artistChart.First().Name);
             Assert.IsNotEmpty(artistChart.First().ArtistName);
-            Assert.IsNotNull(response.From);
-            Assert.IsNotNull(response.To);
         }
     }
 }

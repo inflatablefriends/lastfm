@@ -97,10 +97,6 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual(3, first.PlayCount);
             Assert.AreEqual(new Uri("https://www.last.fm/music/B.B.+King/_/The+Thrill+Is+Gone"), first.Url);
             Assert.AreEqual(1, first.Rank);
-            
-            //Tests on attribute values
-            Assert.AreEqual((double)1543752000, parsed.From);
-            Assert.AreEqual((double)1544356800, parsed.To);
         }
 
     }
