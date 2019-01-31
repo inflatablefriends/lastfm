@@ -90,13 +90,7 @@ namespace IF.Lastfm.Core.Tests.Api.Commands
             Assert.AreEqual("Bing Crosby", first.Name);
             Assert.AreEqual("2437980f-513a-44fc-80f1-b90d9d7fcf8f", first.Mbid);
             Assert.AreEqual(18, first.PlayCount);
-            Assert.AreEqual(new Uri("https://www.last.fm/music/Bing+Crosby"), first.Url);
-            //TODO add rank attribute to LastArtist class
-            //Assert.AreEqual(1, first.Rank);
-            
-            //Tests on attribute values
-            Assert.AreEqual((double)1545566400, parsed.From);
-            Assert.AreEqual((double)1546171200, parsed.To);
+            Assert.AreEqual(new Uri("https://www.last.fm/music/Bing+Crosby"), first.Url); 
         }
 
     }

@@ -21,10 +21,6 @@ namespace IF.Lastfm.Core.Api.Helpers
         int TotalPages { get; }
 
         int TotalItems { get; }
-        
-        double? From { get; }
-        
-        double? To { get; }
     }
 
     [JsonConverter(typeof(PageResponseJsonConverter))]
@@ -61,10 +57,6 @@ namespace IF.Lastfm.Core.Api.Helpers
             get { return _pageSize ?? Content.CountOrDefault(); }
             internal set { _pageSize = value; }
         }
-
-        public double? From { get; internal set; }
-
-        public double? To { get; internal set; }
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -210,12 +202,6 @@ namespace IF.Lastfm.Core.Api.Helpers
 
             var pagesize = attrToken.Value<string>("perPage");
             PageSize = !string.IsNullOrWhiteSpace(pagesize) ? Convert.ToInt32(pagesize) : 1;
-
-            var from = attrToken.Value<string>("from");
-            From = !string.IsNullOrWhiteSpace(from) ? Convert.ToDouble(from) : (double?)null;
-
-            var to = attrToken.Value<string>("to");
-            To = !string.IsNullOrWhiteSpace(to) ? Convert.ToDouble(to) : (double?)null;
         }
 
         private void AddPageInfoFromOpenQueryJToken(JToken queryToken)

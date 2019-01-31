@@ -33,8 +33,6 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             Assert.IsNotEmpty(trackChart, "User.GetWeeklyChartListAsync - response.Content was empty");
             Assert.IsNotEmpty(trackChart.First().Name);
             Assert.IsNotEmpty(trackChart.First().ArtistName);
-            Assert.IsNotNull(response.From);
-            Assert.IsNotNull(response.To);
             
             //check that the two different weekly charts are not the same
             Assert.IsFalse(trackChart.First().Name == trackChartPrev.First().Name);

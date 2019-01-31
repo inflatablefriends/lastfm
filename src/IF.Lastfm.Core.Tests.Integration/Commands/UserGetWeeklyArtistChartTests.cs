@@ -25,8 +25,6 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             //Values will vary from week to week so just checking that we got some values back
             Assert.IsNotEmpty(artistChart);
             Assert.IsNotEmpty(artistChart.First().Name);
-            Assert.IsNotNull(response.From);
-            Assert.IsNotNull(response.To);
         }
     }
 }
