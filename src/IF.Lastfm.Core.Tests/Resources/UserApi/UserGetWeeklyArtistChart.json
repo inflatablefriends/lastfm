@@ -1,0 +1,191 @@
+{
+    "weeklyartistchart": {
+        "artist": [
+            {
+                "name": "Bing Crosby",
+                "mbid": "2437980f-513a-44fc-80f1-b90d9d7fcf8f",
+                "playcount": "18",
+                "url": "https://www.last.fm/music/Bing+Crosby",
+                "@attr": {
+                    "rank": "1"
+                }
+            },
+            {
+                "name": "Dean Martin",
+                "mbid": "5e6c760b-42e0-4df4-a221-0269355da00a",
+                "playcount": "11",
+                "url": "https://www.last.fm/music/Dean+Martin",
+                "@attr": {
+                    "rank": "2"
+                }
+            },
+            {
+                "name": "Frank Sinatra",
+                "mbid": "197450cd-0124-4164-b723-3c22dd16494d",
+                "playcount": "11",
+                "url": "https://www.last.fm/music/Frank+Sinatra",
+                "@attr": {
+                    "rank": "3"
+                }
+            },
+            {
+                "name": "Michael Bublé",
+                "mbid": "611700cf-27f0-4dc9-ae80-c513a767853e",
+                "playcount": "11",
+                "url": "https://www.last.fm/music/Michael+Bubl%C3%A9",
+                "@attr": {
+                    "rank": "4"
+                }
+            },
+            {
+                "name": "Elvis Presley",
+                "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be",
+                "playcount": "6",
+                "url": "https://www.last.fm/music/Elvis+Presley",
+                "@attr": {
+                    "rank": "5"
+                }
+            },
+            {
+                "name": "Nat King Cole",
+                "mbid": "fbe054ec-a143-4101-9e9e-64abc5ff5ac9",
+                "playcount": "6",
+                "url": "https://www.last.fm/music/Nat+King+Cole",
+                "@attr": {
+                    "rank": "6"
+                }
+            },
+            {
+                "name": "Andy Williams",
+                "mbid": "81e23b53-ede9-4321-a210-d29e94cf1398",
+                "playcount": "5",
+                "url": "https://www.last.fm/music/Andy+Williams",
+                "@attr": {
+                    "rank": "7"
+                }
+            },
+            {
+                "name": "Carpenters",
+                "mbid": "4580d83b-093e-4241-91fb-2dd71f5f1f3f",
+                "playcount": "5",
+                "url": "https://www.last.fm/music/Carpenters",
+                "@attr": {
+                    "rank": "8"
+                }
+            },
+            {
+                "name": "Burl Ives",
+                "mbid": "086c1936-9eaa-4091-b140-ad33a51a3b71",
+                "playcount": "4",
+                "url": "https://www.last.fm/music/Burl+Ives",
+                "@attr": {
+                    "rank": "9"
+                }
+            },
+            {
+                "name": "Stevie Wonder",
+                "mbid": "c1aa2ec9-53e7-4d90-8d36-bac75832e986",
+                "playcount": "4",
+                "url": "https://www.last.fm/music/Stevie+Wonder",
+                "@attr": {
+                    "rank": "10"
+                }
+            },
+            {
+                "name": "Barbra Streisand",
+                "mbid": "56cd15a1-0d74-438b-8244-c96ffe1cae03",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Barbra+Streisand",
+                "@attr": {
+                    "rank": "11"
+                }
+            },
+            {
+                "name": "Bobby Darin",
+                "mbid": "1f223eed-aa38-49da-9e76-62ab3adc2e04",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Bobby+Darin",
+                "@attr": {
+                    "rank": "12"
+                }
+            },
+            {
+                "name": "Eartha Kitt",
+                "mbid": "02b4a39e-04c0-4eb7-a0eb-c919f3d14154",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Eartha+Kitt",
+                "@attr": {
+                    "rank": "13"
+                }
+            },
+            {
+                "name": "Ella Fitzgerald",
+                "mbid": "54799c0e-eb45-4eea-996d-c4d71a63c499",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Ella+Fitzgerald",
+                "@attr": {
+                    "rank": "14"
+                }
+            },
+            {
+                "name": "Johnny Mathis",
+                "mbid": "48896dee-a985-424d-9849-84802f7e79c9",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Johnny+Mathis",
+                "@attr": {
+                    "rank": "15"
+                }
+            },
+            {
+                "name": "Judy Garland",
+                "mbid": "b9348d59-b91b-423f-847b-8db155a0653b",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Judy+Garland",
+                "@attr": {
+                    "rank": "16"
+                }
+            },
+            {
+                "name": "Perry Como",
+                "mbid": "0182474b-8a1d-46d0-9d0f-e6df353335ea",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Perry+Como",
+                "@attr": {
+                    "rank": "17"
+                }
+            },
+            {
+                "name": "Tony Bennett",
+                "mbid": "8be0594f-8c13-46bb-ab06-f93ffba5c776",
+                "playcount": "3",
+                "url": "https://www.last.fm/music/Tony+Bennett",
+                "@attr": {
+                    "rank": "18"
+                }
+            },
+            {
+                "name": "B.B. King",
+                "mbid": "dcb03ce3-67a5-4eb3-b2d1-2a12d93a38f3",
+                "playcount": "2",
+                "url": "https://www.last.fm/music/B.B.+King",
+                "@attr": {
+                    "rank": "19"
+                }
+            },
+            {
+                "name": "Bobby Helms",
+                "mbid": "502b3244-0f7d-470c-99e9-b17fe6bcaabf",
+                "playcount": "2",
+                "url": "https://www.last.fm/music/Bobby+Helms",
+                "@attr": {
+                    "rank": "20"
+                }
+            }
+        ],
+        "@attr": {
+            "user": "jklinge",
+            "from": "1545566400",
+            "to": "1546171200"
+        }
+    }
+}

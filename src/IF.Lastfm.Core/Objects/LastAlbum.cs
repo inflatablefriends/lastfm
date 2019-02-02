@@ -14,6 +14,8 @@ namespace IF.Lastfm.Core.Objects
         public IEnumerable<LastTrack> Tracks { get; set; }
         
         public string ArtistName { get; set; }
+
+        public string ArtistMbid { get; set; }
         
         public DateTimeOffset? ReleaseDateUtc { get; set; }
 
@@ -43,8 +45,21 @@ namespace IF.Lastfm.Core.Objects
                     a.ArtistName = token.Value<string>("artist");
                     break;
                 case JTokenType.Object:
-                    a.ArtistName = artistToken.Value<string>("name");
+                    if(!string.IsNullOrEmpty(artistToken.Value<string>("name")))
+                    {
+                        a.ArtistName = artistToken.Value<string>("name");
+                    }
+                    else if(!string.IsNullOrEmpty(artistToken.Value<string>("#text"))) 
+                    {
+                        //in user.getWeeklyAlbumChart artist name is returned with key #text
+                        a.ArtistName = artistToken.Value<string>("#text");
+                    }
+                    if(!string.IsNullOrEmpty(artistToken.Value<string>("mbid")))
+                    {
+                        a.ArtistMbid = artistToken.Value<string>("mbid");
+                    }
                     break;
+                    
             }
 
             var tracksToken = token.SelectToken("tracks");

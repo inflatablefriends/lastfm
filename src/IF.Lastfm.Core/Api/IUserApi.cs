@@ -41,5 +41,13 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse> AddShoutAsync(string recipient, string message);
 
         Task<PageResponse<LastTrack>> GetLovedTracks(string username, int pagenumber, int count);
+        
+        Task<PageResponse<LastWeeklyChartList>> GetWeeklyChartListAsync(string username);
+        
+        Task<PageResponse<LastArtist>> GetWeeklyArtistChartAsync(string username, double? to = null, double? from = null);
+
+        Task<PageResponse<LastTrack>> GetWeeklyTrackChartAsync(string username, double? to = null, double? from = null);
+
+        Task<PageResponse<LastAlbum>> GetWeeklyAlbumChartAsync(string username, double? to = null, double? from = null);
     }
 }

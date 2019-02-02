@@ -49,6 +49,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var scrobbledTrack = tracks.Single(x => !x.IsNowPlaying.GetValueOrDefault(false));
             
             TestHelper.AssertSerialiseEqual(trackPlayed, scrobbledTrack.TimePlayed);
+
             scrobbledTrack.TimePlayed = null;
 
             // Some properties change from time to time; parsing is covered in unit tests
