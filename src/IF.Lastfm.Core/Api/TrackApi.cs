@@ -103,9 +103,12 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync(); 
         }
 
-        public async Task<PageResponse<LastTrack>> SearchAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
+        public async Task<PageResponse<LastTrack>> SearchAsync(string trackname, int page = 1, int itemsPerPage = LastFm.DefaultPageLength) =>
+            await SearchAsync(trackname, null, page, itemsPerPage);
+
+        public async Task<PageResponse<LastTrack>> SearchAsync(string trackname, string artist, int page = 1, int itemsPerPage = LastFm.DefaultPageLength)
         {
-            var command = new SearchCommand(Auth, trackname)
+            var command = new SearchCommand(Auth, trackname, artist)
             {
                 Page = page,
                 Count = itemsPerPage,

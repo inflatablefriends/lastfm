@@ -33,6 +33,11 @@ namespace IF.Lastfm.Core.Api
            int page = 1,
            int itemsPerPage = LastFm.DefaultPageLength);
 
+        Task<PageResponse<LastTrack>> SearchAsync(string trackname,
+            string artist,
+            int page = 1,
+            int itemsPerPage = LastFm.DefaultPageLength);
+
         //Task<LastResponse> AddShoutAsync(string trackname, string artistname, string message);
     }
 }
