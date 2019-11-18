@@ -5,27 +5,6 @@
         Unknown = 0,
 
         /// <summary>
-        /// The request was successful!
-        /// </summary>
-        Successful = 20,
-
-        /// <summary>
-        /// The request has been cached, it will be sent later
-        /// </summary>
-        Cached = 21,
-
-        /// <summary>
-        /// The request could not be sent, and could not be cached.
-        /// Check the Exception property of the response for details.
-        /// </summary>
-        CacheFailed = 22,
-
-        /// <summary>
-        /// The request failed, check for network connectivity
-        /// </summary>
-        RequestFailed = 23,
-
-        /// <summary>
         /// The service requested does not exist (2)
         /// </summary>
         BadService = 2,
@@ -87,12 +66,40 @@
         TemporaryFailure = 16,
 
         /// <summary>
+        /// User required to be logged in. (17)
+        /// Requested profile might not have privacy set to public.
+        /// </summary>
+        LoginRequired = 17,
+
+        /// <summary>
+        /// The request was successful!
+        /// </summary>
+        Successful = 20,
+
+        /// <summary>
+        /// The request has been cached, it will be sent later
+        /// </summary>
+        Cached = 21,
+
+        /// <summary>
+        /// The request could not be sent, and could not be cached.
+        /// Check the Exception property of the response for details.
+        /// </summary>
+        CacheFailed = 22,
+
+        /// <summary>
+        /// The request failed, check for network connectivity
+        /// </summary>
+        RequestFailed = 23,
+
+        /// <summary>
         /// This API key has been suspended, please generate a new key at http://www.last.fm/api/accounts (26)
         /// </summary>
         KeySuspended = 26,
 
         /// <summary>
         /// This API key has been rate-limited because too many requests have been made in a short period. Retry later (29)
+        /// For more information on rate limits, please contact Last.FM at the partners@last.fm email address.
         /// </summary>
         RateLimited = 29
     }
