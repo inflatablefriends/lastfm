@@ -29,6 +29,15 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse> GetSessionTokenAsync(string username, string password);
 
         /// <summary>
+        /// Gets the session token which is used as authentication for any service calls.
+        /// Authentication Token from the Web Authentication 3.1 (https://www.last.fm/api/webauth)
+        /// </summary>
+        /// <param name="authToken">Authentication Token</param>
+        /// <returns>Session token used to authenticate calls to last.fm</returns>
+        /// <remarks>API: Auth.getSession</remarks>
+        Task<LastResponse> GetSessionTokenAsync(string authToken);
+
+        /// <summary>
         /// Adds the api_key, method and session key to the provided params dictionary, then generates an MD5 hash.
         /// Parameters contained in the hash must also be exactly the parameters sent to the API.
         /// </summary>
