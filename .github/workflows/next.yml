@@ -1,8 +1,8 @@
-name: .NET Core
+name: Build + Publish Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [ next ]
     paths-ignore:
     - 'doc/**'
 
@@ -22,4 +22,4 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack -c Release --no-build --include-source 
+      run: dotnet pack -c Release --no-build --include-source /p:VersionSuffix=next

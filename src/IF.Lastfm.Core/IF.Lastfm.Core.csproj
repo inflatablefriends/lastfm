@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 		<PackageId>Inflatable.Lastfm</PackageId>
-    <Version>1.2.0</Version>
+    <VersionPrefix>1.1.1</VersionPrefix> <!-- https://stackoverflow.com/a/42615574/268555 -->
 
 		<Title>Inflatable Last.fm SDK</Title>
 		<Description>Last.fm SDK for modern .NET platforms.</Description>
