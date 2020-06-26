@@ -2,6 +2,8 @@
 
   <PropertyGroup>
 		<PackageId>Inflatable.Lastfm</PackageId>
+    <Version>1.2.0</Version>
+
 		<Title>Inflatable Last.fm SDK</Title>
 		<Description>Last.fm SDK for modern .NET platforms.</Description>
 		<Authors>Rikki Tooley (@rikkilt)</Authors>
