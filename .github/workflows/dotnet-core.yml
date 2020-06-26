@@ -3,14 +3,12 @@ name: .NET Core
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    paths-ignore:
+    - 'doc/**'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
@@ -20,6 +18,8 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build -c Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack -c Release --no-build --include-source 
