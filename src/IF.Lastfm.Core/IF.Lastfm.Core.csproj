@@ -11,6 +11,8 @@
 		<PackageProjectUrl>https://github.com/inflatablefriends/lastfm</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<PackageTags>lastfm last.fm inflatable friends sdk api music metadata scrobble scrobbling portable netstandard</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup>
