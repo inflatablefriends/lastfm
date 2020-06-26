@@ -1,4 +1,4 @@
-name: Build + Publish Release
+name: Build release branch
 
 on:
   push:
@@ -22,4 +22,6 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
-      run: dotnet pack -c Release --no-build --include-source 
+      run: dotnet pack -c Release --no-build --include-source -o ./tmp
+    - name: Publish
+      run: dotnet nuget push ./temp/Inflatable.Lastfm*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicates
