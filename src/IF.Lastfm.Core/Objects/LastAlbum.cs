@@ -138,5 +138,17 @@ namespace IF.Lastfm.Core.Objects
             
             return name;
         }
+
+        internal static string GetArtistFromJToken(JToken albumToken) =>
+            albumToken.Value<string>("artist");
+
+        internal static Uri GetUrlFromJToken(JToken albumToken) =>
+            new Uri(albumToken.Value<string>("url"), UriKind.Absolute);
+
+        internal static LastImageSet GetImagesFromJToken(JToken albumToken)
+        {
+            var images = albumToken.SelectToken("image");
+            return images == null ? null : LastImageSet.ParseJToken(images);
+        }
     }
 }

@@ -35,6 +35,12 @@ namespace IF.Lastfm.Core.Objects
         
         public string AlbumName { get; set; }
 
+        public string AlbumArtistName { get; set; }
+
+        public Uri AlbumUrl { get; set; }
+
+        public LastImageSet AlbumImages { get; set; }
+
         public int? ListenerCount { get; set; }
 
         public int? PlayCount { get; set; }
@@ -82,6 +88,13 @@ namespace IF.Lastfm.Core.Objects
                 t.UserPlayCount = userPlayCount;
             }
 
+            var listenerCountStr = token.Value<string>("listeners");
+            int listenerCount;
+            if (int.TryParse(listenerCountStr, out listenerCount))
+            {
+                t.ListenerCount = listenerCount;
+            }
+
             t.Url = new Uri(token.Value<string>("url"), UriKind.Absolute);
 
             var artistToken = token.SelectToken("artist");
@@ -108,6 +121,9 @@ namespace IF.Lastfm.Core.Objects
             if (albumToken != null)
             {
                 t.AlbumName = LastAlbum.GetNameFromJToken(albumToken);
+                t.AlbumArtistName = LastAlbum.GetArtistFromJToken(albumToken);
+                t.AlbumUrl = LastAlbum.GetUrlFromJToken(albumToken);
+                t.AlbumImages = LastAlbum.GetImagesFromJToken(albumToken);
             }
 
             var tagsToken = token.SelectToken("toptags");

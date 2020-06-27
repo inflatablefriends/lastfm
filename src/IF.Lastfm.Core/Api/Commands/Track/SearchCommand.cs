@@ -13,15 +13,19 @@ namespace IF.Lastfm.Core.Api.Commands.Track
     {
         public string TrackName { get; set; }
 
-        public SearchCommand(ILastAuth auth, string trackName)
+        public string Artist { get; set; }
+
+        public SearchCommand(ILastAuth auth, string trackName, string artist = null)
             : base(auth)
         {
             TrackName = trackName;
+            Artist = artist;
         }
 
         public override void SetParameters()
         {
             Parameters.Add("track", TrackName);
+            if (Artist != null) Parameters.Add("artist", Artist);
 
             AddPagingParameters();
             DisableCaching();
