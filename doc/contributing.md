@@ -6,11 +6,12 @@ This document explains the process of writing code and submitting it for inclusi
 
 ## Setup
 
-First off, you will need 
+First off, you will need
 
-- a version of Visual Studio that can compile portable class libraries - unfortunately this means you can't use an Express edition of Visual Studio
+- a text editor or IDE to work with C# - e.g. Visual Studio, Visual Studio Code (with OmniSharp)
 - a working install of Git - the easiest way is to install [Github for Windows](https://windows.github.com/)
-- Fiddler or another web request inspector - set this up so you can inspect HTTPS requests (see step 4 of [this guide](http://rikk.it/blog/capture-windows-phone-8-network-traffic-with-fiddler/))
+- the [.NET Core SDK](https://docs.microsoft.com/en-us/dotnet/core/install/sdk)
+- Fiddler or another web request inspector - set this up so you can inspect HTTPS requests
 
 Once you have those installed, you can fork [the repo](https://github.com/inflatablefriends/lastfm), clone it to your machine and start work.
 
