@@ -24,7 +24,7 @@ jobs:
     - name: Pack
       run: dotnet pack -c Release --no-build --include-source -o ./tmp
     - name: Publish
-      run: dotnet nuget push ./temp/Inflatable.Lastfm*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicates
+      run: dotnet nuget push ./temp/Inflatable.Lastfm*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
