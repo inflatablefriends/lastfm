@@ -2,8 +2,7 @@
 
 ![Project logo](./res/if-lastfm-logo-300.png)
 
-[![Code licence](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat)](LICENCE.md) [![Build status](https://ci.appveyor.com/api/projects/status/c8gg2cw4jibbsg3u)](https://ci.appveyor.com/project/rikkit/lastfm) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/inflatablefriends/lastfm?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
+[![Code licence](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat)](LICENCE.md)
 
 ## Project Goals
 
@@ -19,22 +18,21 @@ If you're interested in contributing code or documentation, [this short introduc
 
 ## Quickstart
 
-### Installing the SDK
+### Installing
 
-#### NuGet - production code
+#### NuGet
 
-Install [the NuGet package](
-https://www.nuget.org/packages/Inflatable.Lastfm/). Search for ```Inflatable.Lastfm``` in the NuGet package browser.
+Install [Inflatable.Lastfm](
+https://www.nuget.org/packages/Inflatable.Lastfm/) from NuGet.
 
 #### NuGet - prerelease code
 
-There is a NuGet package built for every commit to master. Add ```https://ci.appveyor.com/nuget/lastfm``` to your NuGet package sources, and install the ```IF.Lastfm.Core``` prerelease package.
+1. Install the [.NET Core SDK](https://docs.microsoft.com/en-us/dotnet/core/install/sdk)
+2. Clone this repo and checkout to the commit you need
+3. Run `dotnet pack`
+4. Reference the built NuGet package file in your project
 
-#### From source
-
-Clone this repo and reference ```IF.Lastfm.Core``` in your application. Your IDE needs to support C# 6 and portable libraries - Visual Studio 2015 Community or better.
-
-### Using the SDK
+### Examples
 
 First, [sign up for Last.fm API](http://last.fm/api) access if you haven't already.
 

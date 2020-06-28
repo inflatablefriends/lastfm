@@ -125,10 +125,10 @@
     <value>Tag\GetInfoSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetSimilarError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\getsimilarerror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetSimilarError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetSimilarSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Tag\getsimilarsuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Tag\GetSimilarSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GetTopAlbumsError" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Tag\GetTopAlbumsError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -1,8 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version />
-    <PackageVersion />
+		<PackageId>Inflatable.Lastfm</PackageId>
+    <VersionPrefix>1.1.1</VersionPrefix> <!-- https://stackoverflow.com/a/42615574/268555 -->
+
+		<Title>Inflatable Last.fm SDK</Title>
+		<Description>Last.fm SDK for modern .NET platforms.</Description>
+		<Authors>Rikki Tooley (@rikkilt)</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/inflatablefriends/lastfm</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<PackageTags>lastfm last.fm inflatable friends sdk api music metadata scrobble scrobbling portable netstandard</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup>

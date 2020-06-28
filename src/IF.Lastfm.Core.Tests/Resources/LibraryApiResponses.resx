@@ -128,9 +128,9 @@
     <value>LibraryApi\LibraryGetArtistsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LibraryGetTracksMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>libraryapi\librarygettracksmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>LibraryApi\LibraryGetTracksMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="LibraryGetTracksSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>libraryapi\librarygettrackssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>LibraryApi\LibraryGetTracksSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
