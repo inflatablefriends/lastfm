@@ -1,11 +1,9 @@
-name: Build feature branch
+name: Build & Test
 
 on:
   push:
     branches-ignore:
     - release
-    - master
-    - next
     paths-ignore:
     - 'doc/**'
 
