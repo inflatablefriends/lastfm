@@ -1,4 +1,4 @@
-name: Build release branch
+name: Publish
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     - 'doc/**'
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
