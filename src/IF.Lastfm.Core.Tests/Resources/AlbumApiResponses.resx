@@ -128,16 +128,16 @@
     <value>AlbumApi\AlbumGetInfoSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumGetShoutsAlbumMissing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>albumapi\albumgetshoutsalbummissing.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>AlbumApi\AlbumGetShoutsAlbumMissing.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumGetShoutsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumGetShoutsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumGetShoutsMultiple" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>albumapi\albumgetshoutsmultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>AlbumApi\AlbumGetShoutsMultiple.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumGetShoutsSingle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>albumapi\albumgetshoutssingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>AlbumApi\AlbumGetShoutsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AlbumGetTagsEmpty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>AlbumApi\AlbumGetTagsEmpty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

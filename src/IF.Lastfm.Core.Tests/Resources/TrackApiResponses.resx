@@ -131,27 +131,27 @@
     <value>TrackApi\TrackGetShoutsSingle.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleBadAuthError" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblebadautherror.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>TrackApi\TrackScrobbleBadAuthError.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleMultipleRequestBody" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblemultiplerequestbody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>TrackApi\TrackScrobbleMultipleRequestBody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TrackScrobbleRejected" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblerejected.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>TrackApi\TrackScrobbleRejected.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleSingleRequestBody" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblesinglerequestbody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>TrackApi\TrackScrobbleSingleRequestBody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="TrackScrobbleSuccess" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TrackApi\TrackScrobbleSuccess.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleSuccess2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblesuccess2.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>TrackApi\TrackScrobbleSuccess2.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleSuccessNoAlbumProperty" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobblesuccessnoalbumproperty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>TrackApi\TrackScrobbleSuccessNoAlbumProperty.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="TrackScrobbleTwoRequestBody" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>trackapi\trackscrobbletworequestbody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>TrackApi\TrackScrobbleTwoRequestBody.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
