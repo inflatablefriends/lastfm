@@ -2,10 +2,6 @@ name: Build & Test
 
 on:
   push:
-    branches-ignore: [ release ]
-  pull_request:
-    branches-ignore: [ release ]
-    types: [ opened, reopened, ready_for_review, synchronised ]
 
 jobs:
   build:
