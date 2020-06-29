@@ -1,10 +1,13 @@
 name: Build & Test
 
 on:
-  check_suite:
+  push:
     branches-ignore: [ release ]
     paths-ignore:
     - 'doc/**'
+  pull_request:
+    branches-ignore: [ release ]
+    types: [ opened, reopened, ready_for_review ]
 
 jobs:
   build:
