@@ -2,6 +2,10 @@ name: Build & Test
 
 on:
   push:
+    branches-ignore:
+    - release
+    paths-ignore:
+    - 'doc/**'
 
 jobs:
   build:
