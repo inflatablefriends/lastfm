@@ -5,6 +5,9 @@ on:
     branches: [ release ]
     paths-ignore:
     - 'doc/**'
+  pull_request:
+    branches: [ release ]
+    types: [ opened, reopened, ready_for_review ]
 
 jobs:
   publish:
