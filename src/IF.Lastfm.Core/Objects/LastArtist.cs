@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Objects
     /// <summary>
     /// TODO streamable
     /// "streamable": "0"
-    /// 
+    ///
     /// TODO band members
     /// "bandmembers": {
     ///   "member": [
@@ -34,7 +34,7 @@ namespace IF.Lastfm.Core.Objects
     ///     }
     ///   ]
     /// }
-    /// 
+    ///
     /// TODO context -> similar, rename similar to related
     /// </summary>
     public class LastArtist : ILastfmObject
@@ -49,6 +49,8 @@ namespace IF.Lastfm.Core.Objects
         public bool OnTour { get; set; }
         public IEnumerable<LastTag> Tags { get; set; }
         public List<LastArtist> Similar { get; set; }
+
+        [Obsolete("As of May 2019 Last.fm no longer returns artist imagery via the API. More info https://www.reddit.com/r/lastfm/comments/bjwcqh/api_announcement_lastfm_support_community/")]
         public LastImageSet MainImage { get; set; }
         public int? PlayCount { get; set; }
         public LastStats Stats { get; set; }
