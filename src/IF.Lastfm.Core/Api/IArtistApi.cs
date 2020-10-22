@@ -9,10 +9,12 @@ namespace IF.Lastfm.Core.Api
         ILastAuth Auth { get; }
 
         Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
-            bool autocorrect = false);
+            bool autocorrect = false,
+            string username = null);
 
         Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode,
-            bool autocorrect = false);
+            bool autocorrect = false,
+            string username = null);
 
         Task<PageResponse<LastArtist>> GetSimilarAsync(string artistname, bool autocorrect = false, int limit = 100);
 
