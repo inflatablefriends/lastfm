@@ -17,27 +17,29 @@ namespace IF.Lastfm.Core.Api
 
 
 
-        public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
+        public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false, string username = null)
         {
             var command = new GetInfoCommand(Auth)
             {
                 ArtistName = artist,
                 BioLanguage = bioLang,
                 Autocorrect = autocorrect,
-                HttpClient = HttpClient
+                HttpClient = HttpClient,
+                UserName = username
             };
 
             return await command.ExecuteAsync();
         }
 
-        public async Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
+        public async Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false, string username = null)
         {
             var command = new GetInfoCommand(Auth)
             {
                 ArtistMbid = mbid,
                 BioLanguage = bioLang,
                 Autocorrect = autocorrect,
-                HttpClient = HttpClient
+                HttpClient = HttpClient,
+                UserName = username
             };
 
             return await command.ExecuteAsync();

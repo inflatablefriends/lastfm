@@ -20,6 +20,8 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
 
         public bool Autocorrect { get; set; }
 
+        public string UserName { get; set; }
+
         public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         /// <summary>
@@ -42,6 +44,11 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             }
             
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
+
+            if (!string.IsNullOrWhiteSpace(UserName))
+            {
+                Parameters.Add("username", UserName);
+            }
 
             DisableCaching();
         }
