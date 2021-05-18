@@ -4,6 +4,10 @@
 
 [![Code licence](https://img.shields.io/badge/licence-MIT-blue.svg?style=flat)](LICENCE.md)
 
+## Maintenence help wanted
+
+Hi there! The maintainer of this library @rikkit is now mostly a TypeScript + React dev, and has been for the last several years. Since this is a .Net library, the maintainer will probably not be able to keep it up-to-date to the latest .Net standards. If you spot something wrong, please file and issue or better yet, a pull request. Thanks!
+
 ## Project Goals
 
 - To provide complete .NET bindings for the Last.fm REST API
