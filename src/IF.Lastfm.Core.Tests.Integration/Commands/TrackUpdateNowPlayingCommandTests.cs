@@ -37,6 +37,7 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
                 Name = TRACK_NAME,
                 ArtistName = ARTIST_NAME,
                 AlbumName = ALBUM_NAME,
+                ArtistUrl = new Uri($"https://www.last.fm/music/{ARTIST_NAME.Replace(' ', '+')}"),
                 IsNowPlaying = true
             };
 
@@ -45,7 +46,9 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             // Some properties change from time to time
             actual.Mbid = null;
             actual.ArtistMbid = null;
+            actual.ArtistImages = null;
             actual.Images = null;
+            actual.IsLoved = null;
             actual.Url = null;
 
             var expectedJson = expectedTrack.TestSerialise();
