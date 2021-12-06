@@ -16,9 +16,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
-    - name: Install dependencies
+    - name: Install dependencies IF.Lastfm.sln
       run: dotnet restore
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c Release --no-restore IF.Lastfm.sln
     - name: Test
       run: dotnet test --no-restore IF.Lastfm.sln
