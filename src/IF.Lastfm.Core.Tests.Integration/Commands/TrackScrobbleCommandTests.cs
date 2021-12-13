@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Helpers;
 using IF.Lastfm.Core.Scrobblers;
-
+ 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
     /// <summary>
