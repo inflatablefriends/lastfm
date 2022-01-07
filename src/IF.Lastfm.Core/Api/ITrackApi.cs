@@ -30,6 +30,7 @@ namespace IF.Lastfm.Core.Api
         Task<LastResponse> UnloveAsync(string trackname, string artistname);
 
         Task<PageResponse<LastTrack>> SearchAsync(string trackname,
+           string artistname = "",
            int page = 1,
            int itemsPerPage = LastFm.DefaultPageLength);
 

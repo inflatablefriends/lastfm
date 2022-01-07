@@ -57,6 +57,34 @@ namespace IF.Lastfm.Core.Api
             }
         }
 
+        public async Task<LastResponse> GetSessionTokenAsync(string authToken)
+        {
+            var command = new GetSessionCommand(this, authToken)
+            {
+                HttpClient = HttpClient
+            };
+            var response = await command.ExecuteAsync();
+
+            if (response.Success)
+            {
+                UserSession = response.Content;
+                return LastResponse.CreateSuccessResponse();
+            }
+            else
+            {
+                return LastResponse.CreateErrorResponse<LastResponse>(response.Status);
+            }
+        }
+
+        public async Task<LastResponse> GetAuthTokenAsync()
+        {
+            var command = new GetTokenCommand(this)
+            {
+                HttpClient = HttpClient
+            };
+            return await command.ExecuteAsync();
+        }
+
         public string GenerateMethodSignature(string method, Dictionary<string, string> parameters = null)
         {
             if (parameters == null)
@@ -84,7 +112,6 @@ namespace IF.Lastfm.Core.Api
             var md5 = MD5.GetHashString(builder.ToString());
 
             return md5;
-
         }
     }
 }

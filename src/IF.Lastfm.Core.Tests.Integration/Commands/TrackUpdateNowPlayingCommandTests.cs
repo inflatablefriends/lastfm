@@ -1,13 +1,11 @@
-using IF.Lastfm.Core.Api;
-using IF.Lastfm.Core.Objects;
-using NUnit.Framework;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using IF.Lastfm.Core.Objects;
+using NUnit.Framework;
 
 namespace IF.Lastfm.Core.Tests.Integration.Commands
 {
-    
     public class TrackUpdateNowPlayingCommandTests : CommandIntegrationTestsBase
     {
         private const string ARTIST_NAME = "Crystal Castles";
@@ -47,6 +45,9 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             actual.ArtistMbid = null;
             actual.Images = null;
             actual.Url = null;
+            actual.ArtistImages = null;
+            actual.ArtistUrl = null;
+            actual.IsLoved = null;
 
             var expectedJson = expectedTrack.TestSerialise();
             var actualJson = actual.TestSerialise();
