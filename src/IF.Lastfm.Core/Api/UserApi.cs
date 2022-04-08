@@ -82,6 +82,21 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
+         public async Task<PageResponse<LastTrack>> GetTopTracks(string username, DateTimeOffset? from = null,
+	        DateTimeOffset? to = null, int pageNumber = LastFm.DefaultPage, int count = LastFm.DefaultPageLength)
+        {
+	        var command = new GetTopTracksCommand(Auth, username)
+	        {
+		        Page = pageNumber,
+		        Count = count,
+		        From = from,
+		        To = to,
+		        HttpClient = HttpClient
+	        };
+
+			return await command.ExecuteAsync();
+        }
+
         public async Task<PageResponse<LastStation>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
         {
             var command = new GetRecentStationsCommand(Auth, username)
