@@ -54,17 +54,6 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
-        public async Task<PageResponse<LastTag>> GetTopTags(string username, int count = LastFm.DefaultPageLength)
-        {
-	        var command = new GetTopTagsCommand(Auth, username)
-	        {
-		        Count = count,
-		        HttpClient = HttpClient
-	        };
-
-	        return await command.ExecuteAsync();
-        }
-
         public async Task<PageResponse<LastTrack>> GetTopTracks(string username, LastStatsTimeSpan period = LastStatsTimeSpan.Week, int pageNumber = LastFm.DefaultPage, int count = LastFm.DefaultPageLength)
         {
             var command = new GetTopTracksCommand(Auth, username)
