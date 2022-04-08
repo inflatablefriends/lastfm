@@ -1,4 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System;
@@ -54,6 +54,30 @@ namespace IF.Lastfm.Core.Api
             return await command.ExecuteAsync();
         }
 
+        public async Task<PageResponse<LastTag>> GetTopTags(string username, int count = LastFm.DefaultPageLength)
+        {
+	        var command = new GetTopTagsCommand(Auth, username)
+	        {
+		        Count = count,
+		        HttpClient = HttpClient
+	        };
+
+	        return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastTrack>> GetTopTracks(string username, LastStatsTimeSpan period = LastStatsTimeSpan.Week, int pageNumber = LastFm.DefaultPage, int count = LastFm.DefaultPageLength)
+        {
+            var command = new GetTopTracksCommand(Auth, username)
+            {
+                Page = pageNumber,
+                Count = count,
+                Period = period,
+		        HttpClient = HttpClient
+	        };
+
+	     return await command.ExecuteAsync();
+        }
+
         /// <summary>
         /// Gets a list of recent scrobbled tracks for this user in reverse date order.
         /// </summary>
@@ -80,21 +104,6 @@ namespace IF.Lastfm.Core.Api
             };
 
             return await command.ExecuteAsync();
-        }
-
-         public async Task<PageResponse<LastTrack>> GetTopTracks(string username, DateTimeOffset? from = null,
-	        DateTimeOffset? to = null, int pageNumber = LastFm.DefaultPage, int count = LastFm.DefaultPageLength)
-        {
-	        var command = new GetTopTracksCommand(Auth, username)
-	        {
-		        Page = pageNumber,
-		        Count = count,
-		        From = from,
-		        To = to,
-		        HttpClient = HttpClient
-	        };
-
-			return await command.ExecuteAsync();
         }
 
         public async Task<PageResponse<LastStation>> GetRecentStations(string username, int pagenumber = 0, int count = LastFm.DefaultPageLength)
