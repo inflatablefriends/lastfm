@@ -43,7 +43,7 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
                 Parameters.Add("lang", BioLanguage);
             }
 
-            if (!string.IsNullOrEmpty(Username))
+            if (!string.IsNullOrWhiteSpace(Username))
             {
                 Parameters.Add("username", Username);
             }
