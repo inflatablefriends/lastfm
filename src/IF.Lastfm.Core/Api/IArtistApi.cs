@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 
@@ -8,7 +8,7 @@ namespace IF.Lastfm.Core.Api
     {
         ILastAuth Auth { get; }
 
-        Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode,
+        Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string username = "", string bioLang = LastFm.DefaultLanguageCode,
             bool autocorrect = false);
 
         Task<LastResponse<LastArtist>> GetInfoByMbidAsync(string mbid, string bioLang = LastFm.DefaultLanguageCode,
