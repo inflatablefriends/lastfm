@@ -6,6 +6,11 @@ on:
     - release
     paths-ignore:
     - 'doc/**'
+  pull_request:
+    branches-ignore:
+    - release
+    paths-ignore:
+    - 'doc/**'
 
 jobs:
   build:
