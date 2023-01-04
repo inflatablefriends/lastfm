@@ -14,15 +14,15 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 6.0.x
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore IF.Lastfm.sln
     - name: Build
-      run: dotnet build -c Release --no-restore
+      run: dotnet build -c Release --no-restore IF.Lastfm.sln
     - name: Test
-      run: dotnet test --no-restore
+      run: dotnet test --no-restore IF.Lastfm.sln
     - name: Pack
-      run: dotnet pack -c Release --no-build --include-source -o ./tmp
+      run: dotnet pack -c Release --no-build --include-source -o ./tmp IF.Lastfm.sln
     - name: Publish
       run: dotnet nuget push ./tmp/Inflatable.Lastfm*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
     - name: Upload build artifacts

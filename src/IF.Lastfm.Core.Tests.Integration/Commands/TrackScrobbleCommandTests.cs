@@ -36,14 +36,19 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             var response = await Lastfm.Scrobbler.ScrobbleAsync(testScrobble);
 
             Assert.IsTrue(response.Success);
-            
+
             var expectedTrack = new LastTrack
             {
                 Name = TRACK_NAME,
                 ArtistName = ARTIST_NAME,
-                AlbumName = ALBUM_NAME
+                AlbumName = ALBUM_NAME,
+                ArtistUrl = new Uri($"https://www.last.fm/music/{ARTIST_NAME.Replace(' ', '+')}")
             };
             var expectedJson = expectedTrack.TestSerialise();
+
+            // introducing slight delay between write and read ops to allow for API processing lag,
+            // have had the previous scrobble returned instead of the new one
+            await Task.Delay(TimeSpan.FromSeconds(2.5));
 
             var tracks = await Lastfm.User.GetRecentScrobbles(Lastfm.Auth.UserSession.Username, null, null, false, 1, 1);
             var scrobbledTrack = tracks.Single(x => !x.IsNowPlaying.GetValueOrDefault(false));
@@ -56,6 +61,8 @@ namespace IF.Lastfm.Core.Tests.Integration.Commands
             scrobbledTrack.Mbid = null;
             scrobbledTrack.ArtistMbid = null;
             scrobbledTrack.Images = null;
+            scrobbledTrack.ArtistImages = null;
+            scrobbledTrack.IsLoved = null;
             scrobbledTrack.Url = null;
 
             var actualJson = scrobbledTrack.TestSerialise();
