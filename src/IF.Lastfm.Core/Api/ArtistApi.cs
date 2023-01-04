@@ -1,4 +1,4 @@
-﻿using System.Net.Http;
+using System.Net.Http;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System.Threading.Tasks;
@@ -15,13 +15,12 @@ namespace IF.Lastfm.Core.Api
             Auth = auth;
         }
 
-
-
-        public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
+        public async Task<LastResponse<LastArtist>> GetInfoAsync(string artist, string username = "", string bioLang = LastFm.DefaultLanguageCode, bool autocorrect = false)
         {
             var command = new GetInfoCommand(Auth)
             {
                 ArtistName = artist,
+                Username = username,
                 BioLanguage = bioLang,
                 Autocorrect = autocorrect,
                 HttpClient = HttpClient

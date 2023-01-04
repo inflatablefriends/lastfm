@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
@@ -20,6 +20,8 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
 
         public bool Autocorrect { get; set; }
 
+        public string Username { get; set; }
+
         public GetInfoCommand(ILastAuth auth) : base(auth) { }
 
         /// <summary>
@@ -35,12 +37,17 @@ namespace IF.Lastfm.Core.Api.Commands.Artist
             {
                 Parameters.Add("artist", ArtistName);
             }
-            
+
             if (BioLanguage != null)
             {
                 Parameters.Add("lang", BioLanguage);
             }
-            
+
+            if (!string.IsNullOrWhiteSpace(Username))
+            {
+                Parameters.Add("username", Username);
+            }
+
             Parameters.Add("autocorrect", Convert.ToInt32(Autocorrect).ToString());
 
             DisableCaching();

@@ -1,4 +1,4 @@
-﻿using IF.Lastfm.Core.Api.Enums;
+using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
 using IF.Lastfm.Core.Objects;
 using System;
@@ -52,6 +52,19 @@ namespace IF.Lastfm.Core.Api
             };
 
             return await command.ExecuteAsync();
+        }
+
+        public async Task<PageResponse<LastTrack>> GetTopTracks(string username, LastStatsTimeSpan period = LastStatsTimeSpan.Week, int pageNumber = LastFm.DefaultPage, int count = LastFm.DefaultPageLength)
+        {
+            var command = new GetTopTracksCommand(Auth, username)
+            {
+                Page = pageNumber,
+                Count = count,
+                Period = period,
+		        HttpClient = HttpClient
+	        };
+
+	     return await command.ExecuteAsync();
         }
 
         /// <summary>

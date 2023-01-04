@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using IF.Lastfm.Core.Api.Enums;
 using IF.Lastfm.Core.Api.Helpers;
@@ -24,9 +24,15 @@ namespace IF.Lastfm.Core.Api
             int pagenumber = 0,
             int count = LastFm.DefaultPageLength);
 
+        Task<PageResponse<LastTag>> GetTopTags(string username,
+	        int count = LastFm.DefaultPageLength);
+
         Task<PageResponse<LastTrack>> GetRecentScrobbles(string username, DateTimeOffset? from = null, 
             DateTimeOffset? to = null, bool extendedResponse = false, int pagenumber = LastFm.DefaultPage,
             int count = LastFm.DefaultPageLength);
+
+        Task<PageResponse<LastTrack>> GetTopTracks(string username, LastStatsTimeSpan period = LastStatsTimeSpan.Week, int pagenumber = LastFm.DefaultPage,
+	        int count = LastFm.DefaultPageLength);
 
         Task<PageResponse<LastStation>> GetRecentStations(string username,
             int pagenumber,
