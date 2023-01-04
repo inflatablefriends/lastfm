@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91BAA1F1-AA7B-4C1B-9AB9-300B74216920}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IF.Lastfm.Core", "src\IF.Lastfm.Core\IF.Lastfm.Core.csproj", "{BFD08349-6DE7-49D1-8C94-CD79BDB138BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IF.Lastfm.Core.Tests", "src\IF.Lastfm.Core.Tests\IF.Lastfm.Core.Tests.csproj", "{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IF.Lastfm.Core.Tests.Integration", "src\IF.Lastfm.Core.Tests.Integration\IF.Lastfm.Core.Tests.Integration.csproj", "{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IF.Lastfm.SQLite.Tests.Integration", "src\IF.Lastfm.SQLite.Tests.Integration\IF.Lastfm.SQLite.Tests.Integration.csproj", "{25BC90E4-12E5-4999-9C9F-276F5DFC6403}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IF.Lastfm.SQLite", "src\IF.Lastfm.SQLite\IF.Lastfm.SQLite.csproj", "{082625DC-9853-4605-833F-8B74B3F2140C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFD08349-6DE7-49D1-8C94-CD79BDB138BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFD08349-6DE7-49D1-8C94-CD79BDB138BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFD08349-6DE7-49D1-8C94-CD79BDB138BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFD08349-6DE7-49D1-8C94-CD79BDB138BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25BC90E4-12E5-4999-9C9F-276F5DFC6403}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25BC90E4-12E5-4999-9C9F-276F5DFC6403}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25BC90E4-12E5-4999-9C9F-276F5DFC6403}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25BC90E4-12E5-4999-9C9F-276F5DFC6403}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082625DC-9853-4605-833F-8B74B3F2140C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082625DC-9853-4605-833F-8B74B3F2140C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082625DC-9853-4605-833F-8B74B3F2140C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082625DC-9853-4605-833F-8B74B3F2140C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BFD08349-6DE7-49D1-8C94-CD79BDB138BC} = {91BAA1F1-AA7B-4C1B-9AB9-300B74216920}
+		{7CAA2717-2CFA-48AD-B29A-BDD2E1E393CC} = {91BAA1F1-AA7B-4C1B-9AB9-300B74216920}
+		{27EBD97D-06E3-4338-B1F3-AE7189B5D6A1} = {91BAA1F1-AA7B-4C1B-9AB9-300B74216920}
+		{25BC90E4-12E5-4999-9C9F-276F5DFC6403} = {91BAA1F1-AA7B-4C1B-9AB9-300B74216920}
+		{082625DC-9853-4605-833F-8B74B3F2140C} = {91BAA1F1-AA7B-4C1B-9AB9-300B74216920}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A77FC9F-B5AB-4529-A37E-C1F0A8AA35D7}
+	EndGlobalSection
+EndGlobal
