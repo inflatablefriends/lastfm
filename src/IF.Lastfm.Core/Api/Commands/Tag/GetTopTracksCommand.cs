@@ -33,7 +33,7 @@ namespace IF.Lastfm.Core.Api.Commands.Tag
             if (LastFm.IsResponseValid(json, out status) && response.IsSuccessStatusCode)
             {
                 var jtoken = JsonConvert.DeserializeObject<JToken>(json);
-                var resultsToken = jtoken.SelectToken("toptracks");
+                var resultsToken = jtoken.SelectToken("tracks");
                 var itemsToken = resultsToken.SelectToken("track");
 
                 return PageResponse<LastTrack>.CreateSuccessResponse(itemsToken, resultsToken, LastTrack.ParseJToken, LastPageResultsType.Attr);
