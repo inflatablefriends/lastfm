@@ -35,6 +35,12 @@ namespace IF.Lastfm.Core.Objects
             Count = count;
         }
 
+        public LastTag(string name, int? count = null)
+        {
+            Name = name;
+            Count = count;
+        }
+
         internal static LastTag ParseJToken(JToken token)
         {
             return ParseJToken(token, null);
@@ -43,7 +49,11 @@ namespace IF.Lastfm.Core.Objects
         internal static LastTag ParseJToken(JToken token, string relatedTag)
         {
             var name = token.Value<string>("name");
-            var url = token.Value<string>("url");
+
+            Uri uri = null;
+            var urlToken = token.Value<string>("url");
+            if (!String.IsNullOrWhiteSpace(urlToken))
+               uri = new Uri(urlToken, UriKind.RelativeOrAbsolute);
 
             int? count = null;
             var countToken = token.SelectToken("count") ?? token.SelectToken("taggings");
@@ -66,8 +76,9 @@ namespace IF.Lastfm.Core.Objects
                 reach = reachToken.ToObject<int?>();
             }
 
-            return new LastTag(name, url, count)
+            return new LastTag(name, count)
             {
+                Url = uri,
                 Streamable = streamable,
                 RelatedTo = relatedTag,
                 Reach = reach
